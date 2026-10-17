@@ -1,0 +1,2785 @@
+{
+  "version": "0.1.10.16.90.29.87.1",
+  "source_commit": "dc6243850c1d7ac83eb528bc2d56cf585066fc85",
+  "files": 694,
+  "csharp": 168,
+  "native_cpp": 210,
+  "entries": [
+    {
+      "path": "docs/reference/csharp-managed-prefix-v89.md",
+      "sha256": "22ce6b03df84b08ab0f3482acaa1047e4e8254b7d74b10f1a715df9cd94e505b"
+    },
+    {
+      "path": "docs/reference/csharp-prefix-accessory-tooltip-v90-3.md",
+      "sha256": "705597242bb548a8d2d1f11d248ad1545a13ef20b021f95cee9451a1a0615714"
+    },
+    {
+      "path": "docs/reference/csharp-prefix-autoload-v90-1.md",
+      "sha256": "cf2649edb19b2453f02f3f2d14ec98829678b66c06dc92a5298161097131203b"
+    },
+    {
+      "path": "docs/reference/csharp-prefix-bridge-v88.md",
+      "sha256": "8dcd1c1dc34630488495f9bc3c4b54284a6b55029978e2b0a59f413ad85a395f"
+    },
+    {
+      "path": "docs/reference/csharp-prefix-gameplay-v90.md",
+      "sha256": "29117bd93043a011fc7c8f40acf170de2db303c7c5efcc58039a94c6f2c985b4"
+    },
+    {
+      "path": "docs/reference/csharp-prefix-persistence-v90-4.md",
+      "sha256": "fb5279fc8c1d2290bcfcb46f16ff735e39c4f4a9dc058ce389292e2d1e15ea65"
+    },
+    {
+      "path": "docs/reference/csharp-prefix-reforge-v90-2.md",
+      "sha256": "e135f543e254753c5a5ef2f2d4e11f62c96baf95b976f36877d5516b86f80b7f"
+    },
+    {
+      "path": "docs/reference/csharp-prefix-table-init-v90-11.md",
+      "sha256": "531b0fdfef256855d7b4e28e026c0931adb5bcfa87706a4083ddea4099dd6637"
+    },
+    {
+      "path": "docs/reference/csharp-private-apk-delivery-v3.md",
+      "sha256": "1691f22366fdda238892d7add3d59851d487c0f55ada2f8d06121c2024ed48e1"
+    },
+    {
+      "path": "docs/reference/csharp-secure-signing-v3.md",
+      "sha256": "ea0f23dc0e33647cf4d51a7c7079225aad0d7a5e073c94c6fc61fafccb4dbf60"
+    },
+    {
+      "path": "docs/reference/generated/csharp_api_catalog.json",
+      "sha256": "afbe1d59141b8d8d8c3b7f95ec27e9643e653eb64675d0a38b0e9a80cae1e6ff"
+    },
+    {
+      "path": "docs/reference/generated/csharp_api_catalog.md",
+      "sha256": "01d249178988c8d10b731efa1ed375f8b2647956c262e82473332ac3d16ea59c"
+    },
+    {
+      "path": "docs/reference/generated/csharp_api_compile_results.json",
+      "sha256": "e8dc637d7a6b0bf9252006ccc7b85ccafb9195e9ab485ae34804ad2a101adc7f"
+    },
+    {
+      "path": "docs/reference/generated/csharp_api_compile_results.md",
+      "sha256": "dfc0f3dcbe8470afcf7e5c0b54a663b3b11c15228a94298452a2b4da2936bc25"
+    },
+    {
+      "path": "docs/reference/generated/csharp_api_examples.md",
+      "sha256": "9917731187edbbcd19140aba7962e10a2ccaabb5690e64c1111f31723634925f"
+    },
+    {
+      "path": "docs/reference/generated/csharp_api_missing_priorities.json",
+      "sha256": "0328c6a6a3d7335b5ceb1f5cdf626c57cce6acd899a4d610b436f8c28f34f908"
+    },
+    {
+      "path": "docs/reference/generated/csharp_api_missing_priorities.md",
+      "sha256": "e5403f2c4c76ec9c5039961b686fea9def672be2db1c86af5c5902d6c08cfd9e"
+    },
+    {
+      "path": "docs/reference/generated/csharp_api_unsupported_compile.json",
+      "sha256": "dccc1e1b8687a52be39b3cffc4d2ae33327109cd34b52dfb4cccaa23ffc9dffc"
+    },
+    {
+      "path": "docs/reference/generated/csharp_api_unsupported_compile.md",
+      "sha256": "757da43a5631a66df8c5f173ca5a1e4f7fb3ccc02a67bd16f6e114fb35af08b5"
+    },
+    {
+      "path": "docs/reference/generated/sdk_public_reference.json",
+      "sha256": "1ae644398377001f8875d145f6fe3307d2b64f2fe090112b28db5f4e55bc0b6f"
+    },
+    {
+      "path": "docs/reference/generated/sdk_public_reference.md",
+      "sha256": "f2ac02d21720b6e64f1e10c07670b275968245afc8c1179c3eb413c24b941e60"
+    },
+    {
+      "path": "docs/reference/repository/ACESSO-NATIVO.md",
+      "sha256": "b58ab0bef1b972b575c3a321b8dc6400a1f9adffcae9703d2674d29fc934971a"
+    },
+    {
+      "path": "docs/reference/repository/CSHARP-SCREENFX-FOUNDATION.md",
+      "sha256": "faad75acaa45c0912fcd560d725fc79815567c12ce18e762c1aae6cee89476d1"
+    },
+    {
+      "path": "docs/reference/repository/CSHARP_PLAYER_HURT_V90_19.md",
+      "sha256": "22327e9e40706e5677ed366e66467e386f951aadfef20cb7e702661f9528a032"
+    },
+    {
+      "path": "docs/reference/repository/SDK-CSharp.md",
+      "sha256": "cfefeab1ecd5133f26d22cf113f9919d97634dabb567e00aa8a24926aec3b306"
+    },
+    {
+      "path": "docs/reference/repository/SDK-ROADMAP.md",
+      "sha256": "58c23defa58876e10cee2c5209792c1b9ff28dddd8727b17e33b296f7bc83b1d"
+    },
+    {
+      "path": "docs/reference/repository/SDK-VALIDACAO.md",
+      "sha256": "81157b6012c3622005cfaff5a9fafd564cf642657f854a832428cb073f0135d0"
+    },
+    {
+      "path": "docs/reference/repository/UNIVERSAL-HOOKS.md",
+      "sha256": "6034905b5add15a13b265ed2c7b8ddf92ef4be3c3d291c44ed3ee17bb5cf74d1"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-authoring-0.1.10.7.md",
+      "sha256": "c1e407027a43ad342a15085397c1bdbd9db576afe4d76c1acd7d902228f0e136"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-auto-managed-events-v0.1.10.16.60.md",
+      "sha256": "520061bd022a49256781ef100511b67e874352ebd6d5cfdc6855e73dec389105"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-callback-probe-0.1.10.14.md",
+      "sha256": "b25e674254527750fe39092a6cbe1abce8ef2e7fd48e7af418ee55f72ea6ec17"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-crash-checkpoint-0.1.10.12.2.md",
+      "sha256": "f940a52e3d95945c7d88eb261c823530e9023346b225be299b3a98f2cc226751"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-inprocess-test-0.1.10.13.md",
+      "sha256": "a74cd44c39b50fec3fcea5f716bd90698eb0b97db4f2a5050ac08dac33049914"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-isolated-mono-0.1.10.12.3.md",
+      "sha256": "2d699f7bf6f428ba14e91a6bdbb48fe18ac0a68ab61407cd7825e338f7e70120"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-live-sourcebolt-0.1.10.15.md",
+      "sha256": "06e33ec02c4a901617edec88f9cb6addcc1d8c79de62aace3e3a579257e588e5"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-managed-runtime-0.1.10.12.md",
+      "sha256": "feff17d30103f8134f85d5b1b553740c912f04104656d06f071f47ee2e8a6d27"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-mono-native-fix-0.1.10.12.4.md",
+      "sha256": "4b4f22327d671dada6b90d41254d1910ccf161ee8e19dd095801a42dcaf19dc2"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-roslyn-0.1.10.16.2-portable-sha256.md",
+      "sha256": "90b390a3747df4b44008f258ff9a0065d75eddc1368bb0d9450438286febc073"
+    },
+    {
+      "path": "docs/reference/repository/bunny-csharp-roslyn-worker-0.1.10.16.md",
+      "sha256": "ed45a8edc1c2894fd8281997ef91641672981b6aab983d76a6da8143acd44078"
+    },
+    {
+      "path": "docs/reference/repository/csharp-api-foundation-v79.md",
+      "sha256": "9e10bfbdb599f7a204c0aa12156f161a7ae0f70fe8091074e03ecf7ef2cd9292"
+    },
+    {
+      "path": "docs/reference/repository/csharp-cold-compiler-v90-29-84.md",
+      "sha256": "c42e11442b8ad366462f223bbeb112180626f33db8387c17ade46b17c104b79f"
+    },
+    {
+      "path": "docs/reference/repository/csharp-cold-compiler-v90-29-85.md",
+      "sha256": "efdd976baf3f54f048c6b075201f9e66131ebb6959746476c5fe68db9a22fba7"
+    },
+    {
+      "path": "docs/reference/repository/csharp-completion-plan.md",
+      "sha256": "f136ae2155160a508d6146e4da917f9752e5156e79d6f8b72f4dca2e4aa57cbd"
+    },
+    {
+      "path": "docs/reference/repository/csharp-continuation-2026-10-15.md",
+      "sha256": "62616d20b545a7644e496e73be5657bbdc496bd81799d7e96b58e621c6a1b9be"
+    },
+    {
+      "path": "docs/reference/repository/csharp-independence-audit.md",
+      "sha256": "996a5b07bdd29b54bff63e93e70448f12a6c380d0397539c067bc9addef5cec3"
+    },
+    {
+      "path": "docs/reference/repository/csharp-large-mod-performance-2026-10-15.md",
+      "sha256": "8005e08d7d0632537e1cc096f1036db3aacab94dc1df08886a6862fe2e06abd2"
+    },
+    {
+      "path": "docs/reference/repository/csharp-lot-a-development.md",
+      "sha256": "b5c7acce9ac388786d87f97ccfd7518274aca2eddb5798fd7b23472ddac1bbdc"
+    },
+    {
+      "path": "docs/reference/repository/csharp-lot-a-large-batches.md",
+      "sha256": "c384f68b8be3378e35086b89fda17cddc1948cb7af298c38af7daf16edda632c"
+    },
+    {
+      "path": "docs/reference/repository/csharp-lot-a-progress-v90-29-1.md",
+      "sha256": "5556eccd0986669bbb8a0998d07125a1df88bdcca2e917b8b71c64d0a4d6245a"
+    },
+    {
+      "path": "docs/reference/repository/csharp-lot-a-tile-foundation.md",
+      "sha256": "53659153fa2df3a565aa163cde7f977479e5f8414f909c2fae7eed2a8e52c0cb"
+    },
+    {
+      "path": "docs/reference/repository/csharp-lot2-item-behaviors.md",
+      "sha256": "a508ee39da0863193921941093b1c94b8c083ff8613e71b24f87ea843c7b0a75"
+    },
+    {
+      "path": "docs/reference/repository/csharp-managed-default-v74.md",
+      "sha256": "7f4395f93b1b153e5125c6bb30253a921f795271c543a6496b3123e94afee3f4"
+    },
+    {
+      "path": "docs/reference/repository/csharp-managed-gameplay-effects-v85.md",
+      "sha256": "fc10bdd52f41a0f11802c0898d52f862ac7a335081d7d7f5e020ab01ef7fb936"
+    },
+    {
+      "path": "docs/reference/repository/csharp-managed-gameplay-effects-v851.md",
+      "sha256": "4a07d3bf83961eb738381c6ea7c9960d3fe0bd8e307288435a1afa3dd15721ce"
+    },
+    {
+      "path": "docs/reference/repository/csharp-managed-heap-v79.md",
+      "sha256": "4ce1b5137adf5844ae8ba3fcb4486350918cf2684e7c60c7433f0b548cca289b"
+    },
+    {
+      "path": "docs/reference/repository/csharp-managed-hit-context-v81.md",
+      "sha256": "cd62e6a0b44536727a60e30959e2bc9fb819762833c71f646a88921e29e305f7"
+    },
+    {
+      "path": "docs/reference/repository/csharp-managed-hit-diagnostics-v82.md",
+      "sha256": "c8d62690e1ba332d41f3d099ad7352daddd1630bed6246374fa74b62e67fb57b"
+    },
+    {
+      "path": "docs/reference/repository/csharp-managed-mod-resume-v77.md",
+      "sha256": "91ee1b177f7c381068b4d7b57150d3b15713bcfea22c2277e5a72352942ef8e3"
+    },
+    {
+      "path": "docs/reference/repository/csharp-managed-npc-impulse-v86.md",
+      "sha256": "9df3c29320b7035131aa1739e5b81532a9e7d28283fc36fad915238f2cd04fc6"
+    },
+    {
+      "path": "docs/reference/repository/csharp-managed-npc-snapshot-v83.md",
+      "sha256": "3d88f67a4b85c3f91ec5e4fa438f23ac9b8970a4b6bb49e529a4eb3bab710258"
+    },
+    {
+      "path": "docs/reference/repository/csharp-managed-player-npc-context-v84.md",
+      "sha256": "809d2ce790d3c8d38f23cfdb5df317ad3365d9b667d56050f27542be1d9e843c"
+    },
+    {
+      "path": "docs/reference/repository/csharp-memory-lifecycle-v78.md",
+      "sha256": "fc3fa68f87028c85c5e7bc03a9b9c5cd1695f36a51258da66ec7014f497b10d7"
+    },
+    {
+      "path": "docs/reference/repository/csharp-multimod-v75.md",
+      "sha256": "5d716bbb05ff87e7a5bda2787deb75c71dd77e3442271dc800504fd82e44aa01"
+    },
+    {
+      "path": "docs/reference/repository/csharp-native-policy-independence.md",
+      "sha256": "057688271f98df62ddee25e7ee5770bf7bfa6496752bfd77fedd9e95b7b81e3e"
+    },
+    {
+      "path": "docs/reference/repository/csharp-package-assets-recovery.md",
+      "sha256": "33873c87a9079c5757c26f92a5457892211013fdabb4c21fb61527983e6fdedc"
+    },
+    {
+      "path": "docs/reference/repository/csharp-placeable-items.md",
+      "sha256": "1fb9fa249afbe2538b07ee92468f010bba377fa66a3c6690ebbfe715b3947924"
+    },
+    {
+      "path": "docs/reference/repository/csharp-pr28-native-contract-fixes.md",
+      "sha256": "af0cc615137ae47725d1f43fa2279cf8b1a8e0c850c96e3899ec3f5ce12da04c"
+    },
+    {
+      "path": "docs/reference/repository/csharp-source-mod-runtime-next-stage.md",
+      "sha256": "5f8c452ec05467b09f5bc914aa18750dc333bce2d8f089821d29747ad9639c70"
+    },
+    {
+      "path": "docs/reference/repository/csharp-tooltip-and-startup.md",
+      "sha256": "0e716d1e8fa1fb5a4de66b295aad1daf43f6e9893980b93bedd839f5cbe2eb89"
+    },
+    {
+      "path": "docs/reference/repository/csharp-visual-effects-api-v90-27.md",
+      "sha256": "82dfd35665acbbbc1c5a724c7ac8a6ccf4c3629a6658564eff4a983ff6c0a8c1"
+    },
+    {
+      "path": "docs/reference/repository/csharp-world-lifecycle-v76.md",
+      "sha256": "c797d36f2c53acf64714207717bf291875c1cb5e5444755c89fd654ceee6d1ab"
+    },
+    {
+      "path": "docs/reference/repository/examplemod-csharp-dual-projectile-018.md",
+      "sha256": "48c4f613f768170143e8f58869f9b94a8f8f80bf7ef1af3d81eb7d966b379cf5"
+    },
+    {
+      "path": "docs/reference/repository/managed-event-queue-v63.md",
+      "sha256": "c9056d14224d927cb2a6966ea21e68b1753eeb3abdeb72512850ff5dbac898c8"
+    },
+    {
+      "path": "docs/reference/repository/managed-live-benchmark-v64.md",
+      "sha256": "09b5cd19220286e9aca3d86cab267c8c5ed83700811f37c852c0214e855dd05f"
+    },
+    {
+      "path": "docs/reference/repository/mono-arm64-alternative-signals.md",
+      "sha256": "aba1b808c4897ccbf57054f342e17b25af73c5c846858cb99e1051ca034d9398"
+    },
+    {
+      "path": "docs/reference/repository/mono-arm64-build-runbook.md",
+      "sha256": "72487682d734afbea27f0a0b69b27e3583d41558102983d0de31e5cdbfc0937a"
+    },
+    {
+      "path": "docs/reference/repository/mono-auto-live-menu-getter-v61.md",
+      "sha256": "b7bdbf0dec947769c2cfa8b4a6ecc7fb6821697e48667ee533316d04faacaf03"
+    },
+    {
+      "path": "docs/reference/repository/mono-auto-live-world-signal-v62.md",
+      "sha256": "170d53b09240f1ce82076332b0c473bce7e7601e5c9f366bd306ac36986da494"
+    },
+    {
+      "path": "docs/reference/repository/mono-live-hit-onhit-0.1.10.16.59.md",
+      "sha256": "3f90b942bda16a59b882b8680300ffc522d55cba7019934bb2715d31596ce250"
+    },
+    {
+      "path": "docs/reference/repository/mono-pinned-gc-wait-fix.md",
+      "sha256": "ee840524b052ce47de1fc41cf7b0873789cd1b853b56df0419126b58746ddd1b"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/ArmorPolicies.csproj",
+      "sha256": "cfcd0e9bdba55514122002b1b13a74fa64693b8357e0e89ae2203513aac189b1"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/content/Content/Items/Armor/ExampleBreastplate.cs",
+      "sha256": "a8499d9a58401b6f9e8ec08b07a197a5f51187ca88046ce6d3cd01bcfe0f4a92"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/content/Content/Items/Armor/ExampleBreastplate.png",
+      "sha256": "0dad03849d6f7b74b73e1bb7c8bf6bcfeabf1a9c1f08029b1c1bfc8af6c2fc31"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/content/Content/Items/Armor/ExampleBreastplate_Body.png",
+      "sha256": "0dfdb8f3707364ef5c1b9fc3e7bad26b2f46d8d8bf732946c4ee3b64e40365d4"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/content/Content/Items/Armor/ExampleHelmet.cs",
+      "sha256": "43c957e76dff505018182c41f54d45972892180f41fd4cb84b1b4213cc7c45b8"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/content/Content/Items/Armor/ExampleHelmet.png",
+      "sha256": "68a353bf83ffda6c0e73a5dc5babf5f4361ff6276670ebfa5fa042540b76b3e5"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/content/Content/Items/Armor/ExampleHelmet_Head.png",
+      "sha256": "96a55fdaad998bb1edfd88a59cecfa6f0862b9ab7a361c41d0ad283ed7c18151"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/content/Content/Items/Armor/ExampleLeggings.cs",
+      "sha256": "0000ebbe809be2a297ae926382e293ef4be33ab559a26346a8707f42407a7a22"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/content/Content/Items/Armor/ExampleLeggings.png",
+      "sha256": "f0877909bb121853625d2e454c7d0ea8ea1b2a72ce669a639478a695232e8546"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/content/Content/Items/Armor/ExampleLeggings_Legs.png",
+      "sha256": "d826be0c67937e195d46fb696943a9ecd331cdbe01b21ec85cd7fad59f22d749"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/content/main.cs",
+      "sha256": "7e2e454d2dee8adfb38fa3010e06c9e3e5d371a3dd135eb99675d8cccfe630d8"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/Playable/manifest.json",
+      "sha256": "028e831a52fba870bb19c80efbf00b1f131d50720c23d2d033c8e5ce266ce654"
+    },
+    {
+      "path": "samples/ArmorPoliciesCSharp/README.md",
+      "sha256": "597d1a5c8667171f333514683eebd020198803cbb5606de2692751ac6497a289"
+    },
+    {
+      "path": "samples/DeclaredContentCSharp/Playable/content/Content/Items/DeclaredMaterial.cs",
+      "sha256": "332762ba73b9a69daf03fbc30055802d4c21162acd2e176d290e0ffda0a1de59"
+    },
+    {
+      "path": "samples/DeclaredContentCSharp/Playable/content/Content/Items/DeclaredMaterial.png",
+      "sha256": "33c68c2086e8fe335ee57ba14ab60276e1342a5bced79e3dc3e25123205a7af1"
+    },
+    {
+      "path": "samples/DeclaredContentCSharp/Playable/content/main.cs",
+      "sha256": "b4417e0d8596f4ec842b3c4fa6b2518243e2ee7664ef4eb979b178977d764c06"
+    },
+    {
+      "path": "samples/DeclaredContentCSharp/Playable/manifest.json",
+      "sha256": "0c2e0cba475ea33d23fd79439735100e768baf7c41c07b3c1eb75f21d641e072"
+    },
+    {
+      "path": "samples/DeclaredContentCSharp/README.md",
+      "sha256": "ef8724681f437ad47224eb1f4d49cf05b6d2dc3f9c9e823bb4aa028fffd29b98"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Buffs/NativeDefenseBuff.png",
+      "sha256": "6445d39bd01821a88421530cb2c77774b2d6e17a10351e59a0e0d29dc0f2cd78"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Accessories/NativeStatCharm.png",
+      "sha256": "aaaae119f8d3503ab894ac5110c504d021b09ed32f8f7d040dc1a61df84e9781"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Armor/NativeArmorBreastplate.png",
+      "sha256": "0dad03849d6f7b74b73e1bb7c8bf6bcfeabf1a9c1f08029b1c1bfc8af6c2fc31"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Armor/NativeArmorBreastplate_Body.png",
+      "sha256": "0dfdb8f3707364ef5c1b9fc3e7bad26b2f46d8d8bf732946c4ee3b64e40365d4"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Armor/NativeArmorHelmet.png",
+      "sha256": "68a353bf83ffda6c0e73a5dc5babf5f4361ff6276670ebfa5fa042540b76b3e5"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Armor/NativeArmorHelmet_Head.png",
+      "sha256": "96a55fdaad998bb1edfd88a59cecfa6f0862b9ab7a361c41d0ad283ed7c18151"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Armor/NativeArmorLeggings.png",
+      "sha256": "f0877909bb121853625d2e454c7d0ea8ea1b2a72ce669a639478a695232e8546"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Armor/NativeArmorLeggings_Legs.png",
+      "sha256": "d826be0c67937e195d46fb696943a9ecd331cdbe01b21ec85cd7fad59f22d749"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Consumables/NativeDefensePotion.png",
+      "sha256": "37c27f1c94c3c1642747185023927221e8e5d75ecf6338e6a594fb3dedca883c"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Consumables/NativePhaseSlimeBeacon.png",
+      "sha256": "cbb397e38e2bdc3ff050347936d87482ec4e25ab044cc60dc14d37ea24fd675d"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Materials/NativeSlimeShard.png",
+      "sha256": "eaf6d35f0d7e7957a6602c8e067154dab600f03d7c53c0c245f159b96f63ccff"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Weapons/NativeHomingWand.png",
+      "sha256": "874000879dd3ce7a91fde90a70d0bd59c41ce078f6dfbda0133c20562420cc27"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Weapons/NativePredictiveWand.png",
+      "sha256": "6437590d81bcf0b634f4f27866e087337eac1b901f5f2f3ff9aafccf403f7e14"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Items/Weapons/NativeWaveWand.png",
+      "sha256": "874000879dd3ce7a91fde90a70d0bd59c41ce078f6dfbda0133c20562420cc27"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/NPCs/NativePhaseSlime.png",
+      "sha256": "6e6c414bcd5913b68011d45fa56207266c639e9d5a29111dbd058e885b9d91ff"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Projectiles/NativeHomingBolt.png",
+      "sha256": "25bfb119a8e1b4d054ed78bac392b72e0448eee7b9ac971d3afb693cb5a9dc7b"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Projectiles/NativePredictiveBolt.png",
+      "sha256": "25bfb119a8e1b4d054ed78bac392b72e0448eee7b9ac971d3afb693cb5a9dc7b"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Projectiles/NativeSlimeOrb.png",
+      "sha256": "25bfb119a8e1b4d054ed78bac392b72e0448eee7b9ac971d3afb693cb5a9dc7b"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/Assets/Content/Projectiles/NativeWaveBolt.png",
+      "sha256": "25bfb119a8e1b4d054ed78bac392b72e0448eee7b9ac971d3afb693cb5a9dc7b"
+    },
+    {
+      "path": "samples/ExampleCSharpOnlyMod/README.md",
+      "sha256": "49242f7d25a62eb8476897e796e33c810a7dd8d3ec908eaf40a5d37b130c0cef"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Compatibility/NPC_COVERAGE.md",
+      "sha256": "df45f640d563dcd3d54c294cd589bc69f41fe99ecdb6ad183ff1842a3e2d90c3"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Compatibility/npc_methods.json",
+      "sha256": "59ea0aa23e72360151d4c8e64e8a3c1ac60dca59e3dca2c91e78267df003b13a"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Docs/Compatibility.md",
+      "sha256": "3ce068711089862d41d039e306ba8396073b6c24630bc89fd651f5eb6205ad98"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Docs/DynamicRuntimePrototype.md",
+      "sha256": "c70fee1af0aa03df131a6c47148cb6d104f2252824eeba688a092a778f769981"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Docs/GettingStarted.md",
+      "sha256": "14daa572d35052796edfaf1fa69e12e067b4ebe9aba0dbcec68610caabc61568"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Docs/LiveNpcAIPrototype.md",
+      "sha256": "dc15376299af651be5b60fdeaab8670d042d2b112108042f9ead0163c52fe1aa"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Docs/SupportedAPI.md",
+      "sha256": "cad486aca9e49071f673f3b661438c819a7ce10f8ce5d3867e95ce26d3dc85c8"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Examples/Items/SourceStaff.cs",
+      "sha256": "ba5f01f47d8d4e393d8523d792489283ebab2486df85d69f3144f37f9d904f90"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Examples/Items/SourceWand.cs",
+      "sha256": "e4046edfb781dcd1fa08e6741a62910f9d63038a24ae7e9b08e92a82fded1c75"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Examples/Projectiles/AI/SourceBoltMotion.cs",
+      "sha256": "057d45531ca66b09ac2f98d25e22a40f625f08e17a2752a73282dbca185f2252"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Examples/Projectiles/AI/SourceSparkMotion.cs",
+      "sha256": "a82771f3eae2102da9bd59e3515f49789d780fedd4fdbf58fd9ff4c1152703a7"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Examples/Projectiles/SourceBolt.cs",
+      "sha256": "580395819a548653ff97a33c2403bdb78ac2455156e3092e4d6303fb53081940"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Examples/Projectiles/SourceSpark.cs",
+      "sha256": "3018f5729ef2f682d5ddea98d870f0af23c686cd83507c6e10dda49936c1f1f3"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Experimental/UniversalHooks/ExampleUniversalHooks.cs",
+      "sha256": "dd387fbf123645e9b218a6a805d1a120a257a217f1f836d84b93100a0b068801"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Hooks/ExampleHookInt32Triple.cs",
+      "sha256": "1076b43a2b228311c916a2b20e82f949ed7344f8dcee006dc9c4e22edf9ab7b8"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Hooks/ExampleHookInt32Zero.cs",
+      "sha256": "77d86647d2779c5624e16416d35810fe808dd846a09f8ce7adcae4a8e5b0519b"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Hooks/ExampleHookVoidInt32.cs",
+      "sha256": "e6af323859fc2abc5bbf4bca6ad2797abdf65262c0fd4acb5087b021f740a71c"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Hooks/ExampleHookVoidInt32Pair.cs",
+      "sha256": "1c3ff3aec4e72a508bae53d0022323e3eedd4e00684e652bbb0d0123c64d4f0a"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Hooks/ExampleHookVoidInt32Triple.cs",
+      "sha256": "7ae32a50e00950c1983cc3e053602ed6a3591dcf9c01ff430a79cf9b62d9d0ea"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Hooks/ExampleIntPairHook.cs",
+      "sha256": "47513fc20389f9620daeb1f2972cc090359aea5e6d079b3436ac8805781c9127"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Hooks/ExampleNativeAccess.cs",
+      "sha256": "1077c76600819df3e3d420229ee4edd8842eb018e40bf41b63620cbe9d3fd194"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Live/BunnyLiveEvents.cs",
+      "sha256": "e06fd8e407bc8444a582f037d84d3a72cc552cacd7316490f9e302a309cbb58e"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Live/ExampleLiveNpcAI.cs",
+      "sha256": "e2bab62721c290913d6cca29a0d19c1b7d8cdfd402cbbe5657187576274572d1"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Live/ExampleLiveRuntime.cs",
+      "sha256": "4d2a41b683c41e4c716953d8ce242eb2ac99ed29988113c5381536a9edff0427"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Live/ExampleWaveBoltLiveEvents.cs",
+      "sha256": "b1aaac33f15e00e876e6e54ccff8972fc35a1bb69f8dac20deecdfa85963ff16"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleArcanePlayer.cs",
+      "sha256": "9f756d63a353b5d98f72ccb9c608762ecd654fdeafbc2006a79f55405ad7844d"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleFocusPlayer.cs",
+      "sha256": "282f5bcd04d02b4f36f9b6e201e5a47a916e9396df6f866a1a9af9c4182c40ef"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleGuardianShieldPlayer.cs",
+      "sha256": "1a6c55c2def9f49a58890407af8f082a05f27f0fbdf0adb471e42393bfec1dee"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleMomentumPlayer.cs",
+      "sha256": "a5273c56d04ac19a49b9951abdec1bf94ceaf0f32d186a9662e58c0dc091bcf5"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleMysticWardPlayer.cs",
+      "sha256": "a8293953a6f08eb63be59c50290749b48a89416ac1c9b3bbfb5b61860853b3af"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleShadowPlayer.cs",
+      "sha256": "4e5f78a4f77598b5b5da97bb3a2c02c189a157bf2188422a6ca3ae9e4c12744e"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleSwiftPlayer.cs",
+      "sha256": "7afae5f15a6374c575559aeba3a1ee3dcc24170db6c22a42aadbd8806c4c13ee"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleTrailblazerBootsPlayer.cs",
+      "sha256": "f8721ef701e2158545c31661ad1efa111e59604eb5f00f20cbd7e382eaba8f91"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleVitalPlayer.cs",
+      "sha256": "bb84dba335cd396131dc6b7482d186eb75d1063e158c3df29045c21569cc6c7a"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleWelcomePlayer.cs",
+      "sha256": "5ff3261eec322e5770b764f9b987452b3ac05a24551073f17d34ab070687a5a8"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Recipes/01_ReduzirDano.cs",
+      "sha256": "337e15422d01b2f640c094e8f86db1dd13a3d3887e3e960560d970fdf883d82e"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Recipes/02_VidaBaixa.cs",
+      "sha256": "a4c699e1b5056fbab874f1d2f4d383e9533594025b83144bb169b184ac4dcfc8"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Recipes/03_ContatoNPC.cs",
+      "sha256": "f188b3dd64b4f20a8569322ab6c41a86347472cc439979938e3827ba242e7b0c"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Recipes/04_Projetil.cs",
+      "sha256": "512bf7ea7d78cf1d3fadeaa380d648fa46164d91a0cc193a36d778e5a9e6af28"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Recipes/05_Distancia.cs",
+      "sha256": "31ab84534a8ec88ba9d577554ad1dca41f9c21e016fddd8ee94f208b33f2ff18"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Recipes/06_Velocidade.cs",
+      "sha256": "cad6e60e303d76bebc9c3f2f8c52105261238257151a494d887fb8a0693abeaa"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Recipes/07_Arco.cs",
+      "sha256": "a1de048c5428a45e2cb80f6cf9ffd7a6e4c35e33bdb8a7267c90732bc1bcc263"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Recipes/08_AposGolpe.cs",
+      "sha256": "7ff667239834ff85ffd25c590218f34f75c58acbaf4a9670a2437a2a42921506"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Buffs/ExampleDefenseBuff.cs",
+      "sha256": "57bd6aa4a7fa1b5af7ed4dce53b815e14a59ff816451f12b87a3a90274c39090"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Buffs/ExampleDefenseBuff.png",
+      "sha256": "6445d39bd01821a88421530cb2c77774b2d6e17a10351e59a0e0d29dc0f2cd78"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Effects/MysticWardBarrier.png",
+      "sha256": "e02371d6d23282d3cde6ab53a908d8a23f3af9335b2031de9baffd37424f80ab"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Effects/TrailblazerSpark.png",
+      "sha256": "433ac3675616e4ec32b5338117032d1c757937abfd07ec736c737f1fc4a28eb1"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleArcaneAccessory.cs",
+      "sha256": "d086def99432b60d00c836213d266ac631f3b4d85f64597abfef9d4969d78ac0"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleBeard.cs",
+      "sha256": "d56cf9f0cf272bb9a45411380e252631e71795d41041a3e109baaa4fc90cd3a9"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleBeard.png",
+      "sha256": "ed23c7e74c707d8c93cbb6cd6bf940ac79f5895bf29b24c08c4b5a644c3c0a85"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleBeard_Beard.png",
+      "sha256": "248a667cf93af00244d303cf000de3ecd3c406450135d3e84f3181a7f9d3c45f"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleFocusAccessory.cs",
+      "sha256": "15b18e6428b6e60157ccce805978e817c6d435e8a059d6639024ca767ff2112e"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleFocusAccessory.png",
+      "sha256": "aaaae119f8d3503ab894ac5110c504d021b09ed32f8f7d040dc1a61df84e9781"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleGuardianShieldAccessory.cs",
+      "sha256": "5916ef737b273ed2c6b70a9bc642bb6f7a63b89b701c23ba239afb5370fafc36"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleGuardianShieldAccessory.png",
+      "sha256": "693bc8fb887672fb09efe1568a049fd6e36ab96fb0b9c3cd6fc04bb787a1ac85"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleGuardianShieldAccessory_Shield.png",
+      "sha256": "637d9a72cb790ee021c42d0d1ac979bcbe73fcf2ff76c4a2c7586831c21140f3"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleMomentumAccessory.cs",
+      "sha256": "e5b6d51b5ab72bff3672b5d101f090b421a40cfee25bea17ab826065ef156847"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleMysticWardAccessory.cs",
+      "sha256": "8591af9b6168582edc1ac1d3f958bfca92f8fb8413049984926b1cbf34d927ee"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleShadowAccessory.cs",
+      "sha256": "6517f297bf1404c39bcdba6b8be001343197a3381036174cadc4e13c3c2ecfd4"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleStatAccessory.cs",
+      "sha256": "e558acd55f0e28f46cc7086a0eb0e04e7af50b5786f20d5a35ca316a6939dc57"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleStatAccessory.png",
+      "sha256": "aaaae119f8d3503ab894ac5110c504d021b09ed32f8f7d040dc1a61df84e9781"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleSwiftAccessory.cs",
+      "sha256": "7d9f7c207458c809047402744b16aa3f8de3bee4df415fdf8c7c12e9d26fbe23"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleTrailblazerBootsAccessory.cs",
+      "sha256": "7446bb7ef481342a7e4e43b4bcffea7e938dfb6fb31b7a76d3c2ebc7e4cf3161"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleTrailblazerBootsAccessory.png",
+      "sha256": "9d2afa881bef22bdc98d02611facdad7de06ae316e34971e40573c1b9f009afb"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleTrailblazerBootsAccessory_Shoes.png",
+      "sha256": "cde24e99697978403b5e6dae93e192377e1dafe41cc62923cdf674ea97b52603"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleVitalAccessory.cs",
+      "sha256": "632e0537d1f1632a07b73e1782950a9b51bd23b6bcda0b3c624082bc8ed3e9b8"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleWings.cs",
+      "sha256": "392881eee631c3a17a7d03c4073e216c9ae4de922a8b7ef027ddb4a60e94c812"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleWings.png",
+      "sha256": "bf39739716ca870c0a0f509a0cb5a857f3b7125ec8e79c3b07581f0d93b5a083"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleWings_Wings.png",
+      "sha256": "551366a33f5e9da0684f157c9faf5a186453ce2a0d9445fe54b5844a5656ec28"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/WaspNest.cs",
+      "sha256": "8cb49bba27ddf08b0a5e0aef1057da205f1b6cea39b50cc34f813d260cbe12bb"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/WaspNest.png",
+      "sha256": "3564d7a0160706eb351eb9a8c3f776c4447ba1127c53ef8ccc2842ea1dab6963"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/WaspNest_Back.png",
+      "sha256": "dbb758c63c79348fe7286cc5630ca1775a1ad16da50c104bbddfcde0ec994508"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/ExampleBreastplate.cs",
+      "sha256": "bb706ad3a5ce50485cfd3508a6fed1f6a48f19a918f7aaef99b1c1d1282785d7"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/ExampleBreastplate.png",
+      "sha256": "0dad03849d6f7b74b73e1bb7c8bf6bcfeabf1a9c1f08029b1c1bfc8af6c2fc31"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/ExampleBreastplate_Body.png",
+      "sha256": "0dfdb8f3707364ef5c1b9fc3e7bad26b2f46d8d8bf732946c4ee3b64e40365d4"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/ExampleHelmet.cs",
+      "sha256": "939d8e71fa1d5891095989e774c00ff7c4ee95ce9456ac4a85f129c9020eec2d"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/ExampleHelmet.png",
+      "sha256": "68a353bf83ffda6c0e73a5dc5babf5f4361ff6276670ebfa5fa042540b76b3e5"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/ExampleHelmet_Head.png",
+      "sha256": "96a55fdaad998bb1edfd88a59cecfa6f0862b9ab7a361c41d0ad283ed7c18151"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/ExampleLeggings.cs",
+      "sha256": "ba91252fc6ad837cb3930034cdd7a9f377213c76507b000ddbdde0bc0eb4326b"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/ExampleLeggings.png",
+      "sha256": "f0877909bb121853625d2e454c7d0ea8ea1b2a72ce669a639478a695232e8546"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/ExampleLeggings_Legs.png",
+      "sha256": "d826be0c67937e195d46fb696943a9ecd331cdbe01b21ec85cd7fad59f22d749"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/Vanity/ExampleBossMask.cs",
+      "sha256": "995d5a8e130d01a76b76ea2b9f4fc8d7996ea868f7feff9cdbde25573fba75b6"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/Vanity/ExampleBossMask.png",
+      "sha256": "f6bd38e14b70afbf91e853a1ed987fa8091e5ad3d2ea8dbbea114ac205841a42"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/Vanity/ExampleBossMask_Head.png",
+      "sha256": "7231b7a728e7f44193626bfd60dabfa1144cad1a47189487b33b1eb56b2877c8"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/Vanity/ExampleRobe.cs",
+      "sha256": "529dd29ec1098bf41e618f7275799a5c94d9046cf0ec1cefc0bb34d846068e4f"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/Vanity/ExampleRobe.png",
+      "sha256": "c8ad95b5a227ea69654b9121ccc7e658dbb028425940fafbbd89b1fc795147d5"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/Vanity/ExampleRobe_Body.png",
+      "sha256": "54e39ee9d06567f4cd0517c354181a8d3e45883986211a16fa494da21eb59197"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Armor/Vanity/ExampleRobe_Legs.png",
+      "sha256": "849014ec84f4b19fdf0c200b7bf554bd1b4222bf74e38803ecaf33ed9e2ef283"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleBuffPotion.cs",
+      "sha256": "9e628d7665444a51a047b5d5bad342552b36475d5f73f21957078a51ef5fdcd1"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleBuffPotion.png",
+      "sha256": "37c27f1c94c3c1642747185023927221e8e5d75ecf6338e6a594fb3dedca883c"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/ExampleItem.cs",
+      "sha256": "887061e2b44709c536a2c83de455fd8fd09d4c2cce6c2f0bf9c2f6d2a594e03a"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/ExampleItem.png",
+      "sha256": "33c68c2086e8fe335ee57ba14ab60276e1342a5bced79e3dc3e25123205a7af1"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Materials/ExampleSoul.cs",
+      "sha256": "6efb472412dcbcac119735325ed32fba023a5193e4a0e441fce19920dd82ff23"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Materials/ExampleSoul.png",
+      "sha256": "eaf6d35f0d7e7957a6602c8e067154dab600f03d7c53c0c245f159b96f63ccff"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/Furniture/ExampleWorkbench.cs",
+      "sha256": "79edf0e4c4affbd5c3d91cc763819ffbdfe52ac94f2fe2f319f9e6f92271ffb0"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/Furniture/ExampleWorkbench.png",
+      "sha256": "02a96b61fc36d9a181c7e6b6c53fc891aca45160c47c2969bdf3511a617150fe"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Tools/ExampleHamaxe.cs",
+      "sha256": "0d469a2cdb5265926f3a0e23df429ffd4aa60d6867194624487c9b43642d797e"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Tools/ExampleHamaxe.png",
+      "sha256": "56a11da61870a1cd9d65d314389eee827bc426ee0d1a578eb8585c3b0acdee72"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Tools/ExamplePickaxe.cs",
+      "sha256": "e4e06fff49bb615a4e7012b13a37899e53abbce664d9b68c8b0e4f4ed37f44cc"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Tools/ExamplePickaxe.png",
+      "sha256": "e8865a3f475a3287c4534abf755d027545d4f4db5c6ca25414201a1a2e7561e6"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/ExampleWand.cs",
+      "sha256": "2d8da7f17b1cf62e9b893a2dd7ac43d35315806d725000668c9dad33da06052b"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/ExampleWaveWand.cs",
+      "sha256": "79942e18de50f3396b47a1d007248ca3f0a99e6cbbc8ac8c64e42378c11e2632"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/SourceWand.png",
+      "sha256": "874000879dd3ce7a91fde90a70d0bd59c41ce078f6dfbda0133c20562420cc27"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/NPCs/ExampleSlimeNPC.cs",
+      "sha256": "306699a564b7f9e9b5b20b113178af78c9614b6e3d2ef7f3475d578b91725538"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/NPCs/ExampleSlimeNPC.png",
+      "sha256": "6e6c414bcd5913b68011d45fa56207266c639e9d5a29111dbd058e885b9d91ff"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleGuardedPrefix.cs",
+      "sha256": "ffbe6128ea0f68094b2602058d5f6b062dff987ffab9bc8d57bb9c1ec46abb57"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleMightyPrefix.cs",
+      "sha256": "30600bf4bc4c4f35df23767ee9121fb145c4b3e45bd8387012bad991d53dabaf"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleWaveBolt.cs",
+      "sha256": "5c9879fa53cff092730e9e0a2f85c7901938f0fa805427898e535be94c18fbe1"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Projectiles/SourceBolt.png",
+      "sha256": "25bfb119a8e1b4d054ed78bac392b72e0448eee7b9ac971d3afb693cb5a9dc7b"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/Furniture/ExampleWorkbench.cs",
+      "sha256": "e87901f5ffdde5f3b005ae899383d6ae6a5e3f72002ffd617e55a25f56ea6d6f"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/Furniture/ExampleWorkbench.png",
+      "sha256": "91257f9a0b1e1d2f6aad36bb16b29fa41a559c542d5c103277f21300a7ef4068"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/Furniture/ExampleWorkbench_Highlight.png",
+      "sha256": "311c562cda08d6ff7ec6ffca129c7c18a95f7717a7c33e15ea11f7969b590355"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "sha256": "b6c1aa4ebc92e117248e099f67983765fe052423d1494f6ce31b4d386d97b50e"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.md",
+      "sha256": "aacdb51fef7f530810d594b9e257b7b8901c74a6251763bd40d4410708b1a27d"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/HOOK_QA_ANDROID.md",
+      "sha256": "a5023930b2fe40753ad1a573f45b3cb64e488c65656692361ca0678eb2a4a0a1"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/LOTE2_ITENS.md",
+      "sha256": "f924ba657ad5e25b9ac850d1ac2401e6e286c82c367e085509193da5b6f0cffb"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/RECEITAS_NATIVAS.md",
+      "sha256": "4f0b92fe8312250d658e32c2b6a2f5bec27248b649c8ef5dbe34df6046ad04a0"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/TESTAR_ANDROID.md",
+      "sha256": "3786851bb0d0c58ba220996fa70c1187b6fcbce68e09b0ce29228c6ab43939c0"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/ExampleBoltMotion.cs",
+      "sha256": "1e438c57be6b150c81d36d72f0b08bddfa1d102859004bac2bd5d91a40f63c50"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/ExampleWaveBoltMotion.cs",
+      "sha256": "21be6467c2f27d26133bd5f73068953b3b449478004c2024e91b50580423e6ff"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/LEIA_PRIMEIRO.md",
+      "sha256": "b4fb59f842f2bed98d21c0c65a365b68affa5435417076baa11caba66455b110"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/main.cs",
+      "sha256": "bdb19ce617734b33f643ef40a87f1e3eb2f67effe20ec6bf4e9678af62923299"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/manifest.json",
+      "sha256": "5a8898c3246a6159c0c62c9790c3bb5ff4f0bb19531fe1cdeabadd016756bc2a"
+    },
+    {
+      "path": "samples/ExampleModCSharp/README.md",
+      "sha256": "c4aff67e8881fd179181eefabf0b13af37ffab843e50631f843e6a380642f987"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Tests/ManualAndroid.md",
+      "sha256": "96a7709fa14ec633983d7b9b93ff281f7ae6850fcb09c74a67bdefba0bc9744e"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Tests/check_examples.py",
+      "sha256": "95c5f1fefb7b409302c99c481621d2c61a0ed9d8b39405f6fa95fd017c79df41"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Tests/check_npc_coverage.py",
+      "sha256": "c7fae46a523d7b7b5c73068f05282bf90a9f0061fa51e97e01f6c958f114ddba"
+    },
+    {
+      "path": "samples/ExampleModCSharp/Tests/package_dual_example.py",
+      "sha256": "df219c750f27d5c10886f7232ad3ce7dc55d62fb4529bd39c51cd637a750cc46"
+    },
+    {
+      "path": "samples/ExampleModCSharp/compatibility.json",
+      "sha256": "ac470fd9dce3d9cc4766f3c2e846aad2e42fe6354d68189b4d071d44d42c6e7a"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/Playable/content/Effects/BloomComposite.frag",
+      "sha256": "8ae19d53470cdeee05a10895a0fcb38d65f1e51737184e9f20c533d75acc593e"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/Playable/content/Effects/BloomThreshold.frag",
+      "sha256": "0321e598a617e984ac5258336161f96f657f8360d68bbb191b5d897f217627ee"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/Playable/content/Effects/KawaseBlur.frag",
+      "sha256": "7662c837dc394d7e234019636a1e0c56df0a92faab841bd3999adaaff6ab9ea7"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/Playable/content/Effects/LightCompose.frag",
+      "sha256": "9e143f2800f8838e010d154bdc4daf0851fd9d30994f6fd65faa3dbd249dc07f"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/Playable/content/Effects/Lights.screenfx",
+      "sha256": "3547fcc59ff820b95ee0cb4325534adc2c600e70715ccf59a3aae13ec33dc072"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/Playable/content/Effects/ShadowRays.frag",
+      "sha256": "e84e79b81e2ba8fdd874f3aaf7026534fd9d3bbf2bc496d16e3e9746bd76ba3b"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/Playable/content/main.cs",
+      "sha256": "677a363b7c0c86329594a29621e675191ad71402da7e30105c19f9e6f3299698"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/Playable/manifest.json",
+      "sha256": "7f44a5c5618157366b1bec547dbfca813cdca0e0ee3cf7d5cb207b5a9621ab4e"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/README.md",
+      "sha256": "3965cbd670019daf661d0bfe614739de084643d7a45d4d969dcdbfd86cda5b49"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/SourceAssets/ColorTex.png.b64",
+      "sha256": "f8b0bc0f6af898d4e07a3f19539b1043172171a9ea3a90c5d8bb5f5873d07448"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/SourceAssets/ColorTex2.png.b64",
+      "sha256": "fc77bbbd7e54d17acb0f50e4439a90933902ff853247f90a7a13231d76f316e8"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/SourceAssets/ColorTex_Alt.png.b64",
+      "sha256": "7993a692e28ac08ce6ee05fc31650aed26ce8ea1ffddc31bd77f980bbc5cbde4"
+    },
+    {
+      "path": "samples/LightsAndShadowsCSharp/package_mod.py",
+      "sha256": "b5c9219be4d2d2e3b589191953347cd80927b561454747996b9059af3cac6e04"
+    },
+    {
+      "path": "samples/NativeAccessProbe/Playable/content/ProbePlayer.cs",
+      "sha256": "6c629d8deaf2f4eac916198501241d0e8d5f0b30d42aed53cc37eb7d6c6f6a1e"
+    },
+    {
+      "path": "samples/NativeAccessProbe/Playable/content/main.cs",
+      "sha256": "0e66e1372cc5204bd99430fd5a5ffcc124e080b41650a87b260e82114a9088b1"
+    },
+    {
+      "path": "samples/NativeAccessProbe/Playable/manifest.json",
+      "sha256": "726b13d8bb73d886c5c912f366ac9a1b5549a223772555fe45f46de3c95aafc4"
+    },
+    {
+      "path": "samples/NativeAccessProbe/README.md",
+      "sha256": "e44fd934e076a2c1d9d2d2ff4193327aef3ea6d2932f76eecfdb5a50130ef788"
+    },
+    {
+      "path": "samples/NativeAccessoryCSharp/NativeAccessory.csproj",
+      "sha256": "cfcd0e9bdba55514122002b1b13a74fa64693b8357e0e89ae2203513aac189b1"
+    },
+    {
+      "path": "samples/NativeAccessoryCSharp/Playable/content/Content/Items/NativeCharm.png",
+      "sha256": "aaaae119f8d3503ab894ac5110c504d021b09ed32f8f7d040dc1a61df84e9781"
+    },
+    {
+      "path": "samples/NativeAccessoryCSharp/Playable/content/main.cs",
+      "sha256": "df848bfd2719d61e77b2c02934f1c765089b53207c17d3a8d9f504e2ba6030a6"
+    },
+    {
+      "path": "samples/NativeAccessoryCSharp/Playable/manifest.json",
+      "sha256": "5d90eeba6a256ca3c24ffc3abaecc46d834b74d6e3ecbe6ef3a48c73a063e79c"
+    },
+    {
+      "path": "samples/NativeAccessoryCSharp/README.md",
+      "sha256": "7e51f03611aaf33cc6621e18c39be433bb2c470e7eb58ced60747ef70c8dea70"
+    },
+    {
+      "path": "samples/NativePlacementProbe/Playable/content/COMO_TESTAR.md",
+      "sha256": "bc18fb989c4407d65a5e2cfd20b9a68ef714afb161c7c8e76031aedf5c4da385"
+    },
+    {
+      "path": "samples/NativePlacementProbe/Playable/content/Content/Items/ProbePlatformA.cs",
+      "sha256": "9f498b61223aba89d7024d1fb5c8e161d8582078ccd5f86e27ad356785da5b04"
+    },
+    {
+      "path": "samples/NativePlacementProbe/Playable/content/Content/Items/ProbePlatformA.png",
+      "sha256": "8958ff1414fc3577a454f744b4bdeb251a04294c7103b925bb65b437bc49f581"
+    },
+    {
+      "path": "samples/NativePlacementProbe/Playable/content/Content/Items/ProbePlatformB.cs",
+      "sha256": "57416f74fb9cb68e18660a64542261ef526d4a9522dcd5caae482b4547df0bec"
+    },
+    {
+      "path": "samples/NativePlacementProbe/Playable/content/Content/Items/ProbePlatformB.png",
+      "sha256": "8958ff1414fc3577a454f744b4bdeb251a04294c7103b925bb65b437bc49f581"
+    },
+    {
+      "path": "samples/NativePlacementProbe/Playable/content/Content/Items/ProbeWorkbench.cs",
+      "sha256": "fb83d2483e26882f8e1fcb658c560e67663952b3a9b0e4f702e64ff25cd59f94"
+    },
+    {
+      "path": "samples/NativePlacementProbe/Playable/content/Content/Items/ProbeWorkbench.png",
+      "sha256": "02a96b61fc36d9a181c7e6b6c53fc891aca45160c47c2969bdf3511a617150fe"
+    },
+    {
+      "path": "samples/NativePlacementProbe/Playable/content/main.cs",
+      "sha256": "33d351b109218c9a88c8fb232a0fa908c2f80756bf72090939065247a48067b9"
+    },
+    {
+      "path": "samples/NativePlacementProbe/Playable/manifest.json",
+      "sha256": "f000dc17ef193ce33e62c417a3f947e6e98571c3b9cdaf7a207c6e097e53719d"
+    },
+    {
+      "path": "samples/ScreenFxProbeCSharp/Playable/content/Effects/ProbeTint.frag",
+      "sha256": "23e63220f7d820910d7d7a7e563c72eb0611300f0488efd9ad0a9b8cca1e375c"
+    },
+    {
+      "path": "samples/ScreenFxProbeCSharp/Playable/content/Effects/ProbeVignette.frag",
+      "sha256": "001fc34851a54906007495a2ba6165ee02d503d5bd7b002d5a4cdeae7225f1fa"
+    },
+    {
+      "path": "samples/ScreenFxProbeCSharp/Playable/content/main.cs",
+      "sha256": "31eadbedd28d27bc40bca9f49a4009fb7c4ac36c752f2ecae5b03343bc538f93"
+    },
+    {
+      "path": "samples/ScreenFxProbeCSharp/Playable/manifest.json",
+      "sha256": "cd9d28a97cecd717b5144f5f7e1914d49618cdba5ed88575f1bea6256e197b6f"
+    },
+    {
+      "path": "samples/ScreenFxProbeCSharp/README.md",
+      "sha256": "a4ba33fa2906453c0e602432370e2d84c164c530bb160cdae1dbeb7513f29781"
+    },
+    {
+      "path": "samples/SecondExampleModCSharp/Playable/content/Common/Live/BunnyLiveEvents.cs",
+      "sha256": "697f76fc89ba44254b9284291c276ff9bb03f5eee3632bd8a29290a69c801977"
+    },
+    {
+      "path": "samples/SecondExampleModCSharp/Playable/content/main.cs",
+      "sha256": "3f26283b67ad4f40b273fb337e77633016735b95b855b50861339ddde56c770f"
+    },
+    {
+      "path": "samples/SecondExampleModCSharp/Playable/manifest.json",
+      "sha256": "eac8233576d12122bfbc98225b30b64be258f9d09e829c92a83d8ce8a9d1da3d"
+    },
+    {
+      "path": "samples/SourceCSharpMod/README.md",
+      "sha256": "46ef20e88f97a549ffda8502c762623089c709ff3942d51222fcc123e6cff429"
+    },
+    {
+      "path": "samples/SourceCSharpMod/content/Content/Items/Weapons/SourceStaff.cs",
+      "sha256": "ba5f01f47d8d4e393d8523d792489283ebab2486df85d69f3144f37f9d904f90"
+    },
+    {
+      "path": "samples/SourceCSharpMod/content/Content/Items/Weapons/SourceWand.cs",
+      "sha256": "e4046edfb781dcd1fa08e6741a62910f9d63038a24ae7e9b08e92a82fded1c75"
+    },
+    {
+      "path": "samples/SourceCSharpMod/content/Content/Items/Weapons/SourceWand.png",
+      "sha256": "874000879dd3ce7a91fde90a70d0bd59c41ce078f6dfbda0133c20562420cc27"
+    },
+    {
+      "path": "samples/SourceCSharpMod/content/Content/Projectiles/SourceBolt.png",
+      "sha256": "25bfb119a8e1b4d054ed78bac392b72e0448eee7b9ac971d3afb693cb5a9dc7b"
+    },
+    {
+      "path": "samples/SourceCSharpMod/content/Content/Projectiles/SourceSpark.cs",
+      "sha256": "3018f5729ef2f682d5ddea98d870f0af23c686cd83507c6e10dda49936c1f1f3"
+    },
+    {
+      "path": "samples/SourceCSharpMod/content/SourceBoltMotion.cs",
+      "sha256": "057d45531ca66b09ac2f98d25e22a40f625f08e17a2752a73282dbca185f2252"
+    },
+    {
+      "path": "samples/SourceCSharpMod/content/SourceSparkMotion.cs",
+      "sha256": "a82771f3eae2102da9bd59e3515f49789d780fedd4fdbf58fd9ff4c1152703a7"
+    },
+    {
+      "path": "samples/SourceCSharpMod/content/main.cs",
+      "sha256": "580395819a548653ff97a33c2403bdb78ac2455156e3092e4d6303fb53081940"
+    },
+    {
+      "path": "samples/SourceCSharpMod/manifest.json",
+      "sha256": "1f2d0f4e1803d8fe09676937b17c29ccac00bdeada40332020bc1db6e51909f0"
+    },
+    {
+      "path": "samples/StarterModCSharp/Playable/content/Content/Items/StarterMaterial.cs",
+      "sha256": "bec7ee5274c1b8c6962d90903022cf9a86d407c2c7bac9c09818bbdb19591798"
+    },
+    {
+      "path": "samples/StarterModCSharp/Playable/content/Content/Items/StarterMaterial.png",
+      "sha256": "33c68c2086e8fe335ee57ba14ab60276e1342a5bced79e3dc3e25123205a7af1"
+    },
+    {
+      "path": "samples/StarterModCSharp/Playable/content/main.cs",
+      "sha256": "02d60f0b664946afd6f2e97c45056fd86e0b42096df19684719b68e1f12b88eb"
+    },
+    {
+      "path": "samples/StarterModCSharp/Playable/manifest.json",
+      "sha256": "9e861d32273ff229267b7a8e51b2e1d7dec494ebb98b09156261527800e8a06f"
+    },
+    {
+      "path": "samples/StarterModCSharp/README.md",
+      "sha256": "b69de99f8832a7d7066a0b82bdfbcfe4e5330fad844ebff2e5ff4e9173d11374"
+    },
+    {
+      "path": "samples/StarterModCSharp/StarterMod.csproj",
+      "sha256": "cfcd0e9bdba55514122002b1b13a74fa64693b8357e0e89ae2203513aac189b1"
+    },
+    {
+      "path": "src/android-interop/csharp/CompilerPriorityController.kt",
+      "sha256": "170709240308ffe1ec15f7dad719417df07901102ea3b406cba819f2512f10b2"
+    },
+    {
+      "path": "src/android-interop/csharp/CompilerProcessLease.kt",
+      "sha256": "06b9923956cea8482879e6d7c242e01ad39734b275462564b0d8cf23722ae7f4"
+    },
+    {
+      "path": "src/android-interop/csharp/LaunchSourcePrecompile.kt",
+      "sha256": "012d6fedfcc9f57de454660371268ce21c149ac1da02858882c1765ccc95906b"
+    },
+    {
+      "path": "src/android-interop/csharp/ManagedProbeService.kt",
+      "sha256": "eb9035cfb62c39e392632b32f268fb5f701cca25b02ac2304c90e28cee1cb427"
+    },
+    {
+      "path": "src/managed/BunnyCsPackager/BunnyCsPackager.csproj",
+      "sha256": "d0345dbe9ff20a089157d35d5144fb0e4aeb1058ffa099f2c45d10db0b57ea09"
+    },
+    {
+      "path": "src/managed/BunnyCsPackager/Program.Advanced.cs",
+      "sha256": "c9ec74ec412fda556b9d03d87e68a006adfbeb780ae4e3a3e3ce36cfa46dab19"
+    },
+    {
+      "path": "src/managed/BunnyCsPackager/Program.cs",
+      "sha256": "170be05a7d8ab8b68ad3b71856a5c82ccad4bb740828cab5f1a7e45143f40b77"
+    },
+    {
+      "path": "src/managed/BunnyCsPrototype/BunnyCsPrototype.csproj",
+      "sha256": "5e95857d3d2a79880243e8df078d61e9f7adf3d4ef0567790d9bb08afd4a48b6"
+    },
+    {
+      "path": "src/managed/BunnyCsPrototype/Exports.cs",
+      "sha256": "528675d5cd714829d5c53fac3a661313cf122ad6e429d7f815adc7ae287e6e7c"
+    },
+    {
+      "path": "src/managed/BunnyCsPrototype/HostApi.cs",
+      "sha256": "0920ca75f1a2bc0ab207d4cde23a8580dda1a3020329132a75f5de30f2112bc1"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyArmorEffects.cs",
+      "sha256": "9ca95ca9a8903352ad4d9f5114d3332849e8c576538f281055d67490dd4d1d03"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyCombatUtilities.cs",
+      "sha256": "21acbc73529be4b6ea83a4f5013125307c179d3f59c612eda2aef7c003de187b"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyContentAuthoring.cs",
+      "sha256": "037ed8eb1ed12986072563b066827c33edb226b1e3a3e728f22b8133777fdeda"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyContentDeclaration.cs",
+      "sha256": "b1c6f7690f7e8901af3eaebcb446d320bbae34cee829de02a3ff28b177fc713b"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyCsSdk.csproj",
+      "sha256": "f28940f118ae89ce231406983ffee3ce2d1034ca199774fc5cca79bdef3717bc"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "sha256": "49257a74e1bf355d14bce4ea986b8a7847844a0608f1d73d313570bafea10c8f"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyHooks.cs",
+      "sha256": "e7e77732c466f995c5af7dbcef1e629cd4eec7ae78bfd68fc7ad98475b473eed"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyItem.cs",
+      "sha256": "6b9892016563ed9021647bc5c89f288e76c8b46423a70846c2364be9a702cf41"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyItemBehavior.cs",
+      "sha256": "08134510624e02101ad9536413b2bbeda89eeb9b61d8c6f5e76ad15c61ee83fd"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyNativeAccess.cs",
+      "sha256": "006f5992e954aecac7f8edd870d79db5ae61d784af57a35b3e3c0bc363110020"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyNpcBehavior.cs",
+      "sha256": "da0b76539226e10bcc10889e21fea359ca8fa978c30cfbdd2ff8dec050caa1fb"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyPlayerHurtDispatcher.cs",
+      "sha256": "1b311206eb27afb313f257d9ee117b5dbd5f9c90f73a24ed535cfbc8c3859f40"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyPrimitives.cs",
+      "sha256": "48f55680d165d540f7642ce0ad6fe3d3313273208a2a0bb8640599f735b0d3e5"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyProjectileBehavior.cs",
+      "sha256": "d631911262ebc8c2536362eb561ce281f02d68d103c870e31572743e2e14d140"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "sha256": "18faf45a3d56c74b221bab5f911c57b6f2058ada4c35b86757530685e71d03a5"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyTile.cs",
+      "sha256": "b7262d69b45e55d89fcac0adfda29606e67e414458056d107940948c1b276476"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "sha256": "92d88020968906c06186503e6270a894c304950f3fa66ee98351a8b2e1b54b3f"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyVisual.cs",
+      "sha256": "1b7876ada56c3284607f6494b18fa5bda575808c579fbade7dd5a330087baf3e"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/HostApi.cs",
+      "sha256": "cdbdf4407e8daf955fcc470ccde7ff81e20a3b7a934fc3adf164e74951796647"
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/ProjectileMotion.cs",
+      "sha256": "12e523db6a356c886027224352602368c7957ce9f142639294716fd0e58907e1"
+    },
+    {
+      "path": "src/managed/BunnyManagedProbe/BunnyManagedProbe.csproj",
+      "sha256": "b0ee6c0b059e52d7a2ca8cbdc41224574f7d7faa46d996136e8877ec36ee7d0b"
+    },
+    {
+      "path": "src/managed/BunnyManagedProbe/Probe.cs",
+      "sha256": "30488ac9f02f5ba0562b7aac5ecf591494525d002e7947b4246bed53a0c2380b"
+    },
+    {
+      "path": "src/managed/BunnyPrefixResearch/PrefixDraft.cs",
+      "sha256": "cfd7a0e34fd8f77f5c4343105e8ae6a1a80b0a98753af23e4c6dc0420d95cd90"
+    },
+    {
+      "path": "src/managed/BunnyPrefixResearch/Tests/PrefixContractTests.csproj",
+      "sha256": "256221deef830293fedd528b464b234c396ef7fc16cbe3a546d8266f6604950e"
+    },
+    {
+      "path": "src/managed/BunnyPrefixResearch/Tests/Program.cs",
+      "sha256": "6fde5933a4a8f99cafafbd4892ba24fe20f4f0b6662414db934d76be0b0bd5c5"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler.Smoke/BunnySourceCompiler.Smoke.csproj",
+      "sha256": "2eb306d9cfae991125ff0c2059c14684e909e9b2d695ab4d553546771708157c"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler.Smoke/Program.cs",
+      "sha256": "aa166440a88567d256530e98888875c17d1ad61922bf056acdd14ceebcbc9dbd"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/BasicItemWriter.cs",
+      "sha256": "4ba41455f1e7021ce02f5c85b5d236818aa7b5d0473b47892497fc0e83537306"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/BunnySourceCompiler.csproj",
+      "sha256": "ca839d2c142ccc87fd6d8a838d97cd5cde2b2cd17a23059f1df7a3d21fb4fabf"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "dc7b598f918067b5f984914a27f2aff31af57047918a5290db09baff3db321fa"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/Compiler.cs",
+      "sha256": "032ea0ab0cbdb160b47a0fe5530bc6b24ce186c29b40631a52c9bbd6602bf381"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/CompilerReferences.cs",
+      "sha256": "18624ed2cf54fa18fdaab79058dc3739b4ebc68e8477f33185370f8cb700010b"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/PortableSha256.cs",
+      "sha256": "496f94811589f94edab828c5d78aa10117a59b540b5d6869c60f27103fcec89d"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/Preflight.cs",
+      "sha256": "e7e6eea5694b70efa803be9fb7b0210870828e6979bd61de1884dde348164698"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/SourceDiagnostics.cs",
+      "sha256": "1352bdb65eb6fbbfaa692eaed572ed84dc38d6bbb0bde969a12cfaeca00ef5d4"
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/TileWriter.cs",
+      "sha256": "1b4bb37cd5ee06b0ec272b332c3ca0a31be9f488c1775e5f23c7f95db1c77f3d"
+    },
+    {
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "b0c13c9112333788cc1c895864a6d09cd0761b90e474e2e0500314062671ea43"
+    },
+    {
+      "path": "src/managed/BunnyVmBenchmark67/BunnyVmBenchmark67.csproj",
+      "sha256": "35944876221f3b084527584d3ea089eb07bd2e62be4c716add15ab93b4929da4"
+    },
+    {
+      "path": "src/managed/BunnyVmBenchmark67/Kernel.cs",
+      "sha256": "bfdef7bca8ae0b103fc094fbd2327f41d586ed2506ed2bee1d885f6e1d04341f"
+    },
+    {
+      "path": "src/managed/BunnyVmGameplay69/BunnyVmGameplay69.csproj",
+      "sha256": "d9f90c55d25ceb8408cf21eb9737c46391bd3652fc8b6db6836b588bef2dd224"
+    },
+    {
+      "path": "src/managed/BunnyVmGameplay69/Kernel.cs",
+      "sha256": "0576b3618f2061c0fb805407d704c8655ad0bf224bd635522a49caae66804709"
+    },
+    {
+      "path": "src/managed/CSharpOnlyAuthoring.md",
+      "sha256": "17fb28fdfa14bc1841b0e65d6eb28c30f2cdb5879881d6d754ee4016c229a01e"
+    },
+    {
+      "path": "src/managed/ExampleCSharpMod/ContentDefinition.cs",
+      "sha256": "14903d6285d955381fa9d56820cb4fcfaab376ff64128dd59794e0858e45e0e9"
+    },
+    {
+      "path": "src/managed/ExampleCSharpMod/ExampleCSharpMod.csproj",
+      "sha256": "fea2145dd236c8f1ac3a496af345e29c2eefb273df125a1f1502f55cac06f519"
+    },
+    {
+      "path": "src/managed/ExampleCSharpMod/Exports.cs",
+      "sha256": "4b60da05bb26a47cded37aa0d84791ce013be0ec76251dad307849c3ca68f618"
+    },
+    {
+      "path": "src/managed/ExampleCSharpMod/HomingProjectile.cs",
+      "sha256": "00aa3b83bab5fa339068e4fa10f560981e29b6a4871f6e8ab4c1a8b22fca5c47"
+    },
+    {
+      "path": "src/managed/ExampleCSharpMod/PhaseSlimeBehavior.cs",
+      "sha256": "49333a8ef0983ca11a288b5ee428ff44e1ac5fc1f1fd29cc69fe0db63e929a9d"
+    },
+    {
+      "path": "src/managed/ExampleCSharpMod/PredictiveHomingProjectile.cs",
+      "sha256": "a83d488c59b4861c322468ff51a6a3e382bf701c36a7570abac5bee4869eb13f"
+    },
+    {
+      "path": "src/managed/ExampleCSharpMod/WaveSeekingProjectile.cs",
+      "sha256": "2b887e61bc93874d0b6593572837a921278efc57b3ebcb0c8abb086f2b1da219"
+    },
+    {
+      "path": "src/managed/ExamplePureCSharpMod/ExamplePureCSharpMod.csproj",
+      "sha256": "72a0013282e53a3d21cd1604890c59c8b963d6559c67980aa4952ead9cb880ae"
+    },
+    {
+      "path": "src/managed/ExamplePureCSharpMod/Exports.cs",
+      "sha256": "69001727803fa3934a4ac986036f6a7cdf9ebd60e637640f3986bc126c157287"
+    },
+    {
+      "path": "src/managed/README.md",
+      "sha256": "6fc313199e467067b2225473d3ebc98708b55af2068371d90a5cfb20b915ff92"
+    },
+    {
+      "path": "src/managed/SourceCSharpSyntaxCheck/SourceCSharpSyntaxCheck.csproj",
+      "sha256": "93b6eda443b7dd1f432de025c9909a66fb75daed601a1a334f32d0c132d55f86"
+    },
+    {
+      "path": "src/native/experiments/csharp/AutoSourceCache.h",
+      "sha256": "a94b541afae71cae8f7bb89c23f586a9158fb191b66db5bb19582a2278c850fc"
+    },
+    {
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "62ad9ac12f3e0af3b670677ba94bdd2030442851f7edffe9e2d8a845913db372"
+    },
+    {
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.h",
+      "sha256": "52a85d3f11e3548be84b60b75e4dec62b4e1c923e439b97e91fd19010a3b6c48"
+    },
+    {
+      "path": "src/native/experiments/csharp/BasicArmorPolicy.h",
+      "sha256": "323c8e45e11049b6b18753621481a18c43dd8e3e90a312ca4b6a6dd8054ff70a"
+    },
+    {
+      "path": "src/native/experiments/csharp/BasicItemDefaults.h",
+      "sha256": "0e330b23c074cf101d087e727ace55d2bdb49b213417436a9fd1c86b9e9bba2d"
+    },
+    {
+      "path": "src/native/experiments/csharp/BasicItemPolicy.h",
+      "sha256": "058535f6413ee23e854e6970c815cd729dc73d63fa07f85f21d78a52c194e9f2"
+    },
+    {
+      "path": "src/native/experiments/csharp/CSharpHostTypes.h",
+      "sha256": "7cc2acaf01627370eb3afc420aa3510dce78625d1cc7647c7bf1814e6e3a3597"
+    },
+    {
+      "path": "src/native/experiments/csharp/CSharpModLoader.cpp",
+      "sha256": "75f7d6c2db3eb4663c2d64f3a2d6a452cff8fbbd6dee28c9742ad3fd99f1522e"
+    },
+    {
+      "path": "src/native/experiments/csharp/CSharpModLoader.h",
+      "sha256": "a65e97dede8d3d57b63997a8ff7c3a42eff6bc3c418fe61cb1bb95b5c4a3d5d4"
+    },
+    {
+      "path": "src/native/experiments/csharp/CSharpPrototype.cpp",
+      "sha256": "af0ce6bb08ba25872225175ce89bfbf7ff433050e341efaeb40d2bfb0df4da1b"
+    },
+    {
+      "path": "src/native/experiments/csharp/CSharpPrototype.h",
+      "sha256": "d2b7c2d33c1df9e885d37133c94b1f5232b031c323b94ad9c0770556ef37a21f"
+    },
+    {
+      "path": "src/native/experiments/csharp/CompilerAot.h",
+      "sha256": "5d276de0190fefe6058ffe5616b5e117deedc2ea82a61bf3ec2636d36ba57a65"
+    },
+    {
+      "path": "src/native/experiments/csharp/ContentTexture.h",
+      "sha256": "121f355b22ca7f899ac6b487cec39ab1180988ab08c3168c0bf6a4cff58cdf56"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedCounters.h",
+      "sha256": "444606dfd0fc04f0167efb4fe3dd546fcff588cc1def67fce42310d6b351244a"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedFairEventQueue.h",
+      "sha256": "8a1efe6a3049c3bf76af88ae15281f90fdd84c6f3c2508dd855cd38e3f09d7c3"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedHitCallbackDispatch.h",
+      "sha256": "f99bf76bf336faaf1bcf147ffaa37018456b23441ebea5a054f92cac16a55fd7"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedHitContextStats.h",
+      "sha256": "4bc231a120467e0ea297487f9bf28e3259e748b25af2f855391d11687415d3d6"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedHitHook.cpp",
+      "sha256": "aa41847b6432c6d4abb5636d905bdd586bb50edcfe32f34042c2d18742c1b234"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedKillHook.cpp",
+      "sha256": "76e701eb3c6fbf2868514635ee16fb06db899a11743e30d20e5a2ffb72156ef1"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedLiveEventQueue.h",
+      "sha256": "e37b1fbcd7d38189bea14f581dc8959737ad77b986c69fd9673b0fa2cfd3857c"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedLiveIngressQueue.h",
+      "sha256": "07f15fb5ff460fe2bc0a9c417b47bfde67630586196f7c730de7c6c3cbf5bd77"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedNpcBuffEffects.h",
+      "sha256": "c2ae2886604ee18780deda3b372feaf5f35bb0dedeb396502eb7dae48b5f6a6b"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedPrefixBridge.cpp",
+      "sha256": "e23709a9b87880970eb83311b47ffaf6215ef227e6acd851b46dde294a6f4e4e"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedPrefixBridge.h",
+      "sha256": "3808dcd082153cc52fe73cfd9e202a9fab67baf3c3119f4dfbe2f6c5f80311ca"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedPrefixGameplay.cpp",
+      "sha256": "826944902e68adf4ec663eac6609817ef1e18b19c89eeecdea177888e92e9239"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedPrefixGameplay.h",
+      "sha256": "a84fd565ccd3aeb25c253ccc7fab173812f445fec508f507e51938afefc84b74"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedPrefixRollSelection.h",
+      "sha256": "fb5653afc6dd9476d5f0d4219f196fcf03e25c58dca3d1d6b17c9580961cf1be"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedProcessMemory.h",
+      "sha256": "f754d7f7ca7a3beaa705f20ec63494212b6fa697bd27df703b66ef4588ad0995"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedProjectileHook.cpp",
+      "sha256": "bc747cc662160474a4c58cceccc969760af85bd7e90d71fadc35ef22f7f4e9d2"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedProjectileHook.h",
+      "sha256": "66cc23d440655b641f5a49c6c62aca257f74e73fb3f39d1cfda9357e050b2d72"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "6981d96a231e0e86ec4a4155d35b543872b02b5b327671e1905763af60db204e"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "9ea451423b5b128797349c5b2b4829f6c6aa2fac247c8296300a5c0bc1cb9288"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedSourceClassCount.h",
+      "sha256": "cbf41bbc5942ddd5a618b3cd9c974d77cb5e53b2118267e7c75cacf7f45b9967"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedVisualDrain.h",
+      "sha256": "ae15ee38ad2d0905d1557e4865e212b47e14a9924d2e778950041009d8ce431f"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedVisualIngress.h",
+      "sha256": "1b9682d69ec2273d0299da837bb791e7dc10907a846738e53529cb5e676e1fb8"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedVisualMonoPump.h",
+      "sha256": "5763b551a7b2a26dd1a1b0fb644fcef8222c7a15acd6fca56e099dbcf4267d95"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedVisualQueue.h",
+      "sha256": "2c046db649ddc954268cb410e6c910e227a17a8ba84165a870d6d2a5e04670b7"
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedVisualState.h",
+      "sha256": "af188c577f13142feeb6e0faed6eeaccc8f004ca4aa03c18fb3abf607a02de46"
+    },
+    {
+      "path": "src/native/experiments/csharp/MonoServiceDispatch.cpp",
+      "sha256": "cc89fdddcc8ee03e351b1d0db634edbdbb7932719ff80791429da7e2dd430994"
+    },
+    {
+      "path": "src/native/experiments/csharp/MonoServiceDispatch.h",
+      "sha256": "47ccea0da2395fc63e9cf482e4291e3e7f836fd533f75650b1eb09f4fa910456"
+    },
+    {
+      "path": "src/native/experiments/csharp/MonoSignalOwnership.h",
+      "sha256": "29fffb17894088d1894e107c632cb77087dbe1ae37192e1593eb563c667add66"
+    },
+    {
+      "path": "src/native/experiments/csharp/MonoWorkerJni.cpp",
+      "sha256": "fece4dccf25ff4fd540400029dd44cc3a8754eb8f56c81d8342dd193499840e1"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeAbortProbe.cpp",
+      "sha256": "0e8462e0206f1664d9c6392b1d368ddab0380831260b951ce7e21383ccb6e162"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeAbortProbe.h",
+      "sha256": "949bb963890cbbfed7c8f3e8c1650dac65fdd7433766f57e6df7fd47eaf3bc7c"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeAccess.cpp",
+      "sha256": "72651a954302c8c8cdeaa8ef8c20d21d6b45f629f2e7b144a8207da42b8bf37e"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeAccess.h",
+      "sha256": "b7ec74a790ee75550a85d751796e3fa92e0839983d32303d0a87ab4932c123be"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeArmorPolicies.cpp",
+      "sha256": "7d38134c2ab7a9af7602d158e4a732f13b18253283b544e1d9377803e4992016"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeArmorPolicies.h",
+      "sha256": "a6e11beeacccf2a8977079561ab6d5b09fad7110757e78de7818d164bfb3a67e"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeBasicItems.cpp",
+      "sha256": "72237b2f08fc03b640de6304e237fff2ee861fb300efdbc447821304ab8c4535"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeBasicItems.h",
+      "sha256": "06e1fe86494fb8f6031da015f07ca83b94909a1ab11eb454c18e1b81249381e0"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeBootEffects.h",
+      "sha256": "313999ac5721dd88b3f6ada5c4d1ba1d3623b88658df8e00611c774e8c598006"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeColorLayout.h",
+      "sha256": "2baee883e1f740575a15cb92653200a9c6e6e3572ed42e0a999a9cccc608b6b7"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeContent.cpp",
+      "sha256": "298d4d988cf19a23f538ca88aa48758e304883fe30cb2bb54866fe558b5721d1"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeContent.h",
+      "sha256": "8da117f5b8e4af75dc022e597bc07761c850cf7e846512d534480a3664ea0ea4"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeItemPolicies.cpp",
+      "sha256": "3f84104a106b11e24d2ed8b87b5e4608be2efd6d7f0aa469a7e6b908bab18cdd"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeItemPolicies.h",
+      "sha256": "aa38fe9716a72598095aed99b31c2d339a94dbec6b6605d355b8ce44903d37df"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeStaticValue.h",
+      "sha256": "8c74006e938dc67e8c932ff085465c4385cf0ed23052da0f89d0ee11f271022d"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeTileGameplay.cpp",
+      "sha256": "bb35c491b2712e620a2ffe2062d114eb3483aa0f130d39d5af3afe3d37bc4c58"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeTileGameplay.h",
+      "sha256": "63c5b4ccdb954af69acb7831b969276a666c978e67befb841914fbc61032768a"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeTilePolicy.h",
+      "sha256": "ddf24c42521e3689deb6871e83edaa0e6f7338170284032e74afe30ac52c94f7"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeVisualRenderer.cpp",
+      "sha256": "c7ab82f959741992b6a6c85348eb040795d7919807b5a6896af05bba3e177b4b"
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeVisualRenderer.h",
+      "sha256": "cdc9fb8d3510ea39cb4f536007a8824eca0ce6decb2b91fe8ea5b72f4f443766"
+    },
+    {
+      "path": "src/native/experiments/csharp/NpcAiHost.cpp",
+      "sha256": "aa0099be3b8cf5d1e75a608422c81d681627bcc1407bfb05ef9ac4e6a35c4958"
+    },
+    {
+      "path": "src/native/experiments/csharp/NpcAiHost.h",
+      "sha256": "844ac05d2dd54b94508fdea8c57f2f8b36ac21e0c996e8abd0acf232aed668d0"
+    },
+    {
+      "path": "src/native/experiments/csharp/PortableSha256.h",
+      "sha256": "d82cb9dfeedf5820e995d5a3e6f9a8e90e2137b7d8dca7ad629dc33089c04ad3"
+    },
+    {
+      "path": "src/native/experiments/csharp/ProjectileWriteTest.cpp",
+      "sha256": "cc553879491fe47b63a542ce8486a2ab64121f2e2450d0525380974fcedf186b"
+    },
+    {
+      "path": "src/native/experiments/csharp/ProjectileWriteTest.h",
+      "sha256": "27929e08bbdb61d74248b4ceeaab1a20251b6dc49769b0889ab68538d92d84a8"
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceContentIdentity.h",
+      "sha256": "e661911bd0f3bae0cbb4bbfc231d0c963fa48a8cdc162d3568e2262803662a46"
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceLimits.h",
+      "sha256": "7ce41b36e0345226cb5a2644b9f7f153ccf84ac8d98ce4fa186f37b287f2a35c"
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "0f8867b43d3629f08ccc8c04b43087112cd8a5f226e14e6baf5c87e2063c1ada"
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "sha256": "a79dd06b6d98facdf3fe4d0ff740edc25ede6868a29ed167380f9fe1752136ba"
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "sha256": "96bd509ec7c1ab5a65ac3a5b47c2fb56465113c8c72b261c7bb3fa9d4579b958"
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceParser.h",
+      "sha256": "65e48772897c1127b733cbc8f12b4df34a4318833cc05e11adc4311ff43d3aaa"
+    },
+    {
+      "path": "src/native/experiments/csharp/TerrariaHost.cpp",
+      "sha256": "5f01e0219bebaad05c2fc7e197fbe39a0e99052accca190be64a5a98446bfef0"
+    },
+    {
+      "path": "src/native/experiments/csharp/TerrariaHost.h",
+      "sha256": "63b4fe0489a4d230f655555b4ec11101b61971aec1f2dffabb50612d8d538cd5"
+    },
+    {
+      "path": "src/native/experiments/csharp/UniversalHookMailbox.h",
+      "sha256": "4c677bb85f7366e03bda73829d7e68e4fa4ee8a83a64b4db0fc2b639577240d6"
+    },
+    {
+      "path": "src/native/experiments/csharp/UniversalHooks.cpp",
+      "sha256": "4325e0737554d81de564299f5a830ad6769a6b073e329a919c0149a2774a4485"
+    },
+    {
+      "path": "src/native/experiments/csharp/UniversalHooks.h",
+      "sha256": "38fb6bc3d3a737d731bfeb2158507911e4b9b7a45d8a25e034cc5a3192f11968"
+    },
+    {
+      "path": "src/native/experiments/csharp/WorldEntryReadiness.h",
+      "sha256": "11da3d03b4407178e4ba0e798907686112b37f10e2e1db984c493adbcf890a10"
+    },
+    {
+      "path": "src/native/graphics/CSharpScreenEffects.cpp",
+      "sha256": "d83c360a62c5856146910ac712167cafc5abdd80ff2f1c8b4f5ce34425a2eb34"
+    },
+    {
+      "path": "src/native/graphics/CSharpScreenEffects.h",
+      "sha256": "d340cc0d0cbcca04345c300bd15f9a767e90bb49241769ee9e466af3fe8d8094"
+    },
+    {
+      "path": "src/native/graphics/CSharpScreenGraph.cpp",
+      "sha256": "53f5cac6033205f1496658337d0bbf21bad5eb57e39a1431c2f1b6d6e597fbd2"
+    },
+    {
+      "path": "src/native/graphics/CSharpScreenGraph.h",
+      "sha256": "80312489799aa86e91214436e52f1db567c28578fd26a3f293bb8b8c4af75447"
+    },
+    {
+      "path": "src/native/graphics/EffectRenderer.cpp",
+      "sha256": "471e21db9296e293314b5b033b35c97f50e712175486655c96fbfe3b1f3dcecc"
+    },
+    {
+      "path": "src/native/graphics/EffectRenderer.h",
+      "sha256": "4fbff881c6c98a41b0dde23aec8219dacca5377800613955221b593a89b0545e"
+    },
+    {
+      "path": "src/native/graphics/EffectTypes.h",
+      "sha256": "fc6551988d340410089d11053760f2f14168f327235972ffb9869e73569e5204"
+    },
+    {
+      "path": "src/native/graphics/FrameComposer.cpp",
+      "sha256": "2c48f976ca0ff4095bd1f70b736a262234aed681bfdb4a043fb7d648ebecdfdd"
+    },
+    {
+      "path": "src/native/graphics/FrameComposer.h",
+      "sha256": "c01b4d4669f920e419a60415e66216024cc7edfa39dc19ecd6cbfb8ff2c0531d"
+    },
+    {
+      "path": "src/native/graphics/FrameHold.h",
+      "sha256": "0ae86f6f0a4de543276ded31926625b0e9fdbfeb11fb071426611696bfe542e2"
+    },
+    {
+      "path": "src/native/graphics/GlApi.cpp",
+      "sha256": "0a8b4c25fc8c1914c43f587e2aa14d11dd7fd33e8fdb8a8b89a97163548f0e7f"
+    },
+    {
+      "path": "src/native/graphics/GlApi.h",
+      "sha256": "f3932168633618d9dd94104e7219c2a038681db56cacf4315ec9235f8ed28591"
+    },
+    {
+      "path": "src/native/graphics/GlHooks.cpp",
+      "sha256": "4db35ef72177dacc0296761130a8d0ce3593679bf44ded44f2be683430a6f7ce"
+    },
+    {
+      "path": "src/native/graphics/GlHooks.h",
+      "sha256": "411cbfc97bf3def5f228bb4115d8acff0be89ebdcf520e531084bc7bb24141e7"
+    },
+    {
+      "path": "src/native/graphics/GlShadow.cpp",
+      "sha256": "fd1a70f2012ab446665c2c76123d8d8e9446840faa475a926a05ac254d3df011"
+    },
+    {
+      "path": "src/native/graphics/GlShadow.h",
+      "sha256": "bbfd32f22561412f52e54c9aa6aa7dd5b8d4818660c2837adab13ab2224dee19"
+    },
+    {
+      "path": "src/native/graphics/GlState.h",
+      "sha256": "e3008e94b9be56c7b8942013b87eb7e5c05a39c0a4abbc9318584818ca1b8f0e"
+    },
+    {
+      "path": "src/native/graphics/GpuTimer.cpp",
+      "sha256": "94d3d5bc0278f7d2b3ffa058b8d52a0803b0b80afa62ea65e4d1041cd859e68a"
+    },
+    {
+      "path": "src/native/graphics/GpuTimer.h",
+      "sha256": "12580eb8474ad755393d5610a3060106faeacd591bec1d58b42f2251d9058bd1"
+    },
+    {
+      "path": "src/native/graphics/RenderHook.cpp",
+      "sha256": "e283a56c52057ab6c526cfd112772debd9db6eec70aa1d9db057dcc502b42a58"
+    },
+    {
+      "path": "src/native/graphics/RenderHook.h",
+      "sha256": "1dc1492fecd8c6cbfa1f33ba9e1dc0e05531336874dce93065bfa2cef479744b"
+    },
+    {
+      "path": "src/native/graphics/ScreenScene.cpp",
+      "sha256": "e7d0c6a570e9c3eb0aa6f9bacb65cd004a7416c81e769c7204c5ef54d7ce3676"
+    },
+    {
+      "path": "src/native/graphics/ScreenScene.h",
+      "sha256": "e8f39eb631c66ae9f756316dd70eb0d1b823fdad71fa1a2bef94083ea1eb12ca"
+    },
+    {
+      "path": "src/native/graphics/ShaderLibrary.cpp",
+      "sha256": "0c013b4b5d2465b92703815ed06e43645eae5acf6dd1d7d6da25862df662b893"
+    },
+    {
+      "path": "src/native/graphics/ShaderLibrary.h",
+      "sha256": "598894f41bf93dc39b5aca2d6303b71414673338863aed301361db0021fa7f96"
+    },
+    {
+      "path": "src/native/graphics/ShaderRegistry.cpp",
+      "sha256": "635ec866b4913c8280e963640b5955fd879b9ab5bac1c1d215a0dea01e8b1ac2"
+    },
+    {
+      "path": "src/native/graphics/ShaderRegistry.h",
+      "sha256": "28c5e9c639728f8beebcf0a959487abf8fffe67a4b1a76404f6b917005f5a745"
+    },
+    {
+      "path": "src/native/graphics/TextureRegistry.cpp",
+      "sha256": "838a8d85f3fc9a70fefa1fdbb3ff173ce90ae99add62a8c346036e41264d0795"
+    },
+    {
+      "path": "src/native/graphics/TextureRegistry.h",
+      "sha256": "b9ab1043972cdc6490c68b6de3a5d48347346698be3c90b31e79216dd969d48f"
+    },
+    {
+      "path": "src/native/host-interfaces/core/AppJni.cpp",
+      "sha256": "7bd6343b2154e11608498bed97235145cb3b9c3e09c001cbeea84a7869d12335"
+    },
+    {
+      "path": "src/native/host-interfaces/core/AppJni.h",
+      "sha256": "9d7fc3ac64676159553bb587d8688c2e5e59b50e857cd3a270ddadae1a40f1c7"
+    },
+    {
+      "path": "src/native/host-interfaces/core/Config.cpp",
+      "sha256": "0144100dc499d140eadad8a0b75c40c5bb0fadc4075592f7fccb66c9af407d2b"
+    },
+    {
+      "path": "src/native/host-interfaces/core/Config.h",
+      "sha256": "71afc04ff20318723df4b504e06d8e3ec041f66f5a2b713aa33bdfb9ef1a7d8d"
+    },
+    {
+      "path": "src/native/host-interfaces/core/Log.cpp",
+      "sha256": "6e3f6e845efd8a0e46a1193969e53395f7c8b8ca0f379c6d239500ddf387ef6f"
+    },
+    {
+      "path": "src/native/host-interfaces/core/Log.h",
+      "sha256": "42d01f00f0fb9af6f629920bae13cb0f461954f47b439c5b122fc3a72719561b"
+    },
+    {
+      "path": "src/native/host-interfaces/hook/Arm64Frame.h",
+      "sha256": "a26635df74cdd0dd4cc77ba58a8e331035cd6a283fdea7abd5a7d0cbe45b6065"
+    },
+    {
+      "path": "src/native/host-interfaces/hook/CodePatch.cpp",
+      "sha256": "312253e0a23057fb1d66621bb9ec7b94fec02d5b8b03ffde763e03995b61e327"
+    },
+    {
+      "path": "src/native/host-interfaces/hook/CodePatch.h",
+      "sha256": "b228e93544149cc8a287fc47553b0514ff0657f83b3a8ddde9f3ec13fc4d5ffe"
+    },
+    {
+      "path": "src/native/host-interfaces/hook/HookManager.cpp",
+      "sha256": "35d1dff103f5e748e854921ad719831032626b275b6da97e56f6bf5977842143"
+    },
+    {
+      "path": "src/native/host-interfaces/hook/HookManager.h",
+      "sha256": "467d7a8178f8bb1f1dafd36db6cb8c0bd565d876b1a0228fa5d8d5c4dfd2bc96"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/Api.cpp",
+      "sha256": "85ac19cf7305abf7297f4e19a0f48b139be17cb4bafefbdf95c4cbbb82b432d8"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/Api.h",
+      "sha256": "0ca83d8a238796945a08b8618e23e275c1157979f93a15e754b4a6a556bf0868"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/GuardedCall.S",
+      "sha256": "3ac433cd71bb8a419a02ea211f2d9064a007c5749ab4272eff3674e156f40b42"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/GuardedCall.cpp",
+      "sha256": "9488b93308b9f5a0762d678d56d9d17b7d0d98f18d59adc5a4e839105a7772fa"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/GuardedCall.h",
+      "sha256": "c67089e8009fdedbc5edbe7107e6e6141424b1b43e48a6f0fbfcb346e2d1f6ff"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/Resolver.cpp",
+      "sha256": "e50e9c135727ea4a859f1baf16ce9aec414bc1d7ef980b98054e10bea23a4f11"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/Resolver.h",
+      "sha256": "a88b9447fb73774dce5f3f3203b6462f43190f241c5044356443a28575325bbc"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/Signature.cpp",
+      "sha256": "459daba64366084ff1a1d37ca9bd63fee45e8cc5b3dbb3d35b7ddce850f375a3"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/Signature.h",
+      "sha256": "b925e665de52ed1a1d816c96233fd3a5be5799a7423d0cab1c77268699384c59"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/Types.h",
+      "sha256": "ea3eefae09904cf0ed7911b21720a01008235d1364f3fb06833e9070e78b8280"
+    },
+    {
+      "path": "src/native/host-interfaces/il2cpp/ValueLayout.h",
+      "sha256": "5fdd3b99f796147ab45a7d29121e4425d198b7cd5b3e8cb62a3651fa718f99b8"
+    },
+    {
+      "path": "src/native/script/api/CSharpPrototypeApi.cpp",
+      "sha256": "a4a11bd56c96b37c791847d89a9f1a94721c0427805e2cc4ba92c116f43cbf2f"
+    },
+    {
+      "path": "src/native/script/api/CSharpPrototypeApi.h",
+      "sha256": "f60bc2ffbc1f4ef1090bd1e3103eb0a65256656cff80ea4218ad0f492c6bd9a4"
+    },
+    {
+      "path": "tests/android-interop/CompilerPriorityControllerTest.kt",
+      "sha256": "8d292f0475df6a2d59fd6b66424650c5b702821929379eebf4b2dae8a995188e"
+    },
+    {
+      "path": "tests/android-interop/CompilerProcessLeaseTest.kt",
+      "sha256": "4d8b6674d3d82358844999bcbeee183f96029b1268a850e7a4eda3731ba9200d"
+    },
+    {
+      "path": "tests/native-and-managed/auto_source_cache.cpp",
+      "sha256": "e28b706d456c6b34610b224e705f530968fa93d878117b41e37cbc7a3ce4fe68"
+    },
+    {
+      "path": "tests/native-and-managed/auto_source_startup.cpp",
+      "sha256": "cc0d9ab1b3fd580c34728eba628c16f12391d77f546b69cfc3f9d58246557131"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/ANDROID.md",
+      "sha256": "3786851bb0d0c58ba220996fa70c1187b6fcbce68e09b0ce29228c6ab43939c0"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/ItemBatch.csproj",
+      "sha256": "3cf3db151981450f89e9d1644e1ebfd19a564b2e0846441ee5ec571cb5fc8d2e"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/Program.cs",
+      "sha256": "c5ee28650343dac78cce3e534e39899a860cf926ebd218e06abe6522a852034c"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/armor_fixture/content/ContractHelmet.cs",
+      "sha256": "661cdc0c01b14d912d674597d24d00754b2abc8243cb24a64806f3ed2f865758"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/armor_fixture/content/ContractLegs.cs",
+      "sha256": "b2d1811b6cb45cf0bd2270b7c23d890410f042080688de13861e79184d72c8a7"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/armor_fixture/content/ContractPlate.cs",
+      "sha256": "586a51269b002a9aa6bb87f678d4cf90b3e8915f4cc9c3f4c60e04dae1c70241"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/basic_source_parser_test.cpp",
+      "sha256": "4aeed786c54d6582c8a010f72368073932d1ba183445ff5b58b3eda135c3e726"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/basic_wire_test.cpp",
+      "sha256": "f6d908324bfa878a1a4969ccb0a6f43d77e8f6cb8e38088ed308b81a1dae87c8"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/check_csharp_tooltip_refresh.py",
+      "sha256": "4cad8b1c6360628e18a0926399646eeb9feb0c9637a94bd31318540361639174"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/check_full_wire.py",
+      "sha256": "8d283973d3a191c47609484a10e7a4c7a230de5effe317735485609c5b736468"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/check_lot_a_scope.py",
+      "sha256": "440f6121966f8f286d3539d770067a3f3f3c95cbb10ddc04a8fe24da3932b9c5"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/check_placement_probe.py",
+      "sha256": "640a4bce851d72d2469f63ba54b6c88acafe37b1bf3e6dfea0fd3467f628984f"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/content_texture_test.cpp",
+      "sha256": "3ab0f5e73688847d4ad6380b4f9754c1b1c05c49fbaaca8699e4ed17f43c488c"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/include/android/log.h",
+      "sha256": "cc9d07e600fcc577f2d04ba766e5e27c8f8d78a8d792e5c91eccf7f90704cce0"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/include/quickjs.h",
+      "sha256": "9ad702605808591ca52a0bd395d776316967247aca43879b00920a0c1b90d8c1"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/native_armor_policy_test.cpp",
+      "sha256": "ca859705e475625fa209cba8aab48cb5c78687570c0607f0efa8bdcb1717b8cf"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/native_equip_effects_test.cpp",
+      "sha256": "6a280acaed1a6aa45af12a0dbc2f765c7a44fd5ddd5de86c01c4d7011302fdb7"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/native_item_binding_test.cpp",
+      "sha256": "de44cb228ee232d9f13d69956a0a9d14f913297dfbca72694d8e87791c43b35b"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/native_item_policies_test.cpp",
+      "sha256": "60163349ef0e57bed71f02d576f8bf23ed6fd7192f84d96b95f5c20bb67a1e5d"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/native_policy_support.cpp",
+      "sha256": "bf71b06aa44e43f324283c1857bce855fe2f3eb12059200def33302a322aeed8"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/native_policy_support.h",
+      "sha256": "ec3e9736315af5431c3adcd3db100759ca4ae5ba68622fafdbc9e7833b9ec41b"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/package_assets_test.py",
+      "sha256": "530790842aedd3f44cc2e05a5e59426fdc4c27c5180ef195339fafcc98e0e4ff"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/placeable_fixture/content/ContractPlaceable.cs",
+      "sha256": "558df678f8d3e2bcf6b804632e0f8de0c38c5408d91d7198ccd5a08ff37e9388"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/placement_probe_registration_test.cpp",
+      "sha256": "63995dac9637f95a014103609ab274ceb876e964a7d849e30b1aec3736c7a12a"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/tile_fixture/content/Content/Items/Armor/ExampleBreastplate.cs",
+      "sha256": "0b8e3a87ac249047ead3303491edcc91dd242a5f01f3ef4e4a653f91a4b53e3d"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/tile_fixture/content/Content/Items/Armor/ExampleHelmet.cs",
+      "sha256": "c1ad5c8b126c2caccc8a4bfbf2bd71f707f965a45867bec64a1d5207c570f7ff"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/tile_fixture/content/Content/Items/Armor/ExampleLeggings.cs",
+      "sha256": "04b7a286fb514500daac0686700cc79ebd5ae0ca52746f49ac4f2cd34b00736f"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/tile_fixture/content/Content/Items/ExampleItem.cs",
+      "sha256": "961ee7e7c5466596b0dc912b2ed843c384b0ff9afb0f5ae52ede77206a0cff9c"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/tile_fixture/content/Content/Items/Placeable/Furniture/ExampleWorkbench.cs",
+      "sha256": "421b50b95fe056ed2f5df94429fac1f86e7ee5699a1232cf7abd0965ca142830"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/tile_fixture/content/Content/Tiles/Furniture/ExampleWorkbench.cs",
+      "sha256": "e87901f5ffdde5f3b005ae899383d6ae6a5e3f72002ffd617e55a25f56ea6d6f"
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/wing_fixture/content/ContractWings.cs",
+      "sha256": "85c5ae01aac55e78efee10cf278c1c55b1b658fbe1a18ded35a37240af902e75"
+    },
+    {
+      "path": "tests/native-and-managed/combat_batch/CombatBatch.csproj",
+      "sha256": "c2d3822b00e00c8b9f2bbe7ead822e50865b74be2c61460edefee0637a185b42"
+    },
+    {
+      "path": "tests/native-and-managed/combat_batch/Program.cs",
+      "sha256": "7dad747e68026ff8da3812ef4cfd674c3850bbc9ed151e0b9a5aeeb7d84ae086"
+    },
+    {
+      "path": "tests/native-and-managed/combat_batch/check_package.py",
+      "sha256": "608deb2d294b8b214659c722d168372b768eed656014ae8dddb0a6aa7e99dff7"
+    },
+    {
+      "path": "tests/native-and-managed/compiler_aot_loader.cpp",
+      "sha256": "13fffc3995ec8907b8c2a710857fa6e44a612491b0c3932b5094fcb8faee3fe7"
+    },
+    {
+      "path": "tests/native-and-managed/compiler_delivery.py",
+      "sha256": "be01802f754d7d53b01a8ce4be9bfdfd0e6bfb0008246fd81134285a73d2d6e9"
+    },
+    {
+      "path": "tests/native-and-managed/compiler_reference_identity.cpp",
+      "sha256": "214ae33bc8e2beb17c0693066e8b90f900d923d9ef7b62d0529825b58320c221"
+    },
+    {
+      "path": "tests/native-and-managed/compiler_reference_stage.py",
+      "sha256": "0c249dc0a7a4f34d6f7e2a6880250e5cb70dfae49a18f244c93af5f8ea610c64"
+    },
+    {
+      "path": "tests/native-and-managed/compiler_references/CompilerReferences.csproj",
+      "sha256": "adf169f20b79003a35ded2ad455d2f8f2820c0578a8fe84ea5a22acfef841f62"
+    },
+    {
+      "path": "tests/native-and-managed/compiler_references/Program.cs",
+      "sha256": "20423e2b6a4f76cb7117d881d83bbf1fc052a4137bdcff3fbe29e5188f2d7639"
+    },
+    {
+      "path": "tests/native-and-managed/csharp_scale/Program.cs",
+      "sha256": "b99ec3194aae195e8def6e20e8e2981eaf30dff6d1287f2851026d2cf955b90c"
+    },
+    {
+      "path": "tests/native-and-managed/csharp_scale/Scale.csproj",
+      "sha256": "9b75d4016100e725ac81635500aac1a931be156e9169865a9e353b51d97d72f4"
+    },
+    {
+      "path": "tests/native-and-managed/csharp_scale/check_limits.py",
+      "sha256": "58d1bce93017ada0aa6b70246c265d36b634c9d54d0d61ff406d515553c93e1a"
+    },
+    {
+      "path": "tests/native-and-managed/csharp_scale/large_parser.cpp",
+      "sha256": "f055c5d2524a79ba65baba3e7bb32f55a4b59e3d603e468b1a8a55a25122f937"
+    },
+    {
+      "path": "tests/native-and-managed/csharp_visual_source_parser_test.cpp",
+      "sha256": "fefcb7454e62a993934a56d613ef941ad207fb72db71a3fea2ef26487b3e13f4"
+    },
+    {
+      "path": "tests/native-and-managed/entity_lifecycle/EntityLifecycle.csproj",
+      "sha256": "205b51ad2fca0020ab9b3fc06d5c28679e01f58c33f32556a2666f04e59ca596"
+    },
+    {
+      "path": "tests/native-and-managed/entity_lifecycle/Program.cs",
+      "sha256": "60611e4fa050bba5a9c56bd41912d93fc01c4157557fec8c053042d0326b5f88"
+    },
+    {
+      "path": "tests/native-and-managed/entity_source/EntitySource.csproj",
+      "sha256": "a083656ffd8b1684fc7aea73ee62098e03d51cd8c7b2d7f18d4126f4801fa2d2"
+    },
+    {
+      "path": "tests/native-and-managed/entity_source/Program.cs",
+      "sha256": "8521dab28934e11a0e8753098c13f4ea490a08f907442a08d8db6b571e5173b9"
+    },
+    {
+      "path": "tests/native-and-managed/example_reference_package_test.py",
+      "sha256": "a6ceaaebce459b2313dbf876dc4622e81350515ed8bac1894834f60f881fb9c6"
+    },
+    {
+      "path": "tests/native-and-managed/frame_composer_multi_mod_test.cpp",
+      "sha256": "b8f067d47e17a732fe53a29c7fc6364b62d6905fdd4a4b5d00e5ea602fd5430f"
+    },
+    {
+      "path": "tests/native-and-managed/hook_qa_parser.cpp",
+      "sha256": "7a2d636217e24e0de7d1f8c1f5c52a6c759c5d0893ad7385162bdb80287828b8"
+    },
+    {
+      "path": "tests/native-and-managed/hooks/HookBatch.csproj",
+      "sha256": "1dbf96cabd8ef545c08d33e53ca8324c1befffe1e8ebabfbe2a3447703efd092"
+    },
+    {
+      "path": "tests/native-and-managed/hooks/Program.cs",
+      "sha256": "b7ade64d1609c3e71c5af3448915e276991c13ecfd459fce01c6d54f1229d06f"
+    },
+    {
+      "path": "tests/native-and-managed/managed_content_declarations.cpp",
+      "sha256": "20aabfe08875bd19085edbe64dd98df1ba64486c9d598b012ef02dd494c9db4f"
+    },
+    {
+      "path": "tests/native-and-managed/managed_continuous_queue.cpp",
+      "sha256": "3c403252f640e4dd455552656e1ba33d654c1f6e20f480e0c0571d2d2008ab7d"
+    },
+    {
+      "path": "tests/native-and-managed/managed_continuous_runtime.cpp",
+      "sha256": "1120fe4293e1b8fd1a5e40459a51c619f2fcd701d6d117c3c9ec24cf5b1c9fd8"
+    },
+    {
+      "path": "tests/native-and-managed/managed_fault_isolation.cpp",
+      "sha256": "f22ed13547ba4240d655010b4ec2e22ab79b8c793af0afe950cf3d07d6180a6b"
+    },
+    {
+      "path": "tests/native-and-managed/managed_fault_mock.cpp",
+      "sha256": "ce8db6f1734203e8fbe8d07dd26fb095083bb3b4bed4d0d243dffdadd65769b7"
+    },
+    {
+      "path": "tests/native-and-managed/managed_hit_effects_mock.cpp",
+      "sha256": "1d7b742e157db794758fea4afd45aa1ea8330f504eb867b9351889643c0cac27"
+    },
+    {
+      "path": "tests/native-and-managed/managed_hit_impulse_mock.cpp",
+      "sha256": "e189fcfefb60215ca0a4de2a2eadfc72ef29bc24fe79b3f84e7e36609470f837"
+    },
+    {
+      "path": "tests/native-and-managed/managed_hit_v2_mock.cpp",
+      "sha256": "eb7acba6eea5ee014a1825388d6db73fc772ebcf0a7377d594f2288382f39ed2"
+    },
+    {
+      "path": "tests/native-and-managed/managed_hit_v3_mock.cpp",
+      "sha256": "ab956f8ed474bdcae0c4eb5327d473e7fc1bd5d6277d75368ed95cfcafd6fa4a"
+    },
+    {
+      "path": "tests/native-and-managed/managed_hit_v4_mock.cpp",
+      "sha256": "4fcf630617bb7f53411a52f254b32ca68d78cdf7626250885381d5b180e22559"
+    },
+    {
+      "path": "tests/native-and-managed/managed_hurt_deadline.cpp",
+      "sha256": "c2013967d80f61207fe5a91fabdc180901b9e47e4e3c03d074935b8979056c74"
+    },
+    {
+      "path": "tests/native-and-managed/managed_hurt_deadline_mock.cpp",
+      "sha256": "bf4ac895eeb7e863ba842eb468b9fe617f73b5a703288239beaee450e2474cb8"
+    },
+    {
+      "path": "tests/native-and-managed/managed_live_admission.cpp",
+      "sha256": "8e68a2ef348c1408ebdd59fb092de4d85c0fcb5acf29ab7b7a473ca90cb38dc7"
+    },
+    {
+      "path": "tests/native-and-managed/managed_live_ingress_smoke.cpp",
+      "sha256": "544437c27a81091a42a2b30131b72c42900971808e2266740b7df1e846d5095b"
+    },
+    {
+      "path": "tests/native-and-managed/managed_live_lifecycle_smoke.cpp",
+      "sha256": "9a771b9fad5f8f0fbd1449a6f505feeab5da52561ebd1bc7ff329d8d47333a82"
+    },
+    {
+      "path": "tests/native-and-managed/managed_live_queue_smoke.cpp",
+      "sha256": "f096c453a981ff79ba3ec96df20130d00ad78b5717a7885e16a6695b62328a93"
+    },
+    {
+      "path": "tests/native-and-managed/managed_memory_snapshot_smoke.cpp",
+      "sha256": "c4390cb90bc924266c83a5c8ed4d02f5f4e593e998a529842825f2d9223e3e32"
+    },
+    {
+      "path": "tests/native-and-managed/managed_mono_mock.cpp",
+      "sha256": "c755ffe5164b345b8fa00e1e05e967fa0b1dbb57c291a8fec5769e46eabf381b"
+    },
+    {
+      "path": "tests/native-and-managed/managed_multi_live_ingress_smoke.cpp",
+      "sha256": "b178d221d0f784ca516bc8244941e44f17c99cd2ac09bb9fc2a37f9ce7b1b277"
+    },
+    {
+      "path": "tests/native-and-managed/managed_pinned_gc_mock.cpp",
+      "sha256": "91b8adbdb80607135f07320c2c1875809313478a3b4757f96c8354981b59f818"
+    },
+    {
+      "path": "tests/native-and-managed/managed_pinned_gc_smoke.cpp",
+      "sha256": "c1babbcf72a225dc4d5dc36273f2432c66790342efa59aa6c864a6ee97ba8515"
+    },
+    {
+      "path": "tests/native-and-managed/managed_prefix_auto_count_v90_1.cpp",
+      "sha256": "c53e2ee0adb7c284d5d635d2dcf2fbeec3f7e09fc3bd9d42bb12ad6f2a7320a8"
+    },
+    {
+      "path": "tests/native-and-managed/managed_prefix_cold_tables.cpp",
+      "sha256": "6ac8011f091fca5eb609ff9e7a2c248372f75bb312da990a6d985b98a8d5000e"
+    },
+    {
+      "path": "tests/native-and-managed/managed_prefix_roll_v90_2.cpp",
+      "sha256": "8483161b8b362f3c0a47a045391e74c63cbb29de78c66132a1518fb00229d095"
+    },
+    {
+      "path": "tests/native-and-managed/managed_runtime_smoke.cpp",
+      "sha256": "33cc5dc0ad3a4b1c7ba2c5521edb6bf88188595a40ef98e92eb7b00bfe22064e"
+    },
+    {
+      "path": "tests/native-and-managed/managed_signal_mock.cpp",
+      "sha256": "637532225f7416ed9ca3637b96f55ef1a520adf0b908697d7789f9a826cec9ed"
+    },
+    {
+      "path": "tests/native-and-managed/managed_signal_ownership.cpp",
+      "sha256": "842542f86a070bae14a8dce0ff45b0623e97a5bb2e9a03def2972931a582f43f"
+    },
+    {
+      "path": "tests/native-and-managed/managed_visual_drain_test.cpp",
+      "sha256": "cbf9d72a1a8f14ee9ac5eced154fe02b5cc1ec7f82afa61ea3238033c7f92334"
+    },
+    {
+      "path": "tests/native-and-managed/managed_visual_ingress_test.cpp",
+      "sha256": "a04c77762567bb4367f6f43c0cf7dacae6555e41c17b240f7a2090724a02e5d8"
+    },
+    {
+      "path": "tests/native-and-managed/managed_visual_mono_pump_test.cpp",
+      "sha256": "6a73489cda9f228712e3d3d95788ec8a61d1d85e2a2b0fd157a4a43e9ddda6a2"
+    },
+    {
+      "path": "tests/native-and-managed/managed_visual_queue_test.cpp",
+      "sha256": "110d57c1f90edf2fe3fe81efd50bbc04bbda9e662d3206178f24349059d1a2b4"
+    },
+    {
+      "path": "tests/native-and-managed/managed_visual_state_test.cpp",
+      "sha256": "de0fb1a7b16e352800947b0aa6994a0cb4c61c2c14a90e83e82294db310fd66e"
+    },
+    {
+      "path": "tests/native-and-managed/native_access/NativeAccess.csproj",
+      "sha256": "ec8a282456caf5c7c86d12cd0c04b9d20bcd66423f43ea4e23c83fd798968f25"
+    },
+    {
+      "path": "tests/native-and-managed/native_access/Program.cs",
+      "sha256": "03140ae3e645c64765cbffc169b00c67986aacd69226e8871c5dbb54538b3fe5"
+    },
+    {
+      "path": "tests/native-and-managed/native_access/native.cpp",
+      "sha256": "14a6d231dca68b2ed404b76ccb409957c3dfc294fac2ed373c78bb8364c38230"
+    },
+    {
+      "path": "tests/native-and-managed/native_access/sdk_mock.cpp",
+      "sha256": "0fa04d625d868fa0f4ff2de11cbf71713dd188a6757271cd0838afd641b762aa"
+    },
+    {
+      "path": "tests/native-and-managed/native_boot_effects_test.cpp",
+      "sha256": "d61fa9a214eb83368abdb090dcedb7042b0ae2d398363a7554b58e6d4440cc46"
+    },
+    {
+      "path": "tests/native-and-managed/native_empty_source_effects.cpp",
+      "sha256": "6b6031669b748924360d5a0ae6ea92b52b24916fc7631bcc0305540e4eb3cfaf"
+    },
+    {
+      "path": "tests/native-and-managed/native_recipes/delivery_gate_test.py",
+      "sha256": "8ebafce981c5a8e74eb4e4bf8b1ab92aebec57357a04967f8a43b3723daab331"
+    },
+    {
+      "path": "tests/native-and-managed/native_recipes/native_recipes_test.cpp",
+      "sha256": "d151507bf09fbbc51ff2cf459f8f36cb33b89c0013b0b34ce0eaa9f472e1341b"
+    },
+    {
+      "path": "tests/native-and-managed/native_recipes/registry_regression_test.cpp",
+      "sha256": "d09428f959b02c1ae319390a49a0be83f1bd3d854f234c891a422e74a9ec58e6"
+    },
+    {
+      "path": "tests/native-and-managed/native_recipes/value_layout_test.cpp",
+      "sha256": "e670dfd4f62ff6f7f8ee09b40064b30996150134f12464515c2e60c6cbd4b3d4"
+    },
+    {
+      "path": "tests/native-and-managed/native_source_identity.cpp",
+      "sha256": "d1c0201511c939c523358a31a7b1729593719bdeb44b17ee71ab4348e521cc4b"
+    },
+    {
+      "path": "tests/native-and-managed/native_tile_policy.cpp",
+      "sha256": "46d8118478ef932b539651ae974ae4903d98a975352ca92106f1ffb5395fda46"
+    },
+    {
+      "path": "tests/native-and-managed/prefix_v89/PlayableCompile.csproj",
+      "sha256": "cb4972e77411c396347e43a974a2bdb3fac7afa416404139c53019ef2193c599"
+    },
+    {
+      "path": "tests/native-and-managed/prefix_v89/PrefixContract.csproj",
+      "sha256": "be615caf4f07c560e590c8aaf772f45adde5898ea1224e910840364de6402783"
+    },
+    {
+      "path": "tests/native-and-managed/prefix_v89/PrefixFixture/Content.cs",
+      "sha256": "a584fc6b2ebfc30aa7372750bef57cd5ed09d960f73bad614611598b1efa2ced"
+    },
+    {
+      "path": "tests/native-and-managed/prefix_v89/PrefixFixture/PrefixFixture.csproj",
+      "sha256": "0fddae900340f29c62b94da6ca0668218836a62bfadf7e9c355686949dd4c228"
+    },
+    {
+      "path": "tests/native-and-managed/prefix_v89/Program.cs",
+      "sha256": "b175cab99b94d7b86b3c7098b245c8d654f8958285051cd9d0e36e3888bee018"
+    },
+    {
+      "path": "tests/native-and-managed/prefix_v89/guard_gameplay_v90.py",
+      "sha256": "416bcb5361be797eded802a32486554987f237d47ab76db6a2529933029aef09"
+    },
+    {
+      "path": "tests/native-and-managed/prefix_v89/guard_native_bridge.py",
+      "sha256": "592cea44d27c04e11c56710897dbfd44b32e0d6e6662a3e3005487446c1adbca"
+    },
+    {
+      "path": "tests/native-and-managed/prefix_v89/guard_persistence_v90_4.py",
+      "sha256": "356d28e7d720e77f6b362c7df0132c918993d58abc31b61832af0e051f58a986"
+    },
+    {
+      "path": "tests/native-and-managed/prefix_v89/guard_reforge_v90_2.py",
+      "sha256": "69c28852d50e4f25a08d43febc6106cefac066d6ccb262950f3e0d6f7dd08f32"
+    },
+    {
+      "path": "tests/native-and-managed/run_compiler_aot_loader.py",
+      "sha256": "456d2573f19d0432a6745777050c06c5e5a10155eff53040142a66def92f6457"
+    },
+    {
+      "path": "tests/native-and-managed/run_csharp_foundation.py",
+      "sha256": "b1d1be4ede40dc3c014a8847042f29a403ef75c88441b39cd630dc124254eaa8"
+    },
+    {
+      "path": "tests/native-and-managed/run_csharp_independent_loading.py",
+      "sha256": "550cedd96af435041f6a2e36b043f42b95c67f886d795c6b8f28f6059d9e9113"
+    },
+    {
+      "path": "tests/native-and-managed/run_managed_lifecycle_regressions.py",
+      "sha256": "4a11b9ab83b3731ed08bae3498ad49a99b13236aee549d74ee388487b9bf28fc"
+    },
+    {
+      "path": "tests/native-and-managed/run_managed_live_queue.py",
+      "sha256": "fc6218145b4405adb68c3db8c778c656756ac958262a5e35ee58a9e566bb1611"
+    },
+    {
+      "path": "tests/native-and-managed/run_managed_pinned_gc.py",
+      "sha256": "b0a6dbc5051fd67650974af2562e8040a5f63630044d23212297afc2cfd489d6"
+    },
+    {
+      "path": "tests/native-and-managed/run_managed_signal_ownership.py",
+      "sha256": "c9328220c96a3eb6f68fed9b6dc2728c10c9501eaf614da066253ed6dffdf808"
+    },
+    {
+      "path": "tests/native-and-managed/run_native_access.py",
+      "sha256": "6cf73cb1aef4899b7854108bf1b47a367c7cca3f52fee15b762983de59efa881"
+    },
+    {
+      "path": "tests/native-and-managed/run_native_armor_policies.py",
+      "sha256": "c9aabb5d6bf591b136447d4f58d849f0408710e0c4eaf3c4820eacc2fb4bee52"
+    },
+    {
+      "path": "tests/native-and-managed/run_native_equip_effects.py",
+      "sha256": "6f96886ba4d92bb8585ac40e7ac3d7b3b2788f97b26005a035e65cd89f2dcb6a"
+    },
+    {
+      "path": "tests/native-and-managed/run_native_item_policies.py",
+      "sha256": "f3c2dd682c8ccfb933cfbebeb17e60ab33f74b340ae7ab6040b5d77104cd5f17"
+    },
+    {
+      "path": "tests/native-and-managed/run_universal_hooks.py",
+      "sha256": "96a8150938111e7cb4785edc6194598db7a171a66e34c4b414890518aad5afeb"
+    },
+    {
+      "path": "tests/native-and-managed/screenfx_frame_hold_test.cpp",
+      "sha256": "f172a4cb4dcf1f5555df7880e8f1ef87e61adb9600d347bbe55295746ce2e396"
+    },
+    {
+      "path": "tests/native-and-managed/screenfx_native_identity_test.cpp",
+      "sha256": "f9f278a34e8466e2a1533fb6b26f9ce089d69083fcd2a1a55f52f1992d1c87a2"
+    },
+    {
+      "path": "tests/native-and-managed/screenfx_native_test.sh",
+      "sha256": "f1766e23ce227ef39d12f93ec1a3fe00ff9ab5ebee50a6413668dd3b29556bc7"
+    },
+    {
+      "path": "tests/native-and-managed/screenfx_probe/Program.cs",
+      "sha256": "760422193f2ecede5409480edcf61a9a385a26311182b786ac9a6fc7e4aed234"
+    },
+    {
+      "path": "tests/native-and-managed/screenfx_probe/ScreenFxProbe.Tests.csproj",
+      "sha256": "fb0058957f469ff8722384fc6ebd4c95f1b9b737719130133f800cc6b59d1ca0"
+    },
+    {
+      "path": "tests/native-and-managed/screenfx_registry_test.cpp",
+      "sha256": "8de5a3256a5ad405942efdd1ec18566a9a10faca997628953b913037b530fffc"
+    },
+    {
+      "path": "tests/native-and-managed/screenfx_stubs/core/Log.h",
+      "sha256": "0eba77f6dcf750274b968810fc5c01c3d32115f2640e0e5243c36a1ae0715f40"
+    },
+    {
+      "path": "tests/native-and-managed/screenfx_stubs/graphics/RenderHook.h",
+      "sha256": "58d6d214c7c6cf8eaf5ba6acdb25eca801830c198425fad4e606035a6b0fe0e1"
+    },
+    {
+      "path": "tests/native-and-managed/screenfx_stubs/graphics/ShaderRegistry.h",
+      "sha256": "c504ec8c59be53b40f65f5ee5c2f26b0432fdfc123a52f001296280966024eb1"
+    },
+    {
+      "path": "tests/native-and-managed/screenfx_stubs/graphics/TextureRegistry.h",
+      "sha256": "df7d3b15301a534345f10fa5996f6c479b1c4d121776d6d1ae2b913fc1a56eec"
+    },
+    {
+      "path": "tests/native-and-managed/sdk_foundation/Program.cs",
+      "sha256": "2811880c341654e05b198dcd0340868726b20d3eb2569c8849de7779d6e2f5b7"
+    },
+    {
+      "path": "tests/native-and-managed/sdk_foundation/SdkFoundation.csproj",
+      "sha256": "9b75d4016100e725ac81635500aac1a931be156e9169865a9e353b51d97d72f4"
+    },
+    {
+      "path": "tests/native-and-managed/source_parser_smoke.cpp",
+      "sha256": "0e133165898a47d049586b75072c14c97efc4b8c1bde9f48bf0efe2abc1cda8c"
+    },
+    {
+      "path": "tests/native-and-managed/startup/include/jni.h",
+      "sha256": "8d0fba1797d149c298816208f97ef1f8192117e2293f6fa822d5dd0c54a7adbd"
+    },
+    {
+      "path": "tests/native-and-managed/test_create_csharp_mod.py",
+      "sha256": "e716143454fb746ba86664e8796170d8d982a6eebff961d533f097ed5c586ed8"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_api_discovery.py",
+      "sha256": "5b4ac52e3a9acb45ce6f585c08a67ca5adf576e8fc2743c6759e12625ec98291"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_api_gap_map.py",
+      "sha256": "9a7cff36cbb4eb32c881e18b97b31abbf2a1d613a1e49b0bc3f4e0119e55b4ab"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_api_negative_compile.py",
+      "sha256": "a2cce80514a1866b9b161cf79b5d327414cac150274635120c199117223f57dd"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_hook_editor_counters.py",
+      "sha256": "2514bca7484a6607f16809a392ccb42a80ac5a784276475b2439f24f85203cc8"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_idle_tooltip_and_cache_io.py",
+      "sha256": "db7f22d287c8ce061c1c318af0510ec575c33eef3c2a673e6fbea1380bb4a7c3"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_independent_mod_loading.py",
+      "sha256": "0d44ccace9ec8ae7a9790edb00165f4c96dcb90ad1f83f267dd964c8a66bb1cf"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_interactive_console.py",
+      "sha256": "53f389e39909aa3bcb9a9bf7e74376f263617772a6b9bdc6e1933ef48eab4de1"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_launch_precompile.py",
+      "sha256": "935159277eabe7a1be2bd29f194c45d4f658b36f55a50f994e28c8d738ffbc90"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_native_accessory_effects.py",
+      "sha256": "7d17bb8df75718b3abe1dbeddf4f9278f870e20abefe90436fd488896ea1f3d3"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_native_defense_policy.py",
+      "sha256": "1ffc40d25a8359792e6434005c4ef5f9f68c15b058397039fbc40a51251acfdf"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_no_javascript_dependency.py",
+      "sha256": "3bdfcc69476e3eebb35594c8194f8bbdf454daf53c4f19ce1bf719a8f520014d"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_startup_visual_hotpath.py",
+      "sha256": "8ea7d50fbb17e5c28aa6aa21fd49f285b05135ef58b6d6ba36beffc14931de46"
+    },
+    {
+      "path": "tests/native-and-managed/test_csharp_universal_editor_telemetry.py",
+      "sha256": "d915117f0612964f9d0fa26392cec1d07ed8e23ec8b1909b33c9cac868dc70c2"
+    },
+    {
+      "path": "tests/native-and-managed/test_managed_hit_context_v81.cpp",
+      "sha256": "f0d34ce904fc0fd7a5d1260a646610fed767d74257ef06e7a390386e88d43612"
+    },
+    {
+      "path": "tests/native-and-managed/test_managed_hit_context_v82.cpp",
+      "sha256": "00b6c25dd0004e52f2fe75e83f104728bab9ef5f62132c03a35296d5f196ea8d"
+    },
+    {
+      "path": "tests/native-and-managed/test_managed_hit_context_v83.cpp",
+      "sha256": "6c525c59bce5afe8c17c2d26ba361eac506c4969dea3b73692f7baa03f2421a7"
+    },
+    {
+      "path": "tests/native-and-managed/test_managed_hit_context_v84.cpp",
+      "sha256": "fdd6819e1412dae6dfb64565a8ffaa1a09c00bec479179d9dcb1c28fe04824db"
+    },
+    {
+      "path": "tests/native-and-managed/test_managed_npc_buff_effects_v85.cpp",
+      "sha256": "ac0d65ad3ca00bd0c319510cc14190fc7d624f051e7e30bac7f10338edd9feb2"
+    },
+    {
+      "path": "tests/native-and-managed/test_mono_android_signals_patch.py",
+      "sha256": "30f57ddabe607fed0e5653ea3a7bcf3147a0f84e1b1c3956d9b9357e80b810dc"
+    },
+    {
+      "path": "tests/native-and-managed/test_native_armor_table_repair.py",
+      "sha256": "af2816d0b990429b1e222007b5acc69560e451f0d1f0a2f414bf98d72226decd"
+    },
+    {
+      "path": "tests/native-and-managed/test_native_config_jni_contract.py",
+      "sha256": "fc21cb26eeaed8021c68c1a7bf2a288d1bc314398bf59ec4b87aa3f5df64751d"
+    },
+    {
+      "path": "tests/native-and-managed/test_native_mod_tooltip_lookup.py",
+      "sha256": "fd0284d98056b76a6f2668625f74a8edc5358f004f4e93daa9ef64440d6dc76d"
+    },
+    {
+      "path": "tests/native-and-managed/test_native_tooltip_cache_recovery.py",
+      "sha256": "aacef26158f7dd3ee6fc3c0e5795a48f9d408ee158c643c3f95308ed14114ccc"
+    },
+    {
+      "path": "tests/native-and-managed/test_native_tooltip_game_thread_sync.py",
+      "sha256": "5aa83c2f36a0894ccb1aa301a18b802af8ff061ed565ff3389755541c19e2c47"
+    },
+    {
+      "path": "tests/native-and-managed/universal_hooks/Program.cs",
+      "sha256": "3638308ff57234044a9e15d062062b2381d39241335df80ddd3d8bea4e364f48"
+    },
+    {
+      "path": "tests/native-and-managed/universal_hooks/UniversalHooks.csproj",
+      "sha256": "776caea38ced2e9acb482f2d7096a459198c4bd1c906e78617490c88ad563b08"
+    },
+    {
+      "path": "tests/native-and-managed/universal_hooks/mailbox.cpp",
+      "sha256": "c3c896599879ad15135427b6b1390325f925affff8e8a116ba558c20f52c778a"
+    },
+    {
+      "path": "tests/native-and-managed/universal_hooks/native.cpp",
+      "sha256": "6dec84d4fa09d5f4517f9ca2c8a9650297148a80d98b6fe18d71465af8cfb087"
+    },
+    {
+      "path": "tests/native-and-managed/universal_hooks/sdk_native_mock.cpp",
+      "sha256": "21f99262ecd552e96a3a8b96f725ad401a5fa5177a522aebff5614ff164804b4"
+    },
+    {
+      "path": "tests/native-and-managed/visual_queue/Program.cs",
+      "sha256": "c077f78b230af95288734435bdc762cb5e4719ee9c3ee15de9aacea968b784f1"
+    },
+    {
+      "path": "tests/native-and-managed/visual_queue/VisualAccessories.csproj",
+      "sha256": "6a6ea50b823ae5274e02022fbe27a5cc1595a13aee037be6a31e474904927272"
+    },
+    {
+      "path": "tests/native-and-managed/visual_queue/VisualAccessoryProgram.cs",
+      "sha256": "ccdb03c31df89e56eada2228193888c99e5ad26bf496c93331ae2af9f50deb94"
+    },
+    {
+      "path": "tests/native-and-managed/visual_queue/VisualQueueTests.csproj",
+      "sha256": "e2d9bd8edc588aeeb386de4d0d1e045d9ddbb6fb63a24db76118b0d01dd7a61d"
+    },
+    {
+      "path": "tests/native-and-managed/visual_queue/VisualSdkCompile.csproj",
+      "sha256": "e8a8072986d34d1bd00e3bed188cffad1d7bfd7030702630bc3e45732dfa7563"
+    },
+    {
+      "path": "tests/native-and-managed/visual_queue/VisualSdkCompileProgram.cs",
+      "sha256": "6a468374462d4f868250a34635d63c7207ed923f0e2e470b7448b8395ae9b6ed"
+    },
+    {
+      "path": "tests/native-and-managed/world_entry_readiness.cpp",
+      "sha256": "185157b9904ae722a49200cec0e7ca2f80744a47433fe0dae9c1a3efad6ed643"
+    },
+    {
+      "path": "tools/support/api_discovery/README.md",
+      "sha256": "3a7720a63b4cba8a74986d077e7b77878208c894f6fe2d1451870585bc968ef2"
+    },
+    {
+      "path": "tools/support/api_discovery/coverage.json",
+      "sha256": "67e6ec7881f928ce3ce37f5daedbc1cef4450874dcf7549bd4c81b560c604d84"
+    },
+    {
+      "path": "tools/support/api_discovery/priority_rules.json",
+      "sha256": "c4eeb09f49043bbd24edb0f2e1ec34b590f49e1e00db5f7b6d6cc3db611c6960"
+    },
+    {
+      "path": "tools/support/build_compiler_aot.py",
+      "sha256": "6591a081846e6a50415aa5b572e6ca178987ed34b7315779c75496a6b7303f4b"
+    },
+    {
+      "path": "tools/support/check_compiler_delivery.py",
+      "sha256": "6399732f680f3e481c146301832c4fcbab3ed5456441501af163cc6e09320fcf"
+    },
+    {
+      "path": "tools/support/check_lot_a_delivery.py",
+      "sha256": "f2d5ef88d157844a813ced9b1cbbbe5f4d509915cb10dec72324597d7a161a14"
+    },
+    {
+      "path": "tools/support/create_csharp_mod.py",
+      "sha256": "0d11efe4312aa97ebaf20c436949e35e78339b03ea812712aed70d5042739038"
+    },
+    {
+      "path": "tools/support/csharp_api_compile_batch.py",
+      "sha256": "48d65709d56b912f14d1d0910e2d65999642f0ccf449d6d39418c1356205d314"
+    },
+    {
+      "path": "tools/support/csharp_api_discovery.py",
+      "sha256": "d8b1078811b542a75f5aff477e65e9ef6c8ffdbb73236f80f2f532457747f61f"
+    },
+    {
+      "path": "tools/support/csharp_api_gap_map.py",
+      "sha256": "3cdddacc5720a1d21f325130f051a6269532174aafbcf026c49543b1106976e4"
+    },
+    {
+      "path": "tools/support/csharp_api_negative_compile.py",
+      "sha256": "3d6893e0601debb8b173344ef0f60193ada4f406223824fe7920ebafff1ed009"
+    },
+    {
+      "path": "tools/support/example_completion/evidence.json",
+      "sha256": "9ab08243c2c882eaf06b7a1c7781e8b4762a011a6f7cac04f30fcc6529ba525b"
+    },
+    {
+      "path": "tools/support/example_completion/lot-a-scope.json",
+      "sha256": "df5aef963b187ac88d2d1413f8190b0f678e7018b41a0449891f3609ee687375"
+    },
+    {
+      "path": "tools/support/example_completion/package-reference.json",
+      "sha256": "250da8ae6d26fbba585757b5fe7f04fc8db0e5b50068595db9c5c5f57c7a2489"
+    },
+    {
+      "path": "tools/support/example_completion/reference_package.py",
+      "sha256": "843de81581d76c132c920220a8209665a17d19d23098ac46941a1d4e5f423c09"
+    },
+    {
+      "path": "tools/support/example_completion/references.json",
+      "sha256": "a1fd6e062deb6a5d90aca78e40ccb675f1d100048695d629ba4a18c5c466e830"
+    },
+    {
+      "path": "tools/support/example_completion_audit.py",
+      "sha256": "4c9be8c09a0ae9b704f17d85a7b3258a2e16bfc2296cf7caa6c5535b1ce9dbbe"
+    },
+    {
+      "path": "tools/support/mono/patch_mono_android_signals.py",
+      "sha256": "9da45e9ecd038d44efbb3afaa0b2a98e1eed1f764b3517d1b30875bc57ae4e97"
+    },
+    {
+      "path": "tools/support/package_native_access_probe.py",
+      "sha256": "8d9a5f1816909f248fdab62013ff041072bc70babfddc716e7c06e832e8a1d49"
+    },
+    {
+      "path": "tools/support/sdk_reference/Program.cs",
+      "sha256": "4001ba63deaae1f85a7a80010f287c0645c616f1a0c1a6ebe095e19967065b72"
+    },
+    {
+      "path": "tools/support/sdk_reference/SdkReference.csproj",
+      "sha256": "b588981a564293c4fb0a1b6bf011a72aa762fb4bcbea50e5a170f6e03ce69d04"
+    },
+    {
+      "path": "tools/support/stage_compiler_references.py",
+      "sha256": "0933a01adac5a92c4dfb5991bb057289b90c0b8b4b0a590bbdfc467be1f752fb"
+    },
+    {
+      "path": "tools/support/stage_mono_runtime.py",
+      "sha256": "edf1c36d224d05ac9f571d6fd3f5d9b8997ee996eef4e3f2342a89706f902366"
+    }
+  ]
+}
