@@ -1,0 +1,15 @@
+_upstream/
+bin/
+obj/
+.gradle/
+build/
+.cxx/
+*.apk
+*.aab
+*.so
+*.dll
+*.pdb
+*.jar
+*.keystore
+*.jks
+__pycache__/
