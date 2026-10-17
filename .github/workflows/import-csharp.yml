@@ -1,0 +1,73 @@
+name: Import BunnyLoader CSharp v87.1 sources
+
+on:
+  push:
+    paths:
+      - ".github/workflows/import-csharp.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bunnyloader-csharp-source-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout dedicated CSharp repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Checkout exact BunnyLoader CSharp v87.1 source
+        uses: actions/checkout@v4
+        with:
+          repository: MantovaniDevTrue/Bunnyloader-Csharp
+          ref: dc6243850c1d7ac83eb528bc2d56cf585066fc85
+          path: _upstream
+          persist-credentials: false
+
+      - name: Import only CSharp subsystem and required complements
+        run: python3 tools/import_csharp_87_1.py --source _upstream
+
+      - name: Validate dedicated source tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('.')
+          d=json.loads((root/'SOURCE_MANIFEST.json').read_text())
+          assert d['source_commit']=='dc6243850c1d7ac83eb528bc2d56cf585066fc85'
+          assert d['files']>=370
+          assert d['csharp']>=130
+          assert d['native_cpp']>=100
+          assert (root/'src/managed/BunnyCsSdk/BunnyUniversalHooks.cs').is_file()
+          assert (root/'src/native/graphics/CSharpScreenGraph.cpp').is_file()
+          assert (root/'samples/LightsAndShadowsCSharp/Playable/content/Effects/Lights.screenfx').is_file()
+          assert not any(p.suffix.lower() in {'.js','.mjs','.apk','.so','.dll','.jar'} for p in root.joinpath('samples').rglob('*') if p.is_file())
+          print('CSHARP_ONLY_SOURCE_IMPORT=PASS',d['files'],d['csharp'],d['native_cpp'])
+          PY
+          rm -rf _upstream
+          test ! -d _upstream
+          test ! -d app
+          test ! -d launcher
+
+      - name: Publish exact source modules to this repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "BunnyLoader CSharp Source Import"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No source changes to publish"
+            exit 0
+          fi
+          git commit -m "feat: import CSharp SDK, MonoVM, Roslyn, hooks and ScreenFX from v87.1"
+          git push origin "HEAD:$GITHUB_REF_NAME"
