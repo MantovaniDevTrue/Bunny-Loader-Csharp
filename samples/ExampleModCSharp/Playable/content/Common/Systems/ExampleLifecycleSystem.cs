@@ -19,6 +19,18 @@ public sealed class ExampleLifecycleSystem : ModSystem
         Console.WriteLine("[ExampleMod C#] sistemas carregados");
     }
 
+    public override void ClearWorld()
+    {
+        // Executado depois de WorldGen.clearWorld; invalide caches de tiles.
+        Console.WriteLine("[ExampleMod C#] mundo limpo");
+    }
+
+    public override void PreSaveAndQuit()
+    {
+        // Executado antes de WorldGen.SaveAndQuit; prepare o encerramento.
+        Console.WriteLine("[ExampleMod C#] preparando save e saida");
+    }
+
     public override void OnWorldLoad()
     {
         // Um evento por entrada efetiva no mundo, nao por frame.

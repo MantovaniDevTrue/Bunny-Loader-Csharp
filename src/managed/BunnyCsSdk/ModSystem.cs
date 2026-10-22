@@ -14,6 +14,8 @@ public abstract class ModSystem
     public virtual void Load() { }
     public virtual void OnModLoad() { }
     public virtual void OnWorldLoad() { }
+    public virtual void ClearWorld() { }
+    public virtual void PreSaveAndQuit() { }
     public virtual void OnWorldUnload() { }
     public virtual void OnModUnload() { }
     public virtual void Unload() { }
@@ -96,12 +98,13 @@ public static class ModSystemLoader
 
     /// <summary>
     /// 0=Load, 1=OnModLoad, 2=OnWorldLoad, 3=OnWorldUnload,
-    /// 4=OnModUnload, 5=Unload. Retorna o numero de falhas isoladas.
+    /// 4=OnModUnload, 5=Unload, 6=ClearWorld, 7=PreSaveAndQuit.
+    /// Retorna o numero de falhas isoladas.
     /// </summary>
     public static int Dispatch(Assembly assembly, int phase)
     {
         if (assembly == null) throw new ArgumentNullException(nameof(assembly));
-        if ((uint)phase > 5) throw new ArgumentOutOfRangeException(nameof(phase));
+        if ((uint)phase > 7) throw new ArgumentOutOfRangeException(nameof(phase));
         lock (Sync)
         {
             if (!Registries.TryGetValue(assembly, out Registry? registry))
@@ -128,6 +131,18 @@ public static class ModSystemLoader
                         failures += Invoke(entry, x => x.OnModLoad(), nameof(ModSystem.OnModLoad));
             }
 
+            if (phase == 6 && registry.ModLoaded)
+            {
+                foreach (Entry entry in registry.Entries)
+                    if (entry.Loaded)
+                        failures += Invoke(entry, x => x.ClearWorld(), nameof(ModSystem.ClearWorld));
+            }
+            if (phase == 7 && registry.WorldLoaded)
+            {
+                foreach (Entry entry in registry.Entries)
+                    if (entry.Loaded)
+                        failures += Invoke(entry, x => x.PreSaveAndQuit(), nameof(ModSystem.PreSaveAndQuit));
+            }
             if (phase == 2 && registry.ModLoaded && !registry.WorldLoaded)
             {
                 registry.WorldLoaded = true;
