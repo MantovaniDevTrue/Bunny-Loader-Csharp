@@ -54,3 +54,5 @@ No despacho de `ModSystem`, a ponte C++ exige `mono_thread_current` e `mono_thre
 ## Máscara de overrides
 
 O compilador gera uma entrada gerenciada por assembly que informa uma máscara de 58 bits dos hooks originais. Apenas `override` verdadeiros (`GetBaseDefinition`) de instâncias carregadas contam; métodos com o mesmo nome que apenas escondem a base não são registrados. O host guarda a máscara em cache e ignora `ClearWorld`, `PreSaveAndQuit`, `PreWorldGen` e `PostWorldGen` quando nenhum mod os sobrescreve. Isso elimina chamadas Mono desnecessárias sem remover callbacks existentes. A integração de fases de alto custo por frame depende desse mecanismo e de benchmark Android.
+
+O `Unload` também atualiza a máscara agregada de hooks: quando um mod sai, os bits que não pertencem mais a nenhum outro mod são retirados. Nenhum hook de outro mod é desligado por causa desse descarregamento.

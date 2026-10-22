@@ -3720,6 +3720,10 @@ bool dispatchManagedSourceSystem(const std::string& modId,
     if (phase == 5) {
         guard.lock();
         g_sourceSystemEntries.erase(modId);
+        uint64_t remainingHooks = 0;
+        for (const auto& [id, system] : g_sourceSystemEntries)
+            if (system.maskKnown) remainingHooks |= system.mask;
+        g_sourceSystemOriginalMask.store(remainingHooks, std::memory_order_release);
     }
     return true;
 }
