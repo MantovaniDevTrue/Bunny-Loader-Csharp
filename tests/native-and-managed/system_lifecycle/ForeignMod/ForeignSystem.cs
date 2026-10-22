@@ -21,3 +21,10 @@ public sealed class BrokenSystem : ModSystem
 {
     public BrokenSystem() => throw new InvalidOperationException("Teste de falha isolada");
 }
+
+public sealed class FakeWorldSystem : ModSystem
+{
+    // Metodo apenas escondido, nao um override de ModSystem.
+    // A descoberta por reflexao nao pode registra-lo como worldgen.
+    public new void PreWorldGen() { }
+}

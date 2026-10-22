@@ -50,3 +50,7 @@ A ponte em C++ usa `Terraria.WorldBuilding.WorldGenerator.GenerateWorld()` do me
 ## Threads do Mono em hooks nativos
 
 No despacho de `ModSystem`, a ponte C++ exige `mono_thread_current` e `mono_thread_detach`, detecta se a thread já pertence ao domínio e desanexa somente as threads anexadas por esta própria chamada. Isso evita deixar threads temporárias de worldgen anexadas indefinidamente ao Mono. O lock global de métodos é solto antes de chamar a função do mod. É necessário testar especificamente criação de mundo e cancelamento da geração no Android; a implementação em fonte não prova ausência de crash em ARM64.
+
+## Máscara de overrides
+
+O compilador gera uma entrada gerenciada por assembly que informa uma máscara de 58 bits dos hooks originais. Apenas `override` verdadeiros (`GetBaseDefinition`) de instâncias carregadas contam; métodos com o mesmo nome que apenas escondem a base não são registrados. O host guarda a máscara em cache e ignora `ClearWorld`, `PreSaveAndQuit`, `PreWorldGen` e `PostWorldGen` quando nenhum mod os sobrescreve. Isso elimina chamadas Mono desnecessárias sem remover callbacks existentes. A integração de fases de alto custo por frame depende desse mecanismo e de benchmark Android.

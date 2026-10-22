@@ -134,9 +134,13 @@ public static class ModSystemLoader
                 Type type = entry.System.GetType();
                 for (int index = 0; index < OriginalHookNames.Length; index++)
                 {
+                    MethodInfo? baseMethod = typeof(ModSystem).GetMethod(OriginalHookNames[index],
+                        BindingFlags.Public | BindingFlags.Instance);
+                    if (baseMethod == null) continue;
                     MethodInfo? method = type.GetMethod(OriginalHookNames[index],
                         BindingFlags.Public | BindingFlags.Instance);
-                    if (method != null && method.DeclaringType != typeof(ModSystem))
+                    if (method != null && method.DeclaringType != typeof(ModSystem) &&
+                        method.GetBaseDefinition().Equals(baseMethod))
                         mask |= 1UL << index;
                 }
             }
