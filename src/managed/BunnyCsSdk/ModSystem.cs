@@ -5,6 +5,68 @@ using System.Reflection;
 
 namespace BunnyLoader.Source;
 
+public readonly struct BunnySystemColor
+{
+    public uint Packed { get; }
+    public byte R => (byte)Packed;
+    public byte G => (byte)(Packed >> 8);
+    public byte B => (byte)(Packed >> 16);
+    public byte A => (byte)(Packed >> 24);
+
+    public BunnySystemColor(uint packed) => Packed = packed;
+    public BunnySystemColor(byte r, byte g, byte b, byte a = 255)
+        => Packed = (uint)r | ((uint)g << 8) | ((uint)b << 16) | ((uint)a << 24);
+}
+
+public struct BunnySystemVector2
+{
+    public float X;
+    public float Y;
+    public BunnySystemVector2(float x, float y) { X = x; Y = y; }
+}
+
+public static class BunnySystemCamera
+{
+    [ThreadStatic] private static bool active;
+    [ThreadStatic] private static BunnySystemVector2 position;
+    public static BunnySystemVector2 ScreenPosition
+    {
+        get
+        {
+            if (!active) throw new InvalidOperationException(
+                "ScreenPosition apenas em ModSystem.ModifyScreenPosition");
+            return position;
+        }
+        set
+        {
+            if (!active) throw new InvalidOperationException(
+                "ScreenPosition apenas em ModSystem.ModifyScreenPosition");
+            if (!float.IsFinite(value.X) || !float.IsFinite(value.Y))
+                throw new ArgumentOutOfRangeException(nameof(value));
+            position = value;
+        }
+    }
+
+    internal static void Begin(ulong packed)
+    {
+        if (active) throw new InvalidOperationException("Camera callback reentrante");
+        active = true;
+        position = new BunnySystemVector2(
+            BitConverter.Int32BitsToSingle(unchecked((int)packed)),
+            BitConverter.Int32BitsToSingle(unchecked((int)(packed >> 32))));
+    }
+
+    internal static void Reset() => active = false;
+
+    internal static ulong End()
+    {
+        BunnySystemVector2 last = position;
+        active = false;
+        return (uint)BitConverter.SingleToInt32Bits(last.X) |
+            ((ulong)(uint)BitConverter.SingleToInt32Bits(last.Y) << 32);
+    }
+}
+
 /// <summary>
 /// Sistema global de um mod C#. Hooks de ciclo de vida ocorrem nas transicoes;
 /// hooks de atualizacao podem executar em todos os quadros quando sobrescritos.
@@ -21,6 +83,9 @@ public abstract class ModSystem
     public virtual void PostSetupContent() { }
     public virtual void OnWorldLoad() { }
     public virtual void ModifyLightingBrightness(ref float brightness) { }
+    public virtual void ModifySunLightColor(ref BunnySystemColor tileColor,
+                                           ref BunnySystemColor backgroundColor) { }
+    public virtual void ModifyScreenPosition() { }
     public virtual void PostWorldLoad() { }
     public virtual void ClearWorld() { }
     public virtual void PreWorldGen() { }
@@ -243,6 +308,80 @@ public static class ModSystemLoader
             }
             return current;
         }
+    }
+
+
+    public static ulong ModifySunLightColor(Assembly assembly, ulong packed)
+    {
+        if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+        lock (Sync)
+        {
+            if (!Registries.TryGetValue(assembly, out Registry? registry) ||
+                !registry.ModLoaded || !registry.WorldLoaded) return packed;
+            BunnySystemColor tiles = new((uint)packed);
+            BunnySystemColor background = new((uint)(packed >> 32));
+            foreach (Entry entry in registry.Entries)
+            {
+                if (!entry.Loaded || (entry.OverrideMask & (1UL << 48)) == 0)
+                    continue;
+                BunnySystemColor nextTiles = tiles, nextBackground = background;
+                try
+                {
+                    entry.System.ModifySunLightColor(ref nextTiles, ref nextBackground);
+                    tiles = nextTiles;
+                    background = nextBackground;
+                }
+                catch (Exception error)
+                {
+                    ReportValueHookError(entry, nameof(ModSystem.ModifySunLightColor), error);
+                }
+            }
+            return tiles.Packed | ((ulong)background.Packed << 32);
+        }
+    }
+
+    public static ulong ModifyScreenPosition(Assembly assembly, ulong packed)
+    {
+        if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+        if (!float.IsFinite(BitConverter.Int32BitsToSingle(unchecked((int)packed))) ||
+            !float.IsFinite(BitConverter.Int32BitsToSingle(unchecked((int)(packed >> 32)))))
+            return packed;
+        lock (Sync)
+        {
+            if (!Registries.TryGetValue(assembly, out Registry? registry) ||
+                !registry.ModLoaded || !registry.WorldLoaded) return packed;
+            BunnySystemCamera.Begin(packed);
+            try
+            {
+                foreach (Entry entry in registry.Entries)
+                {
+                    if (!entry.Loaded || (entry.OverrideMask & (1UL << 50)) == 0) continue;
+                    BunnySystemVector2 previous = BunnySystemCamera.ScreenPosition;
+                    try { entry.System.ModifyScreenPosition(); }
+                    catch (Exception error)
+                    {
+                        BunnySystemCamera.ScreenPosition = previous;
+                        ReportValueHookError(entry, nameof(ModSystem.ModifyScreenPosition), error);
+                    }
+                }
+                return BunnySystemCamera.End();
+            }
+            finally
+            {
+                BunnySystemCamera.Reset();
+            }
+        }
+    }
+
+    private static void ReportValueHookError(Entry entry, string hook, Exception error)
+    {
+        entry.FailureReports.TryGetValue(hook, out int previous);
+        int count = previous < int.MaxValue ? previous + 1 : previous;
+        entry.FailureReports[hook] = count;
+        if (count <= 3 || (count & (count - 1)) == 0)
+            Console.Error.WriteLine("[CSharp][ModSystem] " +
+                entry.System.GetType().FullName + "." + hook +
+                " falhou (" + count + "x): " + error);
     }
 
     public static ulong HookMask(Assembly assembly)

@@ -18,6 +18,16 @@ public sealed class AlphaSystem : ModSystem
     public override void Load() => Events.Add("A.Load");
     public override void OnModLoad() => Events.Add("A.OnModLoad");
     public override void OnLocalizationsLoaded() => Events.Add("A.OnLocalizationsLoaded");
+    public override void ModifySunLightColor(ref BunnySystemColor tiles, ref BunnySystemColor background)
+    {
+        tiles = new BunnySystemColor(10, 20, 30, tiles.A);
+        background = new BunnySystemColor(background.R, 80, 90, background.A);
+    }
+    public override void ModifyScreenPosition()
+    {
+        BunnySystemVector2 p = BunnySystemCamera.ScreenPosition;
+        BunnySystemCamera.ScreenPosition = new BunnySystemVector2(p.X + 16, p.Y - 8);
+    }
     public override void ModifyLightingBrightness(ref float brightness)
     {
         brightness = brightness * 0.8f;
@@ -152,6 +162,19 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 9) != 0) return 27;
         if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 3;
         if (Math.Abs(ModSystemLoader.ModifyLightingBrightness(assembly, 2f) - 1.6f) > 0.0001f) return 49;
+        ulong originalSun = 0xff324650UL << 32 | 0xff112233UL;
+        ulong updatedSun = ModSystemLoader.ModifySunLightColor(assembly, originalSun);
+        var tile = new BunnySystemColor((uint)updatedSun);
+        var sky = new BunnySystemColor((uint)(updatedSun >> 32));
+        if (tile.R != 10 || tile.G != 20 || tile.B != 30 || tile.A != 255 ||
+            sky.R != 80 || sky.G != 80 || sky.B != 90 || sky.A != 255) return 59;
+        ulong cameraRaw = (uint)BitConverter.SingleToInt32Bits(100f) |
+            ((ulong)(uint)BitConverter.SingleToInt32Bits(60f) << 32);
+        ulong cameraChanged = ModSystemLoader.ModifyScreenPosition(assembly, cameraRaw);
+        if (BitConverter.Int32BitsToSingle((int)cameraChanged) != 116f ||
+            BitConverter.Int32BitsToSingle((int)(cameraChanged >> 32)) != 52f) return 60;
+        try { _ = BunnySystemCamera.ScreenPosition; return 61; }
+        catch (InvalidOperationException) { }
         if (!float.IsNaN(ModSystemLoader.ModifyLightingBrightness(assembly, float.NaN))) return 50;
         if (ModSystemLoader.Dispatch(assembly, 35) != 0) return 45;
         if (ModSystemLoader.Dispatch(assembly, 35) != 0) return 46;

@@ -101,6 +101,18 @@ public sealed class ExampleLifecycleSystem : ModSystem
         Console.WriteLine("[ExampleMod C#] entrada no mundo #" + visits);
     }
 
+    public override void ModifySunLightColor(ref BunnySystemColor tiles,
+                                             ref BunnySystemColor background)
+    {
+        tiles = new BunnySystemColor(tiles.R, tiles.G, tiles.B, tiles.A);
+    }
+
+    public override void ModifyScreenPosition()
+    {
+        BunnySystemVector2 pos = BunnySystemCamera.ScreenPosition;
+        BunnySystemCamera.ScreenPosition = new BunnySystemVector2(pos.X, pos.Y);
+    }
+
     public override void ModifyLightingBrightness(ref float brightness)
     {
         // O efeito multiplica a luminosidade somente no mundo.

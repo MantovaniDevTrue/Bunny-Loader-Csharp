@@ -184,7 +184,11 @@ public static class Compiler
                 "public static ulong HookMask() => " +
                 "ModSystemLoader.HookMask(typeof(BunnySystemEntry).Assembly); " +
                 "public static float Brightness(float value) => " +
-                "ModSystemLoader.ModifyLightingBrightness(typeof(BunnySystemEntry).Assembly, value); } }";
+                "ModSystemLoader.ModifyLightingBrightness(typeof(BunnySystemEntry).Assembly, value); " +
+                "public static ulong Sunlight(ulong value) => " +
+                "ModSystemLoader.ModifySunLightColor(typeof(BunnySystemEntry).Assembly, value); " +
+                "public static ulong Camera(ulong value) => " +
+                "ModSystemLoader.ModifyScreenPosition(typeof(BunnySystemEntry).Assembly, value); } }";
             trees.Add(CSharpSyntaxTree.ParseText(systemEntry,
                 CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp12),
                 "__BunnySystemEntry.generated.cs"));
