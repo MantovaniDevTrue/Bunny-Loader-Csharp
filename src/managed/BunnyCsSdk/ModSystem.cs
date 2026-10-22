@@ -150,14 +150,14 @@ public static class ModSystemLoader
                     if (entry.Loaded)
                         failures += Invoke(entry, x => x.OnWorldLoad(), nameof(ModSystem.OnWorldLoad));
             }
-            if ((phase == 3 || phase >= 4) && registry.WorldLoaded)
+            if ((phase == 3 || phase == 4 || phase == 5) && registry.WorldLoaded)
             {
                 registry.WorldLoaded = false;
                 foreach (Entry entry in registry.Entries)
                     if (entry.Loaded)
                         failures += Invoke(entry, x => x.OnWorldUnload(), nameof(ModSystem.OnWorldUnload));
             }
-            if (phase >= 4 && registry.ModLoaded)
+            if ((phase == 4 || phase == 5) && registry.ModLoaded)
             {
                 registry.ModLoaded = false;
                 foreach (Entry entry in registry.Entries)
