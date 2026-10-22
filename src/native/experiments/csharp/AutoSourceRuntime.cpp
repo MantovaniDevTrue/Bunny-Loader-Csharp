@@ -99,6 +99,10 @@ InstanceUpdateFn g_originalModSystemProjectiles = nullptr;
 StaticUpdateFn g_originalModSystemDust = nullptr;
 StaticUpdateFn g_originalModSystemInvasions = nullptr;
 InstanceUpdateFn g_originalModSystemInput = nullptr;
+using LocalizationLoadFn = void (*)(Il2CppObject*, Il2CppObject*, const MethodInfo*);
+LocalizationLoadFn g_originalModSystemLanguage = nullptr;
+std::atomic<bool> g_modSystemLanguageHookAttempted{false};
+std::atomic<bool> g_modSystemLanguageHookReady{false};
 std::atomic<bool> g_worldTilesLoaded{false};
 std::atomic<bool> g_worldSessionReady{false};
 std::atomic<int> g_worldReadyFrames{0};
@@ -1191,8 +1195,10 @@ void pumpModSystemContentLifecycleOnGameThread() {
     if (ready.pendingRecipes || ready.pendingBehaviors || ready.pendingPlacements ||
         pendingNativeVisualRenderer()) return;
     if (!g_preWorldBindingsArmed.load(std::memory_order_acquire)) return;
-    if (!g_modSystemContentSetup.exchange(true, std::memory_order_acq_rel))
+    if (!g_modSystemContentSetup.exchange(true, std::memory_order_acq_rel)) {
         dispatchAutoSourceSystems(32);
+        dispatchAutoSourceSystems(33);
+    }
 }
 
 void reportCSharpLoadSummary() {
@@ -1284,6 +1290,7 @@ void dispatchAutoSourceSystems(int phase) {
     else if (phase == 30) hookBit = 42;
     else if (phase == 31) hookBit = 4;
     else if (phase == 32) hookBit = 9;
+    else if (phase == 33) hookBit = 3;
     if (hookBit >= 0 &&
         (activeManagedSourceSystemHooks() & (1ULL << hookBit)) == 0)
         return;
@@ -1349,6 +1356,30 @@ void hkCSharpModSystemInvasions(const MethodInfo* method) {
 void hkCSharpModSystemInput(Il2CppObject* self, const MethodInfo* method) {
     if (g_originalModSystemInput) g_originalModSystemInput(self, method);
     dispatchAutoSourceSystems(21);
+}
+
+void hkCSharpModSystemLanguage(Il2CppObject* self, Il2CppObject* culture,
+                                 const MethodInfo* method) {
+    if (g_originalModSystemLanguage)
+        g_originalModSystemLanguage(self, culture, method);
+    if (g_modSystemContentSetup.load(std::memory_order_acquire))
+        dispatchAutoSourceSystems(33);
+}
+
+bool installModSystemLanguageHookOnGameThread() {
+    if ((activeManagedSourceSystemHooks() & (1ULL << 3)) == 0) return true;
+    if (!g_modSystemLanguageHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* cls = il2cpp::findClass({"Terraria.Localization", "LanguageManager", {}});
+        const MethodInfo* method = cls
+            ? il2cpp::api().class_get_method_from_name(cls, "LoadFilesForCulture", 1)
+            : nullptr;
+        if (method && bl::hook::install(
+                method, hkCSharpModSystemLanguage, &g_originalModSystemLanguage))
+            g_modSystemLanguageHookReady.store(true, std::memory_order_release);
+        else
+            BL_WARN("[CSharp][ModSystem] LanguageManager.LoadFilesForCulture indisponivel");
+    }
+    return g_modSystemLanguageHookReady.load(std::memory_order_acquire);
 }
 
 bool installModSystemUpdateHooksOnGameThread() {
@@ -1543,6 +1574,7 @@ void noteAutoGameUpdate() {
     pumpNativeVisualRendererOnGameThread();
     installModSystemUpdateHooksOnGameThread();
     installNativeModSystemStageHooks(activeManagedSourceSystemHooks());
+    installModSystemLanguageHookOnGameThread();
     pumpModSystemContentLifecycleOnGameThread();
     if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
         static unsigned systemRetryFrame = 0;
@@ -1652,7 +1684,8 @@ bool preWorldCSharpContentReady() {
         return false;
     const auto content = basicItemLoadStatus();
     if (!installModSystemUpdateHooksOnGameThread() ||
-        !installNativeModSystemStageHooks(activeManagedSourceSystemHooks())) return false;
+        !installNativeModSystemStageHooks(activeManagedSourceSystemHooks()) ||
+        !installModSystemLanguageHookOnGameThread()) return false;
     bool needsNpcDispatcher = false;
     for (const auto& status : autoSourceStatuses())
         if (status.applied && !status.systemsLoaded && status.phase != "failed")
