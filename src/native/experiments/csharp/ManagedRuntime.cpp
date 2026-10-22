@@ -124,6 +124,7 @@ struct SourceSystemEntry {
     void* method = nullptr;
 };
 std::map<std::string, SourceSystemEntry> g_sourceSystemEntries;
+std::mutex g_sourceSystemDispatchMutex;
 std::map<std::string, LiveEntry> g_sourceLiveEntries;
 uint64_t g_liveMethodCacheHits = 0;
 uint64_t g_liveMethodCacheMisses = 0;
@@ -3657,7 +3658,8 @@ bool dispatchManagedSourceSystem(const std::string& modId,
     if (!failures || phase < 0 || phase > 5 ||
         modId.empty() || modId.size() > 128 ||
         !validAssembly(assemblyPath)) return false;
-    std::lock_guard<std::mutex> guard(g_mutex);
+    std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
+    std::unique_lock<std::mutex> guard(g_mutex);
     if (!g_domain || !g_status.domainInitialized || !g_status.methodExecuted ||
         !g_api.attach || !g_api.openAssembly || !g_api.image ||
         !g_api.findClass || !g_api.findMethod || !g_api.invoke || !g_api.unbox ||
@@ -3675,6 +3677,9 @@ bool dispatchManagedSourceSystem(const std::string& modId,
         }
         entry.path = assemblyPath;
     }
+    // A entrada gerenciada pode invocar APIs nativas. Nunca manter g_mutex
+    // enquanto o codigo do mod estiver sendo executado.
+    guard.unlock();
     int action = phase;
     void* arguments[] = {&action};
     void* exception = nullptr;
@@ -3685,7 +3690,10 @@ bool dispatchManagedSourceSystem(const std::string& modId,
     std::memcpy(&result, unboxed, sizeof(result));
     if (result < 0 || result > 256) return false;
     *failures = result;
-    if (phase == 5) g_sourceSystemEntries.erase(modId);
+    if (phase == 5) {
+        guard.lock();
+        g_sourceSystemEntries.erase(modId);
+    }
     return true;
 }
 

@@ -21,3 +21,9 @@ Exemplo didático: `samples/ExampleModCSharp/Playable/content/Common/Systems/Exa
 - [ ] Confirmação no Terraria Android do exemplo e FPS antes da conclusão.
 
 A existência do código-fonte ou do teste gerenciado NÃO é validação no aparelho. Nenhum APK deve ser publicado enquanto houver itens pendentes.
+
+## Segurança do dispatcher
+
+O dispatcher mantém uma trava separada para serializar as transições dos sistemas. A trava global do runtime Mono é liberada antes da chamada gerenciada, permitindo que o mod utilize outras APIs sem bloqueio recursivo. As chamadas continuam eventuais, fora do ciclo por frame.
+
+A rotina de descarregamento terminal ainda não é invocada automaticamente pelo host atual: o projeto não apresenta um ciclo de hot-unload C# registrado. `OnModUnload` e `Unload` permanecem reservados para uma integração futura com o término efetivo do mod, sem simular descarregamento ao sair do mundo. O APK permanece bloqueado até implementar e validar essa etapa.

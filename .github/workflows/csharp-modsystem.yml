@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'src/managed/BunnyCsSdk/ModSystem.cs'
+      - 'src/native/experiments/csharp/ManagedRuntime.cpp'
+      - 'src/native/experiments/csharp/AutoSourceRuntime.cpp'
       - 'src/managed/BunnySourceSdk/BunnySourceSdk.csproj'
       - 'tests/native-and-managed/system_lifecycle/**'
       - '.github/workflows/csharp-modsystem.yml'
