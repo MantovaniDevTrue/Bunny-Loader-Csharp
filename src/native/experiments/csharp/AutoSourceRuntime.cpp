@@ -893,6 +893,7 @@ void run() {
                          mod.id.c_str());
             } else {
                 status.systemsLoaded = true;
+                status.systemHookMask = managedSourceSystemHookMask(mod.id);
                 if (failures)
                     BL_WARN("[CSharp][ModSystem] mod=%s Load encontrou %d falha(s)",
                             mod.id.c_str(), failures);
@@ -1153,7 +1154,10 @@ bool loadPendingAutoSourceSystems() {
         {
             std::lock_guard<std::mutex> guard(g_lock);
             for (auto& status : g_statuses)
-                if (status.modId == modId) status.systemsLoaded = true;
+                if (status.modId == modId) {
+                    status.systemsLoaded = true;
+                    status.systemHookMask = managedSourceSystemHookMask(modId);
+                }
         }
         if (failures)
             BL_WARN("[CSharp][ModSystem] mod=%s Load encontrou %d falha(s)",
@@ -1262,7 +1266,9 @@ void dispatchAutoSourceSystems(int phase) {
     {
         std::lock_guard<std::mutex> guard(g_lock);
         for (const auto& state : g_statuses)
-            if (state.applied && state.systemsLoaded && state.error.empty()) ids.push_back(state.modId);
+            if (state.applied && state.systemsLoaded && state.error.empty() &&
+                (hookBit < 0 || (state.systemHookMask & (1ULL << hookBit)) != 0))
+                ids.push_back(state.modId);
     }
     const std::string work = folderOfCheckpoint();
     if (work.empty()) return;

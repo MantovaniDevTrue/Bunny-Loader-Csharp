@@ -3660,6 +3660,13 @@ uint64_t activeManagedSourceSystemHooks() {
     return g_sourceSystemOriginalMask.load(std::memory_order_acquire);
 }
 
+uint64_t managedSourceSystemHookMask(const std::string& modId) {
+    std::lock_guard<std::mutex> guard(g_sourceSystemDispatchMutex);
+    auto found = g_sourceSystemEntries.find(modId);
+    return found != g_sourceSystemEntries.end() && found->second.maskKnown
+        ? found->second.mask : 0;
+}
+
 bool dispatchManagedSourceSystem(const std::string& modId,
                                  const std::string& assemblyPath,
                                  int phase, int* failures) {
