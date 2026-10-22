@@ -1439,5 +1439,19 @@
       "blocking": [],
       "notes": []
     }
+  ],
+  "delivery_batches": [
+    {
+      "id": "fasttrack-01",
+      "names": [
+        "CommandLoader",
+        "GoreLoader",
+        "AnglerQuestLoader",
+        "RarityLoader",
+        "DustLoader"
+      ],
+      "state": "planned",
+      "purpose": "Finish the five most self-contained candidates with source evidence and mandatory Android QA; no build before all gates."
+    }
   ]
 }
