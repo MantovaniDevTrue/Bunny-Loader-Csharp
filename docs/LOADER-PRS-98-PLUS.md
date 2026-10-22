@@ -9,6 +9,7 @@ O repositório dedicado continua usando a base ativa `.87.1`. As branches de imp
 - `imports/loader-prs/pr-NNNN/`: sobreposição **isolada** dos arquivos modificados pela PR, mantendo o caminho organizado do repositório C#.
 - `imports/loader-prs/pr-NNNN/SOURCE.json`: hashes SHA-256 e caminhos de origem de todos os arquivos copiados.
 - `imports/loader-prs/INDEX.json`: inventário gerado, quantidades, PRs bloqueadas e status de ativação.
+- `imports/loader-prs/CONFLICTS.json`: caminhos alterados em várias PRs com conteúdo diferente, priorizados pela quantidade de branches envolvidas.
 
 Cada sobreposição é um *delta* em relação ao `base_sha` da PR, **não é um loader independente executável**. A base `.87.1` pode não satisfazer as dependências de PRs posteriores. Para integrar um loader, é preciso reconciliar o código compartilhado do SDK, compilador, SourceLoader, MonoVM, hooks, assets e testes; revisar a API do ExampleModBunny e comprovar a ABI Android.
 
