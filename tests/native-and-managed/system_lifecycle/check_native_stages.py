@@ -67,5 +67,10 @@ assert 'g_modSystemTileCountsOffset' in runtime and 'std::strcmp(name, "Int32")'
 assert 'dispatchManagedSourceSystemTileCounts' in native, "Mono tile counts dispatch missing"
 assert 'mono_array_new' in native and 'mono_array_addr_with_size' in native, "Mono int[] allocation/copy unavailable"
 assert 'if (!g_modSystemTileCountsOffset)' not in runtime, "Invalid guard"
+assert 'BunnySystemGameTime' in sdk and 'UpdateUI(BunnySystemGameTime gameTime)' in sdk, "UI game time SDK missing"
+assert 'UpdateUiTime' in native and 'dispatchManagedSourceSystemUpdateUI' in native, "Mono UI bridge missing"
+assert 'UpdateUIStates' in runtime and 'validateModSystemUiField' in runtime, "GameTime ABI check missing"
+assert 'std::strcmp(name, expected)' in runtime and 'class_value_size(cls' in runtime, "GameTime type sizes unvalidated"
+assert 'g_originalModSystemUpdateUI(gameTime, method)' in runtime, "Original UI update must run first"
 assert len(expected)==7
 print("MODSYSTEM_NATIVE_STAGES=PASS edges=7 hooks=9 version=301720")

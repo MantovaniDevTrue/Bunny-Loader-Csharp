@@ -43,7 +43,8 @@
     "PreWorldGen",
     "ResetNearbyTileEffects",
     "ResizeArrays",
-    "TileCountsAvailable"
+    "TileCountsAvailable",
+    "UpdateUI"
   ],
   "missingOriginalHooks": [
     "AddRecipeGroups",
@@ -54,7 +55,6 @@
     "WorldCanBePlayedRejectionMessage",
     "ModifyWorldGenTasks",
     "ModifyHardmodeTasks",
-    "UpdateUI",
     "ModifyInterfaceLayers",
     "ModifyTimeRate",
     "ModifyTransformMatrix",

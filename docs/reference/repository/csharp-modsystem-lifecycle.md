@@ -1,13 +1,13 @@
 # ModSystem em C# — integração de ciclo de vida
 
-> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 42 estão declarados, 16 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
+> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 43 estão declarados, 15 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
 
 
 Este módulo usa o nome e as assinaturas de eventos `ModSystem` do tModLoader, mas a execução é implementada diretamente no SDK C# do Bunny Loader, sem executar JavaScript.
 
 ## API
 
-A classe `BunnyLoader.Source.ModSystem` já declara **42 dos 58 callbacks** do ModSystem original; `Unload` permanece um método adicional de limpeza. As categorias implementadas em fonte são: ciclo de vida, limpeza e geração básica do mundo, conclusão de registro de conteúdo, eventos de atualização e estágios ARM64 de jogadores/NPCs/gore/itens. Veja a [matriz auditável](csharp-modsystem-coverage.md) para os 16 ausentes, sem confundir declaração com validação Android.
+A classe `BunnyLoader.Source.ModSystem` já declara **43 dos 58 callbacks** do ModSystem original; `Unload` permanece um método adicional de limpeza. As categorias implementadas em fonte são: ciclo de vida, limpeza e geração básica do mundo, conclusão de registro de conteúdo, eventos de atualização e estágios ARM64 de jogadores/NPCs/gore/itens. Veja a [matriz auditável](csharp-modsystem-coverage.md) para os 15 ausentes, sem confundir declaração com validação Android.
 
 O `ModSystemLoader` cria uma instância por classe concreta e por assembly, ordenadas pelo nome completo; callbacks de atualização só são chamados nas classes que efetivamente sobrescrevem o método. Falhas de uma classe não bloqueiam outras; máximo de 256 sistemas por mod.
 
@@ -80,7 +80,7 @@ A implementação JS original do Bunny invoca `original(self)` em `Main.QuitGame
 - A implementação mantém o C# independente do JavaScript em runtime, mas os pontos de modificação do código nativo ARM64 ainda precisam ser testados quando um mod JS usa o mesmo endereço.
 - O código atual de entrada no mundo é focalizado em modo individual (`netMode == 0`); o evento de mundo no cliente multiplayer do Bunny original não pode ser considerado validado.
 - CI verde significa compilação gerenciada, testes contratuais, sintaxe C++/assembly ARM64 e auditoria de fontes. Não cobre ligação do app, execução no aparelho, integridade do save, FPS ou teste real do trampolim.
-- Nunca gerar APK ou liberar PR enquanto faltarem os 16 métodos, a compatibilidade de hooks e a validação nativa no Terraria 301720.
+- Nunca gerar APK ou liberar PR enquanto faltarem os 15 métodos, a compatibilidade de hooks e a validação nativa no Terraria 301720.
 
 ## Localização e contagem de biomas
 
@@ -115,3 +115,7 @@ O `ModifyScreenPosition()` preserva a assinatura original sem parâmetros. Dentr
 ## TileCountsAvailable — contagem do jogador local
 
 Após `SceneMetrics.AggregateTileCounts()`, o host confirma que o `self` é exatamente `Main.PlayerSceneMetrics`. Confere que `_tileCounts` é um `System.Int32[]` unidimensional, com tamanho entre 1 e 8192 elementos e offset de campo aceitável. Encaminha o buffer apenas aos mods com o bit 53 de override; a ponte `mono_array_new` / `mono_array_addr_with_size` copia os elementos para um `int[]` de cada assembly, sem revarrer tiles e sem expor ponteiros do Terraria ao C#. O `ModSystem.TileCountsAvailable(int[] tileCounts)` executa uma vez por varredura local, depois dos hooks de reset, e não no menu nem em varreduras dos pilares. O exemplo registra a quantidade do índice 754 (tile de mod de exemplo); o teste C# valida o valor e o isolamento por sessão. Se Mono não possuir as funções de array ou o layout IL2CPP não coincidir, o gate recusa o hook. Precisa de QA no Terraria 301720 e medições reais de FPS.
+
+## UpdateUI — GameTime nativo
+
+A rotina `Main.UpdateUIStates(GameTime)` executa primeiro a atualização vanilla. Depois, somente com o mundo carregado e fora do menu, o hook lê `GameTime.TotalGameTime`, `ElapsedGameTime` e `IsRunningSlowly` dos campos IL2CPP reais. Aceita três representações de nomes de campo: com sublinhado, sem sublinhado ou backing fields C#. Confere o tipo `System.TimeSpan` de 8 bytes, `System.Boolean` de 1 byte, offsets independentes e memória de objeto válida antes de instalar. O Mono recebe dois ticks `long` e um `int` e constrói `BunnySystemGameTime` com as propriedades equivalentes de `TimeSpan`. Os hooks só são chamados nos mods com bit 29. A API espelha o estado de GameTime de maneira somente-leitura, sem compartilhar o objeto IL2CPP com Mono. Precisa validar a ordem real e o desempenho no aparelho.
