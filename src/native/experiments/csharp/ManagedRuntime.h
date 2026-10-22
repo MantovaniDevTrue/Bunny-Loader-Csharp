@@ -10,6 +10,10 @@
 
 namespace bl::csharp {
 
+bool dispatchManagedSourceSystem(const std::string& modId,
+                                 const std::string& assemblyPath,
+                                 int phase, int* failures);
+
 struct ManagedHurtResult {
     int damage = 0;
     int hitDirection = 0;

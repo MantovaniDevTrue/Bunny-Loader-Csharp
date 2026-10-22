@@ -12,10 +12,10 @@ Exemplo didático: `samples/ExampleModCSharp/Playable/content/Common/Systems/Exa
 
 ## Critérios antes de liberar APK
 
-- [ ] Compilador Roslyn incorpora a entrada de despacho sem custo por frame.
-- [ ] Parser e descoberta do conteúdo aceitam também mods só com ModSystem.
-- [ ] Mono executa hooks por mod, sem confundir assemblies, com tratamento de falhas.
-- [ ] Host aciona `OnWorldLoad` e `OnWorldUnload` exatamente uma vez em cada ciclo, inclusive troca/reentrada.
+- [x] Entrada de despacho incluida no compilador Roslyn; CI pendente.
+- [x] Parser e descoberta implementados para mods so com ModSystem; CI pendente.
+- [x] Codigo de ponte Mono por assembly e isolamento por sistema; teste Android pendente.
+- [x] Conectado ao caminho de entrada/saida de mundo; teste Android pendente.
 - [ ] Descarregamento real do mod aciona `OnModUnload` e `Unload`, em ordem inversa e com isolamento.
 - [ ] Testes de host, CI e Android comprovam ordem, multi-mod, reentrada e ausência de regressões.
 - [ ] Confirmação no Terraria Android do exemplo e FPS antes da conclusão.

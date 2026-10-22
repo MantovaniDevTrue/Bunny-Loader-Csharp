@@ -119,6 +119,11 @@ struct LiveEntry {
     LiveSourceStatus status;
 };
 
+struct SourceSystemEntry {
+    std::string path;
+    void* method = nullptr;
+};
+std::map<std::string, SourceSystemEntry> g_sourceSystemEntries;
 std::map<std::string, LiveEntry> g_sourceLiveEntries;
 uint64_t g_liveMethodCacheHits = 0;
 uint64_t g_liveMethodCacheMisses = 0;
@@ -3644,6 +3649,44 @@ LiveSourceStatus invokeLiveSourceTick(const std::string& modId,
     status.ready = true;
     status.error.clear();
     return status;
+}
+
+bool dispatchManagedSourceSystem(const std::string& modId,
+                                 const std::string& assemblyPath,
+                                 int phase, int* failures) {
+    if (!failures || phase < 0 || phase > 5 ||
+        modId.empty() || modId.size() > 128 ||
+        !validAssembly(assemblyPath)) return false;
+    std::lock_guard<std::mutex> guard(g_mutex);
+    if (!g_domain || !g_status.domainInitialized || !g_status.methodExecuted ||
+        !g_api.attach || !g_api.openAssembly || !g_api.image ||
+        !g_api.findClass || !g_api.findMethod || !g_api.invoke || !g_api.unbox ||
+        !g_api.attach(g_domain)) return false;
+    SourceSystemEntry& entry = g_sourceSystemEntries[modId];
+    if (!entry.path.empty() && entry.path != assemblyPath) return false;
+    if (!entry.method) {
+        void* assembly = g_api.openAssembly(g_domain, assemblyPath.c_str());
+        void* image = assembly ? g_api.image(assembly) : nullptr;
+        void* klass = image ? g_api.findClass(image, "BunnyLoader.Source", "BunnySystemEntry") : nullptr;
+        entry.method = klass ? g_api.findMethod(klass, "Invoke", 1) : nullptr;
+        if (!entry.method) {
+            g_sourceSystemEntries.erase(modId);
+            return false;
+        }
+        entry.path = assemblyPath;
+    }
+    int action = phase;
+    void* arguments[] = {&action};
+    void* exception = nullptr;
+    void* boxed = g_api.invoke(entry.method, nullptr, arguments, &exception);
+    void* unboxed = exception || !boxed ? nullptr : g_api.unbox(boxed);
+    if (!unboxed) return false;
+    int result = -1;
+    std::memcpy(&result, unboxed, sizeof(result));
+    if (result < 0 || result > 256) return false;
+    *failures = result;
+    if (phase == 5) g_sourceSystemEntries.erase(modId);
+    return true;
 }
 
 LiveCallbackResult invokeLiveSourceEvent(const std::string& modId,

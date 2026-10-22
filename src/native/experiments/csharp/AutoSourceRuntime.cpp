@@ -865,6 +865,15 @@ void run() {
                 mod.id.c_str(),status.cached?"Hit":"Miss",cacheReason.c_str(),cacheWrite.c_str(),
                 tablesMs,cacheMs,compileMs,elapsedMilliseconds(applyStarted));
         status.applied = true;
+        {
+            int failures = 0;
+            if (!dispatchManagedSourceSystem(mod.id, assembly, 0, &failures))
+                BL_WARN("[CSharp][ModSystem] mod=%s inicializacao pendente do Mono",
+                        mod.id.c_str());
+            else if (failures)
+                BL_WARN("[CSharp][ModSystem] mod=%s Load encontrou %d falha(s)",
+                        mod.id.c_str(), failures);
+        }
         if (hasUniversalHooks && !registerUniversalHookMod(mod.id, assembly))
             BL_WARN("csharp universal hooks: fila recusada mod=%s", mod.id.c_str());
         if (mod.npcs > 0 || mod.projectiles > 0) {
@@ -1160,8 +1169,31 @@ void retryWorldManagedPrefixesWhenReady() {
     bl::runtime::retryPendingManagedPrefixesOnWorldReady();
 }
 
+void dispatchAutoSourceSystems(int phase) {
+    std::vector<std::string> ids;
+    {
+        std::lock_guard<std::mutex> guard(g_lock);
+        for (const auto& state : g_statuses)
+            if (state.applied && state.error.empty()) ids.push_back(state.modId);
+    }
+    const std::string work = folderOfCheckpoint();
+    if (work.empty()) return;
+    for (const std::string& modId : ids) {
+        int failures = 0;
+        if (!dispatchManagedSourceSystem(modId,
+                work + "compiled/" + modId + ".dll", phase, &failures))
+            BL_WARN("[CSharp][ModSystem] mod=%s phase=%d Mono indisponivel",
+                    modId.c_str(), phase);
+        else if (failures)
+            BL_WARN("[CSharp][ModSystem] mod=%s phase=%d erros=%d",
+                    modId.c_str(), phase, failures);
+    }
+}
+
 void noteAutoWorldTilesLoaded() {
     std::lock_guard<std::mutex> sessionGuard(g_worldTransitionMutex);
+    if (g_worldSessionReady.load(std::memory_order_acquire))
+        dispatchAutoSourceSystems(3);
     clearManagedVisualCommands();
     resetNativeVisualRenderer();
     g_visualUpdateTick.store(0, std::memory_order_relaxed);
@@ -1244,6 +1276,7 @@ void noteAutoGameUpdate() {
         graphics::clearCSharpScreenEffects();
         resetNativeVisualRenderer();
         g_visualUpdateTick.store(0, std::memory_order_relaxed);
+        dispatchAutoSourceSystems(3);
         g_worldExits.fetch_add(1, std::memory_order_relaxed);
         g_worldEpoch.fetch_add(1, std::memory_order_acq_rel);
         g_worldSessionReady.store(false, std::memory_order_release);
@@ -1278,6 +1311,7 @@ void noteAutoGameUpdate() {
         const ActivationContext context = readActivationContext();
         if (context.netMode != 0 || context.gameMenu == 1) return;
         g_worldSessionReady.store(true, std::memory_order_release);
+        dispatchAutoSourceSystems(2);
         requestBasicItemInstanceRefresh("WorldLoaded");
         enableUniversalHooks();
         resumeUniversalHookMods();
