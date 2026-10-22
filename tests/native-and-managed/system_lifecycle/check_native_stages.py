@@ -30,5 +30,9 @@ assert re.search(r'else if\s*\(phase\s*==\s*33\)\s*hookBit\s*=\s*3',runtime), "W
 assert re.search(r'else if\s*\(phase\s*==\s*34\)\s*hookBit\s*=\s*52',runtime), "Wrong nearby tile bit"
 assert 'self == playerMetrics' in runtime and 'get_PlayerSceneMetrics' in runtime, "Scene reset must only use player metrics"
 assert 'dispatchAutoSourceSystems(34);' in runtime, "Missing world change reset"
+assert 'else if (phase == 35) hookBit = 12;' in runtime, "PostWorldLoad bit missing"
+assert 'dispatchAutoSourceSystems(2);\n        dispatchAutoSourceSystems(35);' in runtime, "PostWorldLoad must follow world start"
+assert 'refreshSystemDispatchSnapshotLocked();' in runtime, "Dispatch snapshot must refresh"
+assert 'std::atomic_load_explicit(' in runtime, "Callbacks must reuse cached target snapshot"
 assert len(expected)==7
 print("MODSYSTEM_NATIVE_STAGES=PASS edges=7 hooks=9 version=301720")

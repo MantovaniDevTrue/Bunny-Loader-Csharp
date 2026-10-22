@@ -1,13 +1,13 @@
 # ModSystem em C# — integração de ciclo de vida
 
-> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 34 estão declarados, 24 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
+> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 35 estão declarados, 23 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
 
 
 Este módulo usa o nome e as assinaturas de eventos `ModSystem` do tModLoader, mas a execução é implementada diretamente no SDK C# do Bunny Loader, sem executar JavaScript.
 
 ## API
 
-A classe `BunnyLoader.Source.ModSystem` já declara **34 dos 58 callbacks** do ModSystem original; `Unload` permanece um método adicional de limpeza. As categorias implementadas em fonte são: ciclo de vida, limpeza e geração básica do mundo, conclusão de registro de conteúdo, eventos de atualização e estágios ARM64 de jogadores/NPCs/gore/itens. Veja a [matriz auditável](csharp-modsystem-coverage.md) para os 24 ausentes, sem confundir declaração com validação Android.
+A classe `BunnyLoader.Source.ModSystem` já declara **35 dos 58 callbacks** do ModSystem original; `Unload` permanece um método adicional de limpeza. As categorias implementadas em fonte são: ciclo de vida, limpeza e geração básica do mundo, conclusão de registro de conteúdo, eventos de atualização e estágios ARM64 de jogadores/NPCs/gore/itens. Veja a [matriz auditável](csharp-modsystem-coverage.md) para os 23 ausentes, sem confundir declaração com validação Android.
 
 O `ModSystemLoader` cria uma instância por classe concreta e por assembly, ordenadas pelo nome completo; callbacks de atualização só são chamados nas classes que efetivamente sobrescrevem o método. Falhas de uma classe não bloqueiam outras; máximo de 256 sistemas por mod.
 
@@ -80,10 +80,16 @@ A implementação JS original do Bunny invoca `original(self)` em `Main.QuitGame
 - A implementação mantém o C# independente do JavaScript em runtime, mas os pontos de modificação do código nativo ARM64 ainda precisam ser testados quando um mod JS usa o mesmo endereço.
 - O código atual de entrada no mundo é focalizado em modo individual (`netMode == 0`); o evento de mundo no cliente multiplayer do Bunny original não pode ser considerado validado.
 - CI verde significa compilação gerenciada, testes contratuais, sintaxe C++/assembly ARM64 e auditoria de fontes. Não cobre ligação do app, execução no aparelho, integridade do save, FPS ou teste real do trampolim.
-- Nunca gerar APK ou liberar PR enquanto faltarem os 24 métodos, a compatibilidade de hooks e a validação nativa no Terraria 301720.
+- Nunca gerar APK ou liberar PR enquanto faltarem os 23 métodos, a compatibilidade de hooks e a validação nativa no Terraria 301720.
 
 ## Localização e contagem de biomas
 
 `OnLocalizationsLoaded` é disparado após a preparação inicial do conteúdo C# e depois de cada execução de `LanguageManager.LoadFilesForCulture(GameCulture)` via hook nativo IL2CPP de instância. A implementação é habilitada somente quando um sistema sobrescreve o hook; os textos JSON específicos do C# ainda precisam de validação de aplicação em jogo e de integração com o registro nativo de localizações.
 
 `ResetNearbyTileEffects` usa `SceneMetrics.Reset()` original, compara a instância com `Main.get_PlayerSceneMetrics()` e não chama sistemas para contagens da câmera ou de outros painéis. Também limpa o cache quando `clearWorld` conclui e antes de `SaveAndQuit`. São callbacks do ciclo do jogo, sem varredura adicional de blocos. A assinatura, a ordem e a coexistência com hooks JS exigem teste no Terraria 301720 em Android ARM64.
+
+## PostWorldLoad e despacho rápido
+
+`PostWorldLoad` é enviado após o `OnWorldLoad` no caminho de mundo local, uma vez por sessão, com sinalizador reiniciado por `OnWorldUnload`. **A ordem definitiva com `LoadWorldData` ainda não foi implementada**: o callback atualmente serve para inicialização pós-mundo, não para afirmar persistência pronta. No multiplayer, entrada/saída continua pendente.
+
+Para os hooks repetidos, o host mantém um snapshot imutável dos IDs, caminhos de DLL e máscaras de sobrescrita dos mods. O snapshot é republicado apenas quando o status de um mod muda, evitando percorrer o registro e reconstruir caminhos de arquivos em cada quadro. O runtime Mono agora chama `stat()` para validar uma DLL no primeiro carregamento, não por callback. Mantemos as verificações de segurança, isolamento e a mesma ordem dos sistemas. Performance real ainda não foi medida em Android.
