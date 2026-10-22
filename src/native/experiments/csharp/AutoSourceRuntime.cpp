@@ -1672,6 +1672,8 @@ void hkCSharpModSystemTileCounts(Il2CppObject* self, const MethodInfo* method) {
 
 bool installModSystemTileCountsHookOnGameThread() {
     if ((activeManagedSourceSystemHooks() & (1ULL << 53)) == 0) return true;
+    if (g_modSystemTileCountsHookReady.load(std::memory_order_acquire)) return true;
+    if (g_modSystemTileCountsHookAttempted.load(std::memory_order_acquire)) return false;
     if (!managedSourceSystemTileCountsSupported()) return false;
     if (!g_modSystemTileCountsHookAttempted.exchange(true, std::memory_order_acq_rel)) {
         Il2CppClass* metrics = il2cpp::findClass({"Terraria", "SceneMetrics", {}});
