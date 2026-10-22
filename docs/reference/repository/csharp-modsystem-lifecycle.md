@@ -68,3 +68,7 @@ Usamos os sete pontos nativos de `DoUpdateInWorld` documentados no `SystemHooks.
 ## Conclusão do registro C#
 
 O `ResizeArrays` executa uma vez por mod após o registro dos tipos C# e o carregamento das assemblies Mono, usando a fase 31. A fase 32, `PostSetupContent`, exige todos os mods C# registrados, receitas/objetos/visuais nativos sem pendências e o gate de conteúdo preparado. O retorno gerenciado é isolado por classe; o sistema evita duplicações ao reentrar no menu. O gatilho de `ResizeArrays` não substitui o conteúdo do pipeline de grupos/receitas do tModLoader, ainda ausente; é uma implementação inicial de ciclo de vida que precisa de teste real da ordem de registro e das transições. Se o preload falhar, a entrada no mundo continua bloqueada, em vez de executar callbacks cedo demais.
+
+## Auditoria de ABI do Main.QuitGame
+
+A implementação JS original do Bunny invoca `original(self)` em `Main.QuitGame()`; a ponte C# agora define `QuitGameFn(Il2CppObject* self, const MethodInfo* method)`, preserva o primeiro argumento e o encaminha para a função original após as notificações de unload. O contrato é verificado pela suíte de CI; somente um teste no binário ARM64 real poderá confirmar a chamada em tempo de execução.

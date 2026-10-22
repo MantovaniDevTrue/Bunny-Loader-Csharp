@@ -80,7 +80,7 @@ std::chrono::steady_clock::time_point g_delayedWorldSince{};
 const MethodInfo* g_delayedPlayWorldMethod=nullptr;
 using PlayWorldFn=void (*)(const MethodInfo*);
 PlayWorldFn g_originalPlayWorld=nullptr;
-using QuitGameFn = void (*)(const MethodInfo*);
+using QuitGameFn = void (*)(Il2CppObject*, const MethodInfo*);
 QuitGameFn g_originalQuitGame = nullptr;
 using ClearWorldFn = void (*)(const MethodInfo*);
 ClearWorldFn g_originalClearWorld = nullptr;
@@ -1483,7 +1483,7 @@ void hkCSharpSaveAndQuit(const MethodInfo* method) {
     if (g_originalSaveAndQuit) g_originalSaveAndQuit(method);
 }
 
-void hkCSharpQuitGame(const MethodInfo* method) {
+void hkCSharpQuitGame(Il2CppObject* self, const MethodInfo* method) {
     {
         std::lock_guard<std::mutex> guard(g_worldTransitionMutex);
         if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
@@ -1494,7 +1494,7 @@ void hkCSharpQuitGame(const MethodInfo* method) {
             dispatchAutoSourceSystems(5);
         }
     }
-    if (g_originalQuitGame) g_originalQuitGame(method);
+    if (g_originalQuitGame) g_originalQuitGame(self, method);
 }
 
 void noteAutoWorldTilesLoaded() {

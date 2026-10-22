@@ -22,5 +22,8 @@ for idx,(name,offset,phases,bits,signature) in enumerate(expected):
     assert "blCsSystemStageBridge"+str(idx) in stage
     for phase,bit in zip(phases,bits):
         assert re.search(r'(?:if|else if)\s*\(phase\s*==\s*'+str(phase)+r'\)\s*hookBit\s*=\s*'+str(bit)+r';',runtime), "Mask/phase mismatch"
+assert re.search(r'using QuitGameFn\s*=\s*void\s*\(\*\)\(Il2CppObject\*,\s*const MethodInfo\*\)',runtime), "QuitGame must receive Main self"
+assert re.search(r'void hkCSharpQuitGame\(Il2CppObject\* self, const MethodInfo\* method\)',runtime), "QuitGame hook ABI changed"
+assert 'g_originalQuitGame(self, method)' in runtime, "QuitGame must forward Main instance"
 assert len(expected)==7
 print("MODSYSTEM_NATIVE_STAGES=PASS edges=7 hooks=9 version=301720")
