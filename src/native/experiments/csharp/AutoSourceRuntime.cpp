@@ -107,7 +107,16 @@ InstanceUpdateFn g_originalModSystemEntities = nullptr;
 InstanceUpdateFn g_originalModSystemProjectiles = nullptr;
 StaticUpdateFn g_originalModSystemDust = nullptr;
 StaticUpdateFn g_originalModSystemBrightness = nullptr;
+StaticUpdateFn g_originalModSystemSunlight = nullptr;
+StaticUpdateFn g_originalModSystemCamera = nullptr;
 FieldInfo* g_modSystemBrightnessField = nullptr;
+FieldInfo* g_modSystemTileColor = nullptr;
+FieldInfo* g_modSystemSkyColor = nullptr;
+FieldInfo* g_modSystemCameraPosition = nullptr;
+std::atomic<bool> g_modSystemSunlightHookAttempted{false};
+std::atomic<bool> g_modSystemSunlightHookReady{false};
+std::atomic<bool> g_modSystemCameraHookAttempted{false};
+std::atomic<bool> g_modSystemCameraHookReady{false};
 std::atomic<bool> g_modSystemBrightnessHookAttempted{false};
 std::atomic<bool> g_modSystemBrightnessHookReady{false};
 StaticUpdateFn g_originalModSystemInvasions = nullptr;
@@ -1391,6 +1400,96 @@ void hkCSharpModSystemDust(const MethodInfo* method) {
     dispatchAutoSourceSystems(18);
 }
 
+void hkCSharpModSystemSunlight(const MethodInfo* method) {
+    if (g_originalModSystemSunlight)
+        g_originalModSystemSunlight(method);
+    if (!g_worldSessionReady.load(std::memory_order_acquire) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 48)) == 0 ||
+        !g_modSystemTileColor || !g_modSystemSkyColor) return;
+    uint32_t tiles = 0, sky = 0;
+    il2cpp::api().field_static_get_value(g_modSystemTileColor, &tiles);
+    il2cpp::api().field_static_get_value(g_modSystemSkyColor, &sky);
+    uint64_t colors = tiles | (static_cast<uint64_t>(sky) << 32);
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    bool changed = false;
+    for (const auto& target : *snapshot) {
+        if ((target.hookMask & (1ULL << 48)) == 0) continue;
+        uint64_t updated = colors;
+        if (modifyManagedSourceSystemPackedValue(target.modId, 48, &updated)) {
+            colors = updated;
+            changed = true;
+        }
+    }
+    if (!changed) return;
+    tiles = static_cast<uint32_t>(colors);
+    sky = static_cast<uint32_t>(colors >> 32);
+    il2cpp::api().field_static_set_value(g_modSystemTileColor, &tiles);
+    il2cpp::api().field_static_set_value(g_modSystemSkyColor, &sky);
+}
+
+void hkCSharpModSystemCamera(const MethodInfo* method) {
+    if (g_originalModSystemCamera)
+        g_originalModSystemCamera(method);
+    if (!g_worldSessionReady.load(std::memory_order_acquire) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 50)) == 0 ||
+        !g_modSystemCameraPosition ||
+        readActivationContext().gameMenu == 1) return;
+    uint64_t position = 0;
+    il2cpp::api().field_static_get_value(g_modSystemCameraPosition, &position);
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    bool changed = false;
+    for (const auto& target : *snapshot) {
+        if ((target.hookMask & (1ULL << 50)) == 0) continue;
+        uint64_t updated = position;
+        if (modifyManagedSourceSystemPackedValue(target.modId, 50, &updated)) {
+            position = updated;
+            changed = true;
+        }
+    }
+    if (changed)
+        il2cpp::api().field_static_set_value(g_modSystemCameraPosition, &position);
+}
+
+bool installModSystemSunlightAndCameraHooksOnGameThread() {
+    const uint64_t mask = activeManagedSourceSystemHooks();
+    if ((mask & (1ULL << 48)) != 0 &&
+        !g_modSystemSunlightHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+        g_modSystemTileColor = main ? il2cpp::findField(main, "tileColor") : nullptr;
+        g_modSystemSkyColor = main ? il2cpp::findField(main, "ColorOfTheSkies") : nullptr;
+        const MethodInfo* sunlight = main
+            ? il2cpp::api().class_get_method_from_name(main, "ApplyColorOfTheSkiesToTiles", 0)
+            : nullptr;
+        if (sunlight && g_modSystemTileColor && g_modSystemSkyColor &&
+            bl::hook::install(sunlight, hkCSharpModSystemSunlight,
+                              &g_originalModSystemSunlight))
+            g_modSystemSunlightHookReady.store(true, std::memory_order_release);
+        else BL_WARN("[CSharp][ModSystem] Main.ApplyColorOfTheSkiesToTiles indisponivel");
+    }
+    if ((mask & (1ULL << 50)) != 0 &&
+        !g_modSystemCameraHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+        g_modSystemCameraPosition = main
+            ? il2cpp::findField(main, "screenPosition") : nullptr;
+        const MethodInfo* camera = main
+            ? il2cpp::api().class_get_method_from_name(main, "DoDraw_UpdateCameraPosition", 0)
+            : nullptr;
+        if (camera && g_modSystemCameraPosition &&
+            bl::hook::install(camera, hkCSharpModSystemCamera,
+                              &g_originalModSystemCamera))
+            g_modSystemCameraHookReady.store(true, std::memory_order_release);
+        else BL_WARN("[CSharp][ModSystem] Main.DoDraw_UpdateCameraPosition indisponivel");
+    }
+    return ((mask & (1ULL << 48)) == 0 ||
+            g_modSystemSunlightHookReady.load(std::memory_order_acquire)) &&
+           ((mask & (1ULL << 50)) == 0 ||
+            g_modSystemCameraHookReady.load(std::memory_order_acquire));
+}
+
 void hkCSharpModSystemBrightness(const MethodInfo* method) {
     if (g_originalModSystemBrightness)
         g_originalModSystemBrightness(method);
@@ -1704,6 +1803,7 @@ void noteAutoGameUpdate() {
     installModSystemLanguageHookOnGameThread();
     installModSystemSceneMetricsHookOnGameThread();
     installModSystemBrightnessHookOnGameThread();
+    installModSystemSunlightAndCameraHooksOnGameThread();
     pumpModSystemContentLifecycleOnGameThread();
     if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
         static unsigned systemRetryFrame = 0;
@@ -1817,7 +1917,8 @@ bool preWorldCSharpContentReady() {
         !installNativeModSystemStageHooks(activeManagedSourceSystemHooks()) ||
         !installModSystemLanguageHookOnGameThread() ||
         !installModSystemSceneMetricsHookOnGameThread() ||
-        !installModSystemBrightnessHookOnGameThread()) return false;
+        !installModSystemBrightnessHookOnGameThread() ||
+        !installModSystemSunlightAndCameraHooksOnGameThread()) return false;
     bool needsNpcDispatcher = false;
     for (const auto& status : autoSourceStatuses())
         if (status.applied && !status.systemsLoaded && status.phase != "failed")
