@@ -38,8 +38,7 @@ internal static class BasicItemWriter
         if(Encoding.UTF8.GetByteCount(tooltip)>512||tooltip.Any(c=>c=='\0'||c=='\x7f'))
             throw new InvalidOperationException(name+": Tooltip invalido/grande demais");
         parts.Add(tooltip.Length==0?"-":Convert.ToHexString(Encoding.UTF8.GetBytes(tooltip)));
-        // Executa o AddRecipes real do mod. Excecoes nao viram um registro ficticio.
-        item.GetType().GetMethod("AddRecipes",Type.EmptyTypes)!.Invoke(item,null);
+        item.GetType().GetMethod("PrepareRecipes",Type.EmptyTypes)!.Invoke(item,null);
         var recipes=Get<IReadOnlyList<string>>("RecipeDefinitions");
         parts.Add(recipes.Count==0?"-":string.Join(";",recipes));
         string behavior=Get<string>("BehaviorDefinition");

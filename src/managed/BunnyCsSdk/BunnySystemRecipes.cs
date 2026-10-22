@@ -47,6 +47,8 @@ public static class BunnySystemRecipes
         int executed = 0;
         try
         {
+            foreach (BunnyItem item in items.Values)
+                item.PrepareRecipes();
             Type[] types = assembly.GetTypes()
                 .Where(t => t.IsClass && !t.IsAbstract && !t.ContainsGenericParameters &&
                     typeof(ModSystem).IsAssignableFrom(t))
