@@ -25,6 +25,18 @@ public sealed class ExampleLifecycleSystem : ModSystem
         Console.WriteLine("[ExampleMod C#] mundo limpo");
     }
 
+    public override void PreWorldGen()
+    {
+        // Antes do gerador nativo. Nao guarde referencias do mundo anterior.
+        Console.WriteLine("[ExampleMod C#] inicio da geracao");
+    }
+
+    public override void PostWorldGen()
+    {
+        // Somente apos o gerador nativo retornar sucesso.
+        Console.WriteLine("[ExampleMod C#] geracao concluida");
+    }
+
     public override void PreSaveAndQuit()
     {
         // Executado antes de WorldGen.SaveAndQuit; prepare o encerramento.

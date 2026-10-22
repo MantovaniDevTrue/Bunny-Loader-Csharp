@@ -24,6 +24,7 @@ jobs:
         with:
           dotnet-version: '8.0.x'
       - run: dotnet run --project tests/native-and-managed/system_lifecycle/SystemLifecycle.csproj --configuration Release
+      - run: dotnet build tests/native-and-managed/system_lifecycle/SampleLifecycleCompile.csproj --configuration Release
       - run: |
           c++ -std=c++20 -Isrc/native \
             src/native/experiments/csharp/SourceParser.cpp \

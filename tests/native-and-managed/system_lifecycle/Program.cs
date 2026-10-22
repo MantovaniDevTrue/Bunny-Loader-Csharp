@@ -18,6 +18,8 @@ public sealed class AlphaSystem : ModSystem
     public override void OnModLoad() => Events.Add("A.OnModLoad");
     public override void OnWorldLoad() => Events.Add("A.OnWorldLoad");
     public override void ClearWorld() => Events.Add("A.ClearWorld");
+    public override void PreWorldGen() => Events.Add("A.PreWorldGen");
+    public override void PostWorldGen() => Events.Add("A.PostWorldGen");
     public override void PreSaveAndQuit() => Events.Add("A.PreSaveAndQuit");
     public override void OnWorldUnload() => Events.Add("A.OnWorldUnload");
     public override void OnModUnload() => Events.Add("A.OnModUnload");
@@ -34,6 +36,8 @@ public sealed class BetaSystem : ModSystem
         throw new InvalidOperationException("Falha proposital: outros sistemas devem continuar");
     }
     public override void ClearWorld() => Events.Add("B.ClearWorld");
+    public override void PreWorldGen() => Events.Add("B.PreWorldGen");
+    public override void PostWorldGen() => Events.Add("B.PostWorldGen");
     public override void PreSaveAndQuit() => Events.Add("B.PreSaveAndQuit");
     public override void OnWorldUnload() => Events.Add("B.OnWorldUnload");
     public override void OnModUnload() => Events.Add("B.OnModUnload");
@@ -56,6 +60,8 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 0) != 0) return 2;
         Expect("A.Load,B.Load,A.OnModLoad,B.OnModLoad");
         if (ModSystemLoader.Dispatch(assembly, 6) != 0) return 21;
+        if (ModSystemLoader.Dispatch(assembly, 8) != 0) return 26;
+        if (ModSystemLoader.Dispatch(assembly, 9) != 0) return 27;
         if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 3;
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 22;
         if (ModSystemLoader.Dispatch(assembly, 2) != 0) return 4;
@@ -63,13 +69,17 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 23;
         if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 6;
         if (ModSystemLoader.Dispatch(assembly, 6) != 0) return 24;
+        if (ModSystemLoader.Dispatch(assembly, 8) != 0) return 28;
+        if (ModSystemLoader.Dispatch(assembly, 9) != 0) return 29;
         if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 7;
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 25;
         if (ModSystemLoader.Dispatch(assembly, 5) != 0) return 8;
         Expect("A.Load,B.Load,A.OnModLoad,B.OnModLoad," +
-            "A.ClearWorld,B.ClearWorld,A.OnWorldLoad,B.OnWorldLoad," +
+            "A.ClearWorld,B.ClearWorld,A.PreWorldGen,B.PreWorldGen," +
+            "A.PostWorldGen,B.PostWorldGen,A.OnWorldLoad,B.OnWorldLoad," +
             "A.PreSaveAndQuit,B.PreSaveAndQuit,A.OnWorldUnload,B.OnWorldUnload," +
-            "A.ClearWorld,B.ClearWorld,A.OnWorldLoad,B.OnWorldLoad," +
+            "A.ClearWorld,B.ClearWorld,A.PreWorldGen,B.PreWorldGen," +
+            "A.PostWorldGen,B.PostWorldGen,A.OnWorldLoad,B.OnWorldLoad," +
             "A.PreSaveAndQuit,B.PreSaveAndQuit,A.OnWorldUnload,B.OnWorldUnload," +
             "A.OnModUnload,B.OnModUnload,B.Unload,A.Unload");
         if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 9;

@@ -15,6 +15,8 @@ public abstract class ModSystem
     public virtual void OnModLoad() { }
     public virtual void OnWorldLoad() { }
     public virtual void ClearWorld() { }
+    public virtual void PreWorldGen() { }
+    public virtual void PostWorldGen() { }
     public virtual void PreSaveAndQuit() { }
     public virtual void OnWorldUnload() { }
     public virtual void OnModUnload() { }
@@ -98,13 +100,14 @@ public static class ModSystemLoader
 
     /// <summary>
     /// 0=Load, 1=OnModLoad, 2=OnWorldLoad, 3=OnWorldUnload,
-    /// 4=OnModUnload, 5=Unload, 6=ClearWorld, 7=PreSaveAndQuit.
+    /// 4=OnModUnload, 5=Unload, 6=ClearWorld, 7=PreSaveAndQuit,
+    /// 8=PreWorldGen, 9=PostWorldGen.
     /// Retorna o numero de falhas isoladas.
     /// </summary>
     public static int Dispatch(Assembly assembly, int phase)
     {
         if (assembly == null) throw new ArgumentNullException(nameof(assembly));
-        if ((uint)phase > 7) throw new ArgumentOutOfRangeException(nameof(phase));
+        if ((uint)phase > 9) throw new ArgumentOutOfRangeException(nameof(phase));
         lock (Sync)
         {
             if (!Registries.TryGetValue(assembly, out Registry? registry))
@@ -136,6 +139,18 @@ public static class ModSystemLoader
                 foreach (Entry entry in registry.Entries)
                     if (entry.Loaded)
                         failures += Invoke(entry, x => x.ClearWorld(), nameof(ModSystem.ClearWorld));
+            }
+            if (phase == 8 && registry.ModLoaded)
+            {
+                foreach (Entry entry in registry.Entries)
+                    if (entry.Loaded)
+                        failures += Invoke(entry, x => x.PreWorldGen(), nameof(ModSystem.PreWorldGen));
+            }
+            if (phase == 9 && registry.ModLoaded)
+            {
+                foreach (Entry entry in registry.Entries)
+                    if (entry.Loaded)
+                        failures += Invoke(entry, x => x.PostWorldGen(), nameof(ModSystem.PostWorldGen));
             }
             if (phase == 7 && registry.WorldLoaded)
             {

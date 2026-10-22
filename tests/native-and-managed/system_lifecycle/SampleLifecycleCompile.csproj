@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../../samples/ExampleModCSharp/Playable/content/Common/Systems/ExampleLifecycleSystem.cs" />
+    <ProjectReference Include="../../../src/managed/BunnySourceSdk/BunnySourceSdk.csproj" />
+  </ItemGroup>
+</Project>
