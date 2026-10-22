@@ -126,6 +126,11 @@ LocalizationLoadFn g_originalModSystemLanguage = nullptr;
 std::atomic<bool> g_modSystemLanguageHookAttempted{false};
 std::atomic<bool> g_modSystemLanguageHookReady{false};
 InstanceUpdateFn g_originalModSystemSceneMetricsReset = nullptr;
+InstanceUpdateFn g_originalModSystemTileCounts = nullptr;
+size_t g_modSystemTileCountsOffset = 0;
+std::atomic<bool> g_modSystemTileCountsHookAttempted{false};
+std::atomic<bool> g_modSystemTileCountsHookReady{false};
+std::atomic<uint32_t> g_modSystemTileCountFailures{0};
 const MethodInfo* g_modSystemGetPlayerMetrics = nullptr;
 std::atomic<bool> g_modSystemSceneMetricsHookAttempted{false};
 std::atomic<bool> g_modSystemSceneMetricsHookReady{false};
@@ -1618,6 +1623,88 @@ bool installModSystemSceneMetricsHookOnGameThread() {
     return g_modSystemSceneMetricsHookReady.load(std::memory_order_acquire);
 }
 
+bool isModSystemLocalPlayerMetrics(Il2CppObject* self) {
+    if (!self || !g_worldSessionReady.load(std::memory_order_acquire) ||
+        !g_modSystemGetPlayerMetrics) return false;
+    Il2CppObject* exception = nullptr;
+    Il2CppObject* local = il2cpp::api().runtime_invoke(
+        g_modSystemGetPlayerMetrics, nullptr, nullptr, &exception);
+    return !exception && local == self;
+}
+
+void hkCSharpModSystemTileCounts(Il2CppObject* self, const MethodInfo* method) {
+    if (g_originalModSystemTileCounts)
+        g_originalModSystemTileCounts(self, method);
+    if (!isModSystemLocalPlayerMetrics(self) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 53)) == 0 ||
+        !g_modSystemTileCountsOffset) return;
+    Il2CppArray* array = nullptr;
+    std::memcpy(&array, reinterpret_cast<const char*>(self) +
+        g_modSystemTileCountsOffset, sizeof(array));
+    if (!array || array->bounds != nullptr ||
+        array->length == 0 || array->length > 8192) return;
+    auto* values = static_cast<const int32_t*>(arrayData(array));
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    for (const auto& target : *snapshot) {
+        if ((target.hookMask & (1ULL << 53)) == 0) continue;
+        int failures = 0;
+        if (!dispatchManagedSourceSystemTileCounts(target.modId, values,
+                                                   array->length, &failures) ||
+            failures != 0) {
+            const uint32_t seen = g_modSystemTileCountFailures.fetch_add(
+                1, std::memory_order_relaxed) + 1;
+            if (seen <= 3 || (seen & (seen - 1)) == 0)
+                BL_WARN("[CSharp][ModSystem] TileCountsAvailable mod=%s falhou %u vezes",
+                        target.modId.c_str(), seen);
+        }
+    }
+}
+
+bool installModSystemTileCountsHookOnGameThread() {
+    if ((activeManagedSourceSystemHooks() & (1ULL << 53)) == 0) return true;
+    if (!managedSourceSystemTileCountsSupported()) return false;
+    if (!g_modSystemTileCountsHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* metrics = il2cpp::findClass({"Terraria", "SceneMetrics", {}});
+        Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+        const auto& api = il2cpp::api();
+        if (!g_modSystemGetPlayerMetrics)
+            g_modSystemGetPlayerMetrics = main
+                ? api.class_get_method_from_name(main, "get_PlayerSceneMetrics", 0)
+                : nullptr;
+        FieldInfo* field = metrics
+            ? il2cpp::findField(metrics, "_tileCounts") : nullptr;
+        const Il2CppType* type = field && api.field_get_type
+            ? api.field_get_type(field) : nullptr;
+        Il2CppClass* arrayType = type && api.class_from_il2cpp_type
+            ? api.class_from_il2cpp_type(type) : nullptr;
+        Il2CppClass* element = arrayType && api.class_get_element_class
+            ? api.class_get_element_class(arrayType) : nullptr;
+        const char* name = element && api.class_get_name
+            ? api.class_get_name(element) : nullptr;
+        const char* ns = element && api.class_get_namespace
+            ? api.class_get_namespace(element) : nullptr;
+        const size_t offset = field && api.field_get_offset
+            ? api.field_get_offset(field) : 0;
+        const MethodInfo* aggregate = metrics
+            ? api.class_get_method_from_name(metrics, "AggregateTileCounts", 0)
+            : nullptr;
+        if (aggregate && g_modSystemGetPlayerMetrics && arrayType &&
+            api.class_get_rank && api.class_get_rank(arrayType) == 1 &&
+            name && ns && std::strcmp(name, "Int32") == 0 &&
+            std::strcmp(ns, "System") == 0 &&
+            offset >= sizeof(Il2CppObject) && offset <= 4096 &&
+            bl::hook::install(aggregate, hkCSharpModSystemTileCounts,
+                              &g_originalModSystemTileCounts)) {
+            g_modSystemTileCountsOffset = offset;
+            g_modSystemTileCountsHookReady.store(true, std::memory_order_release);
+        } else
+            BL_WARN("[CSharp][ModSystem] SceneMetrics.AggregateTileCounts sem contrato int[] compativel");
+    }
+    return g_modSystemTileCountsHookReady.load(std::memory_order_acquire);
+}
+
 bool installModSystemUpdateHooksOnGameThread() {
     const uint64_t enabled = activeManagedSourceSystemHooks();
     if (!enabled) return true;
@@ -1815,6 +1902,7 @@ void noteAutoGameUpdate() {
     installNativeModSystemStageHooks(activeManagedSourceSystemHooks());
     installModSystemLanguageHookOnGameThread();
     installModSystemSceneMetricsHookOnGameThread();
+    installModSystemTileCountsHookOnGameThread();
     installModSystemBrightnessHookOnGameThread();
     installModSystemSunlightAndCameraHooksOnGameThread();
     pumpModSystemContentLifecycleOnGameThread();
@@ -1930,6 +2018,7 @@ bool preWorldCSharpContentReady() {
         !installNativeModSystemStageHooks(activeManagedSourceSystemHooks()) ||
         !installModSystemLanguageHookOnGameThread() ||
         !installModSystemSceneMetricsHookOnGameThread() ||
+        !installModSystemTileCountsHookOnGameThread() ||
         !installModSystemBrightnessHookOnGameThread() ||
         !installModSystemSunlightAndCameraHooksOnGameThread()) return false;
     bool needsNpcDispatcher = false;
