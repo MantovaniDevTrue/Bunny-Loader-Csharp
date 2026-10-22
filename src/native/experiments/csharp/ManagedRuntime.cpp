@@ -124,6 +124,8 @@ struct SourceSystemEntry {
     void* method = nullptr;
     void* maskMethod = nullptr;
     void* brightnessMethod = nullptr;
+    void* sunlightMethod = nullptr;
+    void* cameraMethod = nullptr;
     uint64_t mask = 0;
     bool maskKnown = false;
 };
@@ -3708,6 +3710,53 @@ bool modifyManagedSourceSystemBrightness(const std::string& modId,
     return true;
 }
 
+bool modifyManagedSourceSystemPackedValue(const std::string& modId,
+                                          int kind, uint64_t* packed) {
+    if (!packed || modId.empty() || g_withinModSystemCallback ||
+        (kind != 48 && kind != 50)) return false;
+    struct ScopedDispatch {
+        ~ScopedDispatch() { g_withinModSystemCallback = false; }
+    } scope;
+    g_withinModSystemCallback = true;
+    std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
+    std::unique_lock<std::mutex> guard(g_mutex);
+    const auto found = g_sourceSystemEntries.find(modId);
+    if (found == g_sourceSystemEntries.end() || !found->second.maskKnown ||
+        (found->second.mask & (1ULL << kind)) == 0 ||
+        !g_domain || !g_api.currentThread || !g_api.attach ||
+        !g_api.detachThread || !g_api.invoke || !g_api.unbox) return false;
+    void* method = kind == 48 ? found->second.sunlightMethod :
+        found->second.cameraMethod;
+    if (!method) return false;
+    const void* alreadyAttached = g_api.currentThread();
+    void* thread = g_api.attach(g_domain);
+    if (!thread) return false;
+    struct ScopedThread {
+        DetachFn detach;
+        void* owned;
+        ~ScopedThread() { if (owned) detach(owned); }
+    } attached{g_api.detachThread, alreadyAttached ? nullptr : thread};
+    guard.unlock();
+    uint64_t value = *packed;
+    void* args[] = {&value};
+    void* exception = nullptr;
+    void* boxed = g_api.invoke(method, nullptr, args, &exception);
+    void* unboxed = exception || !boxed ? nullptr : g_api.unbox(boxed);
+    if (!unboxed) return false;
+    uint64_t returned = 0;
+    std::memcpy(&returned, unboxed, sizeof(returned));
+    if (kind == 50) {
+        const uint32_t bitsX = static_cast<uint32_t>(returned);
+        const uint32_t bitsY = static_cast<uint32_t>(returned >> 32);
+        float x = 0, y = 0;
+        std::memcpy(&x, &bitsX, sizeof(x));
+        std::memcpy(&y, &bitsY, sizeof(y));
+        if (!std::isfinite(x) || !std::isfinite(y)) return false;
+    }
+    *packed = returned;
+    return true;
+}
+
 bool dispatchManagedSourceSystem(const std::string& modId,
                                  const std::string& assemblyPath,
                                  int phase, int* failures) {
@@ -3753,6 +3802,10 @@ bool dispatchManagedSourceSystem(const std::string& modId,
         entry.maskMethod = klass ? g_api.findMethod(klass, "HookMask", 0) : nullptr;
         entry.brightnessMethod = klass
             ? g_api.findMethod(klass, "Brightness", 1) : nullptr;
+        entry.sunlightMethod = klass
+            ? g_api.findMethod(klass, "Sunlight", 1) : nullptr;
+        entry.cameraMethod = klass
+            ? g_api.findMethod(klass, "Camera", 1) : nullptr;
         if (!entry.method || !entry.maskMethod) {
             g_sourceSystemEntries.erase(modId);
             return false;
