@@ -8,6 +8,7 @@
     "OnModUnload",
     "OnWorldLoad",
     "OnWorldUnload",
+    "PostSetupContent",
     "PostUpdateDusts",
     "PostUpdateEverything",
     "PostUpdateGores",
@@ -31,16 +32,15 @@
     "PreUpdateProjectiles",
     "PreUpdateTime",
     "PreUpdateWorld",
-    "PreWorldGen"
+    "PreWorldGen",
+    "ResizeArrays"
   ],
   "missingOriginalHooks": [
     "OnLocalizationsLoaded",
-    "ResizeArrays",
     "AddRecipeGroups",
     "AddRecipes",
     "PostAddRecipes",
     "PostSetupRecipes",
-    "PostSetupContent",
     "LoadWorldData",
     "PostWorldLoad",
     "SaveWorldData",

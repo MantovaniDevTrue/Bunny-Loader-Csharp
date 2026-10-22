@@ -1,6 +1,6 @@
 # ModSystem em C# — integração de ciclo de vida
 
-> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 30 estão declarados, 28 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
+> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 32 estão declarados, 26 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
 
 
 Este módulo usa o nome e as assinaturas de eventos `ModSystem` do tModLoader, mas a execução é implementada diretamente no SDK C# do Bunny Loader, sem executar JavaScript.
@@ -64,3 +64,7 @@ O SDK possui os 12 métodos `PreUpdateWorld`, `PostUpdateWorld`, `PreUpdateTime`
 ## Ponto de execução ARM64 dos grupos de entidades
 
 Usamos os sete pontos nativos de `DoUpdateInWorld` documentados no `SystemHooks.cpp` do Bunny original (build Terraria 301720): `PlayersBegin`, `PlayersEnd`, `NPCsBegin`, `NPCsEnd`, `GoresEnd`, `ItemsBegin`, `ItemsEnd`. São 9 callbacks, pois dois pontos executam dois métodos em sequência. Um trampolim ARM64 guarda/restaura registradores inteiros, flags NZCV e registradores SIMD; a instalação confere quatro instruções originais no endereço/offset antes de alterar o fluxo. **Não depende de JS**, mas a coexistência de dois motores instalando o mesmo patchpoint ainda precisa de testes nativos. Se a assinatura falhar, o gate do mundo recusa a ativação em vez de executar hook inválido. Os exemplos de Pre/PostUpdatePlayers não alocam nem geram logs por quadro.
+
+## Conclusão do registro C#
+
+O `ResizeArrays` executa uma vez por mod após o registro dos tipos C# e o carregamento das assemblies Mono, usando a fase 31. A fase 32, `PostSetupContent`, exige todos os mods C# registrados, receitas/objetos/visuais nativos sem pendências e o gate de conteúdo preparado. O retorno gerenciado é isolado por classe; o sistema evita duplicações ao reentrar no menu. O gatilho de `ResizeArrays` não substitui o conteúdo do pipeline de grupos/receitas do tModLoader, ainda ausente; é uma implementação inicial de ciclo de vida que precisa de teste real da ordem de registro e das transições. Se o preload falhar, a entrada no mundo continua bloqueada, em vez de executar callbacks cedo demais.
