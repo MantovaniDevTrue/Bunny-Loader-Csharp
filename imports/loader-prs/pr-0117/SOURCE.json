@@ -1,0 +1,266 @@
+{
+  "pr": 117,
+  "name": "CommandLoader",
+  "kind": "loader",
+  "status": "android_qa_pending",
+  "runtime_enabled": false,
+  "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+  "head_sha": "a32d159bb913dae508af503da375765c855d96bc",
+  "current_pr_head_when_fetched": "a32d159bb913dae508af503da375765c855d96bc",
+  "file_count": 42,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-command-android-syntax.yml",
+      "path": "integration/ci-reference/check-csharp-command-android-syntax.yml",
+      "sha256": "8df3fc7d19ca2e500eaa9894384f163cbfc84e5f4b42e0910e724889ff82c5b0",
+      "bytes": 2251
+    },
+    {
+      "original": ".github/workflows/check-csharp-native-command-mailbox.yml",
+      "path": "integration/ci-reference/check-csharp-native-command-mailbox.yml",
+      "sha256": "0dce10b3d9b1a09b7c6218c66f35b135328dcf8b0b37b07dd84a827e3275a4ab",
+      "bytes": 3485
+    },
+    {
+      "original": ".github/workflows/command-loader-host-tests.yml",
+      "path": "integration/ci-reference/command-loader-host-tests.yml",
+      "sha256": "ed8c18932056a3f5b75e401f417ff9dd35b2bed80a66ef71a80c4d9b58d2a5af",
+      "bytes": 1697
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "b6cfca97a970f1b6a073c6e708178e5126d3c0b3d9fc7df6b1531aaa3ec75c70",
+      "bytes": 71194
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "b1ab7612d20a6374b4e1fbb3e7163406de96aad17a23fd7f619c55f0152121de",
+      "bytes": 208912
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "7342bee6e3d80a533a0f65dbda7854352e86098ecfd9b34c6c87559ee9736b68",
+      "bytes": 15304
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedSourceClassCount.h",
+      "path": "src/native/experiments/csharp/ManagedSourceClassCount.h",
+      "sha256": "67215757ddee679d4c344c9aa4f99c6c725cad6434913d493fd98ea6e9570c56",
+      "bytes": 970
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCommandChatHooks.cpp",
+      "path": "src/native/experiments/csharp/NativeCommandChatHooks.cpp",
+      "sha256": "78ddc1a405a4bee8c985d6d8f3e7ed3f28d71f0469fe576569aed3a52b996396",
+      "bytes": 26954
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCommandChatHooks.h",
+      "path": "src/native/experiments/csharp/NativeCommandChatHooks.h",
+      "sha256": "cee4c61f97ae83bbb7b1d054bb7b272b6e9eed59ee2e5b9824afa506f59e0a6a",
+      "bytes": 309
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCommandClock.h",
+      "path": "src/native/experiments/csharp/NativeCommandClock.h",
+      "sha256": "fafba055438a585af22c5e85e842af4dc0bf62ba9fbd40b46e37a72ce9150664",
+      "bytes": 944
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCommandMailbox.h",
+      "path": "src/native/experiments/csharp/NativeCommandMailbox.h",
+      "sha256": "2aebe19ca6db303633a28b3cfa49b9d6546d13eb28b58c48f1308c8079f18316",
+      "bytes": 16183
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCommandManifest.h",
+      "path": "src/native/experiments/csharp/NativeCommandManifest.h",
+      "sha256": "a50ab6efa60cb88751abc2475f591fbfeff763c2fa8cfa2c28df6d98ab8789fe",
+      "bytes": 6116
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCommandResult.h",
+      "path": "src/native/experiments/csharp/NativeCommandResult.h",
+      "sha256": "b2288a047b5c4deaf9b6f05fa258610201decdfafa62e3dd2ddbf940b1486bb1",
+      "bytes": 4822
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceContentIdentity.h",
+      "path": "src/native/experiments/csharp/SourceContentIdentity.h",
+      "sha256": "3d57ffdaf8bf84b40f179ffa0e7741d1b1be86eef515b61e82d29b3da93f3f20",
+      "bytes": 1732
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "2764e2fc54eb4017fee68c303f84ffc73e48409984aef9e0a226c254433bc43d",
+      "bytes": 61669
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.h",
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "sha256": "7743988eafb45fbe5f7aeccb97bc5d9bde7cd62d8263447ecfefaf4ce38c5fc0",
+      "bytes": 1143
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceParser.cpp",
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "sha256": "2a47d507be3e259200e0e1599fc6797927f7803a365e38bf95404169468c5f4f",
+      "bytes": 21392
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyCommand.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyCommand.cs",
+      "sha256": "d7e1f06fe2628bc5f0dda99a5b8c25a002ce10c2c0b694406f88923552982855",
+      "bytes": 15270
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyCommandWorker.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyCommandWorker.cs",
+      "sha256": "dd204895bfeda450d2c174bdd76c4b5dc1e755a7c04fc2ac848c74d3d843fe9f",
+      "bytes": 4315
+    },
+    {
+      "original": "experiments/csharp/BunnySourceCompiler/CommandManifestWriter.cs",
+      "path": "src/managed/BunnySourceCompiler/CommandManifestWriter.cs",
+      "sha256": "904db0004a8c10531c07f7bb7828e45381ed31705b792203420b512efd68d21a",
+      "bytes": 7420
+    },
+    {
+      "original": "experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "2deb02fe8d23a2a3e844b9784b2423a5d6c5ca3daceaa9f7120be31c585d69ea",
+      "bytes": 62892
+    },
+    {
+      "original": "experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "3dd625d5190b50e76394b21075d45fb94c72c3750f11ffe448270dc30187a45f",
+      "bytes": 2615
+    },
+    {
+      "original": "samples/ExampleModCSharp/Experimental/CommandLoader/ExampleEchoCommand.cs",
+      "path": "samples/ExampleModCSharp/Experimental/CommandLoader/ExampleEchoCommand.cs",
+      "sha256": "38a1a136cee4a86eedfbfda95fdd39cba7f09cfc6829eb2e193569e3643305c3",
+      "bytes": 1031
+    },
+    {
+      "original": "samples/ExampleModCSharp/Experimental/CommandLoader/ExampleHealCommand.cs",
+      "path": "samples/ExampleModCSharp/Experimental/CommandLoader/ExampleHealCommand.cs",
+      "sha256": "261e0960fd54bc20c20cb7341b3f28dce590eafb08eddaaf699ad0ab365351d4",
+      "bytes": 1469
+    },
+    {
+      "original": "samples/ExampleModCSharp/Experimental/CommandLoader/ExampleTimeCommand.cs",
+      "path": "samples/ExampleModCSharp/Experimental/CommandLoader/ExampleTimeCommand.cs",
+      "sha256": "8c64d97a14efa2d028a1f3c60ed1ca1262ffec15a7d418e1e5293c46b21e38b4",
+      "bytes": 1380
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleEchoCommand.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleEchoCommand.cs",
+      "sha256": "c64bc2e7a4a0cb16fe081b577621dc22d22bbae7809142c186a62352aee57f6b",
+      "bytes": 1013
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleHealCommand.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleHealCommand.cs",
+      "sha256": "261e0960fd54bc20c20cb7341b3f28dce590eafb08eddaaf699ad0ab365351d4",
+      "bytes": 1469
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleTimeCommand.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleTimeCommand.cs",
+      "sha256": "8c64d97a14efa2d028a1f3c60ed1ca1262ffec15a7d418e1e5293c46b21e38b4",
+      "bytes": 1380
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/LEIA_PRIMEIRO.md",
+      "path": "samples/ExampleModCSharp/Playable/content/LEIA_PRIMEIRO.md",
+      "sha256": "04a1095ffae793d9e0d223239e78d24f8fcfafb099e8d8b19539e54522182cdf",
+      "bytes": 15422
+    },
+    {
+      "original": "tests/commands/Actions.HostTests.csproj",
+      "path": "tests/native-and-managed/commands/Actions.HostTests.csproj",
+      "sha256": "ccc0636fb6a46795fb19d6e6463a95aeb2059b49c66d748989da8d52d580c45e",
+      "bytes": 903
+    },
+    {
+      "original": "tests/commands/ActionsSmoke.cs",
+      "path": "tests/native-and-managed/commands/ActionsSmoke.cs",
+      "sha256": "28c13ac8478ff9c80c58797203ea1d39e00a42c8f11a24b643b0bbb1676764b7",
+      "bytes": 3254
+    },
+    {
+      "original": "tests/commands/CommandManifest.HostTests.csproj",
+      "path": "tests/native-and-managed/commands/CommandManifest.HostTests.csproj",
+      "sha256": "b1b714c2f87470d00fbc3d397c212a6df6f4320b6a12ea3e3e1101447dd50b91",
+      "bytes": 671
+    },
+    {
+      "original": "tests/commands/Commands.HostTests.csproj",
+      "path": "tests/native-and-managed/commands/Commands.HostTests.csproj",
+      "sha256": "44006aae873c91b2191c3acef68e4a5b397c1f5bb00aeba8cfed658600a6db73",
+      "bytes": 521
+    },
+    {
+      "original": "tests/commands/ManifestSmoke.cs",
+      "path": "tests/native-and-managed/commands/ManifestSmoke.cs",
+      "sha256": "72808b8843d9a2abd68dfb4fe01a4aac4327c5b46201b98ef086a42c2ae88b3e",
+      "bytes": 3823
+    },
+    {
+      "original": "tests/commands/NATIVE_INTEGRATION.md",
+      "path": "tests/native-and-managed/commands/NATIVE_INTEGRATION.md",
+      "sha256": "f783e8037302f420cac81ff9d33041babc90550505b5edbcb85aa38ca985f28e",
+      "bytes": 7007
+    },
+    {
+      "original": "tests/commands/Program.cs",
+      "path": "tests/native-and-managed/commands/Program.cs",
+      "sha256": "34b79ca79d006ac1b7af1e6c7805c56954f91315238c8cc9385cc1dc735853f8",
+      "bytes": 9139
+    },
+    {
+      "original": "tests/commands/README.md",
+      "path": "tests/native-and-managed/commands/README.md",
+      "sha256": "98430d48167d3b6a75f034e74cbdf6e655c2c6c44b3bfe5b4da0860cf66170b1",
+      "bytes": 1355
+    },
+    {
+      "original": "tests/commands/native_command_clock_test.cpp",
+      "path": "tests/native-and-managed/commands/native_command_clock_test.cpp",
+      "sha256": "1180c1000eb9c0547bc23a8977bb9ba8fcb9b4071e8ea7992363f477d5bb4217",
+      "bytes": 1363
+    },
+    {
+      "original": "tests/commands/native_command_manifest_test.cpp",
+      "path": "tests/native-and-managed/commands/native_command_manifest_test.cpp",
+      "sha256": "bffa7926883e7ee3519f7cc0dbef2a414176979215a04790b51bb8075751bb97",
+      "bytes": 3155
+    },
+    {
+      "original": "tests/commands/native_command_result_test.cpp",
+      "path": "tests/native-and-managed/commands/native_command_result_test.cpp",
+      "sha256": "6e53b6fb2baeb63e3af28690493f401511c23d47f62844bfcfb3e992641a74b2",
+      "bytes": 3974
+    },
+    {
+      "original": "tests/commands/native_command_source_parser_test.cpp",
+      "path": "tests/native-and-managed/commands/native_command_source_parser_test.cpp",
+      "sha256": "ff21c0b8f02c21a0781c69c3d609893f1cb47abe34d91125fc756dbe81c09361",
+      "bytes": 2072
+    },
+    {
+      "original": "tests/commands/native_mailbox_test.cpp",
+      "path": "tests/native-and-managed/commands/native_mailbox_test.cpp",
+      "sha256": "f6352d4c36669fc22a60b76eee4d6f52c778942fcdda8e9e94891af8fbe6cfce",
+      "bytes": 9547
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "pr": 122,
+  "name": "WorldSaveLoader",
+  "kind": "loader",
+  "status": "partial",
+  "runtime_enabled": false,
+  "base_sha": "6398571dbd7f9f3195e7dedd6db262ce9f37852f",
+  "head_sha": "bcaa1322e533e20a4365ae26b756f2207d3a3473",
+  "current_pr_head_when_fetched": "bcaa1322e533e20a4365ae26b756f2207d3a3473",
+  "file_count": 42,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-worldsave-source.yml",
+      "path": "integration/ci-reference/check-csharp-worldsave-source.yml",
+      "sha256": "85804932f531f6e5be66c4aea6e1e38c10576376661ca95fdb14e7c3e36271c9",
+      "bytes": 17974
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/ModTileSave.cpp",
+      "path": "src/native/host-patches/content/tiles/ModTileSave.cpp",
+      "sha256": "80098da8d683556d9be15a3953ede3fdfabdfcaabf21f0ba33db8f70a618d11d",
+      "bytes": 34943
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "7a76abcfa42e68a8d1f47be2f0cfcf06358afd27f122defc2adf78b2be442cbf",
+      "bytes": 80454
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/AutoSourceRuntime.h",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.h",
+      "sha256": "d249e1f0b00c6fca945c2d9ba73f1cae4b328aac4eea0fd3a9ecc9ccaffc6834",
+      "bytes": 1191
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "3e17cf9f1710542cf5e7f3881e7da5c50113654047cafc39d21e5440227502d4",
+      "bytes": 175329
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "3acb7e8556b1e7204d48ddf91f8f6685d4fc560da7b25a7f339da3b0540f7f68",
+      "bytes": 13823
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/MonoWorldMailbox.h",
+      "path": "src/native/experiments/csharp/MonoWorldMailbox.h",
+      "sha256": "ba6c51099800b9cb67284867a07ff5eaca64a49003ab8141cfb41d67e45cf122",
+      "bytes": 5184
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWorldCoordinator.cpp",
+      "path": "src/native/experiments/csharp/NativeWorldCoordinator.cpp",
+      "sha256": "86acb4fa86132ed46d56c45888c807e5fac47cae16b63605b116bd358e6fb36a",
+      "bytes": 6168
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWorldCoordinator.h",
+      "path": "src/native/experiments/csharp/NativeWorldCoordinator.h",
+      "sha256": "db8c5da0d681124ba44065de78c555372f56dd1b205e0d99c30008c4c4ddd0f3",
+      "bytes": 647
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWorldNetTransport.cpp",
+      "path": "src/native/experiments/csharp/NativeWorldNetTransport.cpp",
+      "sha256": "5afa10a3071f90c5d7f4f67698f971714a64ca7a2b1bbba205636d2902d9a2c0",
+      "bytes": 11534
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWorldNetTransport.h",
+      "path": "src/native/experiments/csharp/NativeWorldNetTransport.h",
+      "sha256": "c50566710059836183f71fb51f7bc29bc6120af6cb93f231142d331aa27dcd06",
+      "bytes": 538
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWorldNetwork.cpp",
+      "path": "src/native/experiments/csharp/NativeWorldNetwork.cpp",
+      "sha256": "15b677266d33debae38a5a685930fcfb4561fd8dc721df292ee61c64a36e5d6f",
+      "bytes": 5031
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWorldNetwork.h",
+      "path": "src/native/experiments/csharp/NativeWorldNetwork.h",
+      "sha256": "8ce075ba51bf94a2d51030a246cf7c243f677af032649237dd7b38f98077d802",
+      "bytes": 640
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWorldStore.cpp",
+      "path": "src/native/experiments/csharp/NativeWorldStore.cpp",
+      "sha256": "83d7953cd1269117f48a4d0cb69fe69a8cdd87b44a316a807c125dd53e97f213",
+      "bytes": 11467
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWorldStore.h",
+      "path": "src/native/experiments/csharp/NativeWorldStore.h",
+      "sha256": "821c7faf80def6dde637b76c95d9b7429732cda5881b9fc87c808df7d5ccba52",
+      "bytes": 1153
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "d1b714e74865af469a2ed0871b7a41922f4f4a9bfce718d71d62872c56e47bf2",
+      "bytes": 41376
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceLoader.h",
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "sha256": "dc839b6349d165fc28d79c7225b8f1b3270b12fc4f1033c1c57db808a6a12ab2",
+      "bytes": 976
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceParser.cpp",
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "sha256": "9b508e6fac149ec5d43c96a6645240729d310ad2099506e7458b32f47db01b80",
+      "bytes": 19489
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/StableWorldUid.h",
+      "path": "src/native/experiments/csharp/StableWorldUid.h",
+      "sha256": "30c3a8448d32a5a475dc12c8474df6008ba9e202017ba11ed5490ca454b7272e",
+      "bytes": 1710
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/WorldNetAsync.h",
+      "path": "src/native/experiments/csharp/WorldNetAsync.h",
+      "sha256": "8449404df482c1e0c946376cc459b0cb08f3982bfa705d5b50dd4085d56531b7",
+      "bytes": 4166
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyWorldData.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyWorldData.cs",
+      "sha256": "99914afd769f7f21295fc63f77006291dec9a1901703b060d36ecab7ebd4e8d1",
+      "bytes": 12916
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyWorldDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyWorldDispatcher.cs",
+      "sha256": "918cb3415264aa9f63f04a33d382b464bf9aa4f2eceb2c38cf3badea695636b6",
+      "bytes": 11993
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyWorldMonoHost.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyWorldMonoHost.cs",
+      "sha256": "9900446194185581fdf6e1a0929cf296797f16a8b67a1ac48367a8e84b86e808",
+      "bytes": 6226
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyWorldNetworkCodec.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyWorldNetworkCodec.cs",
+      "sha256": "18558c553c5bfe767c9217f7fd308530c88923758411872b1cd21288a8046ffe",
+      "bytes": 5740
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "634b8dc7d2e8b679de4f11875cf8dbcd09c1af148be0cc4b92e1ac3169ba3ab5",
+      "bytes": 53540
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "2bb518a72eb6086245a64c8ea77a4cf6c663a036aacf0737bb7748e6ee806154",
+      "bytes": 1832
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Examples/Systems/ExampleDownedBossWorldSystem.cs",
+      "path": "samples/ExampleModCSharp/Examples/Systems/ExampleDownedBossWorldSystem.cs",
+      "sha256": "39f70e908a3ecb8bd1160fc79aa4be68f3ee1452642215f8c234288210eed771",
+      "bytes": 1579
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/BunnyWorldData.Smoke.csproj",
+      "path": "tests/native-and-managed/world_save/BunnyWorldData.Smoke.csproj",
+      "sha256": "18ca540dbf3f60343992462b31bd6d324681e97a1d703b3c14da153274f877af",
+      "bytes": 599
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/DispatcherTests.cs",
+      "path": "tests/native-and-managed/world_save/DispatcherTests.cs",
+      "sha256": "977e829ab268bfa0454837f8e591b5fa9640c0a07cc0ba5c2bbbb3b88f397ac3",
+      "bytes": 5491
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/MonoHostTests.cs",
+      "path": "tests/native-and-managed/world_save/MonoHostTests.cs",
+      "sha256": "5a4963ec8a564624b724ecd4c523e4846a48f3ba19855bbb1af418ce1f666f2b",
+      "bytes": 4546
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/Program.cs",
+      "path": "tests/native-and-managed/world_save/Program.cs",
+      "sha256": "28b6d99aacacedb7bef0ef7bee977f3d01c13e4afdf8f0e34d382a4f481d4b47",
+      "bytes": 5015
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/WorldNetworkTests.cs",
+      "path": "tests/native-and-managed/world_save/WorldNetworkTests.cs",
+      "sha256": "fb50146a3e2cf769ce102ab5ba8b6265e89915ac0774afaee94fecc9a68c6875",
+      "bytes": 4475
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/WorldSaveExampleMod.csproj",
+      "path": "tests/native-and-managed/world_save/WorldSaveExampleMod.csproj",
+      "sha256": "e8fdb40cda1aa5a6ef9a3302636841ed8f12dfcfc9dae458696e8813954cf388",
+      "bytes": 684
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/host_include/android/log.h",
+      "path": "tests/native-and-managed/world_save/host_include/android/log.h",
+      "sha256": "f3f07ef74b3a975f38253bd0792eed4f136d543774356f18e54250d3e50a63d6",
+      "bytes": 330
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/mono_world_mailbox_test.cpp",
+      "path": "tests/native-and-managed/world_save/mono_world_mailbox_test.cpp",
+      "sha256": "7db3466f6d9a7e92673bcd620d875e3ccf40f1a4f836bee410234750a34bf8f3",
+      "bytes": 2505
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/native_world_coordinator_test.cpp",
+      "path": "tests/native-and-managed/world_save/native_world_coordinator_test.cpp",
+      "sha256": "026fee4b3ddada6839818bcf9df0bade9a67f17a1deb3425387ad822c428a7ce",
+      "bytes": 4381
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/native_world_network_test.cpp",
+      "path": "tests/native-and-managed/world_save/native_world_network_test.cpp",
+      "sha256": "d4f238217717aa3e13a4b202dcb7fdac7794f87710d2115621f5476d1802c117",
+      "bytes": 2107
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/native_world_store_test.cpp",
+      "path": "tests/native-and-managed/world_save/native_world_store_test.cpp",
+      "sha256": "4fd6940cc4502a5ce187e53602c8c899bae0842c3958bc07f71b471abc457f0b",
+      "bytes": 5406
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/stable_world_uid_test.cpp",
+      "path": "tests/native-and-managed/world_save/stable_world_uid_test.cpp",
+      "sha256": "ca30d68d2c0de518caf825b53d35b0bbdc71fbeff618ad4062e818c97f937062",
+      "bytes": 1071
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/world_net_async_test.cpp",
+      "path": "tests/native-and-managed/world_save/world_net_async_test.cpp",
+      "sha256": "ce9b566c0bb40274aed1a02565793ad634a0c9254bbc4d8983f4e85754e93fa8",
+      "bytes": 2392
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_save/world_source_parser_test.cpp",
+      "path": "tests/native-and-managed/world_save/world_source_parser_test.cpp",
+      "sha256": "94a11572d16cb60fa1b3173ea56a23a1f39795d18a6df5106a2f6e154a8f5181",
+      "bytes": 1295
+    },
+    {
+      "original": "docs/csharp-worldsave-loader.md",
+      "path": "docs/reference/csharp-worldsave-loader.md",
+      "sha256": "82b2b3b8a0700a135a6b81e25251a724c0abf2cc4ebaa31a43a4b7b8f9200be7",
+      "bytes": 16441
+    }
+  ]
+}

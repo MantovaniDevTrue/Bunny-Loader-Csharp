@@ -1,0 +1,224 @@
+{
+  "pr": 101,
+  "name": "LocalizationLoader",
+  "kind": "loader",
+  "status": "partial",
+  "runtime_enabled": false,
+  "base_sha": "7b94f765c3a4d5c0b38f95192467cfc03f367182",
+  "head_sha": "82c6afd4b7ff01a1f69eb491c527bb2a1ec1bc04",
+  "current_pr_head_when_fetched": "82c6afd4b7ff01a1f69eb491c527bb2a1ec1bc04",
+  "file_count": 35,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-localization.yml",
+      "path": "integration/ci-reference/check-csharp-localization.yml",
+      "sha256": "eacff34f25d14143fe6b40aede95e700095fd9af78bcd1ad0ceed255d8452b01",
+      "bytes": 6925
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "12edf20c995dff1dbe5a81ed3c0b96431a5d7d11eebf70e89e1a838cd9bbeac2",
+      "bytes": 71031
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/LocalizationResolve.h",
+      "path": "src/native/experiments/csharp/LocalizationResolve.h",
+      "sha256": "213a03777242baacaf69b27e13345997a613f95878c2db95614970b2c77bf520",
+      "bytes": 6014
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedLocalizationEpochFence.h",
+      "path": "src/native/experiments/csharp/ManagedLocalizationEpochFence.h",
+      "sha256": "d622a614e4ee32d1105dff70c0e469e690bb968f1b4cf90ac4c3e87046a537e1",
+      "bytes": 910
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "af32a9df3935ddba2b4dd7985a21ed6ff65c81ce0dba55fb1015d72b0c6b0ac7",
+      "bytes": 217148
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "d568037ab97a33355585cc28bda2d327fae797cea8c3ab6bd3c13b50951f802f",
+      "bytes": 17069
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeLocalizationRetirePolicy.h",
+      "path": "src/native/experiments/csharp/NativeLocalizationRetirePolicy.h",
+      "sha256": "1c6ccc3a96058965061e315e76c3a46cdd046ec7c053ef0fbc48501031f96d51",
+      "bytes": 2599
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeLocalizationRuntime.cpp",
+      "path": "src/native/experiments/csharp/NativeLocalizationRuntime.cpp",
+      "sha256": "8760f147beb20485f9370652a3db69a4f3946d7eb1ad61b2cc8483e9f0e49296",
+      "bytes": 25381
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeLocalizationRuntime.h",
+      "path": "src/native/experiments/csharp/NativeLocalizationRuntime.h",
+      "sha256": "d2e4875db8b19c3d16f07d5724293e37c1cab21a5b60e25d3c74dc61194f87c1",
+      "bytes": 932
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeLocalizationSession.h",
+      "path": "src/native/experiments/csharp/NativeLocalizationSession.h",
+      "sha256": "f66fcafe02bcd95f33a498378983e2ca7d77736af843050f9d41eaa198faedff",
+      "bytes": 3878
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "90ab16461b4319beff24880e705b3860c73e053d7aa05e1c0c266b164243078b",
+      "bytes": 68671
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/example_completion/matrix.json",
+      "path": "docs/reference/generated/example_completion/matrix.json",
+      "sha256": "df1e200de589752b74c298d360148f2fcfac5d3dbf39460f9ca92bb351c930a6",
+      "bytes": 642045
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/sdk_public_reference.json",
+      "path": "docs/reference/generated/sdk_public_reference.json",
+      "sha256": "f068e3f1946896785ffacae063b6c5a3a9f4e32d3315431da39561e2fe2b01a7",
+      "bytes": 87295
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/sdk_public_reference.md",
+      "path": "docs/reference/generated/sdk_public_reference.md",
+      "sha256": "a7eb3a2385b43c569f45f3d893c0fe07db22fc4b5c51ad67d9f26c75954e7c73",
+      "bytes": 51140
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyLocalization.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyLocalization.cs",
+      "sha256": "c1abeac0c59a4e2e8866c487d13a09c275db4b110e6e999573fcbc2896d80f84",
+      "bytes": 24810
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyLocalizationJson.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyLocalizationJson.cs",
+      "sha256": "8d881d0cdacab5694d1d6a5454e0112f244106e63669438c8cd085fd86662f08",
+      "bytes": 10850
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyLocalizationModule.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyLocalizationModule.cs",
+      "sha256": "6f311e7acd5be4aa8ee0437b3959466bf1d5c985138fe91fe6d849081302260a",
+      "bytes": 12774
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceCompiler/BunnySourceCompiler.csproj",
+      "path": "src/managed/BunnySourceCompiler/BunnySourceCompiler.csproj",
+      "sha256": "26f2249e8393a667867fb6c0c93bfae5211ec61018789b99c66f2f3e2468d32b",
+      "bytes": 513
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "fb47b4ee657f1e4d640a30f2aab88f9abb34827019e974a0e7dc7bbd3ab95c98",
+      "bytes": 70330
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "d1b1f8224f9995304c8059f5f8cfd9097ac38ca6125ca2fa8bfec318a62f3226",
+      "bytes": 2973
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Common/Localization/ExampleLocalizationModule.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Localization/ExampleLocalizationModule.cs",
+      "sha256": "bdc3c5e29415c68372963715673b2f49b5c5e6bf941dac8bda3beb05b9f92b44",
+      "bytes": 997
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "sha256": "df1e200de589752b74c298d360148f2fcfac5d3dbf39460f9ca92bb351c930a6",
+      "bytes": 642045
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Localization/en-US.json",
+      "path": "samples/ExampleModCSharp/Playable/content/Localization/en-US.json",
+      "sha256": "8831336bbc755396ea1c5e111028239116f699c301ca7807dab90450b07182e9",
+      "bytes": 16939
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Localization/pt-BR.json",
+      "path": "samples/ExampleModCSharp/Playable/content/Localization/pt-BR.json",
+      "sha256": "d1e9a83f4fcda2724fce7523019510aa4ba1823b23e95606559038d709e7817b",
+      "bytes": 17943
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/basic_items/Program.cs",
+      "path": "tests/native-and-managed/basic_items/Program.cs",
+      "sha256": "6995e643c1b6c3445bbe991aa5ac73557d00d7e30b741316f6c6625baf94cc1d",
+      "bytes": 48072
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/localization_loader/LocalizationLoader.csproj",
+      "path": "tests/native-and-managed/localization_loader/LocalizationLoader.csproj",
+      "sha256": "42d041ecb3391451cd5abb3fb36d4ba4550dd50af658b10dc3de42fcb69a9f2e",
+      "bytes": 644
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/localization_loader/Program.cs",
+      "path": "tests/native-and-managed/localization_loader/Program.cs",
+      "sha256": "7dc8367de9bc2850c8eebd8a06fb928ffdb3cd8a3de615d7ff995f866dadb229",
+      "bytes": 37575
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/localization_loader/native_resolver_test.cpp",
+      "path": "tests/native-and-managed/localization_loader/native_resolver_test.cpp",
+      "sha256": "3ec6327a61fb6b20bbe7540c0a3503457522d0c2f29fb7c0edeb931255ffa432",
+      "bytes": 2603
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/localization_loader/native_retire_test.cpp",
+      "path": "tests/native-and-managed/localization_loader/native_retire_test.cpp",
+      "sha256": "ad4731229cc9a231a8d4069f226d02be14079e6c9bad854680efa234a8aa6854",
+      "bytes": 3095
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/localization_loader/native_session_test.cpp",
+      "path": "tests/native-and-managed/localization_loader/native_session_test.cpp",
+      "sha256": "e6b94cbd5b3799e885c7bb03003e95d95f0807169ac4ef3a58dcf9a6af75e2fe",
+      "bytes": 5497
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/localization_loader/native_wire_test.cpp",
+      "path": "tests/native-and-managed/localization_loader/native_wire_test.cpp",
+      "sha256": "1ab360a0c7105a5e09b56985966adb89443db773ccdffbe04a0f8de58a5ab58b",
+      "bytes": 5254
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/localization_loader/runtime_only/RuntimeOnlyLocaleItem.cs",
+      "path": "tests/native-and-managed/localization_loader/runtime_only/RuntimeOnlyLocaleItem.cs",
+      "sha256": "8665f17799072be902f6331116cbc13d5b66a26e09c5b486526181e37f09d274",
+      "bytes": 470
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/localization_loader/runtime_only/RuntimeOnlyProbe.csproj",
+      "path": "tests/native-and-managed/localization_loader/runtime_only/RuntimeOnlyProbe.csproj",
+      "sha256": "ab59b4ba99bb832fb2b68dcbef8b81340a2e2393217be0fd57649780ff3677e0",
+      "bytes": 389
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/sdk_reference/Program.cs",
+      "path": "tools/support/sdk_reference/Program.cs",
+      "sha256": "a249617271e2ee1533e5f8205ed6c14da9a4dfa19cc497b55d18e6db69efc46e",
+      "bytes": 8574
+    },
+    {
+      "original": "docs/csharp-localization-loader.md",
+      "path": "docs/reference/csharp-localization-loader.md",
+      "sha256": "a4662fd4baf345706b556a1210bfba1123e7db3b262a4cec5654ecc57dbf15df",
+      "bytes": 31820
+    }
+  ]
+}

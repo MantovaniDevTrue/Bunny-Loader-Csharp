@@ -1,0 +1,32 @@
+{
+  "pr": 124,
+  "name": "ItemUse diagnostics",
+  "kind": "support",
+  "status": "fix_reference",
+  "runtime_enabled": false,
+  "base_sha": "6db6de22630a3d2fde7793c96f53a24d2bf805c3",
+  "head_sha": "57629f0df71ec3de1e33af7a5d1ded3e7f92f62d",
+  "current_pr_head_when_fetched": "57629f0df71ec3de1e33af7a5d1ded3e7f92f62d",
+  "file_count": 3,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "5167980848a8309dc1d8521d8c325eafcf2213f91d0cd31efee58fbfebbf9c6c",
+      "bytes": 262068
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "sha256": "ef5e3e5d9d8ac080079ecb4a9b6ef2e092607ec14fb2a74d85c3a51a30956a43",
+      "bytes": 32060
+    },
+    {
+      "original": "tests/invasion/check_item_use_contract.py",
+      "path": "tests/native-and-managed/invasion/check_item_use_contract.py",
+      "sha256": "3874f67ce83b84445b3701bbae0a76cf1ab74e0f92d165ddde6e9343290074f7",
+      "bytes": 5296
+    }
+  ]
+}

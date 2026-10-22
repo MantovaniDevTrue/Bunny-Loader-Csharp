@@ -1,0 +1,314 @@
+{
+  "pr": 100,
+  "name": "PrefixLoader",
+  "kind": "loader",
+  "status": "partial",
+  "runtime_enabled": false,
+  "base_sha": "06db1b578f193b4e3547cc57f974eaaca781bfec",
+  "head_sha": "abbdde775c8a96b4ddea2fb9bba813e6c29f2041",
+  "current_pr_head_when_fetched": "abbdde775c8a96b4ddea2fb9bba813e6c29f2041",
+  "file_count": 50,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-equipment-preflight.yml",
+      "path": "integration/ci-reference/check-csharp-equipment-preflight.yml",
+      "sha256": "880dc6452cf1a042c8b9bfc8109a1f3c2f93c243e096be5ec1f09a859ede4e9a",
+      "bytes": 8284
+    },
+    {
+      "original": ".github/workflows/check-csharp-prefix-android-arm64.yml",
+      "path": "integration/ci-reference/check-csharp-prefix-android-arm64.yml",
+      "sha256": "c78004910648aca54555b14461a6e1c81ca3f34b41b7063b7fb5df2dc3b89cb1",
+      "bytes": 3679
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "a6451754edde0387d02935bf5b386e0abbf606e8b9a4433d45ffd94f9e6879d3",
+      "bytes": 71135
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedPrefixBridge.cpp",
+      "path": "src/native/experiments/csharp/ManagedPrefixBridge.cpp",
+      "sha256": "ca37b0bbd71ec69af58f9d5f8a160a9bc3ee921b7c4d701fd73a8cf91c091a8d",
+      "bytes": 34311
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedPrefixBridge.h",
+      "path": "src/native/experiments/csharp/ManagedPrefixBridge.h",
+      "sha256": "388dfb625cfbaccdcbe91de83d4e01c636cc40697a1487c3c7537452419f2dda",
+      "bytes": 5878
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedPrefixGameplay.cpp",
+      "path": "src/native/experiments/csharp/ManagedPrefixGameplay.cpp",
+      "sha256": "999af873fe413d84964cba2acab82dfa40bf8f846ccb965d4d353804515c6ac6",
+      "bytes": 90490
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedPrefixGameplay.h",
+      "path": "src/native/experiments/csharp/ManagedPrefixGameplay.h",
+      "sha256": "cddcf06bbd54d0e789b6d3b935799766e6d10d687fcb8c89c355f089fe9a1533",
+      "bytes": 907
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedPrefixTooltipTemplate.h",
+      "path": "src/native/experiments/csharp/ManagedPrefixTooltipTemplate.h",
+      "sha256": "9018e50158e8d833fb2927a842899fa057a2589c74976eab3037411904be90b4",
+      "bytes": 1745
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "020a191335a0f0643d2ba8065d3661e7e2a5823e1aac5190af34393be381c061",
+      "bytes": 216669
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "b3c77fc7602486579b930d67fe44eca8470795eb689d2d4b354ff7c4ca184e47",
+      "bytes": 17671
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeContent.cpp",
+      "path": "src/native/experiments/csharp/NativeContent.cpp",
+      "sha256": "64e62c46c8716e3054abe78afae89999b16a0e79f077b6cca64ab217dcaa47b0",
+      "bytes": 128080
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileGameplay.cpp",
+      "path": "src/native/experiments/csharp/NativeTileGameplay.cpp",
+      "sha256": "a6a1c058e43745265c447976badebe135aa96583d9da61c080dc8a6d924d9a99",
+      "bytes": 33276
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTilePolicy.h",
+      "path": "src/native/experiments/csharp/NativeTilePolicy.h",
+      "sha256": "2848f583eaf6b8d4447e42fff8575989c3cf383bbeaa17c36ea0a389c03b3967",
+      "bytes": 769
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceContentIdentity.h",
+      "path": "src/native/experiments/csharp/SourceContentIdentity.h",
+      "sha256": "925fb194b9a33b4ece738329972a5ef272bd3c8abdcfcaab30f2d1b10eeb2d71",
+      "bytes": 1744
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "1f021e40ade55266703cbdccfef04dcfbfdd4070c8a130add5e267d9765724b5",
+      "bytes": 101793
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceParser.cpp",
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "sha256": "7c4fb4b8945daa0380e7c2b3e8c0c6056add7c07a2208434a80f9776c78a8e52",
+      "bytes": 21188
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/script/api/CSharpPrototypeApi.cpp",
+      "path": "src/native/script/api/CSharpPrototypeApi.cpp",
+      "sha256": "db5eedd71018d34f9258d8f799c324c9efb6f4d421c3dee1118f2f85e645d4fa",
+      "bytes": 162543
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/csharp-prefix-android-integration-qa.md",
+      "path": "docs/reference/csharp-prefix-android-integration-qa.md",
+      "sha256": "cd88ac53d4a262b62530437650d7ffa75fa46c97f38c68dadba2d15f2de5cb80",
+      "bytes": 11806
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/sdk_public_reference.json",
+      "path": "docs/reference/generated/sdk_public_reference.json",
+      "sha256": "925ecbeab02fe497eb108445869d00f3b93b3261c8c7ad7e34e048358d358c62",
+      "bytes": 95670
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/sdk_public_reference.md",
+      "path": "docs/reference/generated/sdk_public_reference.md",
+      "sha256": "5645eda5490464cf4a295bc8ec73584a0c986095310cd8de84f913c34597ced5",
+      "bytes": 55814
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyGlobalItem.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyGlobalItem.cs",
+      "sha256": "3a41fe6b8598b45f48da052793f5b85a4e03fbb5a9fd85103e01a847056bbd8f",
+      "bytes": 527
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyItem.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyItem.cs",
+      "sha256": "7eec1e371e287de61822ba02f0c0a4931f72e6ce8e3ad46bd227ad52f503fd0d",
+      "bytes": 17480
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyItemPrefixCallbacks.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyItemPrefixCallbacks.cs",
+      "sha256": "69daa3cfbfa6098d7750832d02f115c93d5b2c934d2012832bdb5eda6b16596b",
+      "bytes": 10969
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyPrefixCallbacks.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyPrefixCallbacks.cs",
+      "sha256": "7aaabc26258816db6e391940db72b282db8b60dd46321edd9124bf5be89049a7",
+      "bytes": 8394
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "sha256": "231d8ac75eb93d81f51165b65c4f69b511c13ff1206e500cdaf037dd985d1cb0",
+      "bytes": 38306
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "5d0aa5561bf04f0c799da8d4de15e83762c32ec6d7ee9ecc983a6a431691ca9f",
+      "bytes": 84353
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "e900c828f5db76d8bac80c05bf15da98b20c24a90335e7c6c973e11cccb111ab",
+      "bytes": 2896
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Docs/SupportedAPI.md",
+      "path": "samples/ExampleModCSharp/Docs/SupportedAPI.md",
+      "sha256": "2bcac9cba9a8fdc1ce305296c1f1e20aad697a0f74506b00847effd2675f4c4c",
+      "bytes": 23989
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/ExampleWand.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/ExampleWand.cs",
+      "sha256": "c73688fe358747b8a059601d3d407451219baf646416ab0cbf19a51a9a03136a",
+      "bytes": 1593
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleGuardedPrefix.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleGuardedPrefix.cs",
+      "sha256": "99da5b2db6b84a66dbb3908eaaa8ac328a1c66e0efc037dd5aa5fb89e4e40ac8",
+      "bytes": 1763
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleMightyPrefix.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleMightyPrefix.cs",
+      "sha256": "3ccbe83cd89718da3a6a4a0e131f2de3d1a62b4236059c333108965f9f681254",
+      "bytes": 1300
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Tests/check_examples.py",
+      "path": "samples/ExampleModCSharp/Tests/check_examples.py",
+      "sha256": "96f77c34197c91e51f1014f1642b2917ab6b21a611a363efad1ed7ef72b99612",
+      "bytes": 16194
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/equipment_contract_surface_test.py",
+      "path": "tests/native-and-managed/equipment_contract_surface_test.py",
+      "sha256": "3abf790a50e3b38456f2356ad0c1babfafb514d795d46a58dfb7920e7f3c01ce",
+      "bytes": 25887
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/equipment_preflight_test.py",
+      "path": "tests/native-and-managed/equipment_preflight_test.py",
+      "sha256": "9987df2562d725afc79fbb92375a08f881dfdb1e0656a8f7ceaa2e1a3266e008",
+      "bytes": 2455
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/managed_prefix_cold_tables.cpp",
+      "path": "tests/native-and-managed/managed_prefix_cold_tables.cpp",
+      "sha256": "77c101ffde770f451b02ac7b89acde43fda014b1bf8e85c1a3bf8df7dc83e8b9",
+      "bytes": 63874
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/prefix_v89/GlobalOnlyFixture/Content.cs",
+      "path": "tests/native-and-managed/prefix_v89/GlobalOnlyFixture/Content.cs",
+      "sha256": "5fbdd17e28530ec2219ef095ca4f3a918b207ebe1efc6824af80311a466671ba",
+      "bytes": 803
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/prefix_v89/GlobalOnlyFixture/GlobalOnlyFixture.csproj",
+      "path": "tests/native-and-managed/prefix_v89/GlobalOnlyFixture/GlobalOnlyFixture.csproj",
+      "sha256": "0fddae900340f29c62b94da6ca0668218836a62bfadf7e9c355686949dd4c228",
+      "bytes": 289
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/prefix_v89/PrefixFixture/Content.cs",
+      "path": "tests/native-and-managed/prefix_v89/PrefixFixture/Content.cs",
+      "sha256": "bb7a7332381a05b48b83be93a72331299d00a237c07931edf825b1a49750d5c7",
+      "bytes": 5850
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/prefix_v89/Program.cs",
+      "path": "tests/native-and-managed/prefix_v89/Program.cs",
+      "sha256": "8718451d4dfda5571d8546b2cb566f3a08a4d5b80261709c32d10e12eccc8083",
+      "bytes": 31231
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/prefix_v89/global_prefix_source_parser_test.cpp",
+      "path": "tests/native-and-managed/prefix_v89/global_prefix_source_parser_test.cpp",
+      "sha256": "adb365a0aba3e42f2fa4862aa7a2bcb3ccf0c9eeb280969c04baee929d135489",
+      "bytes": 2427
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/prefix_v89/guard_gameplay_v90.py",
+      "path": "tests/native-and-managed/prefix_v89/guard_gameplay_v90.py",
+      "sha256": "e4762f630252a283038727c13e579852c48fa4a2096eb57dd7954b1e04fd6d97",
+      "bytes": 4051
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/prefix_v89/guard_native_bridge.py",
+      "path": "tests/native-and-managed/prefix_v89/guard_native_bridge.py",
+      "sha256": "a44c5cf19d7e69b9394e64896a8666a4dd8792239660f37438115909b8800cfe",
+      "bytes": 1190
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/prefix_v89/guard_reforge_v90_2.py",
+      "path": "tests/native-and-managed/prefix_v89/guard_reforge_v90_2.py",
+      "sha256": "3425709956c54dc905caa7a9ec107b47ab9dd9955c446e5105ec0cd929b3756a",
+      "bytes": 1719
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/prefix_v89/managed_prefix_snapshot_test.cpp",
+      "path": "tests/native-and-managed/prefix_v89/managed_prefix_snapshot_test.cpp",
+      "sha256": "79b290c2416256b9999733dec4933b00db92cd7ca66020bd9e19f059bdbe4757",
+      "bytes": 22679
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_break_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_break_policy_test.cpp",
+      "sha256": "87ac161c77160fe594d28e82bfec7822b049aebe31f7282f8a3655c78fb37e69",
+      "bytes": 534
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/equipment_contract_surface.py",
+      "path": "tools/support/equipment_contract_surface.py",
+      "sha256": "1306bb3bf6518832861ba31148f8dc2b2de9156c92948f1ed8f70440138f6a0b",
+      "bytes": 6679
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/equipment_preflight.py",
+      "path": "tools/support/equipment_preflight.py",
+      "sha256": "ecf08eedfa9d3b8c76087b0f28e14c53b6dc820b93d31685ceb9a13304dd37ee",
+      "bytes": 7257
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/sdk_reference/Program.cs",
+      "path": "tools/support/sdk_reference/Program.cs",
+      "sha256": "a7de909d364fd62b303f1857c3eff74615f6641d27cfe366c2c7bf25f2ce1335",
+      "bytes": 9722
+    },
+    {
+      "original": "docs/csharp-loader-batches.md",
+      "path": "docs/reference/csharp-loader-batches.md",
+      "sha256": "3c3f7ced970ee87354f1d59988952b0918c9354b8d4951ccc3e77dba0a6ef76c",
+      "bytes": 12016
+    },
+    {
+      "original": "docs/equipment-loader-preflight.md",
+      "path": "docs/reference/equipment-loader-preflight.md",
+      "sha256": "d8a5385c127a6b36c11412aef5562e349aee18d24176b79816ff5c33f3a8489c",
+      "bytes": 39106
+    }
+  ]
+}

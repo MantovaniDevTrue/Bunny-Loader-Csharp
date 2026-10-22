@@ -1,0 +1,1658 @@
+{
+  "pr": 98,
+  "name": "World: Tile, Wall, Tree, TileEntity, GlobalTile",
+  "kind": "loader",
+  "status": "mixed_incomplete",
+  "runtime_enabled": false,
+  "base_sha": "6a106345c20c8de0c49f90271810c66dcd65a912",
+  "head_sha": "45fb0bcc6a1fa57e317b138f2e9973e90eb125e2",
+  "current_pr_head_when_fetched": "45fb0bcc6a1fa57e317b138f2e9973e90eb125e2",
+  "file_count": 274,
+  "excluded_paths": 2,
+  "files": [
+    {
+      "original": ".github/workflows/build-bunny-csharp-source-loader.yml",
+      "path": "integration/ci-reference/build-bunny-csharp-source-loader.yml",
+      "sha256": "f727e45e5a126b0a4f3b289d122b6f81d9fd0e6e03a32f6a177516592fd5e27d",
+      "bytes": 131437
+    },
+    {
+      "original": ".github/workflows/check-bunny-csharp-native-visual-queue.yml",
+      "path": "integration/ci-reference/check-bunny-csharp-native-visual-queue.yml",
+      "sha256": "9b95d243cfea3ccbb21af2f69ca068915aeb0dc409d1be760a1637544509f320",
+      "bytes": 3798
+    },
+    {
+      "original": ".github/workflows/check-bunny-csharp-visual-queue.yml",
+      "path": "integration/ci-reference/check-bunny-csharp-visual-queue.yml",
+      "sha256": "ba4298a1c42398d37bcf0e9532f2758b45bb3af895660c0399b06b650af15663",
+      "bytes": 2578
+    },
+    {
+      "original": ".github/workflows/check-combat-batch.yml",
+      "path": "integration/ci-reference/check-combat-batch.yml",
+      "sha256": "bbce3bbb1aef3f05e11541d86d15dfdf7df5290b2d6b51b63b8bed245356ed33",
+      "bytes": 1676
+    },
+    {
+      "original": ".github/workflows/check-csharp-screenfx-native.yml",
+      "path": "integration/ci-reference/check-csharp-screenfx-native.yml",
+      "sha256": "62caa182fef059baee599b4e25868c6a597634b3dadfe7dbd9c330442474e050",
+      "bytes": 4047
+    },
+    {
+      "original": ".github/workflows/check-csharp-sdk-foundation.yml",
+      "path": "integration/ci-reference/check-csharp-sdk-foundation.yml",
+      "sha256": "21b0aa7c596d0ab3e02861d1000b3015503bd24921f9cfb3052ceedda8b6b257",
+      "bytes": 6334
+    },
+    {
+      "original": ".github/workflows/check-example-completion.yml",
+      "path": "integration/ci-reference/check-example-completion.yml",
+      "sha256": "67956fe5ef506e32cd645531a731badc47c269e3ad3942b53f5962a54cc6c585",
+      "bytes": 12405
+    },
+    {
+      "original": ".github/workflows/check-managed-lifecycle-regressions.yml",
+      "path": "integration/ci-reference/check-managed-lifecycle-regressions.yml",
+      "sha256": "2ec4fff5908de44e3f267bc30f0f22e7926deaf45a5da7aedfc3942a35182dc2",
+      "bytes": 1001
+    },
+    {
+      "original": ".github/workflows/check-mono-pinned-gc.yml",
+      "path": "integration/ci-reference/check-mono-pinned-gc.yml",
+      "sha256": "4b70848f0e49af17f09051b7321b165db7c10e741c8435166be63eb8427212f8",
+      "bytes": 1378
+    },
+    {
+      "original": ".github/workflows/check-mono-signal-ownership.yml",
+      "path": "integration/ci-reference/check-mono-signal-ownership.yml",
+      "sha256": "eebf6d8a55b32657188c03ab15798ecd23e51af5a47f401b502b69868d72afa9",
+      "bytes": 1491
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/sounds/NativeSoundRouter.cpp",
+      "path": "src/native/host-patches/content/sounds/NativeSoundRouter.cpp",
+      "sha256": "a25479804ea98af30bc4a165991e2985676e3430a941ff57f5b303f1b9344e5f",
+      "bytes": 12311
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/sounds/NativeSoundRouter.h",
+      "path": "src/native/host-patches/content/sounds/NativeSoundRouter.h",
+      "sha256": "df8b7091fb20d634508df09aabf1648e26a57cc27c9db6a5940a7a0f318fbaf4",
+      "bytes": 619
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/ModTileMap.cpp",
+      "path": "src/native/host-patches/content/tiles/ModTileMap.cpp",
+      "sha256": "364e239c30ef700c20f3a38f7aef977951e08c0d42c95b9f98d41c42f6408e67",
+      "bytes": 41216
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/ModTileMap.h",
+      "path": "src/native/host-patches/content/tiles/ModTileMap.h",
+      "sha256": "ba474018b347efb9413aa5e0b27fd799a4cc607b3a80c8a53e29f42e0a84ecae",
+      "bytes": 2203
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/ModTiles.cpp",
+      "path": "src/native/host-patches/content/tiles/ModTiles.cpp",
+      "sha256": "5523dee95851a71e59c2eff4539f5a92fe9dddad0e16e32c1ad7cb8bc5e85aa3",
+      "bytes": 55571
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/ModTiles.h",
+      "path": "src/native/host-patches/content/tiles/ModTiles.h",
+      "sha256": "14852eff33a3e40dce0e82d564bf5da515d1cb97f71d0c546041fbf1bacfc883",
+      "bytes": 5028
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/ModTrees.cpp",
+      "path": "src/native/host-patches/content/tiles/ModTrees.cpp",
+      "sha256": "8c3abe92f702e9d7424ac1562caf7ddcc241fe4955530c7c0360e63623393155",
+      "bytes": 28327
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/ModTrees.h",
+      "path": "src/native/host-patches/content/tiles/ModTrees.h",
+      "sha256": "83fb99f1db8a2a898564c499fe657ffabd746fed72f4395963c007ab88e44899",
+      "bytes": 1944
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/NativeTreeShakeRuntime.h",
+      "path": "src/native/host-patches/content/tiles/NativeTreeShakeRuntime.h",
+      "sha256": "a023fa495125327f25e0e873a12cd5905e6c3afe7c160f102703a0c6fdb46375",
+      "bytes": 11592
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/TileRegistryInternal.h",
+      "path": "src/native/host-patches/content/tiles/TileRegistryInternal.h",
+      "sha256": "bbda373e0611887c60c0769f00084130b58af6ddb6cb7a703088c2319a943afd",
+      "bytes": 550
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/walls/ModWalls.cpp",
+      "path": "src/native/host-patches/content/walls/ModWalls.cpp",
+      "sha256": "c64b9be9d6a72eded5f739e55f085bab830be7b878c777f658e1fdb119011eaa",
+      "bytes": 11234
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/walls/ModWalls.h",
+      "path": "src/native/host-patches/content/walls/ModWalls.h",
+      "sha256": "445861b115673d70f8ded58869531bcb26538cf69d95cc9ffb3225ae0bf8ed8c",
+      "bytes": 1640
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "e4ee44e8882fa3f7cf186047b6fee6310065560aea1c7041136130cd8eea6da2",
+      "bytes": 69851
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/BasicItemDefaults.h",
+      "path": "src/native/experiments/csharp/BasicItemDefaults.h",
+      "sha256": "14613971194ba2aad0ca0736873cc08c8884d411ed2a09ff94f56d48ba35567b",
+      "bytes": 17766
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedProjectileHook.cpp",
+      "path": "src/native/experiments/csharp/ManagedProjectileHook.cpp",
+      "sha256": "ebaa0755c3475618f8e5d6d46ffdd251fe0daa4b92a775e3aebc0e7813c019c9",
+      "bytes": 55410
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedProjectileHook.h",
+      "path": "src/native/experiments/csharp/ManagedProjectileHook.h",
+      "sha256": "189d1c8a0c7d93360b364fd32efaae2d2b152ed5ab3aab71583470897f0a8529",
+      "bytes": 5125
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "a2c2766e655f692196dad4bd7bab9210c8cd2ccc24d428356998a4278a8d6555",
+      "bytes": 211938
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "94ff9ba77c84b3da1b383db4b79de94fe9b7bf3e33ab2763bb165b28305dda75",
+      "bytes": 18223
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeBasicItems.cpp",
+      "path": "src/native/experiments/csharp/NativeBasicItems.cpp",
+      "sha256": "c5f0dc6f503ca17856d3785081bf265bf95014bda975035ee0ada8de194567d7",
+      "bytes": 58355
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeBasicItems.h",
+      "path": "src/native/experiments/csharp/NativeBasicItems.h",
+      "sha256": "374b373a61e1f2fac55d25763a5ad91c2eeed12a9a1f289de5b7e11950bc4852",
+      "bytes": 2149
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeContent.cpp",
+      "path": "src/native/experiments/csharp/NativeContent.cpp",
+      "sha256": "dc5ad9e07be64c2e70d3d614bc1083c8e0d6c9221c20f05f19c0c4f275e7101f",
+      "bytes": 146085
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeContent.h",
+      "path": "src/native/experiments/csharp/NativeContent.h",
+      "sha256": "a8dddc3da1c23ed0ffd6630245143ba3bd613d978ea11848b925d1b8eb6b07b0",
+      "bytes": 8197
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeDefaults.h",
+      "path": "src/native/experiments/csharp/NativeDefaults.h",
+      "sha256": "f7fef4dd4410d3e1375575f23528c44080a9b8d9829806d2dced815111847098",
+      "bytes": 10643
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeGorePolicy.h",
+      "path": "src/native/experiments/csharp/NativeGorePolicy.h",
+      "sha256": "d6a27dccc356b205fda0ec9595d400b3c4dcefa5232ecba0222a8ed8045a7fcc",
+      "bytes": 835
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeHoldout.h",
+      "path": "src/native/experiments/csharp/NativeHoldout.h",
+      "sha256": "20a8e39ed7c19d6cededa6273ae7c3b857c5d5702a6e1ed3da905410709fa364",
+      "bytes": 6502
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeSaplingGrowthPolicy.h",
+      "path": "src/native/experiments/csharp/NativeSaplingGrowthPolicy.h",
+      "sha256": "4a448545e8fc239bd097364b21ed4d373ff70680dad6af9b46aa206f2150b9da",
+      "bytes": 301
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeShooting.cpp",
+      "path": "src/native/experiments/csharp/NativeShooting.cpp",
+      "sha256": "91af23b7b06571726bad3d508b374e6ddb125d2253af9dc98a7155698cf3ac60",
+      "bytes": 16629
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeShooting.h",
+      "path": "src/native/experiments/csharp/NativeShooting.h",
+      "sha256": "560bfb6729128bdbed95d4ce940a5bdeefdfcb78ae7c98b454cd3564b11404d4",
+      "bytes": 384
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeSummonRuntime.h",
+      "path": "src/native/experiments/csharp/NativeSummonRuntime.h",
+      "sha256": "5b8baff9fad89068eafb2fe709c554c880cf3944482cfb7baf85acc65ba86782",
+      "bytes": 7599
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileAdjacencyPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileAdjacencyPolicy.h",
+      "sha256": "0d135a612e1f1c9fdb1d7dcdda9a907aee45f1f51fd3cbd459f4bc2aded2531f",
+      "bytes": 1000
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileAnimationPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileAnimationPolicy.h",
+      "sha256": "9d3410d9f089f44342600f8491573df5c63f5d2f89822282a084550f5ab903e3",
+      "bytes": 982
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileBatchPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileBatchPolicy.h",
+      "sha256": "c179397a48fb2c36a89b47af2a8a32b93a7a4ef316fbc77e42308a32408d4268",
+      "bytes": 460
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileCampfirePolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileCampfirePolicy.h",
+      "sha256": "ecb6a8f5f6601cb6b0b9be9349cce90a14ad61d1adb1e39195c58dc2837fc967",
+      "bytes": 1239
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileDrawBindings.h",
+      "path": "src/native/experiments/csharp/NativeTileDrawBindings.h",
+      "sha256": "525a39ef7547fdee43195123d5ee5d6201ba3032f00fddf698799b311ab520a9",
+      "bytes": 906
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileDrawCachePolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileDrawCachePolicy.h",
+      "sha256": "791433c2b31ffbeded4b254106df0a662a54370e759e8c70bb42edc9a0906971",
+      "bytes": 196
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileDrawWire.h",
+      "path": "src/native/experiments/csharp/NativeTileDrawWire.h",
+      "sha256": "3e93d64a35fa1f55b0681a0e8f93447fe9cb904c108292bd5719fc59635da258",
+      "bytes": 2296
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileDropPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileDropPolicy.h",
+      "sha256": "edabb52e141294b87f31757c242c1518352cc9cfec9f9a57786af24ce0f39e33",
+      "bytes": 3690
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileDustPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileDustPolicy.h",
+      "sha256": "6c3590e07d3a9bef83a48dc0b5c3ad85d662460820000e199cb67b06b4828dc4",
+      "bytes": 858
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileFlags.h",
+      "path": "src/native/experiments/csharp/NativeTileFlags.h",
+      "sha256": "05e511f1ddb43edb79a717edfa98bf1c3f6a4691e7f106a5025a1716e24f1baf",
+      "bytes": 5555
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileFramePolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileFramePolicy.h",
+      "sha256": "b3a6f9f0ac42230a1f2afebdfc9cbbd3368f6a23681b727f1851fe03862f3e7a",
+      "bytes": 448
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileFrameTogglePolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileFrameTogglePolicy.h",
+      "sha256": "1e7a277be551276140578f975d1c37d9b5be9b8c93635c098addcfe18d94b8a0",
+      "bytes": 1540
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileGameplay.cpp",
+      "path": "src/native/experiments/csharp/NativeTileGameplay.cpp",
+      "sha256": "d3e80e2f3c399de25ad9a1fcf77994b9ce347f06f372afb702356b4b431401b3",
+      "bytes": 104492
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileGameplay.h",
+      "path": "src/native/experiments/csharp/NativeTileGameplay.h",
+      "sha256": "585a94b5b90ad8ba91e9183854170cb1c25ad553a54f7e56d38a67b9f70786b5",
+      "bytes": 994
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileKillPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileKillPolicy.h",
+      "sha256": "9b9b385712abb338f3dc5913b7b2e396a1a666f35568b63d7c084f95d947b916",
+      "bytes": 402
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileMiningPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileMiningPolicy.h",
+      "sha256": "cf6979a2ecce2b02b05de54b20e416ba7ca9a07dad35894628bdd934e152652a",
+      "bytes": 653
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileOverlayPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileOverlayPolicy.h",
+      "sha256": "bccc9980c44d140d6807db6d12d28e7a4bd43f57766dd0ed231532399108a7eb",
+      "bytes": 775
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileParticleQueue.h",
+      "path": "src/native/experiments/csharp/NativeTileParticleQueue.h",
+      "sha256": "838aeba76252b6663f49455a4ee6a87f375cd58a019616954cb1fce044706f13",
+      "bytes": 1922
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileParticleReply.h",
+      "path": "src/native/experiments/csharp/NativeTileParticleReply.h",
+      "sha256": "9b80b9d08ef307ac50632a9389ac3923dc7eaff0a62b6e853aa045a4d0116a04",
+      "bytes": 941
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileParticleStylePolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileParticleStylePolicy.h",
+      "sha256": "9043772c97b56d6cc8217cd5245f473d28a1a1c9489b1d081e125917d4a43518",
+      "bytes": 1183
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileParticleWire.h",
+      "path": "src/native/experiments/csharp/NativeTileParticleWire.h",
+      "sha256": "4749ed4790c8c60a460f5a3b6a00828add0aaa7512bca67c1a22fc3591df5e8d",
+      "bytes": 4636
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTilePolicy.h",
+      "path": "src/native/experiments/csharp/NativeTilePolicy.h",
+      "sha256": "571e3f85dcbbb71a2b483015dc9a77e5f9df051e78a27049557129e3a7e8017d",
+      "bytes": 2282
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSaplingPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileSaplingPolicy.h",
+      "sha256": "842eecda4226415bc44a4b88dcfaf50d6b1da951545ebd3a59ef9f1292c8729c",
+      "bytes": 403
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSaplingShape.h",
+      "path": "src/native/experiments/csharp/NativeTileSaplingShape.h",
+      "sha256": "16ead647bae3d3aeb26c9273c345605df5a55733a1d4561bb778c9046a324526",
+      "bytes": 7466
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSaplingSwapPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileSaplingSwapPolicy.h",
+      "sha256": "679ad9d1153af23afe41679bc3070ccb5b2a26c6cfc2c0ee8ec2522c23f223ee",
+      "bytes": 916
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileScanPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileScanPolicy.h",
+      "sha256": "8f5aac525081eba6d831cb0857e28e70a6d850b48b95b7661993e381ffe1376a",
+      "bytes": 1444
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSmartInteractPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileSmartInteractPolicy.h",
+      "sha256": "c8a0dca68cb12fe8cf2e50f2fe19610fa9412328b6fdcd526d572cd543b21b7f",
+      "bytes": 1076
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSpriteBatch.cpp",
+      "path": "src/native/experiments/csharp/NativeTileSpriteBatch.cpp",
+      "sha256": "ac897f19e8fd61683d4bc4b79665929a27093d57b65b5d5edbe0b8e7d29f2287",
+      "bytes": 7402
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSpriteBatch.h",
+      "path": "src/native/experiments/csharp/NativeTileSpriteBatch.h",
+      "sha256": "f4109da096c141d64061d08b264daefde251d3382ded36535ecb0510f990a2c9",
+      "bytes": 420
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSpriteBatchLifecycle.cpp",
+      "path": "src/native/experiments/csharp/NativeTileSpriteBatchLifecycle.cpp",
+      "sha256": "bfbe587f7d49cd1ccaf02063bc4e6f5d6fac69ab4a6df59c313928dc44423b53",
+      "bytes": 9083
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSpriteBatchLifecycle.h",
+      "path": "src/native/experiments/csharp/NativeTileSpriteBatchLifecycle.h",
+      "sha256": "cf32a25c1fcdb652bdf281c95a6a015740b345b65d3d9e95131c5eaf1823b2b6",
+      "bytes": 310
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSpritePass.cpp",
+      "path": "src/native/experiments/csharp/NativeTileSpritePass.cpp",
+      "sha256": "26eae6755eb973b329e386b1da5a3cde3f555f856194384735196058b56a8576",
+      "bytes": 13593
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSpritePass.h",
+      "path": "src/native/experiments/csharp/NativeTileSpritePass.h",
+      "sha256": "cf9aaff71ea773eae4fe882c5fbc851907f37291708e8fc05f93531ae02337b1",
+      "bytes": 539
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSpritePassQueue.h",
+      "path": "src/native/experiments/csharp/NativeTileSpritePassQueue.h",
+      "sha256": "e8db932bfaac7457a43c197d6ed6a687a3caa795e187f54329a2b21241ebdf6e",
+      "bytes": 2321
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSpriteReply.h",
+      "path": "src/native/experiments/csharp/NativeTileSpriteReply.h",
+      "sha256": "099af5d06de84fea2efd55f2800a4d2eb7a5d9c1590aa30d63d49693d02d9f6c",
+      "bytes": 1174
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileSpriteWire.h",
+      "path": "src/native/experiments/csharp/NativeTileSpriteWire.h",
+      "sha256": "376b75f7652370bcfac9a6f259a0c18b7f725ab4f712b010b54e50ddc05d6e4f",
+      "bytes": 4764
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileWirePolicy.h",
+      "path": "src/native/experiments/csharp/NativeTileWirePolicy.h",
+      "sha256": "5c47c3e76b26ad946278ad67ff388e1e50233756d6f45f45bbadde5759af7b13",
+      "bytes": 1309
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTreeDropPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTreeDropPolicy.h",
+      "sha256": "ae94c05f347ecbeddf3ba40dc28063d209a21f7b3335898e8f340753792c80a4",
+      "bytes": 744
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTreeEffectsPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTreeEffectsPolicy.h",
+      "sha256": "ec62c3ca0cf5334199985cccd8e318af6e4def582b5520de020cf72dcb00d70d",
+      "bytes": 494
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTreePlantPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTreePlantPolicy.h",
+      "sha256": "12f7ac52a03524ceeb1050a25023b85e6393c796f80f05783d4f4c0e1d55fb80",
+      "bytes": 572
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTreeShakePolicy.h",
+      "path": "src/native/experiments/csharp/NativeTreeShakePolicy.h",
+      "sha256": "8fdafb50be171c8275e7742cba748811d4e86edae11658a7e9e247de96baf79c",
+      "bytes": 983
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTreeSoilPolicy.h",
+      "path": "src/native/experiments/csharp/NativeTreeSoilPolicy.h",
+      "sha256": "aa6f85e1a79360da53a335d0c647d8fd57070d87b3468c8bf02d91188a47fd68",
+      "bytes": 572
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTreeTexturePolicy.h",
+      "path": "src/native/experiments/csharp/NativeTreeTexturePolicy.h",
+      "sha256": "dada9d8f32b6e23d75c5d9a9b2b10d12c63ab8deee22eb495fc06af8f9e3c6be",
+      "bytes": 1303
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeUseSounds.h",
+      "path": "src/native/experiments/csharp/NativeUseSounds.h",
+      "sha256": "df8bd26233027546583e022db3c5b5e1e2515ee4e50352c7c02a0bfa7a2b96c2",
+      "bytes": 13439
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWallPolicy.h",
+      "path": "src/native/experiments/csharp/NativeWallPolicy.h",
+      "sha256": "6d94a9dde3ab2e724035adc4b0b928d541f13e0a19d947fc06f29daead9f3904",
+      "bytes": 5159
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWallRuntime.cpp",
+      "path": "src/native/experiments/csharp/NativeWallRuntime.cpp",
+      "sha256": "c6aaf764e2156cea668631e3de458faa0f9ba04d095a522c77a87c1d178da238",
+      "bytes": 22837
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeWallRuntime.h",
+      "path": "src/native/experiments/csharp/NativeWallRuntime.h",
+      "sha256": "258d41da519df02be6c82ab56ffdd5569c17a565048ebd85445277dc0c855020",
+      "bytes": 234
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ProjectilePolicy.h",
+      "path": "src/native/experiments/csharp/ProjectilePolicy.h",
+      "sha256": "a96be5d93e221037b4b02e642a7e03a8e47ddcbb1bd243079a3bbf316e8bb167",
+      "bytes": 4977
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceContentIdentity.h",
+      "path": "src/native/experiments/csharp/SourceContentIdentity.h",
+      "sha256": "9862afa7fc2ae826e551707b4ed468e9b3b5deabbe61765b77a79e51470e2c92",
+      "bytes": 1877
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "c58d40d6c22571e8cffe0910fd62f4b430eb6213dd3d78c3c6cb17b13c49c25a",
+      "bytes": 77560
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceLoader.h",
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "sha256": "ac5a58e865d0d4ac9a59d4c62d7d6b091f4f46b8f0fa5872e2e5e23bfafbd7b4",
+      "bytes": 1133
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceParser.cpp",
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "sha256": "33b13aed4a7615eeedde38eb43ed1f92e0684f5057a91785869d58a079828e93",
+      "bytes": 21304
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceParser.h",
+      "path": "src/native/experiments/csharp/SourceParser.h",
+      "sha256": "485df2a9ac0c5b0766b753c021adefb034d64c617d9d86f49b57688b255d2168",
+      "bytes": 531
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SummonPolicy.h",
+      "path": "src/native/experiments/csharp/SummonPolicy.h",
+      "sha256": "04c345ce0b3b8fe5865ee9531352265558025ebff409a666c3b3940bac92ff80",
+      "bytes": 6071
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/example_completion/matrix.json",
+      "path": "docs/reference/generated/example_completion/matrix.json",
+      "sha256": "add55038b1793255274067b40519fc61c0d03e790bd5bc41b9f9c28731e34a07",
+      "bytes": 643961
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/example_completion/matrix.md",
+      "path": "docs/reference/generated/example_completion/matrix.md",
+      "sha256": "e344aee80b116628fd8d543de011e223b5a02f05497c2761c3a5685c742f0a37",
+      "bytes": 51943
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/sdk_public_reference.json",
+      "path": "docs/reference/generated/sdk_public_reference.json",
+      "sha256": "0c30826a8ddc033fb6bdd2110378dd8ac210a6c785a682c21ed42b84ffad2d39",
+      "bytes": 89902
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/sdk_public_reference.md",
+      "path": "docs/reference/generated/sdk_public_reference.md",
+      "sha256": "357b1f65296017bdbacf35124a19276b9c17f5ba7b42188cae2cec8b0341627d",
+      "bytes": 52877
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyContentDeclaration.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyContentDeclaration.cs",
+      "sha256": "0dbaaf60413ef18884746a86e89ffbd5d53c7e4bb8366a11cfeadf9e306512f2",
+      "bytes": 2451
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyGore.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyGore.cs",
+      "sha256": "664a594380fe7f87969df3989bf36e872464d21f0d423e0c4f620a0bb67525cb",
+      "bytes": 233
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyHoldout.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyHoldout.cs",
+      "sha256": "f4477e56e035db3c24262b31c98510ec2480f86d41c5e19ab35d90bc447cc994",
+      "bytes": 467
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyItem.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyItem.cs",
+      "sha256": "8570b847d8a2b08406f5e0d410e9f901e07dedd5c040168daf1de2ce1df2a55d",
+      "bytes": 20068
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyMinionSteering.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyMinionSteering.cs",
+      "sha256": "d1e89538cf7995a9ee27e6aa9078af309cf8632deafb51830e549859c60488ff",
+      "bytes": 4902
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyNativeDefaults.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyNativeDefaults.cs",
+      "sha256": "a92b01f8d764a2af462bfe2b63c2b00800e8cb7d4b516207160c31d9c7507803",
+      "bytes": 2521
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyShooting.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyShooting.cs",
+      "sha256": "db24001765a633d5009dcb5c73c1114f757f9b7e8a9d14a53fe71b2d348fd234",
+      "bytes": 9436
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnySoundStyle.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySoundStyle.cs",
+      "sha256": "afecf8cc36f987ed7be6f7a60f0c4ef5d0cd3308566fd391f46372044aa54484",
+      "bytes": 3050
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "sha256": "012f526faa49d7e497d4e9cbdd64b79434530abffe611a8c68e964d1424a5da4",
+      "bytes": 13802
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyTile.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyTile.cs",
+      "sha256": "685fff65f5a73a65ee6b4c21e99bc09509cb742074790086480344e0b5abc392",
+      "bytes": 12005
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyTileDrawContext.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyTileDrawContext.cs",
+      "sha256": "0e4634d300dd616e859ca66fc8758d54cc350fd77c78a3038184ada73a88b7f7",
+      "bytes": 9384
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyTileRuntime.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyTileRuntime.cs",
+      "sha256": "c5a84ef24c47bfb68138874b2ce375593805da3e20aeab8b0dff64d605a38361",
+      "bytes": 18324
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyTree.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyTree.cs",
+      "sha256": "661cfac075804a545ea1a7469ba76d73ffde66a82d6657e71206999704d1a1ed",
+      "bytes": 608
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyWall.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyWall.cs",
+      "sha256": "28d6ffd9b8bf9aee4a71ded3d5495465e733cb1c208d8936787f9ce4e764b7c2",
+      "bytes": 5308
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceCompiler.Smoke/Program.cs",
+      "path": "src/managed/BunnySourceCompiler.Smoke/Program.cs",
+      "sha256": "ad49cb18bf0d4927635406403e074e39eb29376e12be39f36821460d463d43ce",
+      "bytes": 67604
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "4bc1f13a7c7116e93d7c144753f5ab897872d6289d00c37fc57e0760bf68c134",
+      "bytes": 66745
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceCompiler/Compiler.cs",
+      "path": "src/managed/BunnySourceCompiler/Compiler.cs",
+      "sha256": "8c99090aab609be178b39462b83ca21026049329c8cb70e2c6a7b4f719cb0f40",
+      "bytes": 20430
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceCompiler/TileWriter.cs",
+      "path": "src/managed/BunnySourceCompiler/TileWriter.cs",
+      "sha256": "021c9c1a4b830ef1d49f06aea4363f800843dbff03788372fe2c90737c74c466",
+      "bytes": 7063
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "d87f506ed8e9010f310a7da12fdebc27f8b8391564c7ff09d3c2fcff8b57671f",
+      "bytes": 2927
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Docs/VisualTileProbes.md",
+      "path": "samples/ExampleModCSharp/Docs/VisualTileProbes.md",
+      "sha256": "4b2002ce859ef3e9a982b8de98eda5fd4b0f97d02fe29372a7b95108016c4036",
+      "bytes": 10546
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Assets/Sounds/Items/Guns/ExampleGun.ogg",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Sounds/Items/Guns/ExampleGun.ogg",
+      "sha256": "26651b68bdf8639cb3a665aee7cab4223fdff8cd7c57890394a6159f9448aa79",
+      "bytes": 9698
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Common/Players/ExampleWelcomePlayer.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleWelcomePlayer.cs",
+      "sha256": "380a4cb885ee34c823c8640fcf587b8631385177fe444d8f341d7418d885c727",
+      "bytes": 757
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleTree_Leaf.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleTree_Leaf.cs",
+      "sha256": "2ddaef15eb44d98519e48564c64c768e683627a8f78fd3a374a13fc0e59d59a2",
+      "bytes": 266
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleTree_Leaf.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleTree_Leaf.png",
+      "sha256": "fc39a591097de52b312e412714799391b7db14ea1dbae9d325e06187508e039c",
+      "bytes": 663
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/WaspNest.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/WaspNest.cs",
+      "sha256": "1570592b16eb857cd6a3a3eacc3344ab64a6cc770549b56285d2702ce38aa9f5",
+      "bytes": 659
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Ammo/ExampleBullet.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Ammo/ExampleBullet.cs",
+      "sha256": "91d04334397f041323331ac48994c30525f7c8e1f6a9548d852849fa8a4ba7b7",
+      "bytes": 817
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Ammo/ExampleBullet.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Ammo/ExampleBullet.png",
+      "sha256": "83d6ad39035a041809086c7e8da06c0b202995a4685ca6ddba0e32bc45edb9ed",
+      "bytes": 261
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/ExampleTileItem.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/ExampleTileItem.cs",
+      "sha256": "631bb66f1aa94e5d043a7f4bf68a412a33804b4d2fddc6d16d44ff9589676a80",
+      "bytes": 829
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/ExampleTileItem.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/ExampleTileItem.png",
+      "sha256": "6ef7f481242b7b724a443a9b1068a7abec87d0b8300e4bc9b0b6d67d69f7a891",
+      "bytes": 178
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/ExampleWallAdvanced.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/ExampleWallAdvanced.cs",
+      "sha256": "d30d39c16745252a951fa6e34c7c2bf27f32fbf9e8ba7846fb8da5c70eb0ea91",
+      "bytes": 831
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/ExampleWallAdvanced.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/ExampleWallAdvanced.png",
+      "sha256": "10661712d31781e39cc593bb013550222693e79a780640f03a11b1567c0bb52b",
+      "bytes": 2981
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/VisualProbes/ExampleCampfireVisualProbeItem.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/VisualProbes/ExampleCampfireVisualProbeItem.cs",
+      "sha256": "2607f6818feac7d71d1e8f3beadd59d5b8323a053772692acb550b112e79a2fc",
+      "bytes": 687
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/VisualProbes/ExampleCampfireVisualProbeItem.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/VisualProbes/ExampleCampfireVisualProbeItem.png",
+      "sha256": "aaa419dc9aac2de76c98ac37478707411d3e5a7a91074c0d1998fbb627aa84ef",
+      "bytes": 2983
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/VisualProbes/ExampleLampVisualProbeItem.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/VisualProbes/ExampleLampVisualProbeItem.cs",
+      "sha256": "7499605944fc3f9d035a4f6242266f165c46c57ae4310e581551ff68c2d3a383",
+      "bytes": 649
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/VisualProbes/ExampleLampVisualProbeItem.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Placeable/VisualProbes/ExampleLampVisualProbeItem.png",
+      "sha256": "795ad23a00bf992e9591bfcb78ceb6443d26d7b84267687da76e00bd0fe23e8a",
+      "bytes": 405
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Melee/ExampleMeleeWeapon.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Melee/ExampleMeleeWeapon.cs",
+      "sha256": "835ae966a6c4a4e2eb3ffc48edfecf83bc45329d1d97f41cfdc6e0f95da4fc16",
+      "bytes": 782
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Melee/ExampleMeleeWeapon.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Melee/ExampleMeleeWeapon.png",
+      "sha256": "afa3f353c4370c7560141124a729dd2aaa1d26a5cf8cac621faf76594a8b157f",
+      "bytes": 720
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleBulletLauncher.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleBulletLauncher.cs",
+      "sha256": "05b15f970ce117bf98a33d7438e6ac2f2fc42ec85a429623cbd2add39a4edd5d",
+      "bytes": 953
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleBulletLauncher.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleBulletLauncher.png",
+      "sha256": "6437590d81bcf0b634f4f27866e087337eac1b901f5f2f3ff9aafccf403f7e14",
+      "bytes": 316
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleGun.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleGun.cs",
+      "sha256": "589e85136c42e511463a7b798aa4c6534907c2cdcb20f0d6c6597dcf7acc31f2",
+      "bytes": 1460
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleGun.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleGun.png",
+      "sha256": "6437590d81bcf0b634f4f27866e087337eac1b901f5f2f3ff9aafccf403f7e14",
+      "bytes": 316
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleRocketLauncher.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleRocketLauncher.cs",
+      "sha256": "b17e38f92473fac9bef7a0d7fabdafc0b13b0ec7c85deb6c17d4a5212574a4e9",
+      "bytes": 995
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleRocketLauncher.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleRocketLauncher.png",
+      "sha256": "8fae7057018e249d175aaba46d7460731430599f60cb5ab2f7e3ef5eb17d5183",
+      "bytes": 565
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleShotgun.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleShotgun.cs",
+      "sha256": "f2483447a74c07fe4db4c6527fd58d209739f855b4cd2c68ef6267ab82eaad34",
+      "bytes": 1622
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleShotgun.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Ranged/ExampleShotgun.png",
+      "sha256": "90c544db569f701d4ebf94b647a8ecfec2976b11f6c1c44d32eaa9b1f020f286",
+      "bytes": 244
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleGuardedPrefix.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleGuardedPrefix.cs",
+      "sha256": "f7d52e3937c4bb9808bd5881a231463986242a936cfdebe31e0049b26079007e",
+      "bytes": 737
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleMightyPrefix.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleMightyPrefix.cs",
+      "sha256": "041e5b3b5bc7d29270b4e6f40c70e7327fe6463ce1d5228958a75c03a8e3fe8c",
+      "bytes": 736
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleBulletProjectile.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleBulletProjectile.cs",
+      "sha256": "28a6d525bc4b40897313093c576d70e1547fa2cfb694a9fc320900490a315849",
+      "bytes": 1003
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleBulletProjectile.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleBulletProjectile.png",
+      "sha256": "25bfb119a8e1b4d054ed78bac392b72e0448eee7b9ac971d3afb693cb5a9dc7b",
+      "bytes": 252
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleMinion.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleMinion.cs",
+      "sha256": "8e4eb952eeca86b7ab8bcea323aae02afdf87d708488e1dadc4a439a0db93a8f",
+      "bytes": 1115
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/ExampleTile.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/ExampleTile.cs",
+      "sha256": "f3766c1b86c965e4703c749d95d33ba52a57438f5182bef54892726570887bae",
+      "bytes": 467
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/ExampleTile.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/ExampleTile.png",
+      "sha256": "e6daadfeee8b0fee177a27ca00ee3f360289678f53e76bd7cc93f85d2ced55ae",
+      "bytes": 17463
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleSapling.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleSapling.cs",
+      "sha256": "40831d41be0a9deac2737ee6dce701e76b7b10cf998c99d43ab1522c9236d8c8",
+      "bytes": 897
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleSapling.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleSapling.png",
+      "sha256": "a09391f861a0877f7ea72f0569579a2fac18e75ea107044038f86606482178cb",
+      "bytes": 3509
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleTree.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleTree.cs",
+      "sha256": "0fe8eb5d54f3c2f3fea4e5f19e6d752ee0057181edbb1cd449c0ad63c31df1ef",
+      "bytes": 494
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleTree.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleTree.png",
+      "sha256": "8eb9d9b394fa1c84ac5da9feb842b4d6d614412c091472e8798c70d99e50402a",
+      "bytes": 1915
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleTree_Branches.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleTree_Branches.png",
+      "sha256": "a495b1b91eeffc4477821dfb2d8e64504298ab97da5eb66f32bfaab35dd0fdcf",
+      "bytes": 1064
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleTree_Tops.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/Plants/ExampleTree_Tops.png",
+      "sha256": "4a2dce840c45b7f6e595890ff893c7c79eb7daad8683e2ee4dff8895ad695845",
+      "bytes": 1150
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleCampfireVisualProbe.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleCampfireVisualProbe.cs",
+      "sha256": "895e58aa33435deb557e330efb4c636edffe1f1b92050b806f2d7df9231e1248",
+      "bytes": 1782
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleCampfireVisualProbe.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleCampfireVisualProbe.png",
+      "sha256": "65647f8fa959513b58efc8ae7e61b051eb5c44ee2ee34404fb3f5fd9e4aeaa45",
+      "bytes": 4308
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleCampfireVisualProbe_Flame.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleCampfireVisualProbe_Flame.png",
+      "sha256": "dce6610eb32e9946925b8a964b065e0b3780d659b25ad823ad1cefce4ab8dd5a",
+      "bytes": 3817
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleLampVisualProbe.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleLampVisualProbe.cs",
+      "sha256": "37cb93e57e27dd392bf145d873e6e7ac4809a017f6e8589210d81f92da4fa15d",
+      "bytes": 1693
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleLampVisualProbe.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleLampVisualProbe.png",
+      "sha256": "821f5210518251fcae83dbfce40515f44fa4c14981003ecc0bcf1a0f329dd61c",
+      "bytes": 1097
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleLampVisualProbe_Flame.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/VisualProbes/ExampleLampVisualProbe_Flame.png",
+      "sha256": "38753c968afa29297e91559e260a986ce94cc2a5b510560fa76ff7d03a0521a0",
+      "bytes": 227
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Walls/ExampleWallAdvanced.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Walls/ExampleWallAdvanced.cs",
+      "sha256": "2149447af3f453f28b46136dc4b9b173820a2f73590391aef4e341e84361d8ef",
+      "bytes": 1398
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Walls/ExampleWallAdvanced.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Walls/ExampleWallAdvanced.png",
+      "sha256": "ce5344f8e3e6884a99f07b12585758bfad04d86591160e7735983feb7095645e",
+      "bytes": 13395
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/ARVORE_GORE_ANDROID.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/ARVORE_GORE_ANDROID.md",
+      "sha256": "4f9351b74d62521f43c0b2b37de750af60d1d9e0e04ac1b3bac9137d26e76c57",
+      "bytes": 3844
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "sha256": "add55038b1793255274067b40519fc61c0d03e790bd5bc41b9f9c28731e34a07",
+      "bytes": 643961
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.md",
+      "sha256": "e344aee80b116628fd8d543de011e223b5a02f05497c2761c3a5685c742f0a37",
+      "bytes": 51943
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/CUSTOM_AUDIO.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/CUSTOM_AUDIO.md",
+      "sha256": "72934058eec22fd97214ba9e1de7f0c99bb48c864f617b4c0395b7adecd623b0",
+      "bytes": 1962
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/NATIVE_DEFAULTS_V96.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/NATIVE_DEFAULTS_V96.md",
+      "sha256": "a8b011f040e2e2e8d0acdf6ff6268aa2a679cdad9990bc9d22a9aca5a7a33d56",
+      "bytes": 4378
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/PROJECTILE_LOADER_V93.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/PROJECTILE_LOADER_V93.md",
+      "sha256": "2d4bc8765b312c223575f09a481f495ac323809bcd6f849a0bd690f867de7506",
+      "bytes": 3845
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/SHOOTING.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/SHOOTING.md",
+      "sha256": "96135ac51f3f3a53b4731814430aca4d783c95d74f8747877549512132686cb7",
+      "bytes": 6036
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/SUMMON_ANDROID_V94.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/SUMMON_ANDROID_V94.md",
+      "sha256": "825376d6f89317793f3f0a0328c6bfe73f3b6b027bca490f6405a3967b37e6a9",
+      "bytes": 1161
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/SUMMON_LOADER_V95.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/SUMMON_LOADER_V95.md",
+      "sha256": "d1b2a906b3c478416763c6d2efb7ff6931f5a84bc8e189475d22e5a5c5bae0cf",
+      "bytes": 3042
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/TESTAR_ANDROID.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/TESTAR_ANDROID.md",
+      "sha256": "42dd615b964e1e38500ec93dd118e47b6d15723b98181f89b6eb3b84d8a58e63",
+      "bytes": 3394
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/WORLD_LOADERS.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/WORLD_LOADERS.md",
+      "sha256": "f3bffb699c589feb632bfc3d01c48d302a79cc9b82e6ae85e2340c903b2c7473",
+      "bytes": 5164
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/manifest.json",
+      "path": "samples/ExampleModCSharp/Playable/manifest.json",
+      "sha256": "9ccb784ac5ecc894227f78a28cf1adc57be6e040feeebe296fba86d20065257e",
+      "bytes": 533
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Tests/check_examples.py",
+      "path": "samples/ExampleModCSharp/Tests/check_examples.py",
+      "sha256": "e90a667a8e09ef08649705710fb9494f8c724ab0e5d8a9df967dc78c49c93e9e",
+      "bytes": 13993
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Tests/check_tile_visual_probes.py",
+      "path": "samples/ExampleModCSharp/Tests/check_tile_visual_probes.py",
+      "sha256": "2337151696036b48e50bf007b045e8a9230b07de137cee72ff477e3bd71f9da5",
+      "bytes": 2442
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/compatibility.json",
+      "path": "samples/ExampleModCSharp/compatibility.json",
+      "sha256": "077dcc53f8cda13c1ec24468b8e5644f9544a997ca4ce1b8b8d8649f3ab5c301",
+      "bytes": 7878
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/basic_items/Program.cs",
+      "path": "tests/native-and-managed/basic_items/Program.cs",
+      "sha256": "e62ec129bc3088ba5263b7c60943407775a0565d6b51fad7a104580c0dbfba27",
+      "bytes": 54722
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/basic_items/basic_source_parser_test.cpp",
+      "path": "tests/native-and-managed/basic_items/basic_source_parser_test.cpp",
+      "sha256": "2841589a9805d9031df19853d756a8bd8ba963c03821b9602179b5af2db773f3",
+      "bytes": 1690
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/basic_items/check_full_wire.py",
+      "path": "tests/native-and-managed/basic_items/check_full_wire.py",
+      "sha256": "5d9130356304a348784ef3b8a307b0d19306b09657570e35aaf82997087e804d",
+      "bytes": 2896
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/basic_items/native_item_binding_test.cpp",
+      "path": "tests/native-and-managed/basic_items/native_item_binding_test.cpp",
+      "sha256": "addea04bc8aa65f7ab28e63143ab4f3cc726f4cd5dea3dad70d3d1cdfa7dae4e",
+      "bytes": 24188
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/basic_items/native_policy_support.cpp",
+      "path": "tests/native-and-managed/basic_items/native_policy_support.cpp",
+      "sha256": "0a53befcaca49cd5d8541ed7b94a672ea8739ed88809991c91b2efe1e3148e87",
+      "bytes": 2940
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/basic_items/package_assets_test.py",
+      "path": "tests/native-and-managed/basic_items/package_assets_test.py",
+      "sha256": "ae7d64462dc2e9695104044d0bf24b29a5d547105f2e569b925377f776da6ded",
+      "bytes": 3235
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/combat_batch/check_package.py",
+      "path": "tests/native-and-managed/combat_batch/check_package.py",
+      "sha256": "f238e1a276764c4507fe8a8cbb7690d153e39334a2fa27789954cae112d2129b",
+      "bytes": 2245
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/csharp_build_policy_test.py",
+      "path": "tests/native-and-managed/csharp_build_policy_test.py",
+      "sha256": "6d683541ac5771fefcb5d1d4075257e44bcb9c734b3ae9e65114ebaadd52f11f",
+      "bytes": 5028
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/csharp_native_summon_damage_test.py",
+      "path": "tests/native-and-managed/csharp_native_summon_damage_test.py",
+      "sha256": "4573bb8897b53f4ed0cee87cd1aa364403d495284534d4a5069209638ff708b9",
+      "bytes": 334
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/native_recipes/native_recipes_test.cpp",
+      "path": "tests/native-and-managed/native_recipes/native_recipes_test.cpp",
+      "sha256": "c11b44ff00a8ac863d20b88aaccce70e2ee19c10b0a858d6d77d5e68b2d685e8",
+      "bytes": 40719
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/private_delivery_script_test.py",
+      "path": "tests/native-and-managed/private_delivery_script_test.py",
+      "sha256": "b14a8d9456da97c852586f2c596d8dfa2c43db36e55e063345ccb6bb64f600da",
+      "bytes": 1417
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/shooting/Program.cs",
+      "path": "tests/native-and-managed/shooting/Program.cs",
+      "sha256": "a71a502cd9bbd0762c67bd9ce47f6880dcd2801a742fe6defe8db6a8002d012d",
+      "bytes": 6951
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/shooting/Shooting.csproj",
+      "path": "tests/native-and-managed/shooting/Shooting.csproj",
+      "sha256": "32db238030a61a1a9aa5b26d5627a82e206cf92201dce997d85cda2f2c4ae1c7",
+      "bytes": 486
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/shooting/native_test.cpp",
+      "path": "tests/native-and-managed/shooting/native_test.cpp",
+      "sha256": "cf12af12ce44ba33377925e1e8d2d929a38dae8428478c9e219aae5d18c8fd45",
+      "bytes": 10428
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/shooting/run.sh",
+      "path": "tests/native-and-managed/shooting/run.sh",
+      "sha256": "1d8995d8ac9f6c41073c41452cde4360098cc762cfe3f593366c31c9eb74842a",
+      "bytes": 484
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/source_parser_smoke.cpp",
+      "path": "tests/native-and-managed/source_parser_smoke.cpp",
+      "sha256": "e9d324bcc826b3a5baa7860c03d90532e073a31ad85592122cbf2edcd1233a24",
+      "bytes": 5148
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/contracts_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/contracts_test.cpp",
+      "sha256": "29c9fe49ae62b77a420823727b26f4179c1fd61b1dd4e3d3ec208ce4d37e3a41",
+      "bytes": 3741
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/holdout_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/holdout_test.cpp",
+      "sha256": "04005064d2f24e9af8456ce0fbf6f7054466ceb97d82ab54b0a0c7376a8a22d3",
+      "bytes": 5382
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/native_binding_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/native_binding_test.cpp",
+      "sha256": "b2902c8751fd8f62cb3be451333302790cf065833f8c079b553a952f6723570a",
+      "bytes": 5176
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/native_defaults_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/native_defaults_test.cpp",
+      "sha256": "231b775d13a6629f3effac1047fbfd450d0352a26c87006aed9a07239758084e",
+      "bytes": 4625
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/run.sh",
+      "path": "tests/native-and-managed/summon_lifecycle/run.sh",
+      "sha256": "96ed4a3b3ffc1a8d13592aa0fa43300eb2bc2a0be91951808165fab61e0e3b55",
+      "bytes": 2902
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/runtime_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/runtime_test.cpp",
+      "sha256": "a0ef1dc441606819196be10d2abbe4020db1db812fb6e03d0d6a4b64138fdd2c",
+      "bytes": 11467
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/scheduler_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/scheduler_test.cpp",
+      "sha256": "bf3f21c9a3d7eb391d19f08fda9f1afdb5c872fa6cdd8a697d668f2de02db485",
+      "bytes": 4552
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/sound_router_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/sound_router_test.cpp",
+      "sha256": "8c5e38b1315ced298103bc1a05fa3539498fbb28b878103cb21d5dcbb1bf6ce1",
+      "bytes": 6439
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/source_damage_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/source_damage_test.cpp",
+      "sha256": "3b9e0e67ec7eb31e535bf06786e4811d5501e798d1af6d04a700081831b49291",
+      "bytes": 6610
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/source_registration_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/source_registration_test.cpp",
+      "sha256": "f95b08b5a31078bc918b00a756bf9fea2ae83c724ed3c64f4644f8f79cd54ef6",
+      "bytes": 2862
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/summon_lifecycle/use_sound_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/use_sound_test.cpp",
+      "sha256": "697423fa4c2c7cf80eacf28d1a8864ba255998003fa993454033ed9c285c5186",
+      "bytes": 9206
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/batch_gate_test.py",
+      "path": "tests/native-and-managed/world_loaders/batch_gate_test.py",
+      "sha256": "e6856036f78a2e81b3520119408b745dfee0af9424cc9beeaaf96c737a17d908",
+      "bytes": 4157
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/gore_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/gore_policy_test.cpp",
+      "sha256": "c674c318b0b428d5b55a7776e66c316a807e3e390957d39e12c8d849610b9e8f",
+      "bytes": 865
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/run.sh",
+      "path": "tests/native-and-managed/world_loaders/run.sh",
+      "sha256": "9ad6c1aacc7de09fb82a08a1416032b34082387505131d2f13634cfb8a7ea852",
+      "bytes": 9671
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/sapling_growth_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/sapling_growth_policy_test.cpp",
+      "sha256": "4a4696d2ce405ab08cbd6751bda9a22fcbe5fc05bc1e3b51afff1b0c36f91fd4",
+      "bytes": 598
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_adjacency_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_adjacency_test.cpp",
+      "sha256": "7c4221b4ead1fe78ddcfb04cab1ca7be77dd1b0cd1a353bcf59a610e52470ce7",
+      "bytes": 1066
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_animation_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_animation_test.cpp",
+      "sha256": "ac6b7bddcd721d594f28ed91b79e103d4146786cba94499af6c89993dce2692e",
+      "bytes": 1331
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_batch_lifecycle_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_batch_lifecycle_test.cpp",
+      "sha256": "1d1753bdb382a5fa7e3bc6ae4ecaa6cace20da427dd55593da45a0a282f6fa68",
+      "bytes": 650
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_break_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_break_policy_test.cpp",
+      "sha256": "baa5c6e24ca08edd34cef14bec4dc755275ace7fdbcd7b4ce093ce6553b4a7e2",
+      "bytes": 1754
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_campfire_scene_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_campfire_scene_test.cpp",
+      "sha256": "54e20081d7108700becde615961d17800eab57c22dd570966a1cfb4cd4468456",
+      "bytes": 1503
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_draw_bindings_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_draw_bindings_test.cpp",
+      "sha256": "bd90e99d72c5c83e5582b3851fde730157772de0ab5c3068032511f93067d8ae",
+      "bytes": 1622
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_draw_cache_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_draw_cache_test.cpp",
+      "sha256": "3c01a2dcf988ddf36c334285264e243c634dd27d2291003fb5de353127ec39dc",
+      "bytes": 452
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_draw_wire_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_draw_wire_test.cpp",
+      "sha256": "f2341ec2e48de136cff6fadb78e1b1813c81538806a646116a44c813e7c86a74",
+      "bytes": 1474
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_drop_callback_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_drop_callback_test.cpp",
+      "sha256": "b890f7533e4a7b0a64a80becf2e01f6c0c27e682f7dc1775399f97d61b92d840",
+      "bytes": 1544
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_dust_callback_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_dust_callback_test.cpp",
+      "sha256": "ce262bf9cb364b383ae1927e5d51f88de35c779b233a8184058b506376a8d6a6",
+      "bytes": 877
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_flags_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_flags_test.cpp",
+      "sha256": "7d49e16cbf2ac2eb6c64e32ce37c1dc2c440c70ab63bdeb2ad015c479f5d47a9",
+      "bytes": 9908
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_frame_callback_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_frame_callback_test.cpp",
+      "sha256": "804026d3297d715a18ba4f633520ef0e8286e4cd34deb52f6c9ff2478b67e0f1",
+      "bytes": 858
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_frame_toggle_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_frame_toggle_policy_test.cpp",
+      "sha256": "11af17a942d64434ad3b81965abcb6f4d6ad52662e8e0004782d732344a32442",
+      "bytes": 1283
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_kill_callback_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_kill_callback_test.cpp",
+      "sha256": "938fd0c78e4ff65f6d9b50de46d7c2b4d49fd9b073708771977a78ec3bd91bd9",
+      "bytes": 743
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_mining_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_mining_policy_test.cpp",
+      "sha256": "539f62bc0c51965484b781b66c40402824f49aaf961b333d35eac5611379293c",
+      "bytes": 817
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_particle_style_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_particle_style_policy_test.cpp",
+      "sha256": "ad534b52bb4e8b8c6b6d51b909f64cb4117d6ad9ded9544a1e595ef2f0b4a9fa",
+      "bytes": 986
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_particle_wire_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_particle_wire_test.cpp",
+      "sha256": "683b761a942411f1cd4aa3fde01f2cae6e7bc4c2ace575e569aeb563181ff960",
+      "bytes": 3931
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_sapling_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_sapling_policy_test.cpp",
+      "sha256": "81a5cae5280b560408d96e0365b9fde49a169b4a5dbf2da646998b7145f97dde",
+      "bytes": 1016
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_sapling_swap_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_sapling_swap_test.cpp",
+      "sha256": "256678146ef805914970667aaee6745176f6d1b4f26cfd9cc4eabfb12a17cf5d",
+      "bytes": 964
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_scan_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_scan_policy_test.cpp",
+      "sha256": "01c543e290f84ce73d91555603f12ce6c94b57342be366ed4f2e39ca734992f2",
+      "bytes": 1332
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_shape_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_shape_policy_test.cpp",
+      "sha256": "8bd2c3da64ec660f4d7a22bd882c5b4c6593a8f02343907f262635f172d70591",
+      "bytes": 1830
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_smart_interact_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_smart_interact_policy_test.cpp",
+      "sha256": "52d901de52aeede7e3de1a8e57a10e2433681f497e68cc119cdf32ef5d7a3531",
+      "bytes": 1091
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_sprite_overlay_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_sprite_overlay_test.cpp",
+      "sha256": "b6aeeaa1e9defd7878b1bef997f95365ad9b9914e57bbe7d0da0d2e3e56524e2",
+      "bytes": 1608
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_sprite_pass_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_sprite_pass_test.cpp",
+      "sha256": "f898889ba51b962d3e5f6148fb603b7325c4a0cb0626fdf544558bbceb6bbcbb",
+      "bytes": 1962
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_sprite_reply_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_sprite_reply_test.cpp",
+      "sha256": "07230f77e5040797665954f858ac447fcdd1b2284da0b067a3e8fa440e68f8a5",
+      "bytes": 1193
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_sprite_wire_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_sprite_wire_test.cpp",
+      "sha256": "ed6dd236735b3629ba781f2e4c5be4d0469a50235bd2160e9eae16eb59e7a022",
+      "bytes": 3075
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tile_wire_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tile_wire_test.cpp",
+      "sha256": "a3084a6bcb1c98268964bbe3ca366accca1e244a792612c6d8046e168adc3984",
+      "bytes": 1246
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tree_drop_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tree_drop_policy_test.cpp",
+      "sha256": "e84a57b3235c02022c0d822fc0be58b503f7480b7a997d676393733d4b51f636",
+      "bytes": 1405
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tree_effects_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tree_effects_policy_test.cpp",
+      "sha256": "a01fb68a53befa2c0eef4edc9a83108d23f8ef8a7c3a0bd7086b366062c8820f",
+      "bytes": 826
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tree_plant_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tree_plant_policy_test.cpp",
+      "sha256": "ee01949acb0b2fc0b9ebb404fe57743d00b06d2d6160e012fc90ef04856d6e75",
+      "bytes": 732
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tree_shake_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tree_shake_policy_test.cpp",
+      "sha256": "b04a09a06ec4bb9b1f563631d42b0780e3b1601bf23f56cdb4a61f2c9c71cc56",
+      "bytes": 1151
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tree_soil_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tree_soil_policy_test.cpp",
+      "sha256": "4c28d5fec85908afe34848a082b4313389a02ab42dff1d1960d3e0d56dc6b0e1",
+      "bytes": 730
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/tree_texture_policy_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/tree_texture_policy_test.cpp",
+      "sha256": "e0decf3399a3502f2a8934481f0853dc991152e390f29c60a8c470835cb3b362",
+      "bytes": 1298
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/wall_registry_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/wall_registry_test.cpp",
+      "sha256": "6f7979818bb6b48bea1f9ad90f655a6a8ca0433e618a414df233122a0c066657",
+      "bytes": 1545
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/world_loaders/wall_runtime_test.cpp",
+      "path": "tests/native-and-managed/world_loaders/wall_runtime_test.cpp",
+      "sha256": "66cd71ac0c610e3bed747f8f3e09973b90c1679ce3b68b7f454b8df20d330a23",
+      "bytes": 14289
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/ci/csharp-build-policy.json",
+      "path": "tools/support/ci/csharp-build-policy.json",
+      "sha256": "a402a1192f013e20ee84ba78e355b9f5b568b479d9d07a481719abb484d560e0",
+      "bytes": 8691
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/ci/csharp_build_policy.py",
+      "path": "tools/support/ci/csharp_build_policy.py",
+      "sha256": "87f0902cbc22628acb96c95c951eee362f6c6a5ef83bb58e39851f0eb3d4a77a",
+      "bytes": 2001
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/ci/publish_csharp_private.sh",
+      "path": "tools/support/ci/publish_csharp_private.sh",
+      "sha256": "b24e08b969510b9001dea949c65d9a7ed304c221e3bd5d8b49d4d4f2bfc376a5",
+      "bytes": 30045
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/csharp_loader_audit.py",
+      "path": "tools/support/csharp_loader_audit.py",
+      "sha256": "93f33b34c3b3b9155fe3bc79a66a048041c7124046d67dd61c7c993297dee1ec",
+      "bytes": 5690
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/example_completion/attachment-reference-1.8.0.json",
+      "path": "tools/support/example_completion/attachment-reference-1.8.0.json",
+      "sha256": "e0f77b1071bde73d6e8e8d4539a2a4b4b95a13b59f8b7fe5b647870a4799c42b",
+      "bytes": 49836
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/example_completion/evidence.json",
+      "path": "tools/support/example_completion/evidence.json",
+      "sha256": "ab25d7327d1b5c79167e37f14a0cbddb02f9e5e8bac7e8c74b7508f3272207ce",
+      "bytes": 88641
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/example_completion_audit.py",
+      "path": "tools/support/example_completion_audit.py",
+      "sha256": "ddac6e6ef373c3f2ecbecc0e59aad9d020908730cd2baa023624ba14220149e7",
+      "bytes": 14556
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/loader_batch_gate.py",
+      "path": "tools/support/loader_batch_gate.py",
+      "sha256": "ecf5d01f775f680eaeb80ab1590f7acb0e51fe6887a74db66ed05047ee11d2b8",
+      "bytes": 7197
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/mods/check_csharp_assets.py",
+      "path": "tools/support/mods/check_csharp_assets.py",
+      "sha256": "5dc55ed9ab34d325acc81a43d46cbd70dfc7e0d27d2039c510dd627c7a6d1df7",
+      "bytes": 4702
+    },
+    {
+      "original": "Split/Bunny-Loader/tools/sdk_reference/Program.cs",
+      "path": "tools/support/sdk_reference/Program.cs",
+      "sha256": "09235ecdbc196b6b5edc8f6ed30e242d1b84f9eecfbdb0ca05a2e848cac9c9ca",
+      "bytes": 8370
+    },
+    {
+      "original": "docs/csharp-completion-plan.md",
+      "path": "docs/reference/csharp-completion-plan.md",
+      "sha256": "57d3da2d5cf396aadded768e893cc1a53580985ce6fa3ba4bb2cf78a12992b76",
+      "bytes": 28803
+    },
+    {
+      "original": "docs/csharp-full-example-port-progress.md",
+      "path": "docs/reference/csharp-full-example-port-progress.md",
+      "sha256": "d326c26162301146ca8c21000b439331ad86de3e540133c6041a0752df07cc2a",
+      "bytes": 14144
+    },
+    {
+      "original": "docs/csharp-independence-audit.md",
+      "path": "docs/reference/csharp-independence-audit.md",
+      "sha256": "4bf07bf4326c779857a5182458216680df1070ab2f9b35904bdb65ef8a8cd9be",
+      "bytes": 18912
+    },
+    {
+      "original": "docs/csharp-loader-batches.json",
+      "path": "docs/reference/csharp-loader-batches.json",
+      "sha256": "bc83dcaa6d85899fc9554f9ccf1dadcae486647c8613d4469581dbd597e332c7",
+      "bytes": 25516
+    },
+    {
+      "original": "docs/csharp-loader-batches.md",
+      "path": "docs/reference/csharp-loader-batches.md",
+      "sha256": "117b62dce055c9456291a065d5b07ad146381d7c41547e732cc71dec3e7a68d9",
+      "bytes": 69524
+    },
+    {
+      "original": "docs/csharp-loaders-v93.md",
+      "path": "docs/reference/csharp-loaders-v93.md",
+      "sha256": "631331cd1b9e0fd9b7892045de601cb996bfb48068b3871fbdd47fc40bff105d",
+      "bytes": 4299
+    },
+    {
+      "original": "docs/csharp-native-defaults-v96.md",
+      "path": "docs/reference/csharp-native-defaults-v96.md",
+      "sha256": "0b3ee67fef9fd4144212ab8afa9db2be8fc4a0285d8bed854a4adf9cb64bb042",
+      "bytes": 9553
+    },
+    {
+      "original": "docs/csharp-summon-v95.md",
+      "path": "docs/reference/csharp-summon-v95.md",
+      "sha256": "ec9760a591d851b8e4697b5ec4535ba9add2f9265d3baabfcdfbfdf8f5cbf793",
+      "bytes": 9580
+    },
+    {
+      "original": "docs/generated/csharp-loaders.json",
+      "path": "docs/reference/generated/csharp-loaders.json",
+      "sha256": "cc7aaf502c07ef1832e26553e232d3a33249f27c15053ac608c2627725468055",
+      "bytes": 53969
+    },
+    {
+      "original": "docs/generated/csharp-loaders.md",
+      "path": "docs/reference/generated/csharp-loaders.md",
+      "sha256": "616b06079f087fe781243cb0665b800d69d5ac2949b22abf7249cd771bcec7f8",
+      "bytes": 5336
+    },
+    {
+      "original": "docs/generated/csharp-world-loader-contracts.json",
+      "path": "docs/reference/generated/csharp-world-loader-contracts.json",
+      "sha256": "49ec589827ceaf7cd258e28d83fca9419a9941c876e98df7662ffce9236e386a",
+      "bytes": 12370
+    },
+    {
+      "original": "docs/validation/csharp-full-port-wip-2026-10-19.json",
+      "path": "docs/reference/validation/csharp-full-port-wip-2026-10-19.json",
+      "sha256": "7f70fa0f8a09a7a54e2377ac80c65c546c32f4f793eb7ec806b815a4cc4ca557",
+      "bytes": 19144
+    },
+    {
+      "original": "docs/validation/csharp-v95-1-ci-2026-10-18.json",
+      "path": "docs/reference/validation/csharp-v95-1-ci-2026-10-18.json",
+      "sha256": "7a4a49217c9c215ee5cb7d3f3a42b6d679dd250872b82099f6a19c4cad2a1851",
+      "bytes": 6218
+    },
+    {
+      "original": "docs/validation/csharp-v95-1-device-failure-2026-10-18.json",
+      "path": "docs/reference/validation/csharp-v95-1-device-failure-2026-10-18.json",
+      "sha256": "08bf7d86578697937f068f060682d92f97c1a1ff3d629f19ac1ac7bc35fcbd74",
+      "bytes": 642
+    },
+    {
+      "original": "docs/validation/csharp-v95-2-ci-2026-10-18.json",
+      "path": "docs/reference/validation/csharp-v95-2-ci-2026-10-18.json",
+      "sha256": "66d3a6dbfec5fdebbf6e5e8c89a7c0d3d1acf1cfd9e089a3ed56adcce04a418d",
+      "bytes": 7537
+    },
+    {
+      "original": "docs/validation/csharp-v95-host-2026-10-18.json",
+      "path": "docs/reference/validation/csharp-v95-host-2026-10-18.json",
+      "sha256": "171f67a47b5cb75c494d7feeebb3a3b6a5c9108ae5fce6c423a0fddeae4b4d6d",
+      "bytes": 1419
+    },
+    {
+      "original": "docs/validation/csharp-v96-android-user-2026-10-19.json",
+      "path": "docs/reference/validation/csharp-v96-android-user-2026-10-19.json",
+      "sha256": "92dca562af12bff0780fc051dcf9670a776583bcef49fed4cb92efbab789e19a",
+      "bytes": 797
+    },
+    {
+      "original": "docs/validation/csharp-v96-ci-2026-10-19.json",
+      "path": "docs/reference/validation/csharp-v96-ci-2026-10-19.json",
+      "sha256": "e691e5ff3a354e964adfe5439eca926b4c03a410f482e8f0fa21f13422bcd05b",
+      "bytes": 22612
+    },
+    {
+      "original": "docs/validation/csharp-v98-internal-2026-10-19.json",
+      "path": "docs/reference/validation/csharp-v98-internal-2026-10-19.json",
+      "sha256": "8db5a7e8b415cf6a86218c2c576da14a31e8c232d4c6e634186fa1f6c2525321",
+      "bytes": 37604
+    },
+    {
+      "original": "docs/validation/csharp-world-loaders-v99-2026-10-19.json",
+      "path": "docs/reference/validation/csharp-world-loaders-v99-2026-10-19.json",
+      "sha256": "a9812dfb2144d814ea33f85654e911292b04a1c4ac61b64779f5905bfed6902d",
+      "bytes": 25640
+    }
+  ]
+}

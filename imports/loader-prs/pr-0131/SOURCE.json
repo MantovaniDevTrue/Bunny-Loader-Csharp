@@ -1,0 +1,242 @@
+{
+  "pr": 131,
+  "name": "SceneEffectLoader ranking core",
+  "kind": "loader",
+  "status": "partial",
+  "runtime_enabled": false,
+  "base_sha": "e88ba0480fac6310ba33978f2488b2d585a0c593",
+  "head_sha": "bcf95018b89604860c113584d2f2eac0f1a3cdab",
+  "current_pr_head_when_fetched": "bcf95018b89604860c113584d2f2eac0f1a3cdab",
+  "file_count": 38,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-scene-effects.yml",
+      "path": "integration/ci-reference/check-csharp-scene-effects.yml",
+      "sha256": "108fab7605585927febc838c90d26c8fbd4f97206266f0c620a8112bb485a6f8",
+      "bytes": 1070
+    },
+    {
+      "original": "app/src/main/cpp/content/scene/SceneEffects.cpp",
+      "path": "src/native/host-patches/content/scene/SceneEffects.cpp",
+      "sha256": "fed6614788920fbca77a11399645efc35902485de9ad5f21541a41e3efa95f36",
+      "bytes": 2219
+    },
+    {
+      "original": "app/src/main/cpp/content/scene/SceneEffects.h",
+      "path": "src/native/host-patches/content/scene/SceneEffects.h",
+      "sha256": "209b5e331339349c36adc60465138350a2493c3658373414a958f265adeedf65",
+      "bytes": 2046
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "5ab6bfa80163f39f91795f031ebc89c4ee3e615ee2b58b75c1d60bb63218453f",
+      "bytes": 85100
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "493a810ed2c41453551435740201927043aae3c14db7efdf08868529f1125651",
+      "bytes": 264806
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalHooks.cpp",
+      "path": "src/native/experiments/csharp/UniversalHooks.cpp",
+      "sha256": "1838808c968ec1cddf9c908e71f3fce5d2631abced05b2bf74eccbb95023c0ef",
+      "bytes": 29192
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalHooks.h",
+      "path": "src/native/experiments/csharp/UniversalHooks.h",
+      "sha256": "9687dc137909429f0a349206da4937e711aac68e072d794325af9ac435e112d8",
+      "bytes": 708
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalSystemStages.cpp",
+      "path": "src/native/experiments/csharp/UniversalSystemStages.cpp",
+      "sha256": "42200261dd48839e74fa425e6438b7fc4519be9f31d77a5ae013bf8c0f440a98",
+      "bytes": 17565
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalSystemStages.h",
+      "path": "src/native/experiments/csharp/UniversalSystemStages.h",
+      "sha256": "f2bccf0eff1aa1c801b437ad08e73f296c04f3e70979640c189a345057310515",
+      "bytes": 435
+    },
+    {
+      "original": "docs/csharp-completion-plan.md",
+      "path": "docs/reference/csharp-completion-plan.md",
+      "sha256": "9aea4ed182ae209eff5260d21edf52f3fe5638cfa19e36a81e3d8ba4dc2fb9be",
+      "bytes": 30738
+    },
+    {
+      "original": "docs/csharp-independence-audit.md",
+      "path": "docs/reference/csharp-independence-audit.md",
+      "sha256": "834a4832806c829fb071323817dbd64de13469a4781598654e121620e3d91ca6",
+      "bytes": 20866
+    },
+    {
+      "original": "docs/csharp-loader-completion-15.json",
+      "path": "docs/reference/csharp-loader-completion-15.json",
+      "sha256": "8355a8e3f3a9d415a5ea32f44775d7619049b32df25eb3fb354022cdfc76981e",
+      "bytes": 34448
+    },
+    {
+      "original": "docs/csharp-loader-integration-20261021.md",
+      "path": "docs/reference/csharp-loader-integration-20261021.md",
+      "sha256": "6dc68f8eea4e20a333b1026239fd641b583e0a407ae19cd26355187867be3a13",
+      "bytes": 26370
+    },
+    {
+      "original": "docs/csharp-scene-effect-core.md",
+      "path": "docs/reference/csharp-scene-effect-core.md",
+      "sha256": "622a496014899819f28995de59d69c7090ff320d8c3c9a0f80a863d4f68ae78d",
+      "bytes": 2895
+    },
+    {
+      "original": "docs/csharp-surface-backgrounds.md",
+      "path": "docs/reference/csharp-surface-backgrounds.md",
+      "sha256": "1d5e5e0e09c1cb54b3d0475465b2e0a3bd927558813c79f76586dfc8e054e411",
+      "bytes": 7642
+    },
+    {
+      "original": "docs/generated/example_completion/matrix.json",
+      "path": "docs/reference/generated/example_completion/matrix.json",
+      "sha256": "0856647d64418f7cec448d1360de16212ddbac6c34de1f9062aaee29ad4f9b34",
+      "bytes": 654073
+    },
+    {
+      "original": "docs/generated/example_completion/matrix.md",
+      "path": "docs/reference/generated/example_completion/matrix.md",
+      "sha256": "e3b06148c2a44d439c9537fcd10cb5c5c9eae8af59be236b55c1c54c1fdff66d",
+      "bytes": 52636
+    },
+    {
+      "original": "docs/generated/sdk_public_reference.json",
+      "path": "docs/reference/generated/sdk_public_reference.json",
+      "sha256": "b072b9d24cad3d11cbee3060b562e05e277a8cf08049607e406434b38d2165f0",
+      "bytes": 141005
+    },
+    {
+      "original": "docs/generated/sdk_public_reference.md",
+      "path": "docs/reference/generated/sdk_public_reference.md",
+      "sha256": "58cd8d33e7effec89c4c17d531ff9b733802f92ed63636d5a49b7a6dce5c1b30",
+      "bytes": 81684
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySceneEffect.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySceneEffect.cs",
+      "sha256": "d5300487ad29b30df7f6888d5bf23679449eded91d5ec4daae8a399f4b1f2be9",
+      "bytes": 13702
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySceneRanking.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySceneRanking.cs",
+      "sha256": "2f210636143a438a027ad0fc9a68ab4923e76b84e4c052b7a33d79a8121faa90",
+      "bytes": 1441
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySurfaceRegistry.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySurfaceRegistry.cs",
+      "sha256": "e35c103b09504456140d1b4b8e50373e0f2e86d2dadd9dd364085c8e9c46b3d6",
+      "bytes": 5870
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyUndergroundBackgroundStyle.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyUndergroundBackgroundStyle.cs",
+      "sha256": "e5e8ffc336d80bc2c4f95fe2523bfed3b29bba4a75dfe02833d60d192496fb4c",
+      "bytes": 8636
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "sha256": "8e2a8414a40b4c15cc5faa13cbf305ac2dcc7d9b0e3bf36c525ef1dfef913e0c",
+      "bytes": 34211
+    },
+    {
+      "original": "experiments/csharp/BunnySourceCompiler/Compiler.cs",
+      "path": "src/managed/BunnySourceCompiler/Compiler.cs",
+      "sha256": "55fb57e9aba45670ab7c7cb5a907703bef44c3772b8aa65662d23ed38b76a992",
+      "bytes": 21198
+    },
+    {
+      "original": "experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "1b7060893ff68a69570daf388af7fa248fa80825429fafef2992b7723136e482",
+      "bytes": 5930
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "sha256": "0856647d64418f7cec448d1360de16212ddbac6c34de1f9062aaee29ad4f9b34",
+      "bytes": 654073
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.md",
+      "sha256": "e3b06148c2a44d439c9537fcd10cb5c5c9eae8af59be236b55c1c54c1fdff66d",
+      "bytes": 52636
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Documentation/SURFACE_BACKGROUNDS.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/SURFACE_BACKGROUNDS.md",
+      "sha256": "1d5e5e0e09c1cb54b3d0475465b2e0a3bd927558813c79f76586dfc8e054e411",
+      "bytes": 7642
+    },
+    {
+      "original": "tests/scene_effects/Program.cs",
+      "path": "tests/native-and-managed/scene_effects/Program.cs",
+      "sha256": "8fff23efe83887a9467e26ef1488f3a5c42651a4c9f194e160ed2099c4e125eb",
+      "bytes": 4010
+    },
+    {
+      "original": "tests/scene_effects/SceneRanking.HostTests.csproj",
+      "path": "tests/native-and-managed/scene_effects/SceneRanking.HostTests.csproj",
+      "sha256": "a2d84f9edfe3874430e4553bd25679a791327ca1d7a174639ea4a52522dc601a",
+      "bytes": 416
+    },
+    {
+      "original": "tests/scene_effects/run.sh",
+      "path": "tests/native-and-managed/scene_effects/run.sh",
+      "sha256": "293553e6828f35c7ea939cb96c38cf25508642044826feb9c2f25a7bf8d6ae2e",
+      "bytes": 399
+    },
+    {
+      "original": "tests/scene_effects/scene_effects_test.cpp",
+      "path": "tests/native-and-managed/scene_effects/scene_effects_test.cpp",
+      "sha256": "114e6f8b379d073e8bf0c15af78f2a5e23eace048a48b9aa21260173aa01a3a3",
+      "bytes": 6664
+    },
+    {
+      "original": "tests/surface_backgrounds/MixedProgram.cs",
+      "path": "tests/native-and-managed/surface_backgrounds/MixedProgram.cs",
+      "sha256": "807930f1d0b7b9e67cd8bbdd6f156124cfc59acd201f7ca0b9c50639c6f180de",
+      "bytes": 3779
+    },
+    {
+      "original": "tests/surface_backgrounds/Program.cs",
+      "path": "tests/native-and-managed/surface_backgrounds/Program.cs",
+      "sha256": "136890c5939207535c9170640c36f4d468474315fa73e76b00c9fdcf26a0c56d",
+      "bytes": 6628
+    },
+    {
+      "original": "tests/surface_backgrounds/managed_surface_fixture.cpp",
+      "path": "tests/native-and-managed/surface_backgrounds/managed_surface_fixture.cpp",
+      "sha256": "cc14c25e3a234c90b843d28262a83a21f704b545b2bec69dd93a68544ac647fd",
+      "bytes": 4861
+    },
+    {
+      "original": "tests/surface_backgrounds/run_managed.sh",
+      "path": "tests/native-and-managed/surface_backgrounds/run_managed.sh",
+      "sha256": "f7f205265d67cb978e9abe6e67fa06943df96dd491ba737613f530666e9e4581",
+      "bytes": 871
+    },
+    {
+      "original": "tools/example_completion/evidence.json",
+      "path": "tools/support/example_completion/evidence.json",
+      "sha256": "488df43e89d81f86f25a6479d1f31cd632088175a5122324f493765b25ec8189",
+      "bytes": 94464
+    }
+  ]
+}

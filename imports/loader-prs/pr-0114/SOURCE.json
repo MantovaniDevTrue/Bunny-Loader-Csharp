@@ -1,0 +1,278 @@
+{
+  "pr": 114,
+  "name": "AnglerQuestLoader",
+  "kind": "loader",
+  "status": "android_qa_pending",
+  "runtime_enabled": false,
+  "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+  "head_sha": "bad10822ad4771a03d9285f83171e0c25aedaf40",
+  "current_pr_head_when_fetched": "bad10822ad4771a03d9285f83171e0c25aedaf40",
+  "file_count": 44,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-angler-quest-host.yml",
+      "path": "integration/ci-reference/check-csharp-angler-quest-host.yml",
+      "sha256": "6770102856b5a9b2d5f49767cb124a6b7ecdf3e7859b109660ecbd6017de6047",
+      "bytes": 11608
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "1ad7fc5ed621ae2c71f3ecd72a69fee88d5201a0ff4ef53543618fb362c1d7d3",
+      "bytes": 69573
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedAssemblyBindings.h",
+      "path": "src/native/experiments/csharp/ManagedAssemblyBindings.h",
+      "sha256": "41eb87668316e7f671afdf9e61aa5b09440add854c1c6c8ddb6015b3a0d89de1",
+      "bytes": 1561
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedDeferredModRevocation.h",
+      "path": "src/native/experiments/csharp/ManagedDeferredModRevocation.h",
+      "sha256": "3212edd52cf6d506a76f69577745c73bf386f571b03a65a881e0cf053b222299",
+      "bytes": 1096
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedLiveSourceRevocations.h",
+      "path": "src/native/experiments/csharp/ManagedLiveSourceRevocations.h",
+      "sha256": "d1c1fcf8034e626af18176cd42c09ff8b098a45902c560405a18e6adee35c757",
+      "bytes": 857
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedNpcBuffEffects.h",
+      "path": "src/native/experiments/csharp/ManagedNpcBuffEffects.h",
+      "sha256": "735d5c022bcb5904769eb9e3c63401af0944b8ab2bffc4831019af37f23e95d8",
+      "bytes": 3463
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "125d4a287cfd16f72700bb35d8a3a241294a8bff33bf4ef83c71822826f09942",
+      "bytes": 213039
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "077539d7acc4b162e6b50073c6ee9c80bbb3cf728a9c818bd698e6e0bc19b966",
+      "bytes": 15229
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeAnglerQuestFishing.cpp",
+      "path": "src/native/experiments/csharp/NativeAnglerQuestFishing.cpp",
+      "sha256": "244ae8b65acaa4536c49b39a9dbc6f5d435fa28fa2934086adee54b72e23c3a1",
+      "bytes": 10519
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeAnglerQuestFishing.h",
+      "path": "src/native/experiments/csharp/NativeAnglerQuestFishing.h",
+      "sha256": "eae4610a8997edde00acc45e94a8c346168e3a63c07d098b19d10c6c529619d7",
+      "bytes": 258
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeAnglerQuestGameplay.cpp",
+      "path": "src/native/experiments/csharp/NativeAnglerQuestGameplay.cpp",
+      "sha256": "156c0ff69954ef13b2c1579af8dd9c6640c129bb2bd7d543489392959d49345d",
+      "bytes": 21289
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeAnglerQuestGameplay.h",
+      "path": "src/native/experiments/csharp/NativeAnglerQuestGameplay.h",
+      "sha256": "e093aa9e4d298e2fe6e8d722beedcf6eea343b7fe70e08628e25ecefaffaba71",
+      "bytes": 128
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeAnglerQuestRegistry.h",
+      "path": "src/native/experiments/csharp/NativeAnglerQuestRegistry.h",
+      "sha256": "8c231460ebbf150ce7dd311e8223311e86da17c3bcfcdd43cefe8954328304ec",
+      "bytes": 14178
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeRecipeCallbacks.cpp",
+      "path": "src/native/experiments/csharp/NativeRecipeCallbacks.cpp",
+      "sha256": "1049019ccdf0ac1983a7d3c5e52506ceeaf686c5a231ba37d0d212ac5ebab324",
+      "bytes": 25808
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeRecipeCallbacks.h",
+      "path": "src/native/experiments/csharp/NativeRecipeCallbacks.h",
+      "sha256": "cd9cef2b4580f39b15495db7c693d1868f349eafea276a73c35c6bb0e082fd17",
+      "bytes": 974
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "c6e55c31888ce741f789005b6e5caade1bad51d9d7dd3a37d90ce011d2f0f1b0",
+      "bytes": 68996
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.h",
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "sha256": "9d93a05aa0fcf15001caf4d904ab0fd19c766b6500f46fcc083bf7b47f3de1bc",
+      "bytes": 1112
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceParser.cpp",
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "sha256": "9de7eb4d15af74f3317d1df51b1a148848c0bab37a677db809e86c0178d8dba0",
+      "bytes": 21267
+    },
+    {
+      "original": "app/src/main/cpp/mods/ModLoader.cpp",
+      "path": "src/native/host-patches/mods/ModLoader.cpp",
+      "sha256": "6875f9df02cc5f17651aaa7add1bc84277a859c76379c237cf201193f7a263e8",
+      "bytes": 10048
+    },
+    {
+      "original": "docs/csharp-angler-quest-loader.md",
+      "path": "docs/reference/csharp-angler-quest-loader.md",
+      "sha256": "609564ec83f40e1e9749ba9a32363948c26a4b630a4fe19914bde14bd5c106e8",
+      "bytes": 21254
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyItem.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyItem.cs",
+      "sha256": "5f3560f50936ab4b17f6d6956b3f4fb566119e3403965513ea02a4e9bae05712",
+      "bytes": 18193
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyRecipeCallbacks.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyRecipeCallbacks.cs",
+      "sha256": "a374d25bd81076210f96536a6eac817feb1659d2b6aa4536e9c7d3e2c379a0a1",
+      "bytes": 14779
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "sha256": "dffe7d469d7bfdeec93099cb349b54b2f3fd03ac95be84350aa0531c993c2150",
+      "bytes": 13926
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "sha256": "f234509662ef260e0b22ff373ef3ea388445cdef24dd0fcd07d2d783dd756ca0",
+      "bytes": 31505
+    },
+    {
+      "original": "experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "7a8a23c5eacc030bdcf611ba4fe1b0430874797acbfb6dda5cd4eccfe6a3a523",
+      "bytes": 67813
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleFishingPlayer.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleFishingPlayer.cs",
+      "sha256": "6e3e32d2b497bdc53170a8ae76239ac21b9de0734703cf98498fe22eb5fee113",
+      "bytes": 369
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Items/Quests/ExampleQuestFish.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Quests/ExampleQuestFish.cs",
+      "sha256": "da065810748d87be3fd6c41182872e7c362c8afa8aacc248b8155392ece8fd7d",
+      "bytes": 983
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Items/Quests/ExampleQuestFish.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Quests/ExampleQuestFish.png",
+      "sha256": "8a5c5f345d9537d3767ef6e18587c9f4888ece47bae58a1af4cc56aaae71ddaa",
+      "bytes": 3288
+    },
+    {
+      "original": "tests/angler_quest/AttributedQuestFish.cs",
+      "path": "tests/native-and-managed/angler_quest/AttributedQuestFish.cs",
+      "sha256": "44e3faae436c0dfa23aeeba0030921b3f841fce30ef7c50f3f86d3d117051aa6",
+      "bytes": 691
+    },
+    {
+      "original": "tests/angler_quest/CollectibleUnloadProbe.cs",
+      "path": "tests/native-and-managed/angler_quest/CollectibleUnloadProbe.cs",
+      "sha256": "f31292986f0c229ba0b8fa1071497ba85587db2601d62a6106f79921a041452a",
+      "bytes": 3932
+    },
+    {
+      "original": "tests/angler_quest/DynamicQuestFish.cs",
+      "path": "tests/native-and-managed/angler_quest/DynamicQuestFish.cs",
+      "sha256": "1bdcc553752c9eee097552cec69b420ebbc84b7d509298f660e97451825ab941",
+      "bytes": 525
+    },
+    {
+      "original": "tests/angler_quest/HostFixture.cs",
+      "path": "tests/native-and-managed/angler_quest/HostFixture.cs",
+      "sha256": "614483cc910982e5fc9e50588b5efc551629157b949c4883a5f3cee111b23db6",
+      "bytes": 10080
+    },
+    {
+      "original": "tests/angler_quest/HostFixture.csproj",
+      "path": "tests/native-and-managed/angler_quest/HostFixture.csproj",
+      "sha256": "7460a5476ffdaac0325bff500433e942bade45eb03c9e6ec51c6c38da0808b60",
+      "bytes": 1068
+    },
+    {
+      "original": "tests/angler_quest/UniversalHookLifecycleFixture.cs",
+      "path": "tests/native-and-managed/angler_quest/UniversalHookLifecycleFixture.cs",
+      "sha256": "64f917581c5e76a809cb7274a589cbdf33023ca08e66dc3773ffa71b2c7c3af7",
+      "bytes": 4240
+    },
+    {
+      "original": "tests/angler_quest/managed_assembly_binding_test.cpp",
+      "path": "tests/native-and-managed/angler_quest/managed_assembly_binding_test.cpp",
+      "sha256": "ae556b137b8d2da48543579fe440752f3116d45e22de8f978bbad70d72d3ff40",
+      "bytes": 3591
+    },
+    {
+      "original": "tests/angler_quest/managed_deferred_mod_revocation_test.cpp",
+      "path": "tests/native-and-managed/angler_quest/managed_deferred_mod_revocation_test.cpp",
+      "sha256": "1d013f216f8be4baec629aed430fa549d70b36241e199a1fec3685bc9fbcb896",
+      "bytes": 1590
+    },
+    {
+      "original": "tests/angler_quest/managed_live_ingress_revocation_test.cpp",
+      "path": "tests/native-and-managed/angler_quest/managed_live_ingress_revocation_test.cpp",
+      "sha256": "0c2ac3a92bc7e4390f3ff8ae7fdb3aed710d1964adc3bf8ea66411be7524469b",
+      "bytes": 2809
+    },
+    {
+      "original": "tests/angler_quest/managed_live_source_revocation_test.cpp",
+      "path": "tests/native-and-managed/angler_quest/managed_live_source_revocation_test.cpp",
+      "sha256": "4180cced17be118e94000430468034165c1a7ee2369ff86c1990cd4df9594f30",
+      "bytes": 2022
+    },
+    {
+      "original": "tests/angler_quest/managed_npc_effect_owner_test.cpp",
+      "path": "tests/native-and-managed/angler_quest/managed_npc_effect_owner_test.cpp",
+      "sha256": "8b78e2aaf24510c18b34e47874399e21a5f271f09d15c32828e8a01cf0ed3950",
+      "bytes": 2157
+    },
+    {
+      "original": "tests/angler_quest/native_fishing_il2cpp_test.cpp",
+      "path": "tests/native-and-managed/angler_quest/native_fishing_il2cpp_test.cpp",
+      "sha256": "8928950d323e98f8540d8f3155f5f131b2b32fa701c669e726af087af670cd2f",
+      "bytes": 16184
+    },
+    {
+      "original": "tests/angler_quest/native_il2cpp_integration_test.cpp",
+      "path": "tests/native-and-managed/angler_quest/native_il2cpp_integration_test.cpp",
+      "sha256": "43cd4f3b0c23841d7e51e08cddc33b12ed9b20bbdc1008cebd2f0c303c02e3b5",
+      "bytes": 19798
+    },
+    {
+      "original": "tests/angler_quest/quest_player_parser_test.cpp",
+      "path": "tests/native-and-managed/angler_quest/quest_player_parser_test.cpp",
+      "sha256": "871659a35da1af4323d37ca996cad2b7bb1ce70aa0e4999a5e78d05bdb663065",
+      "bytes": 997
+    },
+    {
+      "original": "tests/angler_quest/quest_registry_test.cpp",
+      "path": "tests/native-and-managed/angler_quest/quest_registry_test.cpp",
+      "sha256": "cfad0baeb208ae48a1520a94466fc6edfefb7f573371097093ec907d4fd6f8b8",
+      "bytes": 11599
+    },
+    {
+      "original": "tests/mod_loader/independent_loading.cpp",
+      "path": "tests/native-and-managed/mod_loader/independent_loading.cpp",
+      "sha256": "eea5522fda8f16bdd884c07fc045a9277eaeb6054c952f5c3608bef67e25d735",
+      "bytes": 2867
+    }
+  ]
+}

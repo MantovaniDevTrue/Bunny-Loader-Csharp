@@ -1,0 +1,230 @@
+{
+  "schema": 1,
+  "upstream": "MantovaniDevTrue/Bunnyloader-Csharp",
+  "target_baseline": "0.1.10.16.90.29.87.1",
+  "mode": "isolated_source_overlays",
+  "runtime_enabled": false,
+  "android_tested": false,
+  "apk_generated": false,
+  "bytes": 26579982,
+  "imported": [
+    {
+      "pr": 98,
+      "name": "World: Tile, Wall, Tree, TileEntity, GlobalTile",
+      "status": "mixed_incomplete",
+      "file_count": 274,
+      "bytes": 4185725,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 100,
+      "name": "PrefixLoader",
+      "status": "partial",
+      "file_count": 50,
+      "bytes": 1508985,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 101,
+      "name": "LocalizationLoader",
+      "status": "partial",
+      "file_count": 35,
+      "bytes": 2145205,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 102,
+      "name": "RarityLoader",
+      "status": "android_retest",
+      "file_count": 58,
+      "bytes": 1245623,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 114,
+      "name": "AnglerQuestLoader",
+      "status": "android_qa_pending",
+      "file_count": 44,
+      "bytes": 747263,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 115,
+      "name": "DustLoader",
+      "status": "android_qa_pending",
+      "file_count": 44,
+      "bytes": 705938,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 116,
+      "name": "InvasionLoader",
+      "status": "android_qa_pending",
+      "file_count": 84,
+      "bytes": 610339,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 117,
+      "name": "CommandLoader",
+      "status": "android_qa_pending",
+      "file_count": 42,
+      "bytes": 607537,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 118,
+      "name": "SoundLoader",
+      "status": "android_qa_pending",
+      "file_count": 16,
+      "bytes": 163375,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 119,
+      "name": "QA integration: Localization, Rarity, AnglerQuest, Dust, Invasion",
+      "status": "integration_reference",
+      "file_count": 364,
+      "bytes": 5021547,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 120,
+      "name": "KeybindLoader and TouchButtonLoader",
+      "status": "partial",
+      "file_count": 58,
+      "bytes": 556451,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 121,
+      "name": "GoreLoader",
+      "status": "android_qa_pending",
+      "file_count": 23,
+      "bytes": 224517,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 122,
+      "name": "WorldSaveLoader",
+      "status": "partial",
+      "file_count": 42,
+      "bytes": 584357,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 123,
+      "name": "Tooltip native activation",
+      "status": "fix_reference",
+      "file_count": 3,
+      "bytes": 37176,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 124,
+      "name": "ItemUse diagnostics",
+      "status": "fix_reference",
+      "file_count": 3,
+      "bytes": 299424,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 125,
+      "name": "CloudLoader and Biome foundation",
+      "status": "partial",
+      "file_count": 68,
+      "bytes": 721967,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 126,
+      "name": "SystemUpdateLoader (19/19 source hooks)",
+      "status": "android_qa_pending",
+      "file_count": 15,
+      "bytes": 138220,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 127,
+      "name": "Dust register before OnUse",
+      "status": "fix_reference",
+      "file_count": 4,
+      "bytes": 311873,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 128,
+      "name": "Dust compiled ExampleMod registration regression",
+      "status": "test_reference",
+      "file_count": 6,
+      "bytes": 147758,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 129,
+      "name": "Invasion beacon feedback",
+      "status": "fix_reference",
+      "file_count": 7,
+      "bytes": 344321,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 130,
+      "name": "15-loaders batch: BackgroundTexture, UndergroundBackground, SurfaceBackground, Water and others",
+      "status": "partial",
+      "file_count": 208,
+      "bytes": 3830134,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 131,
+      "name": "SceneEffectLoader ranking core",
+      "status": "partial",
+      "file_count": 38,
+      "bytes": 2382929,
+      "runtime_enabled": false
+    },
+    {
+      "pr": 132,
+      "name": "Dust NewDust and Invasion spawn diagnostics",
+      "status": "fix_reference",
+      "file_count": 4,
+      "bytes": 59318,
+      "runtime_enabled": false
+    }
+  ],
+  "quarantined": [
+    {
+      "pr": 133,
+      "name": "StatModifier and StatInheritanceData shared foundation",
+      "status": "provenance_review",
+      "reason": "origem tModLoader exige auditoria antes de reutilizar fontes"
+    },
+    {
+      "pr": 134,
+      "name": "HairLoader",
+      "status": "provenance_review",
+      "reason": "origem tModLoader exige auditoria antes de reutilizar fontes"
+    },
+    {
+      "pr": 135,
+      "name": "DamageClassLoader",
+      "status": "provenance_review",
+      "reason": "origem tModLoader exige auditoria antes de reutilizar fontes"
+    }
+  ],
+  "reviewed_not_imported": [
+    {
+      "number": 99,
+      "reason": "documentation-only PR, already merged upstream"
+    },
+    {
+      "range": "103-113",
+      "reason": "temporary PrefixLoader CI checks; main implementation is PR 100"
+    },
+    {
+      "number": 136,
+      "reason": "managed utility, not a loader; relies on tModLoader-derived source and requires separate provenance review"
+    }
+  ]
+}

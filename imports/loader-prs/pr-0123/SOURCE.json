@@ -1,0 +1,32 @@
+{
+  "pr": 123,
+  "name": "Tooltip native activation",
+  "kind": "support",
+  "status": "fix_reference",
+  "runtime_enabled": false,
+  "base_sha": "d96965414059f1e50d2644b4f4a387c1b4e06674",
+  "head_sha": "ea0ac792e96180da8e734b453d6c8d69c82c0823",
+  "current_pr_head_when_fetched": "ea0ac792e96180da8e734b453d6c8d69c82c0823",
+  "file_count": 3,
+  "excluded_paths": 2,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-rarity-loader.yml",
+      "path": "integration/ci-reference/check-csharp-rarity-loader.yml",
+      "sha256": "d38599cdd5585cfb6c1a5025df4a13ad3b9cc70f24308b2b96f57b2187de23b2",
+      "bytes": 6949
+    },
+    {
+      "original": "tests/basic_items/check_csharp_tooltip_refresh.py",
+      "path": "tests/native-and-managed/basic_items/check_csharp_tooltip_refresh.py",
+      "sha256": "c2e2f4adfdcf8ea33ef6ebc2dcd42a26de3df5178bf9457b57b20479ee8ace6f",
+      "bytes": 5598
+    },
+    {
+      "original": "tools/ci/ready_pr_checks.json",
+      "path": "tools/support/ci/ready_pr_checks.json",
+      "sha256": "5f4a7f2914e4f515051cef25197c959d1c6760187c9d68d40b6ced53a24dc47e",
+      "bytes": 24629
+    }
+  ]
+}

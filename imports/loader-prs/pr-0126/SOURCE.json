@@ -1,0 +1,104 @@
+{
+  "pr": 126,
+  "name": "SystemUpdateLoader (19/19 source hooks)",
+  "kind": "loader",
+  "status": "android_qa_pending",
+  "runtime_enabled": false,
+  "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+  "head_sha": "3451b14912ec658945ba4030d08576869c34749f",
+  "current_pr_head_when_fetched": "3451b14912ec658945ba4030d08576869c34749f",
+  "file_count": 15,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-world-update-loader.yml",
+      "path": "integration/ci-reference/check-csharp-world-update-loader.yml",
+      "sha256": "fe36a053a3c2748857dd856771eff17ca7ca056bd13de5ae6fc0fb42e1e182d1",
+      "bytes": 1540
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalHooks.cpp",
+      "path": "src/native/experiments/csharp/UniversalHooks.cpp",
+      "sha256": "97634f55434cc46b7f2ad5a12eadebe19864b14b9925d39a5e3a7a3b45591c70",
+      "bytes": 29079
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalSystemStages.cpp",
+      "path": "src/native/experiments/csharp/UniversalSystemStages.cpp",
+      "sha256": "5db57a379e8c3a4d78cbb02b872b686459f382d47055a3f2f1619278fd863379",
+      "bytes": 19292
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalSystemStages.h",
+      "path": "src/native/experiments/csharp/UniversalSystemStages.h",
+      "sha256": "70cb86d84012940bf59876eb93c5b1187cb0e83ef39c5d6430e96500508834cf",
+      "bytes": 255
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "sha256": "2bed6d527d30a078f186fe1fd64f77c4a218c41ec46b22a23176f45fbf849e07",
+      "bytes": 32156
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyWorldUpdateLoader.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyWorldUpdateLoader.cs",
+      "sha256": "b02cd79d8bc3fd8620290aa5db460ca81f0c58a3f42d961563203a3cb8094b2c",
+      "bytes": 21944
+    },
+    {
+      "original": "experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "84fac240e5accc0526809e1110f6ac4e718c01f134db380dc09a836b19b1daf3",
+      "bytes": 2544
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleDustAndInvasionSystem.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleDustAndInvasionSystem.cs",
+      "sha256": "194ffe55dfefdad08675c27ff8b417374343e661d31bac0fb407eef0cce19180",
+      "bytes": 1658
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleTimeRateSystem.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleTimeRateSystem.cs",
+      "sha256": "65f60b0563470551281b0450b6f0ed5ccd86b5817c3025b3623b3d1b3be016dc",
+      "bytes": 1444
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleWorldUpdateCounter.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleWorldUpdateCounter.cs",
+      "sha256": "9251d35aba9039663169aed8fa97c0aded965480eeefdf5a9143087852482bc5",
+      "bytes": 1652
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Documentation/SYSTEM_UPDATE_LOADER.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/SYSTEM_UPDATE_LOADER.md",
+      "sha256": "79b104ed8ef1e9bd99e7f6b294c1f98cdd858ba50869c0df76d10bf638260c6e",
+      "bytes": 6208
+    },
+    {
+      "original": "tests/world_update_loader/Program.cs",
+      "path": "tests/native-and-managed/world_update_loader/Program.cs",
+      "sha256": "5b6a90c18986efd8be14610e331450e34a743241307ac3971b3f9c00bd2e93de",
+      "bytes": 13879
+    },
+    {
+      "original": "tests/world_update_loader/WorldUpdateLoader.csproj",
+      "path": "tests/native-and-managed/world_update_loader/WorldUpdateLoader.csproj",
+      "sha256": "0fab7afa1f5e5e44fb675af97812b4d4f5311b7aac5d521ec22a8be5421a8efb",
+      "bytes": 917
+    },
+    {
+      "original": "tests/world_update_loader/check_arm64_assembly.py",
+      "path": "tests/native-and-managed/world_update_loader/check_arm64_assembly.py",
+      "sha256": "a48d5a7e7fcbe8f2f1caa603fbb8c82ab744ae250179d3d32ea20f565e97ecc9",
+      "bytes": 1778
+    },
+    {
+      "original": "tests/world_update_loader/check_contract.py",
+      "path": "tests/native-and-managed/world_update_loader/check_contract.py",
+      "sha256": "213f09ccc6fd7e15803be5225a8169d2ab37058e7d5a40c4850df48df5394823",
+      "bytes": 3874
+    }
+  ]
+}

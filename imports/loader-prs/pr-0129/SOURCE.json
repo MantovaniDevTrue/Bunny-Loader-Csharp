@@ -1,0 +1,56 @@
+{
+  "pr": 129,
+  "name": "Invasion beacon feedback",
+  "kind": "support",
+  "status": "fix_reference",
+  "runtime_enabled": false,
+  "base_sha": "b64833c4976bd95003b0469b3e357e94b26175c2",
+  "head_sha": "95d2d23485f18263f3ac685937e2b5d9418a83c3",
+  "current_pr_head_when_fetched": "95d2d23485f18263f3ac685937e2b5d9418a83c3",
+  "file_count": 7,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/test-csharp-invasion.yml",
+      "path": "integration/ci-reference/test-csharp-invasion.yml",
+      "sha256": "1cfd7f8c990761d840427359adeba631c63d07d863265cb8da666da842d01df7",
+      "bytes": 12691
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "14fa85ff0926d16f7e50f3546433247cb878790a0ad0bba289f2040295e66b81",
+      "bytes": 263734
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "sha256": "2269c167f2334bd2f0262df8ce3828af84cfea19e5414ab5072a2091a1e8e336",
+      "bytes": 32787
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyItem.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyItem.cs",
+      "sha256": "a9ccbfa492927ca186d93819bf3837baafa424e287132485cef136d123f14d8e",
+      "bytes": 21956
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleInvasionBeacon.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleInvasionBeacon.cs",
+      "sha256": "aa27e1f9b412ebb21610a2448e325dc88ad7a7985f57cadf4696658a6b2d04b6",
+      "bytes": 1524
+    },
+    {
+      "original": "tests/invasion/DispatcherIntegration.cs",
+      "path": "tests/native-and-managed/invasion/DispatcherIntegration.cs",
+      "sha256": "dc8a51ce4c42f328fe90da5436485aa401d2c7bfd83e332b4a2c8601d42a9379",
+      "bytes": 4478
+    },
+    {
+      "original": "tests/invasion/check_item_use_contract.py",
+      "path": "tests/native-and-managed/invasion/check_item_use_contract.py",
+      "sha256": "1ff3ee169a9dbb15f199da29a8477e9450d977e23ea4479a261d7b49438c37f3",
+      "bytes": 7151
+    }
+  ]
+}

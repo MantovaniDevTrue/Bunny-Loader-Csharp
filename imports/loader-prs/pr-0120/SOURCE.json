@@ -1,0 +1,362 @@
+{
+  "pr": 120,
+  "name": "KeybindLoader and TouchButtonLoader",
+  "kind": "loader",
+  "status": "partial",
+  "runtime_enabled": false,
+  "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+  "head_sha": "6bbc27f527f597f6e91f117a474c6df2e7e8bb00",
+  "current_pr_head_when_fetched": "6bbc27f527f597f6e91f117a474c6df2e7e8bb00",
+  "file_count": 58,
+  "excluded_paths": 1,
+  "files": [
+    {
+      "original": ".github/workflows/keybind-csharp-contract.yml",
+      "path": "integration/ci-reference/keybind-csharp-contract.yml",
+      "sha256": "18439ae66904fbac75a27d4d462427b3bbaeab1f3168e774684d2e2caea60d4c",
+      "bytes": 11229
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "4cd77e9054fddc78e3fcbaef37e53c6d97ddd0e1bb092c11794fba95e87f16d9",
+      "bytes": 72903
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "1eebf43d59a53d0182328c9b617d89ed3ef5c901b1d0fb2899f3bdf014d48726",
+      "bytes": 205794
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "102628de3e1712ac0e3b6829c35628799b4be0713bab9c8d056ece3f91539030",
+      "bytes": 15417
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchActionIds.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchActionIds.cpp",
+      "sha256": "8c66bfd050c3a601e5394222387fefc8802d81a4a9cd40813c71c3b83626df72",
+      "bytes": 1934
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchActionIds.h",
+      "path": "src/native/experiments/csharp/NativeTouchActionIds.h",
+      "sha256": "e529226ef4270c20b6f742cbcfe8982abb7a15814d8da0a09fdea4cbc124e914",
+      "bytes": 1112
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchActivation.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchActivation.cpp",
+      "sha256": "e7640ac41b14fb9e05ffe79b78655c4bf6ae4d7fe313381c4468a7ab3ffd975f",
+      "bytes": 2517
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchActivation.h",
+      "path": "src/native/experiments/csharp/NativeTouchActivation.h",
+      "sha256": "4f00fb203f812025a0969df54eb90a79d13677f361ae5b7163d7aa88bc8542eb",
+      "bytes": 122
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchController.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchController.cpp",
+      "sha256": "11632ceda981940426e1b0c208e5978a1ce09efedca4123f933d1496fbff9b8e",
+      "bytes": 13125
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchController.h",
+      "path": "src/native/experiments/csharp/NativeTouchController.h",
+      "sha256": "2650b6f8d152535e6c03e9c87a528f2a68aadefb457787c775e6c1e37e525bdc",
+      "bytes": 741
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchEditor.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchEditor.cpp",
+      "sha256": "bafba2e26f7d0e7123aa140546517ec2f90281b6874ffecde6bad8f913af6fbc",
+      "bytes": 4807
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchEditor.h",
+      "path": "src/native/experiments/csharp/NativeTouchEditor.h",
+      "sha256": "7b6ab4f1e745aaeffc46fba6080bed8d6c8701f879969e84e7489f22fef5a535",
+      "bytes": 320
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchEditorOptions.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchEditorOptions.cpp",
+      "sha256": "61d64f13cbef4a836d03959979e54cc4e54670c09c369cf68434206852a0f057",
+      "bytes": 9818
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchEditorOptions.h",
+      "path": "src/native/experiments/csharp/NativeTouchEditorOptions.h",
+      "sha256": "9db60408b26e246f43c2d05b05dee0d081f0ed09ef2a79fa757fb5dcc0912f74",
+      "bytes": 278
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchFocus.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchFocus.cpp",
+      "sha256": "cacdfd6edaaa02cb5a4387a4fe51ce9b285fa93ef319100f821c26b0259756f1",
+      "bytes": 3986
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchFocus.h",
+      "path": "src/native/experiments/csharp/NativeTouchFocus.h",
+      "sha256": "6775152329c597ac312fafb1114b3605809ae29474d2336458e7caf755f3f391",
+      "bytes": 223
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchGameAbi.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchGameAbi.cpp",
+      "sha256": "fc451fbb5cc228be9f1e490b4297af7c7a667aab103e52ab6d1c21d5b3aab026",
+      "bytes": 4701
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchGameAbi.h",
+      "path": "src/native/experiments/csharp/NativeTouchGameAbi.h",
+      "sha256": "1aa2f6bc36ca597c5927923791b9b2313228df62fb78473f1af1e36492f1ca4b",
+      "bytes": 624
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchGroupSelection.h",
+      "path": "src/native/experiments/csharp/NativeTouchGroupSelection.h",
+      "sha256": "44eb7299d8cadd5201c81ea34cb95761c762a0d2ffc5fca8e5aa2224c6a923ff",
+      "bytes": 260
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchGroups.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchGroups.cpp",
+      "sha256": "85ac335f397228eb8914d95ea7bccf63bfbcdcf7046bb9287d9c639678e234da",
+      "bytes": 9980
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchGroups.h",
+      "path": "src/native/experiments/csharp/NativeTouchGroups.h",
+      "sha256": "47e8dd284193f5fee147380363719b102ebc8b4d730e0efaab5cdaa24a098fd4",
+      "bytes": 339
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchIconHooks.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchIconHooks.cpp",
+      "sha256": "40b20d0fa5dfe9a666628e3b4f2dbc0706b7aa51dd60cb76178a4cda9133a68e",
+      "bytes": 13370
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchIconHooks.h",
+      "path": "src/native/experiments/csharp/NativeTouchIconHooks.h",
+      "sha256": "0b8c2cf0c39acd1fbb62f512eea73d43f2442373d25b719e258047a1f45446e6",
+      "bytes": 504
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchIcons.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchIcons.cpp",
+      "sha256": "b2cc52538191fbd33bfcefd6307b424ee810d06b9370773bc7caf78919ced1b5",
+      "bytes": 4726
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchIcons.h",
+      "path": "src/native/experiments/csharp/NativeTouchIcons.h",
+      "sha256": "50b5e6dc52c098606e13cb9fc7bc30d87630387a5b589c26feda53262bc05bcb",
+      "bytes": 370
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchInput.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchInput.cpp",
+      "sha256": "2513aaf2d3e60e2b22c1c0a794cefd5771da58b3c27d6fefbf66a273e218f8f1",
+      "bytes": 11370
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchInput.h",
+      "path": "src/native/experiments/csharp/NativeTouchInput.h",
+      "sha256": "fd573eac5dbbd50e3f6f11b103a629e6bd879e04f08073d8d09b41ba0cb4db08",
+      "bytes": 3781
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchLayoutAccess.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchLayoutAccess.cpp",
+      "sha256": "d24d6b9df28ef2fb8e94968eeaf40b47328d0d802c4f25834ed3bfc6fdd9503d",
+      "bytes": 9307
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchLayoutAccess.h",
+      "path": "src/native/experiments/csharp/NativeTouchLayoutAccess.h",
+      "sha256": "442ca639dacf6b48b069aba055f5d10dc5fa0bf3675cd0f7271b24b1891155a7",
+      "bytes": 814
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchLayoutHooks.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchLayoutHooks.cpp",
+      "sha256": "a0c36144cbe0a06035a34390ec31b7434ee878667606e395f58746ea741d8984",
+      "bytes": 12186
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchLayoutHooks.h",
+      "path": "src/native/experiments/csharp/NativeTouchLayoutHooks.h",
+      "sha256": "a43ab57806143e79d085e5bdd13fb1960f1f480c049d560db5f788263daa5cfd",
+      "bytes": 281
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchLayoutIdentity.h",
+      "path": "src/native/experiments/csharp/NativeTouchLayoutIdentity.h",
+      "sha256": "00955333ec806ae9bf967240e8b21c1eadf152d31c66a816e8e7bb9753999613",
+      "bytes": 580
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchLayoutJson.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchLayoutJson.cpp",
+      "sha256": "d9058eb790d4af4acf2cae02976acdf2e53a328e1fa766ccdee4068662e1c4c1",
+      "bytes": 12138
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchLayoutJson.h",
+      "path": "src/native/experiments/csharp/NativeTouchLayoutJson.h",
+      "sha256": "4a24da80751b66b47328462a5ff8c45f0d6ec1ec11c74b3dee940e4a507ad3f5",
+      "bytes": 784
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchLayoutRefresh.h",
+      "path": "src/native/experiments/csharp/NativeTouchLayoutRefresh.h",
+      "sha256": "b66ac8e96e4eae4ce90698d26a7e4c05fad038f8dfdee4068e0f88a4f3ba43a0",
+      "bytes": 482
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchPointer.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchPointer.cpp",
+      "sha256": "67a756a956f004ffe9c2c7fde70fea30d2fe242cc725a915d5ee747ae8a2adcd",
+      "bytes": 6708
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchPointer.h",
+      "path": "src/native/experiments/csharp/NativeTouchPointer.h",
+      "sha256": "aafcbf2de0dc16c70e81fa5743ef53b9cd9a7781809d7a125ddca43ead7cc948",
+      "bytes": 162
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchProfiles.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchProfiles.cpp",
+      "sha256": "bd6fe9c4b10f72591f5c127d82b2bce34e04616351afc108232558a686f025ed",
+      "bytes": 10976
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchProfiles.h",
+      "path": "src/native/experiments/csharp/NativeTouchProfiles.h",
+      "sha256": "f2193741758b963d144c1b3d69e39bc8f52bc481c14ff049fb382d6c1f6b9e8e",
+      "bytes": 847
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchStaticMappings.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchStaticMappings.cpp",
+      "sha256": "240bbeb4126f6355c8f483b9f2adcc913eacc661bf09670d64f4a11ce974bb82",
+      "bytes": 8109
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchStaticMappings.h",
+      "path": "src/native/experiments/csharp/NativeTouchStaticMappings.h",
+      "sha256": "8435fb255d5e3534a6f1633c7fb166e1fd9b7458030d19d5ae382cc13c6907da",
+      "bytes": 321
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchVisibility.cpp",
+      "path": "src/native/experiments/csharp/NativeTouchVisibility.cpp",
+      "sha256": "ca0cadb28c6da28081a3665871a12f5a4f661265d6dd19b27c82835ba893f486",
+      "bytes": 3641
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeTouchVisibility.h",
+      "path": "src/native/experiments/csharp/NativeTouchVisibility.h",
+      "sha256": "b2115281eab996a3ee1939a8b5879e2192322b1ea789e8090caed9248967eed8",
+      "bytes": 169
+    },
+    {
+      "original": "docs/csharp-keybind-loader.md",
+      "path": "docs/reference/csharp-keybind-loader.md",
+      "sha256": "f4e50a2010de89b50d4da4be709d7bd36a10a7fc566e7be6c75f7cb2dbde8e4f",
+      "bytes": 25587
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyTouchButtonLoader.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyTouchButtonLoader.cs",
+      "sha256": "d5e77b2b43e9aea5d8bdf0fdb431a8b6b5fedc27a9b67e0ac6fa4480ff9c5416",
+      "bytes": 16394
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyTouchLayoutStore.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyTouchLayoutStore.cs",
+      "sha256": "71de894b44142966860d65762b48cab32224ccb275576693e4f3d4e143bd89e9",
+      "bytes": 13376
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyTouchNativeHost.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyTouchNativeHost.cs",
+      "sha256": "0fa448437bc3da467361eaa6ab0a6f0fe877b03713bffb66b792ebaaad9e3c12",
+      "bytes": 3057
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Common/Systems/BunnyTouchEntry.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Systems/BunnyTouchEntry.cs",
+      "sha256": "210480c6c3bc2ccc801f95fb95b40b8a9085c51a270ff6db32f5b8f480ce88e9",
+      "bytes": 2686
+    },
+    {
+      "original": "tests/keybind_loader/KeybindLoaderTests.csproj",
+      "path": "tests/native-and-managed/keybind_loader/KeybindLoaderTests.csproj",
+      "sha256": "5eb7bf8405b1ed840fc0a9ab16f7a42d798318325839491951b395ef83f0930b",
+      "bytes": 505
+    },
+    {
+      "original": "tests/keybind_loader/LayoutStoreTests.cs",
+      "path": "tests/native-and-managed/keybind_loader/LayoutStoreTests.cs",
+      "sha256": "288c0459f1bb7aa73fb9cb38ea314378c4a8b78294abc75628084454f6b54c13",
+      "bytes": 5927
+    },
+    {
+      "original": "tests/keybind_loader/Program.cs",
+      "path": "tests/native-and-managed/keybind_loader/Program.cs",
+      "sha256": "123589d6d69689421f95251cd96562c00f2eb3a6fb845625614308cde8ec3f9a",
+      "bytes": 8609
+    },
+    {
+      "original": "tests/keybind_loader/check_native_touch_signatures.py",
+      "path": "tests/native-and-managed/keybind_loader/check_native_touch_signatures.py",
+      "sha256": "cf2ba980abf6de4e2f2edd68889cdc6441bdad5342cbecfc1cea8e19779bdb36",
+      "bytes": 2150
+    },
+    {
+      "original": "tests/keybind_loader/native_touch_action_ids_test.cpp",
+      "path": "tests/native-and-managed/keybind_loader/native_touch_action_ids_test.cpp",
+      "sha256": "c23237a7e73606ee655dd5e5cd20c8d904cd67b3995c36bf15a525c361524d73",
+      "bytes": 1424
+    },
+    {
+      "original": "tests/keybind_loader/native_touch_group_selection_test.cpp",
+      "path": "tests/native-and-managed/keybind_loader/native_touch_group_selection_test.cpp",
+      "sha256": "4772a03c3892fab71d2d6cd1a688271e0ed14c43c2d4e23dfd806e1e4f2b5bfb",
+      "bytes": 725
+    },
+    {
+      "original": "tests/keybind_loader/native_touch_input_test.cpp",
+      "path": "tests/native-and-managed/keybind_loader/native_touch_input_test.cpp",
+      "sha256": "94f18abd8131c496163b08e96fdfd33a80d18bf8d8e13320d5c0f69d83567d12",
+      "bytes": 8958
+    },
+    {
+      "original": "tests/keybind_loader/native_touch_layout_identity_test.cpp",
+      "path": "tests/native-and-managed/keybind_loader/native_touch_layout_identity_test.cpp",
+      "sha256": "1e6a79205343827556e5578f7bf605f8a290831b8ef3b2cfe70cb654569793bf",
+      "bytes": 1086
+    },
+    {
+      "original": "tests/keybind_loader/native_touch_layout_json_test.cpp",
+      "path": "tests/native-and-managed/keybind_loader/native_touch_layout_json_test.cpp",
+      "sha256": "e9abe59909d691ad3da5d47a3244e9ce710d7f5d49d2e2dc4accac2d91631f16",
+      "bytes": 3345
+    },
+    {
+      "original": "tests/keybind_loader/native_touch_layout_refresh_test.cpp",
+      "path": "tests/native-and-managed/keybind_loader/native_touch_layout_refresh_test.cpp",
+      "sha256": "00026300296ff02cf02d3ae336ac15973277a95a61aab42074c502778bd48230",
+      "bytes": 766
+    }
+  ]
+}

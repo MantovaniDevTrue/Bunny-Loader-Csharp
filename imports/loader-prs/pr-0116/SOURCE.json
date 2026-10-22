@@ -1,0 +1,518 @@
+{
+  "pr": 116,
+  "name": "InvasionLoader",
+  "kind": "loader",
+  "status": "android_qa_pending",
+  "runtime_enabled": false,
+  "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+  "head_sha": "0074b0b73e7916c1d2529d48ccb5fde1072215a2",
+  "current_pr_head_when_fetched": "0074b0b73e7916c1d2529d48ccb5fde1072215a2",
+  "file_count": 84,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/test-csharp-invasion.yml",
+      "path": "integration/ci-reference/test-csharp-invasion.yml",
+      "sha256": "1eb2ef8a9f98e9ec83970f37476a0d4396d11ef9fcaa5024653523d720f621d8",
+      "bytes": 12246
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "4439d9589863d5bf845404911a0223250f5707acd8a621bc35992eac18e921e3",
+      "bytes": 75449
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/InvasionSaveFile.h",
+      "path": "src/native/experiments/csharp/InvasionSaveFile.h",
+      "sha256": "b364dc9fdb8006452e4b71ab572098879c2027e85aeec4f0f6937a4cdb28c2ca",
+      "bytes": 4771
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "b3890f908aeb4d4b8f8828792fcec8f7a6fde39c90151497bb619bf9e2028671",
+      "bytes": 202239
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "1a0613036349e227d00f9534e37c73daa9805a48ffbebcd4dcb78604ecf5b9b7",
+      "bytes": 15258
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCSharpItemUse.cpp",
+      "path": "src/native/experiments/csharp/NativeCSharpItemUse.cpp",
+      "sha256": "06ff08bb18b21f55cba803a41270a66024adae079eab8109e0fd9cd0fbcbe9ac",
+      "bytes": 13399
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCSharpItemUse.h",
+      "path": "src/native/experiments/csharp/NativeCSharpItemUse.h",
+      "sha256": "0624304c0c0341ed0da4f12cfa97a26068705716b10a77ef26a7195e2c4b15d4",
+      "bytes": 326
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionHud.cpp",
+      "path": "src/native/experiments/csharp/NativeInvasionHud.cpp",
+      "sha256": "a7ab231f72daaced8d449161f117105565951ef2e11be19025ba38c8b5d33235",
+      "bytes": 10309
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionHud.h",
+      "path": "src/native/experiments/csharp/NativeInvasionHud.h",
+      "sha256": "f88d9bde413948f2afc69ccb3b9476b30e6a87cfd1a0a32766988c9bb574d0f2",
+      "bytes": 167
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionMailbox.cpp",
+      "path": "src/native/experiments/csharp/NativeInvasionMailbox.cpp",
+      "sha256": "176ca16af1b4c5ab5b9fbafe23685ddd95821455c5f50b6a596982a93e58a298",
+      "bytes": 6177
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionMailbox.h",
+      "path": "src/native/experiments/csharp/NativeInvasionMailbox.h",
+      "sha256": "672ef363fe30ced520bc2cf4efd34d789e75d558ed5b47696349326637b38106",
+      "bytes": 205
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionNetwork.cpp",
+      "path": "src/native/experiments/csharp/NativeInvasionNetwork.cpp",
+      "sha256": "8ba015cfa1e6bdeb880f96f85c9bd60bd6e4d2072326cbc9934eb60ae14b987c",
+      "bytes": 10967
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionNetwork.h",
+      "path": "src/native/experiments/csharp/NativeInvasionNetwork.h",
+      "sha256": "286ee1bf29570030d41227258225c43271faf8573b2168ececd1ad8c954ded08",
+      "bytes": 308
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionNotifications.cpp",
+      "path": "src/native/experiments/csharp/NativeInvasionNotifications.cpp",
+      "sha256": "571a4b3ee30c9f007d5837ef2888f7ffc3da0f79785c340f7a1d56477574a0bf",
+      "bytes": 3897
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionNotifications.h",
+      "path": "src/native/experiments/csharp/NativeInvasionNotifications.h",
+      "sha256": "a4589cf6bcf3bec8c72a1993f60ff967b457dabdd2111150c4ce5ddf700fb245",
+      "bytes": 169
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionPeerPolicy.h",
+      "path": "src/native/experiments/csharp/NativeInvasionPeerPolicy.h",
+      "sha256": "8b376286db9bbbe816aabf44359a6658684a1569f43abdf6218819625bf79283",
+      "bytes": 278
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionPersistence.cpp",
+      "path": "src/native/experiments/csharp/NativeInvasionPersistence.cpp",
+      "sha256": "7c84165e6c5c6454f8fc9a08a35f1aea117cdf6bbbc5c81d30d7615f6903628f",
+      "bytes": 1950
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionPersistence.h",
+      "path": "src/native/experiments/csharp/NativeInvasionPersistence.h",
+      "sha256": "40bd1e2524c83af219af2752e54f92418a56f523c2283be402f0c52918fcd063",
+      "bytes": 276
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionRewards.cpp",
+      "path": "src/native/experiments/csharp/NativeInvasionRewards.cpp",
+      "sha256": "b0b6a07c831c051a46d8404af0855fa33bdd0b49f4fdd25b4ad6f2419d310861",
+      "bytes": 3906
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionRewards.h",
+      "path": "src/native/experiments/csharp/NativeInvasionRewards.h",
+      "sha256": "7015ea0f99ad29d221fd3b6d13980b76f06d68d0090f00e427db903d775e6495",
+      "bytes": 174
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionSpawn.cpp",
+      "path": "src/native/experiments/csharp/NativeInvasionSpawn.cpp",
+      "sha256": "0b986a04c55b0db86dfa77afa85c1fc53e2936fa09fc23685d80abd9cb1de25d",
+      "bytes": 8284
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionSpawn.h",
+      "path": "src/native/experiments/csharp/NativeInvasionSpawn.h",
+      "sha256": "faac436c9b65d7cd10578d63dafc5d322378ba76d7def709802a330d3716e4a2",
+      "bytes": 1589
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionSpawnSite.cpp",
+      "path": "src/native/experiments/csharp/NativeInvasionSpawnSite.cpp",
+      "sha256": "4f44459293db77f7948435c619697606d9d83036251b0525b97922ed793ba7d9",
+      "bytes": 3480
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionSpawnSite.h",
+      "path": "src/native/experiments/csharp/NativeInvasionSpawnSite.h",
+      "sha256": "6ce93accdbd014fccb1d7bd4972a1ef9c0ece71b5fafd4639c658c19fd79ac60",
+      "bytes": 3842
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionWorldPath.cpp",
+      "path": "src/native/experiments/csharp/NativeInvasionWorldPath.cpp",
+      "sha256": "4e35f2a8b8f841255944cac5d2eb1c3a5652e5e75f3931098812b89120d83ab6",
+      "bytes": 2815
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NpcAiHost.cpp",
+      "path": "src/native/experiments/csharp/NpcAiHost.cpp",
+      "sha256": "9dfcc91a2c7f416094c71a910a1cc67202471859a8471e7e1c4ec5ae0a6c9ef3",
+      "bytes": 28520
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ReliableNpcKill.cpp",
+      "path": "src/native/experiments/csharp/ReliableNpcKill.cpp",
+      "sha256": "411a056de3fc09469327a56a8edfc77f68d6be64c136bc119104f1af72879eb0",
+      "bytes": 2133
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ReliableNpcKill.h",
+      "path": "src/native/experiments/csharp/ReliableNpcKill.h",
+      "sha256": "79d5eb77e6df47c14f94dc7b1682bcb37edca0a9f1c7eef0a720d0fbee5bbbdc",
+      "bytes": 303
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/WorldAuthority.h",
+      "path": "src/native/experiments/csharp/WorldAuthority.h",
+      "sha256": "9bfe6c07e82ad90f134890dd73a58516828c25342bdb70e6dfa4d9e97fe18370",
+      "bytes": 160
+    },
+    {
+      "original": "app/src/main/cpp/menu/NetRequests.cpp",
+      "path": "src/native/host-patches/menu/NetRequests.cpp",
+      "sha256": "150bd4f906ce8ec58295a8e7bf3383b4928c4e2008024c54ab322a1a673cf5e2",
+      "bytes": 10297
+    },
+    {
+      "original": "app/src/main/cpp/menu/NetRequests.h",
+      "path": "src/native/host-patches/menu/NetRequests.h",
+      "sha256": "787144071f2290428ae9bb44e1698a26d2b3ebd8549782c3088367f3a9ece3ab",
+      "bytes": 1796
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "sha256": "951a79f5c4674698696227b37e659eb9ac6538ae5fed45ef671a7c52ed339914",
+      "bytes": 30752
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyInvasion.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyInvasion.cs",
+      "sha256": "0e681698eb2b73d53259eb6a0778ae548dabef15d834fa93938ecb30b50570ac",
+      "bytes": 10380
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyInvasionHud.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyInvasionHud.cs",
+      "sha256": "cb3d5f3be5d5c0b0c779f96fb0b2ac35bb7bd826b2fcfdbd7c6cb921cb462cb4",
+      "bytes": 1327
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyInvasionNativeNetwork.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyInvasionNativeNetwork.cs",
+      "sha256": "c01d083fa74145ac385c840a72c5cffc2d5d9ad5304614dda9f431da36fa7da7",
+      "bytes": 1776
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyInvasionNativeRewards.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyInvasionNativeRewards.cs",
+      "sha256": "79e3eb5295a238e54a805790e008a3a034cf9935b08b1d362467d077e24ade21",
+      "bytes": 1212
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyInvasionNativeTransport.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyInvasionNativeTransport.cs",
+      "sha256": "d36e4ea9b3e71c2d4ba78086f8815cdc8646adc38e685a0fae7315f3f1d8a1fa",
+      "bytes": 2377
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyInvasionNotifications.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyInvasionNotifications.cs",
+      "sha256": "638bfa5a9b154b41be4e225302c62781f1c90914af04c0f83dd422dbdfbe3f49",
+      "bytes": 1451
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyInvasionSpawnPipeline.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyInvasionSpawnPipeline.cs",
+      "sha256": "3a64dafe9d678eae5a3d843d765e94db8ef281880b9abc3bdfe8a695205e1e30",
+      "bytes": 5822
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyInvasionSystem.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyInvasionSystem.cs",
+      "sha256": "0b88aa626bc89555744d0ea9afa5bc656b03cb0db155b042b2da4e9856108eff",
+      "bytes": 1115
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyInvasionWire.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyInvasionWire.cs",
+      "sha256": "002c427f3cd2465b04e654df02c31061284f0ff9b6d9b3d883fb2f8572069905",
+      "bytes": 5914
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyInvasionWorldPersistence.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyInvasionWorldPersistence.cs",
+      "sha256": "a254967e17e1fb0722f7e8e3d5efec25783374811978fe82a16ddff79252077b",
+      "bytes": 2056
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyItem.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyItem.cs",
+      "sha256": "027a39b9395f2cdd6c68bf7896cad192590695fa35b09cd6b6d4dee3a3fc73cd",
+      "bytes": 17064
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyNativeItemUse.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyNativeItemUse.cs",
+      "sha256": "e14cea3603b4cb28356e4ad639401b791903d93d5e4f0ce48287bb083431e480",
+      "bytes": 2962
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "sha256": "30c00735e3e5ef294690f8440f5ea483137ce62307a8fc557c6786a23231ad76",
+      "bytes": 13835
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyUseContext.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyUseContext.cs",
+      "sha256": "5157bd6a35908449c8b4695a90eb5cb0f91b605c9bc9348364f8c9598432d2a5",
+      "bytes": 627
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleInvasionBeacon.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleInvasionBeacon.cs",
+      "sha256": "7f05dc8bc464db01070e7a8bf5c61787e1f822fb389591561c2af488e9310e0c",
+      "bytes": 1006
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/NPCs/ExampleInvasionEliteSlimeNPC.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/NPCs/ExampleInvasionEliteSlimeNPC.cs",
+      "sha256": "b4d317d58953a6b3c94ba171e2b77d2803a6bcb60c8aee8e33a4fb076bd77c99",
+      "bytes": 801
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleInvasion.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleInvasion.cs",
+      "sha256": "35a517428e72bbb0fbcf62adb66658d8173bf02eb5b93a259ab8d13b6f08cd92",
+      "bytes": 2184
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleInvasionSystem.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleInvasionSystem.cs",
+      "sha256": "869fa8040a0697a24e44ec672c987cc0574ac24cd98b38ecc5f1538b6a79dfc7",
+      "bytes": 318
+    },
+    {
+      "original": "tests/invasion/DispatcherIntegration.cs",
+      "path": "tests/native-and-managed/invasion/DispatcherIntegration.cs",
+      "sha256": "81ac2a724a685a48105428285acb7fbc15e32bcb64a369d2451679e6759c70b4",
+      "bytes": 3403
+    },
+    {
+      "original": "tests/invasion/DispatcherIntegration.csproj",
+      "path": "tests/native-and-managed/invasion/DispatcherIntegration.csproj",
+      "sha256": "2e523f556ef57f97d5b9edb0d7c01fe3238ca6da44c08e6b8f09977590273d52",
+      "bytes": 1382
+    },
+    {
+      "original": "tests/invasion/Invasion.csproj",
+      "path": "tests/native-and-managed/invasion/Invasion.csproj",
+      "sha256": "b2f09e71155cb9d58c51ac613a04fd9cc55ca6a1a2b56973b915707c2b26d61c",
+      "bytes": 527
+    },
+    {
+      "original": "tests/invasion/MultiInvasionIntegration.cs",
+      "path": "tests/native-and-managed/invasion/MultiInvasionIntegration.cs",
+      "sha256": "32f9a20bab1b476d90aefd732cd829aa59db6c719ef23c93a0ba97204a2d4c79",
+      "bytes": 3553
+    },
+    {
+      "original": "tests/invasion/MultiInvasionIntegration.csproj",
+      "path": "tests/native-and-managed/invasion/MultiInvasionIntegration.csproj",
+      "sha256": "3c8a01381d97d4e1d7e83c32baad66253d24b078914d15c12eb7bedbfdbe2fba",
+      "bytes": 1385
+    },
+    {
+      "original": "tests/invasion/NativeInvasionPeerPolicyTest.cpp",
+      "path": "tests/native-and-managed/invasion/NativeInvasionPeerPolicyTest.cpp",
+      "sha256": "06e27604e5f058a53ffbf90ebc9da815a200432825646393a2f5b28689d0eeff",
+      "bytes": 540
+    },
+    {
+      "original": "tests/invasion/NativeInvasionRewardsTest.cpp",
+      "path": "tests/native-and-managed/invasion/NativeInvasionRewardsTest.cpp",
+      "sha256": "a0190c4b9a7b1d2f3d1adefc228b85ccc3ddd9d66d6b62c5659e5aa628c31be0",
+      "bytes": 2247
+    },
+    {
+      "original": "tests/invasion/NativeMailboxStub.cpp",
+      "path": "tests/native-and-managed/invasion/NativeMailboxStub.cpp",
+      "sha256": "af3124954a9e63e4a3bf47d531512c3293086b496fd62d1d010d3bdb0fb5b615",
+      "bytes": 4744
+    },
+    {
+      "original": "tests/invasion/NativeMailboxTest.cpp",
+      "path": "tests/native-and-managed/invasion/NativeMailboxTest.cpp",
+      "sha256": "578c85b345ec8f74ac1eb319a1f44b1cae64e86095cdc439d2247a618e24a2fd",
+      "bytes": 3121
+    },
+    {
+      "original": "tests/invasion/NativeSaveStoreTest.cpp",
+      "path": "tests/native-and-managed/invasion/NativeSaveStoreTest.cpp",
+      "sha256": "76c7a457b42ecd2021c8295ea75439251563b5276e09289d202116bdbef49bc5",
+      "bytes": 3681
+    },
+    {
+      "original": "tests/invasion/NativeSpawnPolicyTest.cpp",
+      "path": "tests/native-and-managed/invasion/NativeSpawnPolicyTest.cpp",
+      "sha256": "79478052b34ac79647d03ca1ba8bb00a4a090c6508b1517f11e2ca19e7d4b20b",
+      "bytes": 1813
+    },
+    {
+      "original": "tests/invasion/NativeSpawnSiteTest.cpp",
+      "path": "tests/native-and-managed/invasion/NativeSpawnSiteTest.cpp",
+      "sha256": "33d19792874bf9bfa7eb867e4f4a07a3bccc7d9105019d06679f1c62bf4778ea",
+      "bytes": 3668
+    },
+    {
+      "original": "tests/invasion/Program.cs",
+      "path": "tests/native-and-managed/invasion/Program.cs",
+      "sha256": "4ad5f8d0e69f549005a102c7eb38c206c22f4a456d664e72206ffa09f4f47635",
+      "bytes": 7877
+    },
+    {
+      "original": "tests/invasion/README.md",
+      "path": "tests/native-and-managed/invasion/README.md",
+      "sha256": "0cef6a93268d9376aba674b3d860b9ecf710508bb5c6fe5d153212e6760480ec",
+      "bytes": 5605
+    },
+    {
+      "original": "tests/invasion/ReliableNpcKillTest.cpp",
+      "path": "tests/native-and-managed/invasion/ReliableNpcKillTest.cpp",
+      "sha256": "0c4832474ac83402951b94ebecaf18f848c3b143c6cc992ddc2654eef96750dc",
+      "bytes": 2070
+    },
+    {
+      "original": "tests/invasion/RewardRuntimeStub.cpp",
+      "path": "tests/native-and-managed/invasion/RewardRuntimeStub.cpp",
+      "sha256": "0db4af6142efa6cbcc56a69338b877ad687af87621b37e3c4bdb3460ef7a0b89",
+      "bytes": 1241
+    },
+    {
+      "original": "tests/invasion/SampleCompile.csproj",
+      "path": "tests/native-and-managed/invasion/SampleCompile.csproj",
+      "sha256": "7ed4522b8f129255598cce5e0d07d5db719c61c0301f5440353630056078e80c",
+      "bytes": 1165
+    },
+    {
+      "original": "tests/invasion/SampleNpcStub.cs",
+      "path": "tests/native-and-managed/invasion/SampleNpcStub.cs",
+      "sha256": "554081ecb59d170d08b4b97c2aeddd6dc0550f5a82a92771d640f04f8cc6b83d",
+      "bytes": 68
+    },
+    {
+      "original": "tests/invasion/TransportIntegration.cs",
+      "path": "tests/native-and-managed/invasion/TransportIntegration.cs",
+      "sha256": "2b52354e80eef771359ae24f9d40c419791390c747d0d4166f1ca3c920d46b0a",
+      "bytes": 7004
+    },
+    {
+      "original": "tests/invasion/TransportIntegration.csproj",
+      "path": "tests/native-and-managed/invasion/TransportIntegration.csproj",
+      "sha256": "7397687f3cb1a68461c14a69ae5fb316d8875e497ea045c95626f065a8646eec",
+      "bytes": 1381
+    },
+    {
+      "original": "tests/invasion/WorldAuthorityTest.cpp",
+      "path": "tests/native-and-managed/invasion/WorldAuthorityTest.cpp",
+      "sha256": "acca671d7ad72af1f8f683d0f01a7817f45fe1dd3813af344ed87370f8b700d9",
+      "bytes": 620
+    },
+    {
+      "original": "tests/invasion/check_item_only_contract.py",
+      "path": "tests/native-and-managed/invasion/check_item_only_contract.py",
+      "sha256": "4b1eef8c64283e2b12021b8431aacb74a10fe626f7e4a0f25ec0d1e1574c956a",
+      "bytes": 1005
+    },
+    {
+      "original": "tests/invasion/check_item_use_contract.py",
+      "path": "tests/native-and-managed/invasion/check_item_use_contract.py",
+      "sha256": "89de4376d925b9fe73c95d5cc5df291925a11b20e5cdfc7662b1c4a628c4ab42",
+      "bytes": 2791
+    },
+    {
+      "original": "tests/invasion/check_multiplayer_contract.py",
+      "path": "tests/native-and-managed/invasion/check_multiplayer_contract.py",
+      "sha256": "57b80de23366c17458e9f301477833aeb5ab2f0893f3cb931d6866c65b538468",
+      "bytes": 1832
+    },
+    {
+      "original": "tests/invasion/check_native_identity_bridge.py",
+      "path": "tests/native-and-managed/invasion/check_native_identity_bridge.py",
+      "sha256": "11fcfe1b134e53fb06bc1bae3a3a1c2459e9ba8d44a60c1f674cb8ddb8301b95",
+      "bytes": 1402
+    },
+    {
+      "original": "tests/invasion/check_replication_contract.py",
+      "path": "tests/native-and-managed/invasion/check_replication_contract.py",
+      "sha256": "406a74f8d63ad2af985a515cafa64e773f0711de01fcc4c9a31a550a07a53caa",
+      "bytes": 1937
+    },
+    {
+      "original": "tests/invasion/check_world_host_contract.py",
+      "path": "tests/native-and-managed/invasion/check_world_host_contract.py",
+      "sha256": "d544072adb8aead26ba5806a76130be525b4d58393bcde9406db100cb45dc534",
+      "bytes": 1623
+    },
+    {
+      "original": "tests/invasion/check_world_save_contract.py",
+      "path": "tests/native-and-managed/invasion/check_world_save_contract.py",
+      "sha256": "144f14f8ef56ff42c90d06844644dca1925bcd5bc897a71c611ffc026481360b",
+      "bytes": 1881
+    },
+    {
+      "original": "tests/invasion/native_spawn_contract.py",
+      "path": "tests/native-and-managed/invasion/native_spawn_contract.py",
+      "sha256": "62093200047721d688c4f4e531b0c5fa5a2e3f66847ea1855f35358fc89b93ae",
+      "bytes": 1096
+    },
+    {
+      "original": "tests/invasion/net/InvasionNet.csproj",
+      "path": "tests/native-and-managed/invasion/net/InvasionNet.csproj",
+      "sha256": "e828092441f96e4daac796b0fc83010d1f71d055baf6774cf92d53a06534d8fa",
+      "bytes": 652
+    },
+    {
+      "original": "tests/invasion/net/Program.cs",
+      "path": "tests/native-and-managed/invasion/net/Program.cs",
+      "sha256": "b68ecc49d2dbe2170b73cab8215b66ac22b431b2b52f0cbc16f532025b794e79",
+      "bytes": 4487
+    },
+    {
+      "original": "tests/invasion/pipeline/Pipeline.csproj",
+      "path": "tests/native-and-managed/invasion/pipeline/Pipeline.csproj",
+      "sha256": "be12a86e6cd49097792f33fafa1187a4d5d573922b4d83f14421dba59d13f2d7",
+      "bytes": 516
+    },
+    {
+      "original": "tests/invasion/pipeline/Program.cs",
+      "path": "tests/native-and-managed/invasion/pipeline/Program.cs",
+      "sha256": "02719201d78423fb8c360f7974fd1d6fd1f9a8e86ec1fecfb19ad77cfeb0932b",
+      "bytes": 4131
+    },
+    {
+      "original": "tests/invasion/test_npc_hook_contract.py",
+      "path": "tests/native-and-managed/invasion/test_npc_hook_contract.py",
+      "sha256": "bae942fd3d06313070c39926563c22d8d1e59bf8f6d1395f90a449aef0f01b0a",
+      "bytes": 1222
+    }
+  ]
+}

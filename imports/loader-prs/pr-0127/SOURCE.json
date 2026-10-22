@@ -1,0 +1,38 @@
+{
+  "pr": 127,
+  "name": "Dust register before OnUse",
+  "kind": "support",
+  "status": "fix_reference",
+  "runtime_enabled": false,
+  "base_sha": "a206729f33cee0eee1a5fdb70928a9564f28af7f",
+  "head_sha": "9036f8d882cd82617c2e01d616f34920bae58661",
+  "current_pr_head_when_fetched": "9036f8d882cd82617c2e01d616f34920bae58661",
+  "file_count": 4,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "027003d768c7b01aca8c0e40fc3137333c8eb87b9c3a1851cc9b7e963f5d5c25",
+      "bytes": 262773
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "sha256": "5b9ce61a0a35c4eaca74efb6c638ec86f4e003d6eded31e375cb7fc06d57d374",
+      "bytes": 32455
+    },
+    {
+      "original": "tests/entity_source/Program.cs",
+      "path": "tests/native-and-managed/entity_source/Program.cs",
+      "sha256": "636cdc56743a263fc177060e5726f7f4eaf357ca26fa55b833d02102f2837734",
+      "bytes": 10540
+    },
+    {
+      "original": "tests/invasion/check_item_use_contract.py",
+      "path": "tests/native-and-managed/invasion/check_item_use_contract.py",
+      "sha256": "bdf8f7161b0636af82f3f1e6e222fadebd38e33428c902dbb60b95e244d608eb",
+      "bytes": 6105
+    }
+  ]
+}

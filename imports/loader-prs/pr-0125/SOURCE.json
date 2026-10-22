@@ -1,0 +1,422 @@
+{
+  "pr": 125,
+  "name": "CloudLoader and Biome foundation",
+  "kind": "loader",
+  "status": "partial",
+  "runtime_enabled": false,
+  "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+  "head_sha": "79e674c7ce08b8049d19e3ba3b7607f78696db97",
+  "current_pr_head_when_fetched": "79e674c7ce08b8049d19e3ba3b7607f78696db97",
+  "file_count": 68,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-cloudloader-source.yml",
+      "path": "integration/ci-reference/check-csharp-cloudloader-source.yml",
+      "sha256": "ce7248e36ea063ecc82f02766be5cf1535b395046e0b0665b7964774ddd4c21c",
+      "bytes": 10650
+    },
+    {
+      "original": "app/src/main/cpp/content/common/ModContent.cpp",
+      "path": "src/native/host-patches/content/common/ModContent.cpp",
+      "sha256": "352c9aa56ef8ea784cd6290c710daf4f2e4801d270b725c3723cadd7f89e76b5",
+      "bytes": 2727
+    },
+    {
+      "original": "app/src/main/cpp/content/common/ModContent.h",
+      "path": "src/native/host-patches/content/common/ModContent.h",
+      "sha256": "b4e1a8225f97db5641338550f6fa8e75b8611f4d91e5fdc4896bd6e890cc2d36",
+      "bytes": 942
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "926caa59be4477f2bbe0ab87bb44d17ce8f32c239172c373048b1497561c480a",
+      "bytes": 74757
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "19c701ccd0f83b42ce84079ef9238d0a1e50f7f65ce274a20735b195ff6bb00d",
+      "bytes": 231048
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "f29b13616fd496d4d6eda7762c767799656c3cd9d5770b7f4014a6cddc6a8cdc",
+      "bytes": 16923
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeBiomeGameBridge.cpp",
+      "path": "src/native/experiments/csharp/NativeBiomeGameBridge.cpp",
+      "sha256": "1bf6d9cd399720934b6d37166922c39d7df2f6362ab4270a1ce666e3e23f8079",
+      "bytes": 7143
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeBiomeGameBridge.h",
+      "path": "src/native/experiments/csharp/NativeBiomeGameBridge.h",
+      "sha256": "8106dc05f789148e2610e3758143c8a2ebb9e34b9a3754b426e1145bddf68adf",
+      "bytes": 883
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeBiomeManifest.h",
+      "path": "src/native/experiments/csharp/NativeBiomeManifest.h",
+      "sha256": "33ab855ebb673fdb348f426fb7363ecf9ae0ad8bcfc772a9aed23ad182306a0a",
+      "bytes": 5780
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeBiomeUpdateHook.cpp",
+      "path": "src/native/experiments/csharp/NativeBiomeUpdateHook.cpp",
+      "sha256": "9c4324edf6494318bb2ca0f8f0acf302e5b4586d4e5f6ad3c3d48042a2ae69df",
+      "bytes": 4286
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeBiomeUpdateHook.h",
+      "path": "src/native/experiments/csharp/NativeBiomeUpdateHook.h",
+      "sha256": "42724d7760dccd3f9a185548956bbf2e821e6b46e1532f3b31252f7c39651959",
+      "bytes": 401
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeBiomeUpdateSignal.h",
+      "path": "src/native/experiments/csharp/NativeBiomeUpdateSignal.h",
+      "sha256": "ce0bc7ec58b2a2db6957457052ae84bd859dc3deb2013df4c2b13eb5bf97d7c4",
+      "bytes": 1429
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudAssets.cpp",
+      "path": "src/native/experiments/csharp/NativeCloudAssets.cpp",
+      "sha256": "6f6409ba97d12c870307c0bc04637550457fa51496027e2d61b846cfdddf59a4",
+      "bytes": 20041
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudAssets.h",
+      "path": "src/native/experiments/csharp/NativeCloudAssets.h",
+      "sha256": "d0740fdd40ab54a600842f66474f44f4e23ef2c28a4f280da406e9fe1fe6a529",
+      "bytes": 889
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudAutoload.cpp",
+      "path": "src/native/experiments/csharp/NativeCloudAutoload.cpp",
+      "sha256": "f5fa0dda26cdd185ece6f18ae5497c6afd9daa56dd48eaf47c1a0d86e9681ce4",
+      "bytes": 4678
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudAutoload.h",
+      "path": "src/native/experiments/csharp/NativeCloudAutoload.h",
+      "sha256": "3358af10c07c0e4474d59936bcdf1adc0725259b3f26a487d6a196819397de74",
+      "bytes": 751
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudBiomePolicy.h",
+      "path": "src/native/experiments/csharp/NativeCloudBiomePolicy.h",
+      "sha256": "f8a3d3cb02c84f7e0000e38078d519e3a4628fbd857730f4ee4ac1021e38d1bb",
+      "bytes": 1998
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudBiomeSampler.cpp",
+      "path": "src/native/experiments/csharp/NativeCloudBiomeSampler.cpp",
+      "sha256": "ef72b1caeaf74080226cec742b7c93afa64a1ff1b9824e16fea0fffb4455fe79",
+      "bytes": 10468
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudBiomeSampler.h",
+      "path": "src/native/experiments/csharp/NativeCloudBiomeSampler.h",
+      "sha256": "4542b967d85fb3aabf75cff9475cc854d25aa103a2b1d8d5d9ca869098f3e488",
+      "bytes": 929
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudHookBindings.cpp",
+      "path": "src/native/experiments/csharp/NativeCloudHookBindings.cpp",
+      "sha256": "cf76278de92a1aed7275db9ec59aace07b2c7b0403be09ddefd52de559a73895",
+      "bytes": 3425
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudHookBindings.h",
+      "path": "src/native/experiments/csharp/NativeCloudHookBindings.h",
+      "sha256": "034f1aff27d09142de148f983cd2e67cd948862c6837d0c3615a3c0e0c0ac26c",
+      "bytes": 968
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudHooks.cpp",
+      "path": "src/native/experiments/csharp/NativeCloudHooks.cpp",
+      "sha256": "3adb1a87eeef1f914a104afcea41c83e8b720c23bed76fa4779280654a8ffd3c",
+      "bytes": 15523
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudHooks.h",
+      "path": "src/native/experiments/csharp/NativeCloudHooks.h",
+      "sha256": "9b5a4745b5d1fa8ca685eadbe612a692190f711eb0c77beefdbb76dbcdc8ff4e",
+      "bytes": 1954
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudIdPlan.h",
+      "path": "src/native/experiments/csharp/NativeCloudIdPlan.h",
+      "sha256": "084fed06e98d1418afa149ab476abf19342cbf4f063be708660a793ccf0fedf2",
+      "bytes": 2058
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudIdProbe.cpp",
+      "path": "src/native/experiments/csharp/NativeCloudIdProbe.cpp",
+      "sha256": "dcdf01d7b3486de4d590c0cf20c940dbcbd04bce208fb8a3f21c5c55025ea13a",
+      "bytes": 4905
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudIdProbe.h",
+      "path": "src/native/experiments/csharp/NativeCloudIdProbe.h",
+      "sha256": "b05f0cf821cae7cb0e2dd4f85a63f174370f963770ff6bdbfabdd3ba54db9d62",
+      "bytes": 775
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudManifest.h",
+      "path": "src/native/experiments/csharp/NativeCloudManifest.h",
+      "sha256": "3587420318432551f3b2c628fbef36ae6e3192ad8e24e15f055a282e697ede15",
+      "bytes": 2934
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudRegistry.h",
+      "path": "src/native/experiments/csharp/NativeCloudRegistry.h",
+      "sha256": "aaee28cf14cc057a3df4578284bb0b5400c48a5fb87a65c0d5588f459efe41ff",
+      "bytes": 4751
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudRollCoordinator.h",
+      "path": "src/native/experiments/csharp/NativeCloudRollCoordinator.h",
+      "sha256": "0b8cc2e287f097b1060dfa54671f4015b7ffef95ce1b120fd25e67876af64dab",
+      "bytes": 3078
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudSelection.h",
+      "path": "src/native/experiments/csharp/NativeCloudSelection.h",
+      "sha256": "3eece414b5de422ef96b8beab94fb9942994afecff0f5ccfb9736570a896f6c4",
+      "bytes": 5049
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudSpawnLedger.h",
+      "path": "src/native/experiments/csharp/NativeCloudSpawnLedger.h",
+      "sha256": "c6628f23d90d6ba22da9b8a803a19a5298a884d3b8cee7451ff0c99c5585e4f2",
+      "bytes": 3307
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeCloudWeightWire.h",
+      "path": "src/native/experiments/csharp/NativeCloudWeightWire.h",
+      "sha256": "9959019a44728291f611737fbcc16c4f57f25907b514d648e2ceb3c457a6fc20",
+      "bytes": 3586
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceContentIdentity.h",
+      "path": "src/native/experiments/csharp/SourceContentIdentity.h",
+      "sha256": "5a6e7fbcf3fc22d6bd58274e027662ef54d77b229e60e3728aa85a256b8e638c",
+      "bytes": 1737
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "18899ffec1f1ae9c1fe30ad54ed611e100b608b90e2434be3b4900c23cde6c59",
+      "bytes": 63413
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.h",
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "sha256": "ec1a361ea9cd598b13899cdf48768b390f9b2b479280d0f072a600707704bbc1",
+      "bytes": 1096
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceParser.cpp",
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "sha256": "9c0b1a4c72a87d6ca433acb06a5ac5f90fee7d1568bd268b4a8bd195a945124b",
+      "bytes": 21250
+    },
+    {
+      "original": "docs/CLOUDLOADER-CSHARP.md",
+      "path": "docs/reference/CLOUDLOADER-CSHARP.md",
+      "sha256": "c2bc5c9fa161d86a03b4ebedeaea8430f8c7c6b9b8b2fd9f4aa709e1668de6e0",
+      "bytes": 27427
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyBiome.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyBiome.cs",
+      "sha256": "ea3c179ad1a81e8062d0b88ca5cba21d8a2617e4a07c2dbe8fb2601a3d15b89e",
+      "bytes": 2906
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyBiomeDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyBiomeDispatcher.cs",
+      "sha256": "87a3de0ca6fd8cc89f9328579f2a902b9b49fbe32e314bc9dadb275c00817728",
+      "bytes": 8617
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyCloud.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyCloud.cs",
+      "sha256": "80fba62e22d56ad38edbed3d7872d0f2f64596f3269e2219ca4f232dbf1b343d",
+      "bytes": 4737
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyCloudDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyCloudDispatcher.cs",
+      "sha256": "cb7a99c59c6c65dd106c969fb2a2aace12aa548ebfa36414cc84c0e7948fc10c",
+      "bytes": 10791
+    },
+    {
+      "original": "experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "3038a865f9d530f6a09680ca03f5984129e3e910b4cdc6cd4a104ff9c98fe262",
+      "bytes": 68551
+    },
+    {
+      "original": "experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "b1d036ac9cb57d7feb51edb2aa2c334d733608515e1c08742e3c34069e114455",
+      "bytes": 2785
+    },
+    {
+      "original": "tests/biome_loader/BiomeContractTests.csproj",
+      "path": "tests/native-and-managed/biome_loader/BiomeContractTests.csproj",
+      "sha256": "3ed0bc5aa9293a59ec2bf00d6ff642f2f83c1c335c18115485c1feeb030dc46c",
+      "bytes": 757
+    },
+    {
+      "original": "tests/biome_loader/managed_examples/BiomeContractTests.cs",
+      "path": "tests/native-and-managed/biome_loader/managed_examples/BiomeContractTests.cs",
+      "sha256": "7e8d8909bd5bb9c0387bdecd7e035fb2d45dd6ea493d8e96f51eb4446d18895e",
+      "bytes": 11184
+    },
+    {
+      "original": "tests/biome_loader/managed_examples/ExampleFaultingBiome.cs",
+      "path": "tests/native-and-managed/biome_loader/managed_examples/ExampleFaultingBiome.cs",
+      "sha256": "eb8579a359766c38921fb731485f7a56b01cbb63554a25fbfe1c06705dc7d51e",
+      "bytes": 1027
+    },
+    {
+      "original": "tests/biome_loader/managed_examples/ExampleSurfaceBiome.cs",
+      "path": "tests/native-and-managed/biome_loader/managed_examples/ExampleSurfaceBiome.cs",
+      "sha256": "646cfe0001f7e2f1fd7942f5b77870b4435fb5ceeeab8956ba91166981bff2ba",
+      "bytes": 1129
+    },
+    {
+      "original": "tests/cloud_loader/CloudContractTests.csproj",
+      "path": "tests/native-and-managed/cloud_loader/CloudContractTests.csproj",
+      "sha256": "1b111aa641a1688bc0100eef95a28b34815ac27c43abef7fb9e5f536c8a603eb",
+      "bytes": 786
+    },
+    {
+      "original": "tests/cloud_loader/host_stubs/android/log.h",
+      "path": "tests/native-and-managed/cloud_loader/host_stubs/android/log.h",
+      "sha256": "f298bea4735ac0fff50689b9879a7d523cc574765ce90903eb50a9ac90eccb2c",
+      "bytes": 582
+    },
+    {
+      "original": "tests/cloud_loader/host_stubs/jni.h",
+      "path": "tests/native-and-managed/cloud_loader/host_stubs/jni.h",
+      "sha256": "335e4967b17d826bbfd28146ac6291048bc33503f0bce6be7182b00110be228d",
+      "bytes": 247
+    },
+    {
+      "original": "tests/cloud_loader/managed_examples/CloudContractTests.cs",
+      "path": "tests/native-and-managed/cloud_loader/managed_examples/CloudContractTests.cs",
+      "sha256": "0cba295d08b773e729e4d4f9f6244987659e982dc8b758a3fad53c1a04834de3",
+      "bytes": 9508
+    },
+    {
+      "original": "tests/cloud_loader/managed_examples/ExampleAdvancedCloud.cs",
+      "path": "tests/native-and-managed/cloud_loader/managed_examples/ExampleAdvancedCloud.cs",
+      "sha256": "925cc3d9378a09a539ad3a410f6540ffbabcb237dd719e4097eb8a293b9da298",
+      "bytes": 912
+    },
+    {
+      "original": "tests/cloud_loader/managed_examples/ExampleCommonCloud.cs",
+      "path": "tests/native-and-managed/cloud_loader/managed_examples/ExampleCommonCloud.cs",
+      "sha256": "c83a424cae9ea4a4de06352aa05c5fb0b19c9f7c331887e986064da0bfcde0fc",
+      "bytes": 577
+    },
+    {
+      "original": "tests/cloud_loader/managed_examples/ExampleFaultingCloud.cs",
+      "path": "tests/native-and-managed/cloud_loader/managed_examples/ExampleFaultingCloud.cs",
+      "sha256": "0314454c19bf5d34d852f136d8db44eff3761d86107ac2bd27288edc1b9e9d12",
+      "bytes": 1032
+    },
+    {
+      "original": "tests/cloud_loader/native_biome_manifest_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_biome_manifest_test.cpp",
+      "sha256": "45a2db73f7c68b2c8beba683bda309d22886c656faf237d2ee91d8ab047554b4",
+      "bytes": 3298
+    },
+    {
+      "original": "tests/cloud_loader/native_biome_update_signal_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_biome_update_signal_test.cpp",
+      "sha256": "44585632cfb2dd232a840ddf6eb878c8a6382d2caddc8e7b8cefa27796147a3c",
+      "bytes": 1319
+    },
+    {
+      "original": "tests/cloud_loader/native_cloud_autoload_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_cloud_autoload_test.cpp",
+      "sha256": "6c5f9b3f0e0627404801e06fcf8a7898a83d8aa9eb4dbc1740a433e36eaa1367",
+      "bytes": 2602
+    },
+    {
+      "original": "tests/cloud_loader/native_cloud_biome_policy_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_cloud_biome_policy_test.cpp",
+      "sha256": "f43eb7650e21cd2ea6f68baca3ae83e245c4c0dcafaa45471822901d0314bd88",
+      "bytes": 2601
+    },
+    {
+      "original": "tests/cloud_loader/native_cloud_id_plan_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_cloud_id_plan_test.cpp",
+      "sha256": "48081b47c9a7ae07aaaaa99febb6e61863302e3ba520b2d270e61cd50bb85376",
+      "bytes": 2220
+    },
+    {
+      "original": "tests/cloud_loader/native_cloud_manifest_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_cloud_manifest_test.cpp",
+      "sha256": "58b3452814482f83818d67e9759d31af520f1ddfeb0990d9ae5162a61ac3dd02",
+      "bytes": 2983
+    },
+    {
+      "original": "tests/cloud_loader/native_cloud_registry_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_cloud_registry_test.cpp",
+      "sha256": "357b5cadab80a21f3ace80abf76cd1dd296fa99daf3a5df70520f99f9de1243a",
+      "bytes": 2597
+    },
+    {
+      "original": "tests/cloud_loader/native_cloud_roll_coordinator_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_cloud_roll_coordinator_test.cpp",
+      "sha256": "47396fcc3775ec37b22edc292572187f17eefca46b18f4cbe61eb19389a2d97d",
+      "bytes": 1997
+    },
+    {
+      "original": "tests/cloud_loader/native_cloud_selection_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_cloud_selection_test.cpp",
+      "sha256": "af62b4ae2971e8c25b8a88a07abdfe65e4151663c2d1be193461495dfadeaf70",
+      "bytes": 3543
+    },
+    {
+      "original": "tests/cloud_loader/native_cloud_spawn_ledger_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_cloud_spawn_ledger_test.cpp",
+      "sha256": "2646b7d58c240f6a3d47887a67c8bb93cdce65d7a738ad9623a08522e8df8a02",
+      "bytes": 2146
+    },
+    {
+      "original": "tests/cloud_loader/native_cloud_weight_wire_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/native_cloud_weight_wire_test.cpp",
+      "sha256": "5f1908d468fbcc1c17167509d5d2c6e8fedf7d266c23bab81ea71b122fdeeef0",
+      "bytes": 2279
+    },
+    {
+      "original": "tests/cloud_loader/run_native.sh",
+      "path": "tests/native-and-managed/cloud_loader/run_native.sh",
+      "sha256": "8e349696684cb67349bafd28278b4b57c4a9c91049613ee474e3a77f753ee3c1",
+      "bytes": 732
+    },
+    {
+      "original": "tests/cloud_loader/source_parser_biome_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/source_parser_biome_test.cpp",
+      "sha256": "1fa1878cae52d30bacc6b896b9a7adf4b4306299261153af015d670b53bcb35d",
+      "bytes": 1669
+    },
+    {
+      "original": "tests/cloud_loader/source_parser_cloud_test.cpp",
+      "path": "tests/native-and-managed/cloud_loader/source_parser_cloud_test.cpp",
+      "sha256": "849810d7c93e6e4c439f608d5ed5cd1c631c02ac36aa03056689a0a5784cc8ed",
+      "bytes": 1894
+    }
+  ]
+}
