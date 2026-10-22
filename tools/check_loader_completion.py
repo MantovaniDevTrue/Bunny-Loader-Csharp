@@ -24,6 +24,16 @@ def validate(data):
     group_counts = Counter(entry["group"] for entry in items)
     assert len(group_counts) == data["rules"]["loaderPackages"] == 10
     assert set(group_counts.values()) == {5}
+    delivery_batches = data.get("delivery_batches", [])
+    assert isinstance(delivery_batches, list)
+    delivery_ids = set()
+    for batch in delivery_batches:
+        assert batch["id"] not in delivery_ids
+        delivery_ids.add(batch["id"])
+        assert batch["state"] in ("planned", "validated")
+        assert len(batch["names"]) == 5
+        assert len(set(batch["names"])) == 5
+        assert set(batch["names"]) <= {entry["name"] for entry in items}
     totals = Counter()
     blocked = []
     for entry in items:
@@ -48,8 +58,9 @@ def validate(data):
                 entry["name"] + " lacks source and Android evidence")
         totals[entry["completion"]] += 1
     if data["release"] == "per_batch":
-        assert any(all(e["completion"] == "certified" for e in items if e["group"] == group)
-                   for group in group_counts), "No group of five certified loaders"
+        certified = {entry["name"] for entry in items if entry["completion"] == "certified"}
+        assert any(set(batch["names"]) <= certified and batch["state"] == "validated"
+                   for batch in delivery_batches), "No five-loader delivery batch is certified"
     return group_counts, totals, sorted(set(blocked))
 
 def main():
