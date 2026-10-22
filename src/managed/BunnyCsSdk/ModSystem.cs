@@ -17,6 +17,7 @@ public abstract class ModSystem
     public virtual void ResizeArrays() { }
     public virtual void PostSetupContent() { }
     public virtual void OnWorldLoad() { }
+    public virtual void ModifyLightingBrightness(ref float brightness) { }
     public virtual void PostWorldLoad() { }
     public virtual void ClearWorld() { }
     public virtual void PreWorldGen() { }
@@ -199,6 +200,44 @@ public static class ModSystemLoader
                 mask |= 1UL << index;
         }
         return mask;
+    }
+
+
+    public static float ModifyLightingBrightness(Assembly assembly, float original)
+    {
+        if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+        if (!float.IsFinite(original) || original < 0f) return original;
+        lock (Sync)
+        {
+            if (!Registries.TryGetValue(assembly, out Registry? registry) ||
+                !registry.ModLoaded || !registry.WorldLoaded)
+                return original;
+            float current = original;
+            foreach (Entry entry in registry.Entries)
+            {
+                if (!entry.Loaded || (entry.OverrideMask & (1UL << 49)) == 0)
+                    continue;
+                float candidate = current;
+                try
+                {
+                    entry.System.ModifyLightingBrightness(ref candidate);
+                    if (float.IsFinite(candidate) && candidate >= 0f)
+                        current = candidate;
+                }
+                catch (Exception error)
+                {
+                    entry.FailureReports.TryGetValue(nameof(ModSystem.ModifyLightingBrightness),
+                        out int count);
+                    count = count < int.MaxValue ? count + 1 : count;
+                    entry.FailureReports[nameof(ModSystem.ModifyLightingBrightness)] = count;
+                    if (count <= 3 || (count & (count - 1)) == 0)
+                        Console.Error.WriteLine("[CSharp][ModSystem] " +
+                            entry.System.GetType().FullName + ".ModifyLightingBrightness falhou (" +
+                            count + "x): " + error);
+                }
+            }
+            return current;
+        }
     }
 
     public static ulong HookMask(Assembly assembly)

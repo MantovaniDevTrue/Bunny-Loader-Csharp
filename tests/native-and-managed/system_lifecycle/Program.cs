@@ -17,6 +17,10 @@ public sealed class AlphaSystem : ModSystem
     public override void Load() => Events.Add("A.Load");
     public override void OnModLoad() => Events.Add("A.OnModLoad");
     public override void OnLocalizationsLoaded() => Events.Add("A.OnLocalizationsLoaded");
+    public override void ModifyLightingBrightness(ref float brightness)
+    {
+        brightness = brightness * 0.8f;
+    }
     public override void ResetNearbyTileEffects() => Events.Add("A.ResetNearbyTileEffects");
     public override void ResizeArrays() => Events.Add("A.ResizeArrays");
     public override void PostSetupContent() => Events.Add("A.PostSetupContent");
@@ -89,6 +93,7 @@ internal static class Program
             expectedMask |= 1UL << bit;
         if ((ModSystemLoader.HookMask(assembly) & expectedMask) != expectedMask) return 30;
         Expect("A.Load,B.Load,A.OnModLoad,B.OnModLoad");
+        if (ModSystemLoader.ModifyLightingBrightness(assembly, 2f) != 2f) return 48;
         if (ModSystemLoader.Dispatch(assembly, 31) != 0) return 38;
         if (ModSystemLoader.Dispatch(assembly, 31) != 0) return 39;
         if (ModSystemLoader.Dispatch(assembly, 32) != 0) return 40;
@@ -100,6 +105,8 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 8) != 0) return 26;
         if (ModSystemLoader.Dispatch(assembly, 9) != 0) return 27;
         if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 3;
+        if (Math.Abs(ModSystemLoader.ModifyLightingBrightness(assembly, 2f) - 1.6f) > 0.0001f) return 49;
+        if (!float.IsNaN(ModSystemLoader.ModifyLightingBrightness(assembly, float.NaN))) return 50;
         if (ModSystemLoader.Dispatch(assembly, 35) != 0) return 45;
         if (ModSystemLoader.Dispatch(assembly, 35) != 0) return 46;
         for (int phase = 10; phase <= 21; phase++)

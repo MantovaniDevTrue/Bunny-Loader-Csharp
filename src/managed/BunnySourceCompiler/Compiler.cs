@@ -182,7 +182,9 @@ public static class Compiler
                 "public static int Invoke(int phase) => " +
                 "ModSystemLoader.Dispatch(typeof(BunnySystemEntry).Assembly, phase); " +
                 "public static ulong HookMask() => " +
-                "ModSystemLoader.HookMask(typeof(BunnySystemEntry).Assembly); } }";
+                "ModSystemLoader.HookMask(typeof(BunnySystemEntry).Assembly); " +
+                "public static float Brightness(float value) => " +
+                "ModSystemLoader.ModifyLightingBrightness(typeof(BunnySystemEntry).Assembly, value); } }";
             trees.Add(CSharpSyntaxTree.ParseText(systemEntry,
                 CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp12),
                 "__BunnySystemEntry.generated.cs"));

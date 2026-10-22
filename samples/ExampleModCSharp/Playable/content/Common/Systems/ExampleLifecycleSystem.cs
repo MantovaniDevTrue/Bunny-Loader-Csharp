@@ -83,6 +83,13 @@ public sealed class ExampleLifecycleSystem : ModSystem
         Console.WriteLine("[ExampleMod C#] entrada no mundo #" + visits);
     }
 
+    public override void ModifyLightingBrightness(ref float brightness)
+    {
+        // O efeito multiplica a luminosidade somente no mundo.
+        // O dispatcher rejeita NaN e valores negativos e nao aloca por quadro.
+        brightness *= 1.03f;
+    }
+
     public override void PreUpdateWorld()
     {
         // Chamado antes de WorldGen.UpdateWorld; sem alocacao nem log por frame.
