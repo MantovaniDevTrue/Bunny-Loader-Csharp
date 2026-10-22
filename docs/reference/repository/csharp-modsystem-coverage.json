@@ -4,6 +4,7 @@
   "declaredOriginalHooks": [
     "ClearWorld",
     "Load",
+    "ModifyLightingBrightness",
     "OnLocalizationsLoaded",
     "OnModLoad",
     "OnModUnload",
@@ -54,7 +55,6 @@
     "ModifyInterfaceLayers",
     "ModifyTimeRate",
     "ModifySunLightColor",
-    "ModifyLightingBrightness",
     "ModifyScreenPosition",
     "ModifyTransformMatrix",
     "TileCountsAvailable",

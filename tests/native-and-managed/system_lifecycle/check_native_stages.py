@@ -44,5 +44,9 @@ assert "if (withinSystemCallback)" in native, "Nested native callbacks could dea
 assert "if (!validAssembly(assemblyPath))" in native, "DLL must be validated on first load"
 for phase, bit in ((33,3),(34,52),(35,12)):
     assert re.search(r'else if\s*\(phase\s*==\s*'+str(phase)+r'\)\s*hookBit\s*=\s*'+str(bit),runtime), "Missing native hook bit"
+assert 'ModifyLightingBrightness' in sdk, "SDK brightness hook missing"
+assert 'modifyManagedSourceSystemBrightness' in native, "Mono scalar bridge missing"
+assert 'UpdateGlobalBrightness' in runtime and 'GlobalBrightness' in runtime, "Native field brightness missing"
+assert 'modifyManagedSourceSystemBrightness(target.modId' in runtime, "Brightness must forward float"
 assert len(expected)==7
 print("MODSYSTEM_NATIVE_STAGES=PASS edges=7 hooks=9 version=301720")
