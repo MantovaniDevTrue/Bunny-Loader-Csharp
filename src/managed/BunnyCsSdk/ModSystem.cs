@@ -13,6 +13,7 @@ public abstract class ModSystem
 {
     public virtual void Load() { }
     public virtual void OnModLoad() { }
+    public virtual void OnLocalizationsLoaded() { }
     public virtual void ResizeArrays() { }
     public virtual void PostSetupContent() { }
     public virtual void OnWorldLoad() { }
@@ -259,13 +260,13 @@ public static class ModSystemLoader
     /// 0=Load, 1=OnModLoad, 2=OnWorldLoad, 3=OnWorldUnload,
     /// 4=OnModUnload, 5=Unload, 6=ClearWorld, 7=PreSaveAndQuit,
     /// 8=PreWorldGen, 9=PostWorldGen, 10..30=hooks de atualizacao.
-    /// 31=ResizeArrays, 32=PostSetupContent.
+    /// 31=ResizeArrays, 32=PostSetupContent, 33=OnLocalizationsLoaded.
     /// Retorna o numero de falhas isoladas.
     /// </summary>
     public static int Dispatch(Assembly assembly, int phase)
     {
         if (assembly == null) throw new ArgumentNullException(nameof(assembly));
-        if ((uint)phase > 32) throw new ArgumentOutOfRangeException(nameof(phase));
+        if ((uint)phase > 33) throw new ArgumentOutOfRangeException(nameof(phase));
         lock (Sync)
         {
             if (!Registries.TryGetValue(assembly, out Registry? registry))
@@ -290,6 +291,14 @@ public static class ModSystemLoader
                 foreach (Entry entry in registry.Entries)
                     if (entry.Loaded)
                         failures += Invoke(entry, x => x.OnModLoad(), nameof(ModSystem.OnModLoad));
+            }
+
+            if (phase == 33 && registry.ModLoaded && registry.ContentSetup)
+            {
+                foreach (Entry entry in registry.Entries)
+                    if (entry.Loaded && (entry.OverrideMask & (1UL << 3)) != 0)
+                        failures += Invoke(entry, x => x.OnLocalizationsLoaded(),
+                            nameof(ModSystem.OnLocalizationsLoaded));
             }
 
             if (phase == 31 && registry.ModLoaded && !registry.ArraysResized)

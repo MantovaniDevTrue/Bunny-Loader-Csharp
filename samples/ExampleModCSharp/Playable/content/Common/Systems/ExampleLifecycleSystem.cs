@@ -30,6 +30,13 @@ public sealed class ExampleLifecycleSystem : ModSystem
         Console.WriteLine("[ExampleMod C#] conteudo C# totalmente preparado");
     }
 
+    public override void OnLocalizationsLoaded()
+    {
+        // O Bunny chama novamente após trocar a cultura ativa do jogo.
+        // Recupere textos localizados aqui; não releia todos os arquivos por frame.
+        Console.WriteLine("[ExampleMod C#] idioma aplicado");
+    }
+
     public override void OnModLoad()
     {
         Console.WriteLine("[ExampleMod C#] sistemas carregados");

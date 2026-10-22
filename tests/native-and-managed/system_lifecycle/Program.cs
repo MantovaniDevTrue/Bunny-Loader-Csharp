@@ -16,6 +16,7 @@ public sealed class AlphaSystem : ModSystem
 {
     public override void Load() => Events.Add("A.Load");
     public override void OnModLoad() => Events.Add("A.OnModLoad");
+    public override void OnLocalizationsLoaded() => Events.Add("A.OnLocalizationsLoaded");
     public override void ResizeArrays() => Events.Add("A.ResizeArrays");
     public override void PostSetupContent() => Events.Add("A.PostSetupContent");
     public override void OnWorldLoad() => Events.Add("A.OnWorldLoad");
@@ -90,6 +91,8 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 31) != 0) return 39;
         if (ModSystemLoader.Dispatch(assembly, 32) != 0) return 40;
         if (ModSystemLoader.Dispatch(assembly, 32) != 0) return 41;
+        if (ModSystemLoader.Dispatch(assembly, 33) != 0) return 42;
+        if (ModSystemLoader.Dispatch(assembly, 33) != 0) return 43;
         if (ModSystemLoader.Dispatch(assembly, 6) != 0) return 21;
         if (ModSystemLoader.Dispatch(assembly, 8) != 0) return 26;
         if (ModSystemLoader.Dispatch(assembly, 9) != 0) return 27;
@@ -115,6 +118,7 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 5) != 0) return 8;
         Expect("A.Load,B.Load,A.OnModLoad,B.OnModLoad," +
             "A.ResizeArrays,A.PostSetupContent," +
+            "A.OnLocalizationsLoaded,A.OnLocalizationsLoaded," +
             "A.ClearWorld,B.ClearWorld,A.PreWorldGen,B.PreWorldGen," +
             "A.PostWorldGen,B.PostWorldGen,A.OnWorldLoad,B.OnWorldLoad," +
             "A.PreUpdateWorld," +
