@@ -23,6 +23,7 @@
     <Compile Include="../BunnyCsSdk/BunnyUniversalHooks.cs" Link="BunnyUniversalHooks.cs" />
     <Compile Include="../BunnyCsSdk/BunnyHooks.cs" Link="BunnyHooks.cs" />
     <Compile Include="../BunnyCsSdk/ModSystem.cs" Link="ModSystem.cs" />
+    <Compile Include="../BunnyCsSdk/BunnySystemRecipes.cs" Link="BunnySystemRecipes.cs" />
     <Compile Include="../BunnyCsSdk/BunnyVisual.cs" Link="BunnyVisual.cs" />
     <Compile Include="../BunnyCsSdk/BunnyPlayerHurtDispatcher.cs" Link="BunnyPlayerHurtDispatcher.cs" />
   </ItemGroup>

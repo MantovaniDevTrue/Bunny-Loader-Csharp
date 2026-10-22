@@ -155,6 +155,18 @@ public static class CompiledAssemblyProbe
                 if (string.IsNullOrWhiteSpace(shader) == string.IsNullOrWhiteSpace(pipeline))
                     throw new InvalidOperationException(effect.GetType().FullName + ": exactly one ShaderFile or PipelineFile required");
             }
+            if (systemTypes.Length > 0)
+            {
+                Type systemBase = Ancestors(systemTypes[0])
+                    .First(type => type.FullName == "BunnyLoader.Source.ModSystem");
+                Type recipeSupport = systemBase.Assembly.GetType(
+                    "BunnyLoader.Source.BunnySystemRecipes", throwOnError: true)!;
+                MethodInfo generate = recipeSupport.GetMethod("Generate",
+                    BindingFlags.Public | BindingFlags.Static)!;
+                object? generated = generate.Invoke(null, new object[] {assembly, basicItems});
+                File.AppendAllText(diagnosticsPath, "\nMODSYSTEM_ADD_RECIPES_OK systems=" +
+                    Convert.ToString(generated, CultureInfo.InvariantCulture));
+            }
             WriteRuntimeDefaults(projectiles, weapons, buffs, potions,
                 accessories, players, npcs, prefixes, basicItems, tiles, diagnosticsPath);
             WriteProjectileMotionPolicies(assembly, projectileTypes, diagnosticsPath);

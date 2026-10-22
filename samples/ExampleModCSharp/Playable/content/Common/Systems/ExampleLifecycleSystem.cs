@@ -30,6 +30,14 @@ public sealed class ExampleLifecycleSystem : ModSystem
         Console.WriteLine("[ExampleMod C#] conteudo C# totalmente preparado");
     }
 
+    public override void AddRecipes()
+    {
+        BunnySystemRecipes.CreateRecipe("ExampleItem", 1)
+            .AddIngredient(BunnyVanillaItems.DirtBlock, 100)
+            .AddTile(BunnyVanillaTiles.WorkBenches)
+            .Register();
+    }
+
     public override void OnLocalizationsLoaded()
     {
         // O Bunny chama novamente após trocar a cultura ativa do jogo.

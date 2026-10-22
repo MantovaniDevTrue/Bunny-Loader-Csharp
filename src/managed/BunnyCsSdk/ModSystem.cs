@@ -13,6 +13,7 @@ public abstract class ModSystem
 {
     public virtual void Load() { }
     public virtual void OnModLoad() { }
+    public virtual void AddRecipes() { }
     public virtual void OnLocalizationsLoaded() { }
     public virtual void ResizeArrays() { }
     public virtual void PostSetupContent() { }
