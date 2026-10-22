@@ -18,6 +18,18 @@ public sealed class ExampleLifecycleSystem : ModSystem
         playerBatches = 0;
     }
 
+    public override void ResizeArrays()
+    {
+        // Os tipos nativos estao registrados: redimensione caches proprios.
+        Console.WriteLine("[ExampleMod C#] arrays de conteudo prontas");
+    }
+
+    public override void PostSetupContent()
+    {
+        // Uma vez apos instalar defaults, receitas e visuais de todos os mods.
+        Console.WriteLine("[ExampleMod C#] conteudo C# totalmente preparado");
+    }
+
     public override void OnModLoad()
     {
         Console.WriteLine("[ExampleMod C#] sistemas carregados");

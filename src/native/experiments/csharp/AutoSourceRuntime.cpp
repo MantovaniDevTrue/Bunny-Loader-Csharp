@@ -71,6 +71,8 @@ std::vector<AutoSourceStatus> g_statuses;
 std::atomic<bool> g_started{false};
 std::atomic<bool> g_initialCSharpRegistrationFinished{false};
 std::atomic<bool> g_initialCSharpSummaryShown{false};
+std::atomic<bool> g_modSystemArraysResized{false};
+std::atomic<bool> g_modSystemContentSetup{false};
 std::atomic<bool> g_preWorldBindingsArmed{false};
 std::atomic<bool> g_preWorldBindingsRunning{false};
 std::atomic<bool> g_delayedWorldEntry{false};
@@ -1171,6 +1173,28 @@ bool loadPendingAutoSourceSystems() {
     return true;
 }
 
+void dispatchAutoSourceSystems(int phase);
+
+void pumpModSystemContentLifecycleOnGameThread() {
+    if (!g_initialCSharpRegistrationFinished.load(std::memory_order_acquire) ||
+        g_modSystemContentSetup.load(std::memory_order_acquire)) return;
+    {
+        std::lock_guard<std::mutex> guard(g_lock);
+        for (const auto& state : g_statuses) {
+            if (state.phase == "failed") continue;
+            if (!state.applied || !state.systemsLoaded) return;
+        }
+    }
+    if (!g_modSystemArraysResized.exchange(true, std::memory_order_acq_rel))
+        dispatchAutoSourceSystems(31);
+    const auto ready = basicItemLoadStatus();
+    if (ready.pendingRecipes || ready.pendingBehaviors || ready.pendingPlacements ||
+        pendingNativeVisualRenderer()) return;
+    if (!g_preWorldBindingsArmed.load(std::memory_order_acquire)) return;
+    if (!g_modSystemContentSetup.exchange(true, std::memory_order_acq_rel))
+        dispatchAutoSourceSystems(32);
+}
+
 void reportCSharpLoadSummary() {
     if (!g_initialCSharpRegistrationFinished.load(std::memory_order_acquire) ||
         g_initialCSharpSummaryShown.load(std::memory_order_acquire)) return;
@@ -1258,6 +1282,8 @@ void dispatchAutoSourceSystems(int phase) {
     else if (phase == 28) hookBit = 40;
     else if (phase == 29) hookBit = 41;
     else if (phase == 30) hookBit = 42;
+    else if (phase == 31) hookBit = 4;
+    else if (phase == 32) hookBit = 9;
     if (hookBit >= 0 &&
         (activeManagedSourceSystemHooks() & (1ULL << hookBit)) == 0)
         return;
@@ -1517,6 +1543,7 @@ void noteAutoGameUpdate() {
     pumpNativeVisualRendererOnGameThread();
     installModSystemUpdateHooksOnGameThread();
     installNativeModSystemStageHooks(activeManagedSourceSystemHooks());
+    pumpModSystemContentLifecycleOnGameThread();
     if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
         static unsigned systemRetryFrame = 0;
         if (++systemRetryFrame % 12u == 0) loadPendingAutoSourceSystems();
@@ -1620,7 +1647,8 @@ bool preWorldCSharpContentReady() {
         }
     if (!hasCSharpMods) return true;
     if (!g_initialCSharpRegistrationFinished.load(std::memory_order_acquire) ||
-        !g_preWorldBindingsArmed.load(std::memory_order_acquire))
+        !g_preWorldBindingsArmed.load(std::memory_order_acquire) ||
+        !g_modSystemContentSetup.load(std::memory_order_acquire))
         return false;
     const auto content = basicItemLoadStatus();
     if (!installModSystemUpdateHooksOnGameThread() ||

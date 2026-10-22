@@ -13,6 +13,8 @@ public abstract class ModSystem
 {
     public virtual void Load() { }
     public virtual void OnModLoad() { }
+    public virtual void ResizeArrays() { }
+    public virtual void PostSetupContent() { }
     public virtual void OnWorldLoad() { }
     public virtual void ClearWorld() { }
     public virtual void PreWorldGen() { }
@@ -67,6 +69,8 @@ public static class ModSystemLoader
         public readonly Entry[] Entries;
         public bool ModLoaded;
         public bool WorldLoaded;
+        public bool ArraysResized;
+        public bool ContentSetup;
         public bool Unloaded;
         public int ConstructionFailures;
         public Registry(Entry[] entries, int failures)
@@ -255,12 +259,13 @@ public static class ModSystemLoader
     /// 0=Load, 1=OnModLoad, 2=OnWorldLoad, 3=OnWorldUnload,
     /// 4=OnModUnload, 5=Unload, 6=ClearWorld, 7=PreSaveAndQuit,
     /// 8=PreWorldGen, 9=PostWorldGen, 10..30=hooks de atualizacao.
+    /// 31=ResizeArrays, 32=PostSetupContent.
     /// Retorna o numero de falhas isoladas.
     /// </summary>
     public static int Dispatch(Assembly assembly, int phase)
     {
         if (assembly == null) throw new ArgumentNullException(nameof(assembly));
-        if ((uint)phase > 30) throw new ArgumentOutOfRangeException(nameof(phase));
+        if ((uint)phase > 32) throw new ArgumentOutOfRangeException(nameof(phase));
         lock (Sync)
         {
             if (!Registries.TryGetValue(assembly, out Registry? registry))
@@ -285,6 +290,28 @@ public static class ModSystemLoader
                 foreach (Entry entry in registry.Entries)
                     if (entry.Loaded)
                         failures += Invoke(entry, x => x.OnModLoad(), nameof(ModSystem.OnModLoad));
+            }
+
+            if (phase == 31 && registry.ModLoaded && !registry.ArraysResized)
+            {
+                registry.ArraysResized = true;
+                foreach (Entry entry in registry.Entries)
+                    if (entry.Loaded && (entry.OverrideMask & (1UL << 4)) != 0)
+                        failures += Invoke(entry, x => x.ResizeArrays(), nameof(ModSystem.ResizeArrays));
+            }
+            if (phase == 32 && registry.ModLoaded && !registry.ContentSetup)
+            {
+                registry.ContentSetup = true;
+                if (!registry.ArraysResized)
+                {
+                    registry.ArraysResized = true;
+                    foreach (Entry entry in registry.Entries)
+                        if (entry.Loaded && (entry.OverrideMask & (1UL << 4)) != 0)
+                            failures += Invoke(entry, x => x.ResizeArrays(), nameof(ModSystem.ResizeArrays));
+                }
+                foreach (Entry entry in registry.Entries)
+                    if (entry.Loaded && (entry.OverrideMask & (1UL << 9)) != 0)
+                        failures += Invoke(entry, x => x.PostSetupContent(), nameof(ModSystem.PostSetupContent));
             }
 
             if (phase >= 10 && phase <= 30 && registry.ModLoaded &&
