@@ -46,3 +46,7 @@ O snapshot está fixado na .87.1. Funcionalidades criadas somente em branches po
 Referência do BunnyLoader original: https://github.com/JonataOliveiraa/Bunny-Loader
 
 Licenças e autoria dos arquivos preservados permanecem de seus titulares. O repositório não distribui binários, dados do jogo nem segredos de assinatura.
+
+## ModSystem C# (lote em desenvolvimento)
+
+Há um lote de porting de ModSystem em andamento na [PR #1](https://github.com/MantovaniDevTrue/Bunny-Loader-Csharp/pull/1). O SDK C# já declara 32 dos 58 callbacks originais e conta com CI de contratos C#, parser, geração do exemplo, teste ARM64 de sintaxe e assembler. **Ainda faltam 26 callbacks, testes de execução Android, compatibilidade com hooks JS e validação de FPS; a PR permanece Draft, sem APK e sem merge.** Referência detalhada: [cobertura por hook](docs/reference/repository/csharp-modsystem-coverage.md).

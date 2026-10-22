@@ -7,7 +7,9 @@ Este módulo usa o nome e as assinaturas de eventos `ModSystem` do tModLoader, m
 
 ## API
 
-A classe `BunnyLoader.Source.ModSystem` oferece `Load`, `OnModLoad`, `OnWorldLoad`, `OnWorldUnload`, `OnModUnload` e `Unload`. O `ModSystemLoader` cria uma instância por classe concreta e por assembly, ordenadas pelo nome completo, e executa cada etapa somente na transição correspondente. Falhas de um sistema não bloqueiam outros. Limite: 256 sistemas por mod.
+A classe `BunnyLoader.Source.ModSystem` já declara **32 dos 58 callbacks** do ModSystem original; `Unload` permanece um método adicional de limpeza. As categorias implementadas em fonte são: ciclo de vida, limpeza e geração básica do mundo, conclusão de registro de conteúdo, eventos de atualização e estágios ARM64 de jogadores/NPCs/gore/itens. Veja a [matriz auditável](csharp-modsystem-coverage.md) para os 26 ausentes, sem confundir declaração com validação Android.
+
+O `ModSystemLoader` cria uma instância por classe concreta e por assembly, ordenadas pelo nome completo; callbacks de atualização só são chamados nas classes que efetivamente sobrescrevem o método. Falhas de uma classe não bloqueiam outras; máximo de 256 sistemas por mod.
 
 `Load` precede `OnModLoad`. `OnWorldLoad` ocorre somente quando o jogador realmente entra no mundo; `OnWorldUnload` é emitido antes de sair do mundo. `OnModUnload` e `Unload` são reservados para descarregamento real do mod, nunca para uma simples saída do mundo.
 
@@ -72,3 +74,10 @@ O `ResizeArrays` executa uma vez por mod após o registro dos tipos C# e o carre
 ## Auditoria de ABI do Main.QuitGame
 
 A implementação JS original do Bunny invoca `original(self)` em `Main.QuitGame()`; a ponte C# agora define `QuitGameFn(Il2CppObject* self, const MethodInfo* method)`, preserva o primeiro argumento e o encaminha para a função original após as notificações de unload. O contrato é verificado pela suíte de CI; somente um teste no binário ARM64 real poderá confirmar a chamada em tempo de execução.
+
+## Compatibilidade e critérios de aceite
+
+- A implementação mantém o C# independente do JavaScript em runtime, mas os pontos de modificação do código nativo ARM64 ainda precisam ser testados quando um mod JS usa o mesmo endereço.
+- O código atual de entrada no mundo é focalizado em modo individual (`netMode == 0`); o evento de mundo no cliente multiplayer do Bunny original não pode ser considerado validado.
+- CI verde significa compilação gerenciada, testes contratuais, sintaxe C++/assembly ARM64 e auditoria de fontes. Não cobre ligação do app, execução no aparelho, integridade do save, FPS ou teste real do trampolim.
+- Nunca gerar APK ou liberar PR enquanto faltarem os 26 métodos, a compatibilidade de hooks e a validação nativa no Terraria 301720.
