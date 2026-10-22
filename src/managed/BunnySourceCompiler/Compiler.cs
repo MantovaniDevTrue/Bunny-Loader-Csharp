@@ -180,7 +180,9 @@ public static class Compiler
             const string systemEntry =
                 "namespace BunnyLoader.Source { internal static class BunnySystemEntry { " +
                 "public static int Invoke(int phase) => " +
-                "ModSystemLoader.Dispatch(typeof(BunnySystemEntry).Assembly, phase); } }";
+                "ModSystemLoader.Dispatch(typeof(BunnySystemEntry).Assembly, phase); " +
+                "public static ulong HookMask() => " +
+                "ModSystemLoader.HookMask(typeof(BunnySystemEntry).Assembly); } }";
             trees.Add(CSharpSyntaxTree.ParseText(systemEntry,
                 CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp12),
                 "__BunnySystemEntry.generated.cs"));

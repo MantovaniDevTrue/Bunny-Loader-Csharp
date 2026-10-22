@@ -53,6 +53,96 @@ public static class ModSystemLoader
     private static readonly object Sync = new();
     private static readonly Dictionary<Assembly, Registry> Registries = new();
     private const int MaxSystemsPerMod = 256;
+    private static readonly string[] OriginalHookNames =
+    {
+        "Load",
+        "OnModLoad",
+        "OnModUnload",
+        "OnLocalizationsLoaded",
+        "ResizeArrays",
+        "AddRecipeGroups",
+        "AddRecipes",
+        "PostAddRecipes",
+        "PostSetupRecipes",
+        "PostSetupContent",
+        "OnWorldLoad",
+        "LoadWorldData",
+        "PostWorldLoad",
+        "SaveWorldData",
+        "SaveWorldHeader",
+        "CanWorldBePlayed",
+        "WorldCanBePlayedRejectionMessage",
+        "PreWorldGen",
+        "ModifyWorldGenTasks",
+        "PostWorldGen",
+        "ModifyHardmodeTasks",
+        "ClearWorld",
+        "PreSaveAndQuit",
+        "OnWorldUnload",
+        "PreUpdateWorld",
+        "PostUpdateWorld",
+        "PreUpdateTime",
+        "PostUpdateTime",
+        "PostUpdateEverything",
+        "UpdateUI",
+        "ModifyInterfaceLayers",
+        "PostUpdateInput",
+        "PreUpdateEntities",
+        "PreUpdatePlayers",
+        "PostUpdatePlayers",
+        "PreUpdateNPCs",
+        "PostUpdateNPCs",
+        "PreUpdateGores",
+        "PostUpdateGores",
+        "PreUpdateProjectiles",
+        "PostUpdateProjectiles",
+        "PreUpdateItems",
+        "PostUpdateItems",
+        "PreUpdateDusts",
+        "PostUpdateDusts",
+        "PreUpdateInvasions",
+        "PostUpdateInvasions",
+        "ModifyTimeRate",
+        "ModifySunLightColor",
+        "ModifyLightingBrightness",
+        "ModifyScreenPosition",
+        "ModifyTransformMatrix",
+        "ResetNearbyTileEffects",
+        "TileCountsAvailable",
+        "NetSend",
+        "NetReceive",
+        "HijackGetData",
+        "HijackSendData"
+    };
+
+    /// <summary>
+    /// Mapa de overrides dos 58 hooks originais, em ordem fixada no
+    /// ModSystem.js do Bunny. Um bit so entra se uma instancia ativa o sobrescreve.
+    /// Usado pelo host para nao consultar Mono em hooks sem assinantes.
+    /// </summary>
+    public static ulong HookMask(Assembly assembly)
+    {
+        if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+        lock (Sync)
+        {
+            if (!Registries.TryGetValue(assembly, out Registry? registry) ||
+                !registry.ModLoaded) return 0;
+            ulong mask = 0;
+            foreach (Entry entry in registry.Entries)
+            {
+                if (!entry.Loaded) continue;
+                Type type = entry.System.GetType();
+                for (int index = 0; index < OriginalHookNames.Length; index++)
+                {
+                    MethodInfo? method = type.GetMethod(OriginalHookNames[index],
+                        BindingFlags.Public | BindingFlags.Instance);
+                    if (method != null && method.DeclaringType != typeof(ModSystem))
+                        mask |= 1UL << index;
+                }
+            }
+            return mask;
+        }
+    }
 
     private static Registry Create(Assembly assembly)
     {

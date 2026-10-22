@@ -58,6 +58,10 @@ internal static class Program
         Assembly assembly = Assembly.GetExecutingAssembly();
         if (ModSystemLoader.Dispatch(assembly, 0) != 0) return 1;
         if (ModSystemLoader.Dispatch(assembly, 0) != 0) return 2;
+        ulong expectedMask = 0;
+        foreach (int bit in new[] {0, 1, 2, 10, 17, 19, 21, 22, 23})
+            expectedMask |= 1UL << bit;
+        if ((ModSystemLoader.HookMask(assembly) & expectedMask) != expectedMask) return 30;
         Expect("A.Load,B.Load,A.OnModLoad,B.OnModLoad");
         if (ModSystemLoader.Dispatch(assembly, 6) != 0) return 21;
         if (ModSystemLoader.Dispatch(assembly, 8) != 0) return 26;
@@ -86,7 +90,11 @@ internal static class Program
 
         // Outra DLL representa outro mod, com erros isolados da primeira.
         Assembly foreign = typeof(ForeignSystem).Assembly;
+        if (ModSystemLoader.HookMask(foreign) != 0) return 31;
         if (ModSystemLoader.Dispatch(foreign, 2) != 1) return 10;
+        ulong foreignMask = ModSystemLoader.HookMask(foreign);
+        if ((foreignMask & (1UL << 21)) != 0) return 32;
+        if ((foreignMask & (1UL << 17)) != 0) return 33;
         if (ForeignSystem.Loads != 1 || ForeignSystem.WorldLoads != 1) return 11;
         if (ModSystemLoader.Dispatch(foreign, 2) != 0) return 12;
         if (ForeignSystem.WorldLoads != 1) return 13;
