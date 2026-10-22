@@ -58,5 +58,8 @@ assert 'DoDraw_UpdateCameraPosition' in runtime, "Camera native hook missing"
 assert 'field_static_set_value(g_modSystemCameraPosition' in runtime, "Camera result not applied"
 assert 'field_static_set_value(g_modSystemTileColor' in runtime, "Sunlight result not applied"
 assert 'field_static_set_value(g_modSystemSkyColor' in runtime, "Sky result not applied"
+assert 'isModSystemNativeStructField(g_modSystemTileColor, 4)' in runtime, "Tile Color must be 4 bytes"
+assert 'isModSystemNativeStructField(g_modSystemSkyColor, 4)' in runtime, "Sky Color must be 4 bytes"
+assert 'isModSystemNativeStructField(g_modSystemCameraPosition, 8)' in runtime, "Camera Vector2 must be 8 bytes"
 assert len(expected)==7
 print("MODSYSTEM_NATIVE_STAGES=PASS edges=7 hooks=9 version=301720")
