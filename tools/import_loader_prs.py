@@ -25,11 +25,9 @@ def destination(path):
         return None
     if item.suffix.lower() in DISALLOWED:
         return None
-    if path.startswith("docs/"):
-        return "docs/reference/repository/" + path[len("docs/"):]
-    if not path.startswith(UPSTREAM_PREFIX):
-        return None
-    rel = path[len(UPSTREAM_PREFIX):]
+    rel = path[len(UPSTREAM_PREFIX):] if path.startswith(UPSTREAM_PREFIX) else path
+    if rel.startswith("docs/"):
+        return "docs/reference/" + rel[len("docs/"):]
     pairs = [
         ("experiments/csharp/", "src/managed/"),
         ("app/src/main/cpp/experiments/csharp/", "src/native/experiments/csharp/"),
@@ -73,8 +71,8 @@ def fetch_refs(source, entry):
     run(source, "cat-file", "-e", head + "^{commit}")
     run(source, "cat-file", "-e", base + "^{commit}")
     current = run(source, "rev-parse", "refs/remotes/origin/csharp-pr-%d" % number).strip()
-    if current != head and run(source, "merge-base", "--is-ancestor", head, current) is None:
-        pass
+    if current != head:
+        run(source, "merge-base", "--is-ancestor", head, current)
     return base, head, current
 
 
