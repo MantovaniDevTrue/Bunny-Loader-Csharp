@@ -48,5 +48,7 @@ assert 'ModifyLightingBrightness' in sdk, "SDK brightness hook missing"
 assert 'modifyManagedSourceSystemBrightness' in native, "Mono scalar bridge missing"
 assert 'UpdateGlobalBrightness' in runtime and 'GlobalBrightness' in runtime, "Native field brightness missing"
 assert 'modifyManagedSourceSystemBrightness(target.modId' in runtime, "Brightness must forward float"
+assert 'BunnySystemRecipes.Generate' in (root/"src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs").read_text(), "No recipe probe bridge"
+assert 'PrepareRecipes' in (root/"src/managed/BunnySourceCompiler/BasicItemWriter.cs").read_text(), "Recipe item serialization may be duplicated"
 assert len(expected)==7
 print("MODSYSTEM_NATIVE_STAGES=PASS edges=7 hooks=9 version=301720")

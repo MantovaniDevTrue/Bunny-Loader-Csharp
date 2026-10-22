@@ -2,6 +2,7 @@
   "reference": "JonataOliveiraa/Bunny-Loader:app/src/main/cpp/script/js/mod/ModSystem.js",
   "originalHookCount": 58,
   "declaredOriginalHooks": [
+    "AddRecipes",
     "ClearWorld",
     "Load",
     "ModifyLightingBrightness",
@@ -41,7 +42,6 @@
   ],
   "missingOriginalHooks": [
     "AddRecipeGroups",
-    "AddRecipes",
     "PostAddRecipes",
     "PostSetupRecipes",
     "LoadWorldData",
