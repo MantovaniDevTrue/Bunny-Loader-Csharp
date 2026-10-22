@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using BunnyLoader.Source;
 using BunnyLoader.IsolatedWorld;
+using BunnyLoader.SourceCompiler;
 
 namespace BunnyLoader.SystemLifecycleTests;
 
@@ -74,6 +75,32 @@ public sealed class BetaSystem : ModSystem
     public override void Unload() => Events.Add("B.Unload");
 }
 
+public sealed class RecipeTrialItem : BunnyItem
+{
+    public override void SetDefaults()
+    {
+        DisplayName = "Recipe Trial";
+        Texture = "Content/Items/RecipeTrialItem.png";
+        MaxStack = 99;
+    }
+
+    public override void AddRecipes()
+    {
+        CreateRecipe().AddIngredient(BunnyVanillaItems.DirtBlock).Register();
+    }
+}
+
+public sealed class RecipeTrialSystem : ModSystem
+{
+    public override void AddRecipes()
+    {
+        BunnySystemRecipes.CreateRecipe(nameof(RecipeTrialItem), 2)
+            .AddIngredient(BunnyVanillaItems.DirtBlock, 3)
+            .AddTile(BunnyVanillaTiles.WorkBenches)
+            .Register();
+    }
+}
+
 internal static class Program
 {
     private static void Expect(string expected)
@@ -86,6 +113,20 @@ internal static class Program
     private static int Main()
     {
         Assembly assembly = Assembly.GetExecutingAssembly();
+        var item = new RecipeTrialItem();
+        item.SetDefaults();
+        if (BunnySystemRecipes.Generate(assembly, new object[] {item}) != 1) return 51;
+        if (item.RecipeDefinitions.Count != 2) return 52;
+        string serialized = BasicItemWriter.Write(item);
+        if (!serialized.Contains("1,-1,v2:1;2,18,v2:3", StringComparison.Ordinal)) return 53;
+        if (item.RecipeDefinitions.Count != 2) return 54;
+        try
+        {
+            BunnySystemRecipes.CreateRecipe(nameof(RecipeTrialItem));
+            return 55;
+        }
+        catch (InvalidOperationException) { }
+
         if (ModSystemLoader.Dispatch(assembly, 0) != 0) return 1;
         if (ModSystemLoader.Dispatch(assembly, 0) != 0) return 2;
         ulong expectedMask = 0;
