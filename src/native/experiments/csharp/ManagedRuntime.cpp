@@ -74,6 +74,9 @@ using ClassFn = void* (*)(void*, const char*, const char*);
 using MethodFn = void* (*)(void*, const char*, int);
 using InvokeFn = void* (*)(void*, void*, void**, void**);
 using UnboxFn = void* (*)(void*);
+using MonoInt32ClassFn = void* (*)();
+using MonoArrayNewFn = void* (*)(void*, void*, uintptr_t);
+using MonoArrayAddrFn = char* (*)(void*, int, uintptr_t);
 using NewStringFn = void* (*)(void*, const char*);
 using MonoGcSizeFn = int64_t (*)();
 
@@ -89,6 +92,9 @@ struct MonoApi {
     MethodFn findMethod = nullptr;
     InvokeFn invoke = nullptr;
     UnboxFn unbox = nullptr;
+    MonoInt32ClassFn int32Class = nullptr;
+    MonoArrayNewFn arrayNew = nullptr;
+    MonoArrayAddrFn arrayAddr = nullptr;
     NewStringFn newString = nullptr;
     MonoGcSizeFn gcHeapSize = nullptr;
     MonoGcSizeFn gcUsedSize = nullptr;
@@ -126,6 +132,7 @@ struct SourceSystemEntry {
     void* brightnessMethod = nullptr;
     void* sunlightMethod = nullptr;
     void* cameraMethod = nullptr;
+    void* tileCountsMethod = nullptr;
     uint64_t mask = 0;
     bool maskKnown = false;
 };
@@ -214,6 +221,9 @@ bool loadLibrary() {
     g_api.findMethod = resolve<MethodFn>("mono_class_get_method_from_name");
     g_api.invoke = resolve<InvokeFn>("mono_runtime_invoke");
     g_api.unbox = resolve<UnboxFn>("mono_object_unbox");
+    g_api.int32Class = resolve<MonoInt32ClassFn>("mono_get_int32_class");
+    g_api.arrayNew = resolve<MonoArrayNewFn>("mono_array_new");
+    g_api.arrayAddr = resolve<MonoArrayAddrFn>("mono_array_addr_with_size");
     g_api.newString = resolve<NewStringFn>("mono_string_new");
     g_api.gcHeapSize = resolve<MonoGcSizeFn>("mono_gc_get_heap_size");
     g_api.gcUsedSize = resolve<MonoGcSizeFn>("mono_gc_get_used_size");
@@ -3757,6 +3767,59 @@ bool modifyManagedSourceSystemPackedValue(const std::string& modId,
     return true;
 }
 
+bool managedSourceSystemTileCountsSupported() {
+    std::lock_guard<std::mutex> lock(g_mutex);
+    return g_domain && g_api.int32Class && g_api.arrayNew &&
+           g_api.arrayAddr && g_api.invoke && g_api.unbox &&
+           g_api.attach && g_api.currentThread && g_api.detachThread;
+}
+
+bool dispatchManagedSourceSystemTileCounts(const std::string& modId,
+                                           const int32_t* values, size_t length,
+                                           int* failures) {
+    if (!failures || !values || length == 0 || length > 8192 ||
+        modId.empty() || g_withinModSystemCallback) return false;
+    struct ScopedDispatch {
+        ~ScopedDispatch() { g_withinModSystemCallback = false; }
+    } scope;
+    g_withinModSystemCallback = true;
+    std::lock_guard<std::mutex> systemLock(g_sourceSystemDispatchMutex);
+    std::unique_lock<std::mutex> lock(g_mutex);
+    const auto found = g_sourceSystemEntries.find(modId);
+    if (found == g_sourceSystemEntries.end() || !found->second.maskKnown ||
+        !(found->second.mask & (1ULL << 53)) ||
+        !found->second.tileCountsMethod || !g_domain ||
+        !g_api.currentThread || !g_api.attach || !g_api.detachThread ||
+        !g_api.int32Class || !g_api.arrayNew || !g_api.arrayAddr ||
+        !g_api.invoke || !g_api.unbox) return false;
+    const void* current = g_api.currentThread();
+    void* attached = g_api.attach(g_domain);
+    if (!attached) return false;
+    struct ScopedMonoThread {
+        DetachFn detach;
+        void* owned;
+        ~ScopedMonoThread() { if (owned) detach(owned); }
+    } monoThread{g_api.detachThread, current ? nullptr : attached};
+    void* int32 = g_api.int32Class();
+    void* array = int32 ? g_api.arrayNew(g_domain, int32, length) : nullptr;
+    if (!array) return false;
+    char* first = g_api.arrayAddr(array, sizeof(int32_t), 0);
+    if (!first) return false;
+    std::memcpy(first, values, length * sizeof(int32_t));
+    void* method = found->second.tileCountsMethod;
+    lock.unlock();
+    void* args[] = {array};
+    void* exception = nullptr;
+    void* boxed = g_api.invoke(method, nullptr, args, &exception);
+    void* result = exception || !boxed ? nullptr : g_api.unbox(boxed);
+    if (!result) return false;
+    int32_t status = -1;
+    std::memcpy(&status, result, sizeof(status));
+    if (status < 0 || status > 256) return false;
+    *failures = status;
+    return true;
+}
+
 bool dispatchManagedSourceSystem(const std::string& modId,
                                  const std::string& assemblyPath,
                                  int phase, int* failures) {
@@ -3806,6 +3869,8 @@ bool dispatchManagedSourceSystem(const std::string& modId,
             ? g_api.findMethod(klass, "Sunlight", 1) : nullptr;
         entry.cameraMethod = klass
             ? g_api.findMethod(klass, "Camera", 1) : nullptr;
+        entry.tileCountsMethod = klass
+            ? g_api.findMethod(klass, "TileCounts", 1) : nullptr;
         if (!entry.method || !entry.maskMethod) {
             g_sourceSystemEntries.erase(modId);
             return false;
