@@ -10,6 +10,10 @@ on:
       - "src/native/**"
       - ".github/workflows/csharp-modsystem-native-syntax.yml"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   native-syntax:
     runs-on: ubuntu-latest
