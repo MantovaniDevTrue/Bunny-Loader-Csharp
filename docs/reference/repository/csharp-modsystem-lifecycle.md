@@ -27,3 +27,7 @@ A existência do código-fonte ou do teste gerenciado NÃO é validação no apa
 O dispatcher mantém uma trava separada para serializar as transições dos sistemas. A trava global do runtime Mono é liberada antes da chamada gerenciada, permitindo que o mod utilize outras APIs sem bloqueio recursivo. As chamadas continuam eventuais, fora do ciclo por frame.
 
 O hook C# de `Main.QuitGame()` executa `OnWorldUnload`, `OnModUnload` e `Unload` nessa ordem, conforme o ciclo terminal do loader JS de referência. A API não considera uma simples troca de mundo um descarregamento de mod. Se o método nativo não existir, o host informa a ausência e o APK continua bloqueado. Falta demonstrar no Android que o método nativo é realmente resolvido, que executa uma vez ao sair do jogo e que reentradas e múltiplos mods permanecem íntegros.
+
+## Teste isolado de dois mods
+
+`system_lifecycle/ForeignMod` é uma segunda DLL gerenciada, compilada como projeto próprio. Os testes criam duas assemblies separadas, forçam falha de construtor em um dos mods, verificam que os outros continuam e conferem a reentrada após `Unload` com estado por assembly. O teste Android continua obrigatório.

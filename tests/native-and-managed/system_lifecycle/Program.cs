@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using BunnyLoader.Source;
+using BunnyLoader.IsolatedWorld;
 
 namespace BunnyLoader.SystemLifecycleTests;
 
@@ -61,7 +62,24 @@ internal static class Program
             "A.OnWorldLoad,B.OnWorldLoad,A.OnWorldUnload,B.OnWorldUnload," +
             "A.OnModUnload,B.OnModUnload,B.Unload,A.Unload");
         if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 9;
+
+        // Outra DLL representa outro mod, com erros isolados da primeira.
+        Assembly foreign = typeof(ForeignSystem).Assembly;
+        if (ModSystemLoader.Dispatch(foreign, 2) != 1) return 10;
+        if (ForeignSystem.Loads != 1 || ForeignSystem.WorldLoads != 1) return 11;
+        if (ModSystemLoader.Dispatch(foreign, 2) != 0) return 12;
+        if (ForeignSystem.WorldLoads != 1) return 13;
+        if (ModSystemLoader.Dispatch(foreign, 3) != 0) return 14;
+        if (ModSystemLoader.Dispatch(foreign, 5) != 0) return 15;
+        if (ForeignSystem.WorldUnloads != 1 ||
+            ForeignSystem.ModUnloads != 1 || ForeignSystem.Unloads != 1) return 16;
+        if (ModSystemLoader.Dispatch(foreign, 2) != 1) return 17;
+        if (ForeignSystem.Loads != 2 || ForeignSystem.WorldLoads != 2) return 18;
+        if (ModSystemLoader.Dispatch(foreign, 5) != 0) return 19;
+        if (ForeignSystem.WorldUnloads != 2 ||
+            ForeignSystem.ModUnloads != 2 || ForeignSystem.Unloads != 2) return 20;
         Console.WriteLine("MODSYSTEM_LIFECYCLE_HOST=PASS");
+        Console.WriteLine("MODSYSTEM_LIFECYCLE_MULTIMOD=PASS");
         return 0;
     }
 }
