@@ -82,6 +82,14 @@ public sealed class BetaSystem : ModSystem
     public override void PreWorldGen() => Events.Add("B.PreWorldGen");
     public override void PostWorldGen() => Events.Add("B.PostWorldGen");
     public override void PreSaveAndQuit() => Events.Add("B.PreSaveAndQuit");
+    public override void ModifySunLightColor(ref BunnySystemColor tile, ref BunnySystemColor sky)
+    {
+        tile = new BunnySystemColor((byte)(tile.R + 1), tile.G, tile.B, tile.A);
+    }
+    public override void ModifyScreenPosition()
+    {
+        BunnySystemCamera.ScreenPosition = new BunnySystemVector2(float.NaN, 0);
+    }
     public override void OnWorldUnload() => Events.Add("B.OnWorldUnload");
     public override void OnModUnload() => Events.Add("B.OnModUnload");
     public override void Unload() => Events.Add("B.Unload");
@@ -166,11 +174,13 @@ internal static class Program
         ulong updatedSun = ModSystemLoader.ModifySunLightColor(assembly, originalSun);
         var tile = new BunnySystemColor((uint)updatedSun);
         var sky = new BunnySystemColor((uint)(updatedSun >> 32));
-        if (tile.R != 10 || tile.G != 20 || tile.B != 30 || tile.A != 255 ||
+        if (tile.R != 11 || tile.G != 20 || tile.B != 30 || tile.A != 255 ||
             sky.R != 80 || sky.G != 80 || sky.B != 90 || sky.A != 255) return 59;
         ulong cameraRaw = (uint)BitConverter.SingleToInt32Bits(100f) |
             ((ulong)(uint)BitConverter.SingleToInt32Bits(60f) << 32);
         ulong cameraChanged = ModSystemLoader.ModifyScreenPosition(assembly, cameraRaw);
+        ulong invalidCamera = 0x7fc0000000000000UL | (uint)BitConverter.SingleToInt32Bits(0f);
+        if (ModSystemLoader.ModifyScreenPosition(assembly, invalidCamera) != invalidCamera) return 62;
         if (BitConverter.Int32BitsToSingle((int)cameraChanged) != 116f ||
             BitConverter.Int32BitsToSingle((int)(cameraChanged >> 32)) != 52f) return 60;
         try { _ = BunnySystemCamera.ScreenPosition; return 61; }
