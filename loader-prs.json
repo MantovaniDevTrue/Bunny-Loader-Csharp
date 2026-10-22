@@ -240,11 +240,11 @@
     {
       "number": 133,
       "name": "StatModifier and StatInheritanceData shared foundation",
-      "status": "dependency",
+      "status": "provenance_review",
       "kind": "support",
       "head_sha": "aeccdbd1ce2f2f1e3ee7c1ee3787eb666459a44d",
       "base_sha": "ddcea5ced0c7ef7a290371aa02799a760b359e8d",
-      "import": true,
+      "import": false,
       "runtime_enabled": false
     },
     {
