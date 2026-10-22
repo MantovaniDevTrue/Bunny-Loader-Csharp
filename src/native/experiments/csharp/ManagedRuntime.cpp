@@ -3672,7 +3672,7 @@ bool dispatchManagedSourceSystem(const std::string& modId,
                                  int phase, int* failures) {
     if (!failures || phase < 0 || phase > 32 ||
         modId.empty() || modId.size() > 128 ||
-        !validAssembly(assemblyPath)) return false;
+        assemblyPath.empty() || assemblyPath.size() > 2048) return false;
     std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
     std::unique_lock<std::mutex> guard(g_mutex);
     if (!g_domain || !g_status.domainInitialized || !g_status.methodExecuted ||
@@ -3691,6 +3691,11 @@ bool dispatchManagedSourceSystem(const std::string& modId,
     SourceSystemEntry& entry = g_sourceSystemEntries[modId];
     if (!entry.path.empty() && entry.path != assemblyPath) return false;
     if (!entry.method) {
+        // Only stat the mod assembly before first opening it, not every tick.
+        if (!validAssembly(assemblyPath)) {
+            g_sourceSystemEntries.erase(modId);
+            return false;
+        }
         void* assembly = g_api.openAssembly(g_domain, assemblyPath.c_str());
         void* image = assembly ? g_api.image(assembly) : nullptr;
         void* klass = image ? g_api.findClass(image, "BunnyLoader.Source", "BunnySystemEntry") : nullptr;
