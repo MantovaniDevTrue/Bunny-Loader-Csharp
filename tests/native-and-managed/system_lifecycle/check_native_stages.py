@@ -40,7 +40,7 @@ native_boundary=re.search(r'bool dispatchManagedSourceSystem\(.*?phase\s*>\s*(\d
 sdk_boundary=re.search(r'public static int Dispatch\(Assembly assembly, int phase\).*?phase\s*>\s*(\d+)',sdk,re.S)
 assert native_boundary and sdk_boundary, "Dispatcher phase boundaries not found"
 assert native_boundary.group(1)==sdk_boundary.group(1)=="37", "SDK/native dispatch phases differ"
-assert "if (withinSystemCallback)" in native, "Nested native callbacks could deadlock"
+assert "if (g_withinModSystemCallback)" in native and "scope(g_withinModSystemCallback)" in native, "Nested native callbacks could deadlock"
 assert "if (!validAssembly(assemblyPath))" in native, "DLL must be validated on first load"
 for phase, bit in ((33,3),(34,52),(35,12),(36,7),(37,8)):
     assert re.search(r'else if\s*\(phase\s*==\s*'+str(phase)+r'\)\s*hookBit\s*=\s*'+str(bit),runtime), "Missing native hook bit"
