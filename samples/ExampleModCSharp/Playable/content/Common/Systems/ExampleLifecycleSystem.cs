@@ -6,12 +6,14 @@ namespace ExampleModCSharp.Common.Systems;
 public sealed class ExampleLifecycleSystem : ModSystem
 {
     private int visits;
+    private int worldTicks;
     private bool insideWorld;
 
     public override void Load()
     {
         // Uma vez por carregamento do mod: inicialize dados globais aqui.
         visits = 0;
+        worldTicks = 0;
     }
 
     public override void OnModLoad()
@@ -49,6 +51,19 @@ public sealed class ExampleLifecycleSystem : ModSystem
         visits++;
         insideWorld = true;
         Console.WriteLine("[ExampleMod C#] entrada no mundo #" + visits);
+    }
+
+    public override void PreUpdateWorld()
+    {
+        // Chamado antes de WorldGen.UpdateWorld; sem alocacao nem log por frame.
+        worldTicks++;
+    }
+
+    public override void PostUpdateWorld()
+    {
+        // Chamado depois da atualizacao vanilla do mundo.
+        // A contagem e local ao mundo e serve como exemplo de estado persistente em RAM.
+        if (!insideWorld) worldTicks = 0;
     }
 
     public override void OnWorldUnload()

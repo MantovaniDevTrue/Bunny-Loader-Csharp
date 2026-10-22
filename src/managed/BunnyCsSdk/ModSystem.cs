@@ -18,6 +18,18 @@ public abstract class ModSystem
     public virtual void PreWorldGen() { }
     public virtual void PostWorldGen() { }
     public virtual void PreSaveAndQuit() { }
+    public virtual void PreUpdateWorld() { }
+    public virtual void PostUpdateWorld() { }
+    public virtual void PreUpdateTime() { }
+    public virtual void PostUpdateTime() { }
+    public virtual void PreUpdateEntities() { }
+    public virtual void PostUpdateEverything() { }
+    public virtual void PreUpdateProjectiles() { }
+    public virtual void PreUpdateDusts() { }
+    public virtual void PostUpdateDusts() { }
+    public virtual void PreUpdateInvasions() { }
+    public virtual void PostUpdateInvasions() { }
+    public virtual void PostUpdateInput() { }
     public virtual void OnWorldUnload() { }
     public virtual void OnModUnload() { }
     public virtual void Unload() { }
@@ -53,6 +65,21 @@ public static class ModSystemLoader
     private static readonly object Sync = new();
     private static readonly Dictionary<Assembly, Registry> Registries = new();
     private const int MaxSystemsPerMod = 256;
+    private static readonly (string Name, Action<ModSystem> Call)[] UpdateHooks =
+    {
+        ("PreUpdateWorld", x => x.PreUpdateWorld()),
+        ("PostUpdateWorld", x => x.PostUpdateWorld()),
+        ("PreUpdateTime", x => x.PreUpdateTime()),
+        ("PostUpdateTime", x => x.PostUpdateTime()),
+        ("PreUpdateEntities", x => x.PreUpdateEntities()),
+        ("PostUpdateEverything", x => x.PostUpdateEverything()),
+        ("PreUpdateProjectiles", x => x.PreUpdateProjectiles()),
+        ("PreUpdateDusts", x => x.PreUpdateDusts()),
+        ("PostUpdateDusts", x => x.PostUpdateDusts()),
+        ("PreUpdateInvasions", x => x.PreUpdateInvasions()),
+        ("PostUpdateInvasions", x => x.PostUpdateInvasions()),
+        ("PostUpdateInput", x => x.PostUpdateInput())
+    };
     private static readonly string[] OriginalHookNames =
     {
         "Load",
@@ -195,13 +222,13 @@ public static class ModSystemLoader
     /// <summary>
     /// 0=Load, 1=OnModLoad, 2=OnWorldLoad, 3=OnWorldUnload,
     /// 4=OnModUnload, 5=Unload, 6=ClearWorld, 7=PreSaveAndQuit,
-    /// 8=PreWorldGen, 9=PostWorldGen.
+    /// 8=PreWorldGen, 9=PostWorldGen, 10..21=hooks de atualizacao.
     /// Retorna o numero de falhas isoladas.
     /// </summary>
     public static int Dispatch(Assembly assembly, int phase)
     {
         if (assembly == null) throw new ArgumentNullException(nameof(assembly));
-        if ((uint)phase > 9) throw new ArgumentOutOfRangeException(nameof(phase));
+        if ((uint)phase > 21) throw new ArgumentOutOfRangeException(nameof(phase));
         lock (Sync)
         {
             if (!Registries.TryGetValue(assembly, out Registry? registry))
@@ -228,6 +255,14 @@ public static class ModSystemLoader
                         failures += Invoke(entry, x => x.OnModLoad(), nameof(ModSystem.OnModLoad));
             }
 
+            if (phase >= 10 && phase <= 21 && registry.ModLoaded &&
+                (registry.WorldLoaded || phase == 21))
+            {
+                var hook = UpdateHooks[phase - 10];
+                foreach (Entry entry in registry.Entries)
+                    if (entry.Loaded)
+                        failures += Invoke(entry, hook.Call, hook.Name);
+            }
             if (phase == 6 && registry.ModLoaded)
             {
                 foreach (Entry entry in registry.Entries)

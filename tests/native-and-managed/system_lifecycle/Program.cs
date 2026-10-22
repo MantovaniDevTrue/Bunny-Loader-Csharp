@@ -19,6 +19,18 @@ public sealed class AlphaSystem : ModSystem
     public override void OnWorldLoad() => Events.Add("A.OnWorldLoad");
     public override void ClearWorld() => Events.Add("A.ClearWorld");
     public override void PreWorldGen() => Events.Add("A.PreWorldGen");
+    public override void PreUpdateWorld() => Events.Add("A.PreUpdateWorld");
+    public override void PostUpdateWorld() => Events.Add("A.PostUpdateWorld");
+    public override void PreUpdateTime() => Events.Add("A.PreUpdateTime");
+    public override void PostUpdateTime() => Events.Add("A.PostUpdateTime");
+    public override void PreUpdateEntities() => Events.Add("A.PreUpdateEntities");
+    public override void PostUpdateEverything() => Events.Add("A.PostUpdateEverything");
+    public override void PreUpdateProjectiles() => Events.Add("A.PreUpdateProjectiles");
+    public override void PreUpdateDusts() => Events.Add("A.PreUpdateDusts");
+    public override void PostUpdateDusts() => Events.Add("A.PostUpdateDusts");
+    public override void PreUpdateInvasions() => Events.Add("A.PreUpdateInvasions");
+    public override void PostUpdateInvasions() => Events.Add("A.PostUpdateInvasions");
+    public override void PostUpdateInput() => Events.Add("A.PostUpdateInput");
     public override void PostWorldGen() => Events.Add("A.PostWorldGen");
     public override void PreSaveAndQuit() => Events.Add("A.PreSaveAndQuit");
     public override void OnWorldUnload() => Events.Add("A.OnWorldUnload");
@@ -67,9 +79,13 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 8) != 0) return 26;
         if (ModSystemLoader.Dispatch(assembly, 9) != 0) return 27;
         if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 3;
+        for (int phase = 10; phase <= 21; phase++)
+            if (ModSystemLoader.Dispatch(assembly, phase) != 0) return 34;
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 22;
         if (ModSystemLoader.Dispatch(assembly, 2) != 0) return 4;
         if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 5;
+        for (int phase = 10; phase <= 20; phase++)
+            if (ModSystemLoader.Dispatch(assembly, phase) != 0) return 35;
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 23;
         if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 6;
         if (ModSystemLoader.Dispatch(assembly, 6) != 0) return 24;
@@ -81,6 +97,18 @@ internal static class Program
         Expect("A.Load,B.Load,A.OnModLoad,B.OnModLoad," +
             "A.ClearWorld,B.ClearWorld,A.PreWorldGen,B.PreWorldGen," +
             "A.PostWorldGen,B.PostWorldGen,A.OnWorldLoad,B.OnWorldLoad," +
+            "A.PreUpdateWorld," +
+            "A.PostUpdateWorld," +
+            "A.PreUpdateTime," +
+            "A.PostUpdateTime," +
+            "A.PreUpdateEntities," +
+            "A.PostUpdateEverything," +
+            "A.PreUpdateProjectiles," +
+            "A.PreUpdateDusts," +
+            "A.PostUpdateDusts," +
+            "A.PreUpdateInvasions," +
+            "A.PostUpdateInvasions," +
+            "A.PostUpdateInput," +
             "A.PreSaveAndQuit,B.PreSaveAndQuit,A.OnWorldUnload,B.OnWorldUnload," +
             "A.ClearWorld,B.ClearWorld,A.PreWorldGen,B.PreWorldGen," +
             "A.PostWorldGen,B.PostWorldGen,A.OnWorldLoad,B.OnWorldLoad," +
