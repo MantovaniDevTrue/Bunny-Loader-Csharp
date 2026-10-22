@@ -14,6 +14,9 @@ namespace bl::csharp {
 uint64_t activeManagedSourceSystemHooks();
 uint64_t managedSourceSystemHookMask(const std::string& modId);
 bool managedSourceSystemTileCountsSupported();
+bool dispatchManagedSourceSystemUpdateUI(const std::string& modId,
+                                         int64_t totalTicks, int64_t elapsedTicks,
+                                         int32_t isRunningSlowly, int* failures);
 bool dispatchManagedSourceSystemTileCounts(const std::string& modId,
                                            const int32_t* values, size_t length,
                                            int* failures);

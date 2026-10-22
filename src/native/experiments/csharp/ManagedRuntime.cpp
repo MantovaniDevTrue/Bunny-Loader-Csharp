@@ -133,6 +133,7 @@ struct SourceSystemEntry {
     void* sunlightMethod = nullptr;
     void* cameraMethod = nullptr;
     void* tileCountsMethod = nullptr;
+    void* updateUiMethod = nullptr;
     uint64_t mask = 0;
     bool maskKnown = false;
 };
@@ -3767,6 +3768,45 @@ bool modifyManagedSourceSystemPackedValue(const std::string& modId,
     return true;
 }
 
+bool dispatchManagedSourceSystemUpdateUI(const std::string& modId,
+                                         int64_t totalTicks, int64_t elapsedTicks,
+                                         int32_t isRunningSlowly, int* failures) {
+    if (!failures || modId.empty() || totalTicks < 0 || elapsedTicks < 0 ||
+        g_withinModSystemCallback) return false;
+    struct ScopedDispatch {
+        ~ScopedDispatch() { g_withinModSystemCallback = false; }
+    } scope;
+    g_withinModSystemCallback = true;
+    std::lock_guard<std::mutex> systemLock(g_sourceSystemDispatchMutex);
+    std::unique_lock<std::mutex> lock(g_mutex);
+    const auto found = g_sourceSystemEntries.find(modId);
+    if (found == g_sourceSystemEntries.end() || !found->second.maskKnown ||
+        !(found->second.mask & (1ULL << 29)) ||
+        !found->second.updateUiMethod || !g_domain ||
+        !g_api.currentThread || !g_api.attach || !g_api.detachThread ||
+        !g_api.invoke || !g_api.unbox) return false;
+    const void* current = g_api.currentThread();
+    void* attached = g_api.attach(g_domain);
+    if (!attached) return false;
+    struct ScopedMonoThread {
+        DetachFn detach;
+        void* owned;
+        ~ScopedMonoThread() { if (owned) detach(owned); }
+    } monoThread{g_api.detachThread, current ? nullptr : attached};
+    void* method = found->second.updateUiMethod;
+    lock.unlock();
+    void* args[] = {&totalTicks, &elapsedTicks, &isRunningSlowly};
+    void* exception = nullptr;
+    void* boxed = g_api.invoke(method, nullptr, args, &exception);
+    void* result = exception || !boxed ? nullptr : g_api.unbox(boxed);
+    if (!result) return false;
+    int32_t status = -1;
+    std::memcpy(&status, result, sizeof(status));
+    if (status < 0 || status > 256) return false;
+    *failures = status;
+    return true;
+}
+
 bool managedSourceSystemTileCountsSupported() {
     std::lock_guard<std::mutex> lock(g_mutex);
     return g_domain && g_api.int32Class && g_api.arrayNew &&
@@ -3871,6 +3911,8 @@ bool dispatchManagedSourceSystem(const std::string& modId,
             ? g_api.findMethod(klass, "Camera", 1) : nullptr;
         entry.tileCountsMethod = klass
             ? g_api.findMethod(klass, "TileCounts", 1) : nullptr;
+        entry.updateUiMethod = klass
+            ? g_api.findMethod(klass, "UpdateUiTime", 3) : nullptr;
         if (!entry.method || !entry.maskMethod) {
             g_sourceSystemEntries.erase(modId);
             return false;
