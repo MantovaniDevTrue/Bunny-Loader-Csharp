@@ -7,7 +7,7 @@
   "base_sha": "958c6ef31833aa9916780695fb5983bbea02b142",
   "head_sha": "2ed7fb47988d561b678ab713f9b524bd4783f9f4",
   "current_pr_head_when_fetched": "2ed7fb47988d561b678ab713f9b524bd4783f9f4",
-  "file_count": 58,
+  "file_count": 51,
   "excluded_paths": 2,
   "files": [
     {
@@ -45,18 +45,6 @@
       "path": "src/native/host-patches/content/items/NativeRarityPending.h",
       "sha256": "77ff9efc7037e384a8a9573c8e39cbe45b3ad6bfbaf579aeab7eb6f0be7508a0",
       "bytes": 1884
-    },
-    {
-      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/ModTiles.cpp",
-      "path": "src/native/host-patches/content/tiles/ModTiles.cpp",
-      "sha256": "6092ea728280d7b2c9b5948d76a82f28231ee110e80635756f10dbca205a495d",
-      "bytes": 51934
-    },
-    {
-      "original": "Split/Bunny-Loader/app/src/main/cpp/content/tiles/ModTiles.h",
-      "path": "src/native/host-patches/content/tiles/ModTiles.h",
-      "sha256": "c1f6319a78deda2f4518d6f05708a20594ba4dedab591577468aa80dfed0e79c",
-      "bytes": 4701
     },
     {
       "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
@@ -117,12 +105,6 @@
       "path": "src/native/experiments/csharp/NativeRarityTextColor.h",
       "sha256": "b4313e50f40114ef4cb773d34be96ae8681d7685fcecbd31782254e00eb2735c",
       "bytes": 1133
-    },
-    {
-      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileGameplay.cpp",
-      "path": "src/native/experiments/csharp/NativeTileGameplay.cpp",
-      "sha256": "f93bfb0ea4f5011a8ccb1e1baf618313800a7a01ba65792779e6a0809103e5d7",
-      "bytes": 49445
     },
     {
       "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceContentIdentity.h",
@@ -197,12 +179,6 @@
       "bytes": 14408
     },
     {
-      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyTileRuntime.cs",
-      "path": "src/managed/BunnyCsSdk/BunnyTileRuntime.cs",
-      "sha256": "31adf468b3b0bbb0545a8245f0323bc3ede9dfd2244c5cc0297680eee2946b9e",
-      "bytes": 9129
-    },
-    {
       "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
       "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
       "sha256": "026fe2869a316814b3a354f1c2243b50a8a89cdc9da5f7a5f8fe154d09012109",
@@ -261,12 +237,6 @@
       "path": "samples/ExampleModCSharp/Playable/content/Documentation/RARIDADES_CSHARP.md",
       "sha256": "8e39c5fce20d4ecc33d649a517a26a7e692c40795b43237d6a6d2cf350362b92",
       "bytes": 1557
-    },
-    {
-      "original": "Split/Bunny-Loader/tests/basic_items/Program.cs",
-      "path": "tests/native-and-managed/basic_items/Program.cs",
-      "sha256": "5812f24e28f7414f221ba33cf77a91c3a7e5c829b8a5c950a1b2d6e2baa4ccb2",
-      "bytes": 46548
     },
     {
       "original": "Split/Bunny-Loader/tests/rarity_loader/ExampleRarities/ExampleModRarities.cs",
@@ -339,18 +309,6 @@
       "path": "tests/native-and-managed/rarity_loader/native_rarity_save_test.cpp",
       "sha256": "b156ab7820785a7575bc79032538e471cb2053c541679f75129f64d5c9108bbe",
       "bytes": 14574
-    },
-    {
-      "original": "Split/Bunny-Loader/tests/world_loaders/run.sh",
-      "path": "tests/native-and-managed/world_loaders/run.sh",
-      "sha256": "b36fbafabc26868059e97471b829392abca2164c3a768ae0ea205c7b5a622864",
-      "bytes": 2147
-    },
-    {
-      "original": "docs/csharp-loader-batches.md",
-      "path": "docs/reference/csharp-loader-batches.md",
-      "sha256": "e4c1d979dab07a759c0507beeff63a89dc0640c7b5647d329bed818e075565cf",
-      "bytes": 19478
     },
     {
       "original": "docs/csharp-rarity-loader.md",

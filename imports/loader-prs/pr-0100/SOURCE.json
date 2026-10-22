@@ -7,7 +7,7 @@
   "base_sha": "06db1b578f193b4e3547cc57f974eaaca781bfec",
   "head_sha": "abbdde775c8a96b4ddea2fb9bba813e6c29f2041",
   "current_pr_head_when_fetched": "abbdde775c8a96b4ddea2fb9bba813e6c29f2041",
-  "file_count": 50,
+  "file_count": 45,
   "excluded_paths": 0,
   "files": [
     {
@@ -69,24 +69,6 @@
       "path": "src/native/experiments/csharp/ManagedRuntime.h",
       "sha256": "b3c77fc7602486579b930d67fe44eca8470795eb689d2d4b354ff7c4ca184e47",
       "bytes": 17671
-    },
-    {
-      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeContent.cpp",
-      "path": "src/native/experiments/csharp/NativeContent.cpp",
-      "sha256": "64e62c46c8716e3054abe78afae89999b16a0e79f077b6cca64ab217dcaa47b0",
-      "bytes": 128080
-    },
-    {
-      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTileGameplay.cpp",
-      "path": "src/native/experiments/csharp/NativeTileGameplay.cpp",
-      "sha256": "a6a1c058e43745265c447976badebe135aa96583d9da61c080dc8a6d924d9a99",
-      "bytes": 33276
-    },
-    {
-      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeTilePolicy.h",
-      "path": "src/native/experiments/csharp/NativeTilePolicy.h",
-      "sha256": "2848f583eaf6b8d4447e42fff8575989c3cf383bbeaa17c36ea0a389c03b3967",
-      "bytes": 769
     },
     {
       "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceContentIdentity.h",
@@ -275,12 +257,6 @@
       "bytes": 22679
     },
     {
-      "original": "Split/Bunny-Loader/tests/world_loaders/tile_break_policy_test.cpp",
-      "path": "tests/native-and-managed/world_loaders/tile_break_policy_test.cpp",
-      "sha256": "87ac161c77160fe594d28e82bfec7822b049aebe31f7282f8a3655c78fb37e69",
-      "bytes": 534
-    },
-    {
       "original": "Split/Bunny-Loader/tools/equipment_contract_surface.py",
       "path": "tools/support/equipment_contract_surface.py",
       "sha256": "1306bb3bf6518832861ba31148f8dc2b2de9156c92948f1ed8f70440138f6a0b",
@@ -297,12 +273,6 @@
       "path": "tools/support/sdk_reference/Program.cs",
       "sha256": "a7de909d364fd62b303f1857c3eff74615f6641d27cfe366c2c7bf25f2ce1335",
       "bytes": 9722
-    },
-    {
-      "original": "docs/csharp-loader-batches.md",
-      "path": "docs/reference/csharp-loader-batches.md",
-      "sha256": "3c3f7ced970ee87354f1d59988952b0918c9354b8d4951ccc3e77dba0a6ef76c",
-      "bytes": 12016
     },
     {
       "original": "docs/equipment-loader-preflight.md",

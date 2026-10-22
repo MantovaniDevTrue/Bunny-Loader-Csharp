@@ -6,7 +6,7 @@
   "runtime_enabled": false,
   "android_tested": false,
   "apk_generated": false,
-  "bytes": 26579982,
+  "bytes": 23879788,
   "imported": [
     {
       "pr": 98,
@@ -20,8 +20,8 @@
       "pr": 100,
       "name": "PrefixLoader",
       "status": "partial",
-      "file_count": 50,
-      "bytes": 1508985,
+      "file_count": 45,
+      "bytes": 1334310,
       "runtime_enabled": false
     },
     {
@@ -36,8 +36,8 @@
       "pr": 102,
       "name": "RarityLoader",
       "status": "android_retest",
-      "file_count": 58,
-      "bytes": 1245623,
+      "file_count": 51,
+      "bytes": 1062241,
       "runtime_enabled": false
     },
     {
@@ -180,8 +180,8 @@
       "pr": 131,
       "name": "SceneEffectLoader ranking core",
       "status": "partial",
-      "file_count": 38,
-      "bytes": 2382929,
+      "file_count": 11,
+      "bytes": 40792,
       "runtime_enabled": false
     },
     {
