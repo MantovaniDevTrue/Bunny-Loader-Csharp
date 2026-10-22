@@ -123,12 +123,14 @@ struct SourceSystemEntry {
     std::string path;
     void* method = nullptr;
     void* maskMethod = nullptr;
+    void* brightnessMethod = nullptr;
     uint64_t mask = 0;
     bool maskKnown = false;
 };
 std::map<std::string, SourceSystemEntry> g_sourceSystemEntries;
 std::mutex g_sourceSystemDispatchMutex;
 std::atomic<uint64_t> g_sourceSystemOriginalMask{0};
+thread_local bool g_withinModSystemCallback = false;
 std::map<std::string, LiveEntry> g_sourceLiveEntries;
 uint64_t g_liveMethodCacheHits = 0;
 uint64_t g_liveMethodCacheMisses = 0;
@@ -3667,14 +3669,52 @@ uint64_t managedSourceSystemHookMask(const std::string& modId) {
         ? found->second.mask : 0;
 }
 
+bool modifyManagedSourceSystemBrightness(const std::string& modId,
+                                         float* brightness) {
+    if (!brightness || !std::isfinite(*brightness) || *brightness < 0.f ||
+        modId.empty() || g_withinModSystemCallback) return false;
+    struct ScopedDispatch {
+        ~ScopedDispatch() { g_withinModSystemCallback = false; }
+    } scope;
+    g_withinModSystemCallback = true;
+    std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
+    std::unique_lock<std::mutex> guard(g_mutex);
+    const auto found = g_sourceSystemEntries.find(modId);
+    if (found == g_sourceSystemEntries.end() || !found->second.maskKnown ||
+        (found->second.mask & (1ULL << 49)) == 0 ||
+        !found->second.brightnessMethod || !g_domain ||
+        !g_api.currentThread || !g_api.attach || !g_api.detachThread ||
+        !g_api.invoke || !g_api.unbox) return false;
+    const void* alreadyAttached = g_api.currentThread();
+    void* thread = g_api.attach(g_domain);
+    if (!thread) return false;
+    struct ScopedThread {
+        DetachFn detach;
+        void* owned;
+        ~ScopedThread() { if (owned) detach(owned); }
+    } attached{g_api.detachThread, alreadyAttached ? nullptr : thread};
+    void* method = found->second.brightnessMethod;
+    guard.unlock();
+    float value = *brightness;
+    void* args[] = { &value };
+    void* exception = nullptr;
+    void* boxed = g_api.invoke(method, nullptr, args, &exception);
+    void* result = exception || !boxed ? nullptr : g_api.unbox(boxed);
+    if (!result) return false;
+    float candidate = value;
+    std::memcpy(&candidate, result, sizeof(candidate));
+    if (!std::isfinite(candidate) || candidate < 0.f) return false;
+    *brightness = candidate;
+    return true;
+}
+
 bool dispatchManagedSourceSystem(const std::string& modId,
                                  const std::string& assemblyPath,
                                  int phase, int* failures) {
     if (!failures || phase < 0 || phase > 35 ||
         modId.empty() || modId.size() > 128 ||
         assemblyPath.empty() || assemblyPath.size() > 2048) return false;
-    static thread_local bool withinSystemCallback = false;
-    if (withinSystemCallback) {
+    if (g_withinModSystemCallback) {
         *failures = 0;
         return true;
     }
@@ -3682,7 +3722,7 @@ bool dispatchManagedSourceSystem(const std::string& modId,
         bool& flag;
         explicit SystemCallbackScope(bool& value) : flag(value) { flag = true; }
         ~SystemCallbackScope() { flag = false; }
-    } scope(withinSystemCallback);
+    } scope(g_withinModSystemCallback);
     std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
     std::unique_lock<std::mutex> guard(g_mutex);
     if (!g_domain || !g_status.domainInitialized || !g_status.methodExecuted ||
@@ -3711,6 +3751,8 @@ bool dispatchManagedSourceSystem(const std::string& modId,
         void* klass = image ? g_api.findClass(image, "BunnyLoader.Source", "BunnySystemEntry") : nullptr;
         entry.method = klass ? g_api.findMethod(klass, "Invoke", 1) : nullptr;
         entry.maskMethod = klass ? g_api.findMethod(klass, "HookMask", 0) : nullptr;
+        entry.brightnessMethod = klass
+            ? g_api.findMethod(klass, "Brightness", 1) : nullptr;
         if (!entry.method || !entry.maskMethod) {
             g_sourceSystemEntries.erase(modId);
             return false;

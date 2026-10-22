@@ -12,6 +12,8 @@ namespace bl::csharp {
 
 uint64_t activeManagedSourceSystemHooks();
 uint64_t managedSourceSystemHookMask(const std::string& modId);
+bool modifyManagedSourceSystemBrightness(const std::string& modId,
+                                         float* brightness);
 bool dispatchManagedSourceSystem(const std::string& modId,
                                  const std::string& assemblyPath,
                                  int phase, int* failures);
