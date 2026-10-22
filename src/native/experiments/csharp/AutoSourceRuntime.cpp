@@ -77,6 +77,8 @@ std::chrono::steady_clock::time_point g_delayedWorldSince{};
 const MethodInfo* g_delayedPlayWorldMethod=nullptr;
 using PlayWorldFn=void (*)(const MethodInfo*);
 PlayWorldFn g_originalPlayWorld=nullptr;
+using QuitGameFn = void (*)(const MethodInfo*);
+QuitGameFn g_originalQuitGame = nullptr;
 std::atomic<bool> g_worldTilesLoaded{false};
 std::atomic<bool> g_worldSessionReady{false};
 std::atomic<int> g_worldReadyFrames{0};
@@ -1190,6 +1192,20 @@ void dispatchAutoSourceSystems(int phase) {
     }
 }
 
+void hkCSharpQuitGame(const MethodInfo* method) {
+    {
+        std::lock_guard<std::mutex> guard(g_worldTransitionMutex);
+        if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
+            // Preserva a ordem do ModSystem JS: mundo sai antes do mod.
+            if (g_worldSessionReady.load(std::memory_order_acquire))
+                dispatchAutoSourceSystems(3);
+            dispatchAutoSourceSystems(4);
+            dispatchAutoSourceSystems(5);
+        }
+    }
+    if (g_originalQuitGame) g_originalQuitGame(method);
+}
+
 void noteAutoWorldTilesLoaded() {
     std::lock_guard<std::mutex> sessionGuard(g_worldTransitionMutex);
     if (g_worldSessionReady.load(std::memory_order_acquire))
@@ -1453,6 +1469,12 @@ bool installCSharpWorldEntryGate() {
         BL_ERROR("[CSharp][ERROR][WorldLoading] Stage=InstallEntryHook Reason=WorldGenPlayWorldUnavailable");
         return false;
     }
+    Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+    const MethodInfo* quitGame = main
+        ? il2cpp::api().class_get_method_from_name(main, "QuitGame", 0)
+        : nullptr;
+    if (!quitGame || !bl::hook::install(quitGame, hkCSharpQuitGame, &g_originalQuitGame))
+        BL_WARN("[CSharp][ModSystem] QuitGame nao disponivel; descarregamento final requer validação");
     return true;
 }
 

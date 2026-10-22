@@ -16,7 +16,7 @@ Exemplo didático: `samples/ExampleModCSharp/Playable/content/Common/Systems/Exa
 - [x] Parser e descoberta implementados para mods so com ModSystem; CI pendente.
 - [x] Codigo de ponte Mono por assembly e isolamento por sistema; teste Android pendente.
 - [x] Conectado ao caminho de entrada/saida de mundo; teste Android pendente.
-- [ ] Descarregamento real do mod aciona `OnModUnload` e `Unload`, em ordem inversa e com isolamento.
+- [x] Hook terminal de QuitGame integrado no código-fonte, com isolamento e ordem inversa no Unload; validação no jogo pendente.
 - [ ] Testes de host, CI e Android comprovam ordem, multi-mod, reentrada e ausência de regressões.
 - [ ] Confirmação no Terraria Android do exemplo e FPS antes da conclusão.
 
@@ -26,4 +26,4 @@ A existência do código-fonte ou do teste gerenciado NÃO é validação no apa
 
 O dispatcher mantém uma trava separada para serializar as transições dos sistemas. A trava global do runtime Mono é liberada antes da chamada gerenciada, permitindo que o mod utilize outras APIs sem bloqueio recursivo. As chamadas continuam eventuais, fora do ciclo por frame.
 
-A rotina de descarregamento terminal ainda não é invocada automaticamente pelo host atual: o projeto não apresenta um ciclo de hot-unload C# registrado. `OnModUnload` e `Unload` permanecem reservados para uma integração futura com o término efetivo do mod, sem simular descarregamento ao sair do mundo. O APK permanece bloqueado até implementar e validar essa etapa.
+O hook C# de `Main.QuitGame()` executa `OnWorldUnload`, `OnModUnload` e `Unload` nessa ordem, conforme o ciclo terminal do loader JS de referência. A API não considera uma simples troca de mundo um descarregamento de mod. Se o método nativo não existir, o host informa a ausência e o APK continua bloqueado. Falta demonstrar no Android que o método nativo é realmente resolvido, que executa uma vez ao sair do jogo e que reentradas e múltiplos mods permanecem íntegros.
