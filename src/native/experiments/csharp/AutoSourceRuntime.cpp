@@ -83,6 +83,8 @@ using ClearWorldFn = void (*)(const MethodInfo*);
 ClearWorldFn g_originalClearWorld = nullptr;
 using SaveAndQuitFn = void (*)(const MethodInfo*);
 SaveAndQuitFn g_originalSaveAndQuit = nullptr;
+using GenerateWorldFn = bool (*)(Il2CppObject*, const MethodInfo*);
+GenerateWorldFn g_originalGenerateWorld = nullptr;
 std::atomic<bool> g_worldTilesLoaded{false};
 std::atomic<bool> g_worldSessionReady{false};
 std::atomic<int> g_worldReadyFrames{0};
@@ -1233,6 +1235,15 @@ void dispatchAutoSourceSystems(int phase) {
     }
 }
 
+bool hkCSharpGenerateWorld(Il2CppObject* self, const MethodInfo* method) {
+    dispatchAutoSourceSystems(8);
+    const bool completed = g_originalGenerateWorld
+        ? g_originalGenerateWorld(self, method)
+        : false;
+    if (completed) dispatchAutoSourceSystems(9);
+    return completed;
+}
+
 void hkCSharpClearWorld(const MethodInfo* method) {
     if (g_originalClearWorld) g_originalClearWorld(method);
     dispatchAutoSourceSystems(6);
@@ -1544,6 +1555,14 @@ bool installCSharpWorldEntryGate() {
         : nullptr;
     if (!saveAndQuit || !bl::hook::install(saveAndQuit, hkCSharpSaveAndQuit, &g_originalSaveAndQuit))
         BL_WARN("[CSharp][ModSystem] WorldGen.SaveAndQuit nao disponivel");
+    Il2CppClass* worldGenerator = il2cpp::findClass(
+        {"Terraria.WorldBuilding", "WorldGenerator", {}});
+    const MethodInfo* generateWorld = worldGenerator
+        ? il2cpp::api().class_get_method_from_name(worldGenerator, "GenerateWorld", 0)
+        : nullptr;
+    if (!generateWorld ||
+        !bl::hook::install(generateWorld, hkCSharpGenerateWorld, &g_originalGenerateWorld))
+        BL_WARN("[CSharp][ModSystem] WorldGenerator.GenerateWorld nao disponivel");
     return true;
 }
 

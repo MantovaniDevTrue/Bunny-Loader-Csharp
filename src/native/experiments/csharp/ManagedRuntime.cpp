@@ -3655,7 +3655,7 @@ LiveSourceStatus invokeLiveSourceTick(const std::string& modId,
 bool dispatchManagedSourceSystem(const std::string& modId,
                                  const std::string& assemblyPath,
                                  int phase, int* failures) {
-    if (!failures || phase < 0 || phase > 7 ||
+    if (!failures || phase < 0 || phase > 9 ||
         modId.empty() || modId.size() > 128 ||
         !validAssembly(assemblyPath)) return false;
     std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
