@@ -47,6 +47,7 @@
 #include <iomanip>
 #include <cstdint>
 #include <mutex>
+#include <memory>
 #include <sstream>
 #include <set>
 #include <string>
@@ -68,6 +69,12 @@ std::atomic<bool> g_runtimeWarming{false};
 std::mutex g_lock;
 std::mutex g_worldTransitionMutex;
 std::vector<AutoSourceStatus> g_statuses;
+struct SystemDispatchTarget {
+    std::string modId;
+    std::string assemblyPath;
+    uint64_t hookMask = 0;
+};
+std::shared_ptr<const std::vector<SystemDispatchTarget>> g_systemDispatchSnapshot;
 std::atomic<bool> g_started{false};
 std::atomic<bool> g_initialCSharpRegistrationFinished{false};
 std::atomic<bool> g_initialCSharpSummaryShown{false};
@@ -184,15 +191,34 @@ bool writeText(const std::string& path, const std::string& value) {
     return true;
 }
 
+void refreshSystemDispatchSnapshotLocked() {
+    const std::string root = folderOfCheckpoint();
+    auto next = std::make_shared<std::vector<SystemDispatchTarget>>();
+    if (!root.empty()) {
+        next->reserve(g_statuses.size());
+        for (const auto& mod : g_statuses) {
+            if (!mod.applied || !mod.systemsLoaded || !mod.error.empty())
+                continue;
+            next->push_back({mod.modId,
+                root + "compiled/" + mod.modId + ".dll", mod.systemHookMask});
+        }
+    }
+    std::shared_ptr<const std::vector<SystemDispatchTarget>> ready = std::move(next);
+    std::atomic_store_explicit(&g_systemDispatchSnapshot, std::move(ready),
+                               std::memory_order_release);
+}
+
 void setStatus(const AutoSourceStatus& next) {
     std::lock_guard<std::mutex> guard(g_lock);
     for (auto& entry : g_statuses) {
         if (entry.modId == next.modId) {
             entry = next;
+            refreshSystemDispatchSnapshotLocked();
             return;
         }
     }
     g_statuses.push_back(next);
+    refreshSystemDispatchSnapshotLocked();
 }
 
 void note(AutoSourceStatus* status, const std::string& phase,
@@ -1169,6 +1195,7 @@ bool loadPendingAutoSourceSystems() {
                     status.systemsLoaded = true;
                     status.systemHookMask = loadedMask;
                 }
+            refreshSystemDispatchSnapshotLocked();
         }
         if (failures)
             BL_WARN("[CSharp][ModSystem] mod=%s Load encontrou %d falha(s)",
@@ -1301,25 +1328,19 @@ void dispatchAutoSourceSystems(int phase) {
         return;
     if (phase >= 10 && phase <= 30 && phase != 21 &&
         !g_worldSessionReady.load(std::memory_order_acquire)) return;
-    std::vector<std::string> ids;
-    {
-        std::lock_guard<std::mutex> guard(g_lock);
-        for (const auto& state : g_statuses)
-            if (state.applied && state.systemsLoaded && state.error.empty() &&
-                (hookBit < 0 || (state.systemHookMask & (1ULL << hookBit)) != 0))
-                ids.push_back(state.modId);
-    }
-    const std::string work = folderOfCheckpoint();
-    if (work.empty()) return;
-    for (const std::string& modId : ids) {
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    for (const auto& target : *snapshot) {
+        if (hookBit >= 0 && (target.hookMask & (1ULL << hookBit)) == 0) continue;
         int failures = 0;
-        if (!dispatchManagedSourceSystem(modId,
-                work + "compiled/" + modId + ".dll", phase, &failures))
+        if (!dispatchManagedSourceSystem(target.modId,
+                target.assemblyPath, phase, &failures))
             BL_WARN("[CSharp][ModSystem] mod=%s phase=%d Mono indisponivel",
-                    modId.c_str(), phase);
+                    target.modId.c_str(), phase);
         else if (failures)
             BL_WARN("[CSharp][ModSystem] mod=%s phase=%d erros=%d",
-                    modId.c_str(), phase, failures);
+                    target.modId.c_str(), phase, failures);
     }
 }
 
