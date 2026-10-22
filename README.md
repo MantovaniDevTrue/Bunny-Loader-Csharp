@@ -8,7 +8,7 @@ Este repositório reúne todos os componentes C# relevantes e os adaptadores nat
 
 A branch de integração mantém um inventário reproduzível em [loader-prs.json](loader-prs.json) e preserva os arquivos de 23 PRs em [imports/loader-prs](imports/loader-prs), com SHA de origem e checksums por arquivo. O processo não modifica o runtime C# ativo da base .87.1, não gera APK e não declara loaders completos por uma compilação de host.
 
-Consulte [docs/LOADER-PRS-98-PLUS.md](docs/LOADER-PRS-98-PLUS.md) para os estados reais, dependências cruzadas e critérios de promoção. As PRs #133, #134 e #135 ficam somente catalogadas até revisão da proveniência dos fontes.
+Consulte [docs/LOADER-PRS-98-PLUS.md](docs/LOADER-PRS-98-PLUS.md) para os estados reais, dependências cruzadas e critérios de promoção. O [plano fast-track de 50 loaders](docs/LOADER-FASTTRACK-50.md) e a [matriz de 10 requisitos por loader](loader-completion-matrix.json) são auditados pela CI; nenhum loader é promovido só por ter fontes compiláveis. As PRs #133, #134 e #135 ficam somente catalogadas até revisão da proveniência dos fontes.
 
 ## Organização
 
