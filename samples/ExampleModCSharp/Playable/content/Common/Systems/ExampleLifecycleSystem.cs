@@ -68,6 +68,13 @@ public sealed class ExampleLifecycleSystem : ModSystem
 
     private int nearbyCount;
 
+    private long lastUiTicks;
+
+    public override void UpdateUI(BunnySystemGameTime gameTime)
+    {
+        lastUiTicks = gameTime.TotalGameTime.Ticks;
+    }
+
     public override void TileCountsAvailable(int[] counts)
     {
         nearbyCount = counts.Length > 754 ? counts[754] : 0;

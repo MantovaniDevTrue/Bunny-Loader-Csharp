@@ -190,7 +190,9 @@ public static class Compiler
                 "public static ulong Camera(ulong value) => " +
                 "ModSystemLoader.ModifyScreenPosition(typeof(BunnySystemEntry).Assembly, value); " +
                 "public static int TileCounts(int[] counts) => " +
-                "ModSystemLoader.TileCountsAvailable(typeof(BunnySystemEntry).Assembly, counts); } }";
+                "ModSystemLoader.TileCountsAvailable(typeof(BunnySystemEntry).Assembly, counts); " +
+                "public static int UpdateUiTime(long totalTicks, long elapsedTicks, int isSlow) => " +
+                "ModSystemLoader.UpdateUI(typeof(BunnySystemEntry).Assembly, totalTicks, elapsedTicks, isSlow); } }";
             trees.Add(CSharpSyntaxTree.ParseText(systemEntry,
                 CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp12),
                 "__BunnySystemEntry.generated.cs"));

@@ -5,6 +5,19 @@ using System.Reflection;
 
 namespace BunnyLoader.Source;
 
+public readonly struct BunnySystemGameTime
+{
+    public TimeSpan TotalGameTime { get; }
+    public TimeSpan ElapsedGameTime { get; }
+    public bool IsRunningSlowly { get; }
+    public BunnySystemGameTime(long totalTicks, long elapsedTicks, bool isRunningSlowly)
+    {
+        TotalGameTime = TimeSpan.FromTicks(totalTicks);
+        ElapsedGameTime = TimeSpan.FromTicks(elapsedTicks);
+        IsRunningSlowly = isRunningSlowly;
+    }
+}
+
 public readonly struct BunnySystemColor
 {
     public uint Packed { get; }
@@ -99,6 +112,7 @@ public abstract class ModSystem
     public virtual void PostUpdateTime() { }
     public virtual void PreUpdateEntities() { }
     public virtual void PostUpdateEverything() { }
+    public virtual void UpdateUI(BunnySystemGameTime gameTime) { }
     public virtual void PreUpdateProjectiles() { }
     public virtual void PreUpdateDusts() { }
     public virtual void PostUpdateDusts() { }
@@ -383,6 +397,26 @@ public static class ModSystemLoader
             Console.Error.WriteLine("[CSharp][ModSystem] " +
                 entry.System.GetType().FullName + "." + hook +
                 " falhou (" + count + "x): " + error);
+    }
+
+    public static int UpdateUI(Assembly assembly, long totalTicks,
+                               long elapsedTicks, int isRunningSlowly)
+    {
+        if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+        if (totalTicks < 0 || elapsedTicks < 0) return 0;
+        lock (Sync)
+        {
+            if (!Registries.TryGetValue(assembly, out Registry? registry) ||
+                !registry.ModLoaded || !registry.WorldLoaded) return 0;
+            var gameTime = new BunnySystemGameTime(
+                totalTicks, elapsedTicks, isRunningSlowly != 0);
+            int failures = 0;
+            foreach (Entry entry in registry.Entries)
+                if (entry.Loaded && (entry.OverrideMask & (1UL << 29)) != 0)
+                    failures += Invoke(entry, x => x.UpdateUI(gameTime),
+                        nameof(ModSystem.UpdateUI));
+            return failures;
+        }
     }
 
     public static int TileCountsAvailable(Assembly assembly, int[] tileCounts)
