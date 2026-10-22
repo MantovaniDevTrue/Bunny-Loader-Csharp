@@ -2,7 +2,7 @@
 
 Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/mod/ModSystem.js` consultado em 22/10/2026. Convenção C# autorizada: mesmo nome dos hooks do Bunny/tModLoader quando aplicável, sem copiar o interpretador JS nem considerar método vazio como implementado.
 
-**Status: INCOMPLETO, APK PROIBIDO.** Existem 58 hooks originais; 37 estão declarados no SDK C# como integração de ciclo de vida/eventos, e 21 estão ausentes. A API também tem `Unload`, que não integra os 58 métodos do `ModSystem` original. Mesmo os 5 declarados não estão certificados no Android.
+**Status: INCOMPLETO, APK PROIBIDO.** Existem 58 hooks originais; 39 estão declarados no SDK C# como integração de ciclo de vida/eventos, e 19 estão ausentes. A API também tem `Unload`, que não integra os 58 métodos do `ModSystem` original. Mesmo os 5 declarados não estão certificados no Android.
 
 ## Inicialização e conteúdo (10)
 
@@ -15,8 +15,8 @@ Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/m
 | `ResizeArrays` | Disparo de inicialização C# nativo / QA pendente | Pendente |
 | `AddRecipeGroups` | Ausente | Pendente |
 | `AddRecipes` | Receita global de BunnyItem via probe + descritor nativo / escopo parcial | Pendente |
-| `PostAddRecipes` | Ausente | Pendente |
-| `PostSetupRecipes` | Ausente | Pendente |
+| `PostAddRecipes` | Evento após receitas nativas confirmadas / edição pós-registro pendente | Pendente |
+| `PostSetupRecipes` | Evento após receitas nativas confirmadas / edição pós-registro pendente | Pendente |
 | `PostSetupContent` | Disparo de inicialização C# nativo / QA pendente | Pendente |
 
 ## Mundo, persistência e geração (14)
@@ -89,7 +89,7 @@ Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/m
 
 ## Bloqueios de lançamento
 
-1. Implementar todos os 21 hooks ausentes, com contratos C# adequados para cada parâmetro, retorno e objeto utilizado pelo Terraria. Para métodos com semântica diferente ou API móvel indisponível, documentar equivalência funcional demonstrável ou bloqueio real; não usar `stub`.
+1. Implementar todos os 19 hooks ausentes, com contratos C# adequados para cada parâmetro, retorno e objeto utilizado pelo Terraria. Para métodos com semântica diferente ou API móvel indisponível, documentar equivalência funcional demonstrável ou bloqueio real; não usar `stub`.
 2. Fazer `Load` e `OnModLoad` realmente executarem antes de entrar no mundo, mesmo que o Mono não esteja pronto no primeiro despacho. Uma simples mensagem de erro sem retry não basta.
 3. Fazer `OnWorldLoad`, `LoadWorldData`, `PostWorldLoad`, `SaveWorldData`, `OnWorldUnload` e `Unload` obedecerem à ordem correta, sem duplicação em mundos locais, save/quit e novo mundo.
 4. Inspecionar ABI do hook de `Main.QuitGame` no Android; a assinatura e o vínculo nativo precisam ser comprovados e não podem ser presumidos com base no JS.

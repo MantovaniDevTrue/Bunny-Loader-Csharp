@@ -11,7 +11,9 @@
     "OnModUnload",
     "OnWorldLoad",
     "OnWorldUnload",
+    "PostAddRecipes",
     "PostSetupContent",
+    "PostSetupRecipes",
     "PostUpdateDusts",
     "PostUpdateEverything",
     "PostUpdateGores",
@@ -42,8 +44,6 @@
   ],
   "missingOriginalHooks": [
     "AddRecipeGroups",
-    "PostAddRecipes",
-    "PostSetupRecipes",
     "LoadWorldData",
     "SaveWorldData",
     "SaveWorldHeader",

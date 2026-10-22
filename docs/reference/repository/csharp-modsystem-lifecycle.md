@@ -1,13 +1,13 @@
 # ModSystem em C# — integração de ciclo de vida
 
-> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 37 estão declarados, 21 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
+> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 39 estão declarados, 19 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
 
 
 Este módulo usa o nome e as assinaturas de eventos `ModSystem` do tModLoader, mas a execução é implementada diretamente no SDK C# do Bunny Loader, sem executar JavaScript.
 
 ## API
 
-A classe `BunnyLoader.Source.ModSystem` já declara **37 dos 58 callbacks** do ModSystem original; `Unload` permanece um método adicional de limpeza. As categorias implementadas em fonte são: ciclo de vida, limpeza e geração básica do mundo, conclusão de registro de conteúdo, eventos de atualização e estágios ARM64 de jogadores/NPCs/gore/itens. Veja a [matriz auditável](csharp-modsystem-coverage.md) para os 21 ausentes, sem confundir declaração com validação Android.
+A classe `BunnyLoader.Source.ModSystem` já declara **39 dos 58 callbacks** do ModSystem original; `Unload` permanece um método adicional de limpeza. As categorias implementadas em fonte são: ciclo de vida, limpeza e geração básica do mundo, conclusão de registro de conteúdo, eventos de atualização e estágios ARM64 de jogadores/NPCs/gore/itens. Veja a [matriz auditável](csharp-modsystem-coverage.md) para os 19 ausentes, sem confundir declaração com validação Android.
 
 O `ModSystemLoader` cria uma instância por classe concreta e por assembly, ordenadas pelo nome completo; callbacks de atualização só são chamados nas classes que efetivamente sobrescrevem o método. Falhas de uma classe não bloqueiam outras; máximo de 256 sistemas por mod.
 
@@ -80,7 +80,7 @@ A implementação JS original do Bunny invoca `original(self)` em `Main.QuitGame
 - A implementação mantém o C# independente do JavaScript em runtime, mas os pontos de modificação do código nativo ARM64 ainda precisam ser testados quando um mod JS usa o mesmo endereço.
 - O código atual de entrada no mundo é focalizado em modo individual (`netMode == 0`); o evento de mundo no cliente multiplayer do Bunny original não pode ser considerado validado.
 - CI verde significa compilação gerenciada, testes contratuais, sintaxe C++/assembly ARM64 e auditoria de fontes. Não cobre ligação do app, execução no aparelho, integridade do save, FPS ou teste real do trampolim.
-- Nunca gerar APK ou liberar PR enquanto faltarem os 21 métodos, a compatibilidade de hooks e a validação nativa no Terraria 301720.
+- Nunca gerar APK ou liberar PR enquanto faltarem os 19 métodos, a compatibilidade de hooks e a validação nativa no Terraria 301720.
 
 ## Localização e contagem de biomas
 
@@ -101,3 +101,7 @@ O hook C# recebe `ref float brightness` logo após `Lighting.UpdateGlobalBrightn
 ## AddRecipes — contexto de compilacao, sem JS
 
 `ModSystem.AddRecipes()` agora permite `BunnySystemRecipes.CreateRecipe("NomeDaClasse", stack).AddIngredient(...).AddTile(...).Register()`. O `CompiledAssemblyProbe` executa o callback na etapa de geracao de conteudo; antes disso, prepara uma unica vez as receitas individuais dos `BunnyItem`. Ambos registram no mesmo objeto `BunnyItem`. O `BasicItemWriter` emite o descritor de receitas resultante, ja consumido pelo `NativeBasicItems` e `NativeRecipes` na thread do Terraria, com aguardas de dependencias e confirmacao por indice. O CI compara o serializado e garante que a receita de item nao duplica. O contexto de receitas so aceita **resultados BunnyItem locais** e usa um conjunto separado de instancias ModSystem no compilador; receitas para itens vanilla/externos, RecipeGroups, `PostAddRecipes`, `PostSetupRecipes` e estado compartilhado com `Load` runtime ainda nao sao equivalentes ao original e nao devem ser anunciados como concluidos. Validacao no Android e obrigatoria.
+
+## PostAddRecipes e PostSetupRecipes
+
+A etapa final de registro de conteudo, depois de `pendingRecipes == 0` e da conclusao das politicas/visuais, envia `PostAddRecipes` e `PostSetupRecipes` nessa ordem, uma vez por inicializacao. O `ModSystemLoader` impede chamadas duplicadas e o exemplo registra uma mensagem apenas nessas transicoes. Essas notificacoes sao reais, nao metodos vazios, mas o pipeline C# ainda NAO disponibiliza a lista completa de receitas nativas editaveis nem o registro global de RecipeGroups no evento, e a etapa `AddRecipes` ocorre no compilador de conteudo; paridade tModLoader completa continua pendente. Nao gerar APK antes do teste no Android.

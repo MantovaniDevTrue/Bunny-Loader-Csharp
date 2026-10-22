@@ -39,10 +39,10 @@ sdk=(root/"src/managed/BunnyCsSdk/ModSystem.cs").read_text()
 native_boundary=re.search(r'bool dispatchManagedSourceSystem\(.*?phase\s*>\s*(\d+)',native,re.S)
 sdk_boundary=re.search(r'public static int Dispatch\(Assembly assembly, int phase\).*?phase\s*>\s*(\d+)',sdk,re.S)
 assert native_boundary and sdk_boundary, "Dispatcher phase boundaries not found"
-assert native_boundary.group(1)==sdk_boundary.group(1)=="35", "SDK/native dispatch phases differ"
+assert native_boundary.group(1)==sdk_boundary.group(1)=="37", "SDK/native dispatch phases differ"
 assert "if (withinSystemCallback)" in native, "Nested native callbacks could deadlock"
 assert "if (!validAssembly(assemblyPath))" in native, "DLL must be validated on first load"
-for phase, bit in ((33,3),(34,52),(35,12)):
+for phase, bit in ((33,3),(34,52),(35,12),(36,7),(37,8)):
     assert re.search(r'else if\s*\(phase\s*==\s*'+str(phase)+r'\)\s*hookBit\s*=\s*'+str(bit),runtime), "Missing native hook bit"
 assert 'ModifyLightingBrightness' in sdk, "SDK brightness hook missing"
 assert 'modifyManagedSourceSystemBrightness' in native, "Mono scalar bridge missing"
