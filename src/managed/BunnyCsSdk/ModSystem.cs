@@ -59,6 +59,7 @@ public static class ModSystemLoader
     {
         public readonly ModSystem System;
         public readonly ulong OverrideMask;
+        public readonly Dictionary<string,int> FailureReports = new(StringComparer.Ordinal);
         public bool Loaded;
         public Entry(ModSystem system, ulong mask)
         {
@@ -253,8 +254,13 @@ public static class ModSystemLoader
         }
         catch (Exception error)
         {
-            Console.Error.WriteLine("[CSharp][ModSystem] " +
-                entry.System.GetType().FullName + "." + phase + " falhou: " + error);
+            entry.FailureReports.TryGetValue(phase, out int previous);
+            int seen = previous < int.MaxValue ? previous + 1 : previous;
+            entry.FailureReports[phase] = seen;
+            if (seen <= 3 || (seen & (seen - 1)) == 0)
+                Console.Error.WriteLine("[CSharp][ModSystem] " +
+                    entry.System.GetType().FullName + "." + phase +
+                    " falhou (" + seen + "x): " + error);
             return 1;
         }
     }

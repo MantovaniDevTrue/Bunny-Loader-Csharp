@@ -80,6 +80,7 @@ std::atomic<bool> g_initialCSharpRegistrationFinished{false};
 std::atomic<bool> g_initialCSharpSummaryShown{false};
 std::atomic<bool> g_modSystemArraysResized{false};
 std::atomic<bool> g_modSystemContentSetup{false};
+std::array<std::atomic<uint32_t>, 36> g_modSystemFailedDispatchCount{};
 std::atomic<bool> g_preWorldBindingsArmed{false};
 std::atomic<bool> g_preWorldBindingsRunning{false};
 std::atomic<bool> g_delayedWorldEntry{false};
@@ -1335,13 +1336,20 @@ void dispatchAutoSourceSystems(int phase) {
     for (const auto& target : *snapshot) {
         if (hookBit >= 0 && (target.hookMask & (1ULL << hookBit)) == 0) continue;
         int failures = 0;
-        if (!dispatchManagedSourceSystem(target.modId,
-                target.assemblyPath, phase, &failures))
-            BL_WARN("[CSharp][ModSystem] mod=%s phase=%d Mono indisponivel",
-                    target.modId.c_str(), phase);
-        else if (failures)
-            BL_WARN("[CSharp][ModSystem] mod=%s phase=%d erros=%d",
-                    target.modId.c_str(), phase, failures);
+        const bool ready = dispatchManagedSourceSystem(target.modId,
+                target.assemblyPath, phase, &failures);
+        if (!ready || failures) {
+            uint32_t count = g_modSystemFailedDispatchCount[phase].fetch_add(
+                1, std::memory_order_relaxed) + 1;
+            if (count <= 3 || (count & (count - 1)) == 0) {
+                if (!ready)
+                    BL_WARN("[CSharp][ModSystem] mod=%s phase=%d Mono indisponivel (%u x)",
+                            target.modId.c_str(), phase, count);
+                else
+                    BL_WARN("[CSharp][ModSystem] mod=%s phase=%d erros=%d (%u x)",
+                            target.modId.c_str(), phase, failures, count);
+            }
+        }
     }
 }
 
