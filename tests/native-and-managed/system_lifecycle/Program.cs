@@ -19,6 +19,15 @@ public sealed class AlphaSystem : ModSystem
     public override void OnWorldLoad() => Events.Add("A.OnWorldLoad");
     public override void ClearWorld() => Events.Add("A.ClearWorld");
     public override void PreWorldGen() => Events.Add("A.PreWorldGen");
+    public override void PreUpdatePlayers() => Events.Add("A.PreUpdatePlayers");
+    public override void PostUpdatePlayers() => Events.Add("A.PostUpdatePlayers");
+    public override void PreUpdateNPCs() => Events.Add("A.PreUpdateNPCs");
+    public override void PostUpdateNPCs() => Events.Add("A.PostUpdateNPCs");
+    public override void PreUpdateGores() => Events.Add("A.PreUpdateGores");
+    public override void PostUpdateGores() => Events.Add("A.PostUpdateGores");
+    public override void PostUpdateProjectiles() => Events.Add("A.PostUpdateProjectiles");
+    public override void PreUpdateItems() => Events.Add("A.PreUpdateItems");
+    public override void PostUpdateItems() => Events.Add("A.PostUpdateItems");
     public override void PreUpdateWorld() => Events.Add("A.PreUpdateWorld");
     public override void PostUpdateWorld() => Events.Add("A.PostUpdateWorld");
     public override void PreUpdateTime() => Events.Add("A.PreUpdateTime");
@@ -81,6 +90,8 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 3;
         for (int phase = 10; phase <= 21; phase++)
             if (ModSystemLoader.Dispatch(assembly, phase) != 0) return 34;
+        for (int phase = 22; phase <= 30; phase++)
+            if (ModSystemLoader.Dispatch(assembly, phase) != 0) return 36;
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 22;
         if (ModSystemLoader.Dispatch(assembly, 2) != 0) return 4;
         if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 5;
@@ -92,6 +103,8 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 8) != 0) return 28;
         if (ModSystemLoader.Dispatch(assembly, 9) != 0) return 29;
         if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 7;
+        for (int phase = 22; phase <= 30; phase++)
+            if (ModSystemLoader.Dispatch(assembly, phase) != 0) return 37;
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 25;
         if (ModSystemLoader.Dispatch(assembly, 5) != 0) return 8;
         Expect("A.Load,B.Load,A.OnModLoad,B.OnModLoad," +
@@ -109,9 +122,27 @@ internal static class Program
             "A.PreUpdateInvasions," +
             "A.PostUpdateInvasions," +
             "A.PostUpdateInput," +
+            "A.PreUpdatePlayers," +
+            "A.PostUpdatePlayers," +
+            "A.PreUpdateNPCs," +
+            "A.PostUpdateNPCs," +
+            "A.PreUpdateGores," +
+            "A.PostUpdateGores," +
+            "A.PostUpdateProjectiles," +
+            "A.PreUpdateItems," +
+            "A.PostUpdateItems," +
             "A.PreSaveAndQuit,B.PreSaveAndQuit,A.OnWorldUnload,B.OnWorldUnload," +
             "A.ClearWorld,B.ClearWorld,A.PreWorldGen,B.PreWorldGen," +
             "A.PostWorldGen,B.PostWorldGen,A.OnWorldLoad,B.OnWorldLoad," +
+            "A.PreUpdatePlayers," +
+            "A.PostUpdatePlayers," +
+            "A.PreUpdateNPCs," +
+            "A.PostUpdateNPCs," +
+            "A.PreUpdateGores," +
+            "A.PostUpdateGores," +
+            "A.PostUpdateProjectiles," +
+            "A.PreUpdateItems," +
+            "A.PostUpdateItems," +
             "A.PreSaveAndQuit,B.PreSaveAndQuit,A.OnWorldUnload,B.OnWorldUnload," +
             "A.OnModUnload,B.OnModUnload,B.Unload,A.Unload");
         if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 9;

@@ -6,8 +6,8 @@ using System.Reflection;
 namespace BunnyLoader.Source;
 
 /// <summary>
-/// Sistema global de um mod C#. Os callbacks acompanham o ciclo de vida do mod
-/// e do mundo; nunca sao executados uma vez por frame.
+/// Sistema global de um mod C#. Hooks de ciclo de vida ocorrem nas transicoes;
+/// hooks de atualizacao podem executar em todos os quadros quando sobrescritos.
 /// </summary>
 public abstract class ModSystem
 {
@@ -30,6 +30,15 @@ public abstract class ModSystem
     public virtual void PreUpdateInvasions() { }
     public virtual void PostUpdateInvasions() { }
     public virtual void PostUpdateInput() { }
+    public virtual void PreUpdatePlayers() { }
+    public virtual void PostUpdatePlayers() { }
+    public virtual void PreUpdateNPCs() { }
+    public virtual void PostUpdateNPCs() { }
+    public virtual void PreUpdateGores() { }
+    public virtual void PostUpdateGores() { }
+    public virtual void PostUpdateProjectiles() { }
+    public virtual void PreUpdateItems() { }
+    public virtual void PostUpdateItems() { }
     public virtual void OnWorldUnload() { }
     public virtual void OnModUnload() { }
     public virtual void Unload() { }
@@ -78,7 +87,16 @@ public static class ModSystemLoader
         ("PostUpdateDusts", x => x.PostUpdateDusts()),
         ("PreUpdateInvasions", x => x.PreUpdateInvasions()),
         ("PostUpdateInvasions", x => x.PostUpdateInvasions()),
-        ("PostUpdateInput", x => x.PostUpdateInput())
+        ("PostUpdateInput", x => x.PostUpdateInput()),
+        ("PreUpdatePlayers", x => x.PreUpdatePlayers()),
+        ("PostUpdatePlayers", x => x.PostUpdatePlayers()),
+        ("PreUpdateNPCs", x => x.PreUpdateNPCs()),
+        ("PostUpdateNPCs", x => x.PostUpdateNPCs()),
+        ("PreUpdateGores", x => x.PreUpdateGores()),
+        ("PostUpdateGores", x => x.PostUpdateGores()),
+        ("PostUpdateProjectiles", x => x.PostUpdateProjectiles()),
+        ("PreUpdateItems", x => x.PreUpdateItems()),
+        ("PostUpdateItems", x => x.PostUpdateItems())
     };
     private static readonly string[] OriginalHookNames =
     {
@@ -222,13 +240,13 @@ public static class ModSystemLoader
     /// <summary>
     /// 0=Load, 1=OnModLoad, 2=OnWorldLoad, 3=OnWorldUnload,
     /// 4=OnModUnload, 5=Unload, 6=ClearWorld, 7=PreSaveAndQuit,
-    /// 8=PreWorldGen, 9=PostWorldGen, 10..21=hooks de atualizacao.
+    /// 8=PreWorldGen, 9=PostWorldGen, 10..30=hooks de atualizacao.
     /// Retorna o numero de falhas isoladas.
     /// </summary>
     public static int Dispatch(Assembly assembly, int phase)
     {
         if (assembly == null) throw new ArgumentNullException(nameof(assembly));
-        if ((uint)phase > 21) throw new ArgumentOutOfRangeException(nameof(phase));
+        if ((uint)phase > 30) throw new ArgumentOutOfRangeException(nameof(phase));
         lock (Sync)
         {
             if (!Registries.TryGetValue(assembly, out Registry? registry))
@@ -255,7 +273,7 @@ public static class ModSystemLoader
                         failures += Invoke(entry, x => x.OnModLoad(), nameof(ModSystem.OnModLoad));
             }
 
-            if (phase >= 10 && phase <= 21 && registry.ModLoaded &&
+            if (phase >= 10 && phase <= 30 && registry.ModLoaded &&
                 (registry.WorldLoaded || phase == 21))
             {
                 var hook = UpdateHooks[phase - 10];

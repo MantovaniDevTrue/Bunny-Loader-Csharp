@@ -7,6 +7,7 @@ public sealed class ExampleLifecycleSystem : ModSystem
 {
     private int visits;
     private int worldTicks;
+    private int playerBatches;
     private bool insideWorld;
 
     public override void Load()
@@ -14,6 +15,7 @@ public sealed class ExampleLifecycleSystem : ModSystem
         // Uma vez por carregamento do mod: inicialize dados globais aqui.
         visits = 0;
         worldTicks = 0;
+        playerBatches = 0;
     }
 
     public override void OnModLoad()
@@ -59,6 +61,17 @@ public sealed class ExampleLifecycleSystem : ModSystem
         worldTicks++;
     }
 
+    public override void PreUpdatePlayers()
+    {
+        // Uma vez antes do grupo de jogadores, sem fazer varreduras por jogador.
+        playerBatches++;
+    }
+
+    public override void PostUpdatePlayers()
+    {
+        // A atualização vanilla do grupo terminou; sem log por frame.
+    }
+
     public override void PostUpdateWorld()
     {
         // Chamado depois da atualizacao vanilla do mundo.
@@ -70,7 +83,7 @@ public sealed class ExampleLifecycleSystem : ModSystem
     {
         // Nao mantenha referencias para entidades ou tiles de um mundo anterior.
         insideWorld = false;
-        Console.WriteLine("[ExampleMod C#] saida do mundo");
+        Console.WriteLine("[ExampleMod C#] saida do mundo; lotes de jogadores=" + playerBatches);
     }
 
     public override void OnModUnload()
