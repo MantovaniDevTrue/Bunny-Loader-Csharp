@@ -45,7 +45,8 @@ jobs:
             "$src/experiments/csharp/AutoSourceRuntime.cpp" \
             "$src/experiments/csharp/ManagedRuntime.cpp" \
             "$src/experiments/csharp/SourceLoader.cpp" \
-            "$src/experiments/csharp/SourceParser.cpp"; do
+            "$src/experiments/csharp/SourceParser.cpp" \
+            "$src/experiments/csharp/ModSystemStages.cpp"; do
             echo "CHECKING $file"
             "$compiler" -std=c++20 -O2 -fno-exceptions -fno-rtti \
               -DBL_HAVE_QUICKJS=0 -I"$src" -fsyntax-only "$file"

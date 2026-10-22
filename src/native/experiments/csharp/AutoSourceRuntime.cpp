@@ -5,6 +5,7 @@
 #include "experiments/csharp/UniversalHooks.h"
 #include "experiments/csharp/AutoSourceCache.h"
 #include "experiments/csharp/AutoSourceRuntime.h"
+#include "experiments/csharp/ModSystemStages.h"
 #include "experiments/csharp/NativeVisualRenderer.h"
 #include "graphics/CSharpScreenEffects.h"
 #include "experiments/csharp/NativeContent.h"
@@ -1243,9 +1244,20 @@ void dispatchAutoSourceSystems(int phase) {
     else if (phase == 19) hookBit = 45;
     else if (phase == 20) hookBit = 46;
     else if (phase == 21) hookBit = 31;
+    else if (phase == 22) hookBit = 33;
+    else if (phase == 23) hookBit = 34;
+    else if (phase == 24) hookBit = 35;
+    else if (phase == 25) hookBit = 36;
+    else if (phase == 26) hookBit = 37;
+    else if (phase == 27) hookBit = 38;
+    else if (phase == 28) hookBit = 40;
+    else if (phase == 29) hookBit = 41;
+    else if (phase == 30) hookBit = 42;
     if (hookBit >= 0 &&
         (activeManagedSourceSystemHooks() & (1ULL << hookBit)) == 0)
         return;
+    if (phase >= 10 && phase <= 30 && phase != 21 &&
+        !g_worldSessionReady.load(std::memory_order_acquire)) return;
     std::vector<std::string> ids;
     {
         std::lock_guard<std::mutex> guard(g_lock);
@@ -1497,6 +1509,7 @@ void noteAutoGameUpdate() {
     pumpBasicRecipesOnGameThread();
     pumpNativeVisualRendererOnGameThread();
     installModSystemUpdateHooksOnGameThread();
+    installNativeModSystemStageHooks(activeManagedSourceSystemHooks());
     if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
         static unsigned systemRetryFrame = 0;
         if (++systemRetryFrame % 12u == 0) loadPendingAutoSourceSystems();
@@ -1603,7 +1616,8 @@ bool preWorldCSharpContentReady() {
         !g_preWorldBindingsArmed.load(std::memory_order_acquire))
         return false;
     const auto content = basicItemLoadStatus();
-    if (!installModSystemUpdateHooksOnGameThread()) return false;
+    if (!installModSystemUpdateHooksOnGameThread() ||
+        !installNativeModSystemStageHooks(activeManagedSourceSystemHooks())) return false;
     bool needsNpcDispatcher = false;
     for (const auto& status : autoSourceStatuses())
         if (status.applied && !status.systemsLoaded && status.phase != "failed")
