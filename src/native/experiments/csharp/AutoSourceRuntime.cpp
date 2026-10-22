@@ -79,6 +79,10 @@ using PlayWorldFn=void (*)(const MethodInfo*);
 PlayWorldFn g_originalPlayWorld=nullptr;
 using QuitGameFn = void (*)(const MethodInfo*);
 QuitGameFn g_originalQuitGame = nullptr;
+using ClearWorldFn = void (*)(const MethodInfo*);
+ClearWorldFn g_originalClearWorld = nullptr;
+using SaveAndQuitFn = void (*)(const MethodInfo*);
+SaveAndQuitFn g_originalSaveAndQuit = nullptr;
 std::atomic<bool> g_worldTilesLoaded{false};
 std::atomic<bool> g_worldSessionReady{false};
 std::atomic<int> g_worldReadyFrames{0};
@@ -1229,6 +1233,17 @@ void dispatchAutoSourceSystems(int phase) {
     }
 }
 
+void hkCSharpClearWorld(const MethodInfo* method) {
+    if (g_originalClearWorld) g_originalClearWorld(method);
+    dispatchAutoSourceSystems(6);
+}
+
+void hkCSharpSaveAndQuit(const MethodInfo* method) {
+    if (g_worldSessionReady.load(std::memory_order_acquire))
+        dispatchAutoSourceSystems(7);
+    if (g_originalSaveAndQuit) g_originalSaveAndQuit(method);
+}
+
 void hkCSharpQuitGame(const MethodInfo* method) {
     {
         std::lock_guard<std::mutex> guard(g_worldTransitionMutex);
@@ -1518,7 +1533,17 @@ bool installCSharpWorldEntryGate() {
         ? il2cpp::api().class_get_method_from_name(main, "QuitGame", 0)
         : nullptr;
     if (!quitGame || !bl::hook::install(quitGame, hkCSharpQuitGame, &g_originalQuitGame))
-        BL_WARN("[CSharp][ModSystem] QuitGame nao disponivel; descarregamento final requer validação");
+        BL_WARN("[CSharp][ModSystem] QuitGame nao disponivel; descarregamento final requer validacao");
+    const MethodInfo* clearWorld = worldGen
+        ? il2cpp::api().class_get_method_from_name(worldGen, "clearWorld", 0)
+        : nullptr;
+    if (!clearWorld || !bl::hook::install(clearWorld, hkCSharpClearWorld, &g_originalClearWorld))
+        BL_WARN("[CSharp][ModSystem] WorldGen.clearWorld nao disponivel");
+    const MethodInfo* saveAndQuit = worldGen
+        ? il2cpp::api().class_get_method_from_name(worldGen, "SaveAndQuit", 0)
+        : nullptr;
+    if (!saveAndQuit || !bl::hook::install(saveAndQuit, hkCSharpSaveAndQuit, &g_originalSaveAndQuit))
+        BL_WARN("[CSharp][ModSystem] WorldGen.SaveAndQuit nao disponivel");
     return true;
 }
 
