@@ -816,7 +816,7 @@ void run() {
             note(&status, "failed", "Tabelas de projetil nao ficaram prontas");
             continue;
         }
-        if ((mod.projectiles > 0 || mod.npcs > 0 || hasUniversalHooks) &&
+        if ((mod.projectiles > 0 || mod.npcs > 0 || mod.systems > 0 || hasUniversalHooks) &&
             !g_runtimeWarmStarted.exchange(true, std::memory_order_acq_rel)) {
             const std::string probe = work + "BunnyManagedProbe.dll";
             struct stat probeStat{};
@@ -867,15 +867,20 @@ void run() {
                 mod.id.c_str(),status.cached?"Hit":"Miss",cacheReason.c_str(),cacheWrite.c_str(),
                 tablesMs,cacheMs,compileMs,elapsedMilliseconds(applyStarted));
         status.applied = true;
-        {
+        status.systemsLoaded = mod.systems == 0;
+        if (!status.systemsLoaded) {
             int failures = 0;
-            if (!dispatchManagedSourceSystem(mod.id, assembly, 0, &failures))
-                BL_WARN("[CSharp][ModSystem] mod=%s inicializacao pendente do Mono",
-                        mod.id.c_str());
-            else if (failures)
-                BL_WARN("[CSharp][ModSystem] mod=%s Load encontrou %d falha(s)",
-                        mod.id.c_str(), failures);
+            if (!dispatchManagedSourceSystem(mod.id, assembly, 0, &failures)) {
+                BL_DEBUG("[CSharp][ModSystem] mod=%s aguardando inicializacao Mono",
+                         mod.id.c_str());
+            } else {
+                status.systemsLoaded = true;
+                if (failures)
+                    BL_WARN("[CSharp][ModSystem] mod=%s Load encontrou %d falha(s)",
+                            mod.id.c_str(), failures);
+            }
         }
+        setStatus(status);
         if (hasUniversalHooks && !registerUniversalHookMod(mod.id, assembly))
             BL_WARN("csharp universal hooks: fila recusada mod=%s", mod.id.c_str());
         if (mod.npcs > 0 || mod.projectiles > 0) {
@@ -1111,6 +1116,38 @@ void pumpInteractiveConsoleOnGameThread() {
     }
 }
 
+bool loadPendingAutoSourceSystems() {
+    std::vector<std::string> pending;
+    {
+        std::lock_guard<std::mutex> guard(g_lock);
+        for (const auto& status : g_statuses)
+            if (status.applied && !status.systemsLoaded && status.phase != "failed")
+                pending.push_back(status.modId);
+    }
+    if (pending.empty()) return true;
+    const std::string work = folderOfCheckpoint();
+    if (work.empty()) return false;
+    for (const auto& modId : pending) {
+        int failures = 0;
+        if (!dispatchManagedSourceSystem(modId,
+                work + "compiled/" + modId + ".dll", 0, &failures))
+            continue;
+        {
+            std::lock_guard<std::mutex> guard(g_lock);
+            for (auto& status : g_statuses)
+                if (status.modId == modId) status.systemsLoaded = true;
+        }
+        if (failures)
+            BL_WARN("[CSharp][ModSystem] mod=%s Load encontrou %d falha(s)",
+                    modId.c_str(), failures);
+    }
+    std::lock_guard<std::mutex> guard(g_lock);
+    for (const auto& status : g_statuses)
+        if (status.applied && !status.systemsLoaded && status.phase != "failed")
+            return false;
+    return true;
+}
+
 void reportCSharpLoadSummary() {
     if (!g_initialCSharpRegistrationFinished.load(std::memory_order_acquire) ||
         g_initialCSharpSummaryShown.load(std::memory_order_acquire)) return;
@@ -1121,7 +1158,7 @@ void reportCSharpLoadSummary() {
     int successful = 0, failed = 0, pendingCallbacks = 0;
     for (const auto& status : statuses) {
         if (status.phase == "failed" || !status.error.empty()) ++failed;
-        else if (!status.applied) ++pendingCallbacks;
+        else if (!status.applied || !status.systemsLoaded) ++pendingCallbacks;
         else {
             ++successful;
             if (status.enabledCurves < status.curves ||
@@ -1176,7 +1213,7 @@ void dispatchAutoSourceSystems(int phase) {
     {
         std::lock_guard<std::mutex> guard(g_lock);
         for (const auto& state : g_statuses)
-            if (state.applied && state.error.empty()) ids.push_back(state.modId);
+            if (state.applied && state.systemsLoaded && state.error.empty()) ids.push_back(state.modId);
     }
     const std::string work = folderOfCheckpoint();
     if (work.empty()) return;
@@ -1250,6 +1287,10 @@ void noteAutoGameUpdate() {
     pumpInteractiveConsoleOnGameThread();
     pumpBasicRecipesOnGameThread();
     pumpNativeVisualRendererOnGameThread();
+    if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
+        static unsigned systemRetryFrame = 0;
+        if (++systemRetryFrame % 12u == 0) loadPendingAutoSourceSystems();
+    }
     if (!g_worldTilesLoaded.load(std::memory_order_acquire))
         updateManagedNpcBuffDispatcherOnGameThread();
     if (!g_worldTilesLoaded.load(std::memory_order_acquire) &&
@@ -1353,6 +1394,9 @@ bool preWorldCSharpContentReady() {
         return false;
     const auto content = basicItemLoadStatus();
     bool needsNpcDispatcher = false;
+    for (const auto& status : autoSourceStatuses())
+        if (status.applied && !status.systemsLoaded && status.phase != "failed")
+            return false;
     {
         std::lock_guard<std::mutex> lock(g_lock);
         needsNpcDispatcher = !g_pendingLiveSpecs.empty();

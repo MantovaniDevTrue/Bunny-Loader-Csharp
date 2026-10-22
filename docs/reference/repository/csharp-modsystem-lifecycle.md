@@ -34,3 +34,7 @@ O hook C# de `Main.QuitGame()` executa `OnWorldUnload`, `OnModUnload` e `Unload`
 ## Teste isolado de dois mods
 
 `system_lifecycle/ForeignMod` é uma segunda DLL gerenciada, compilada como projeto próprio. Os testes criam duas assemblies separadas, forçam falha de construtor em um dos mods, verificam que os outros continuam e conferem a reentrada após `Unload` com estado por assembly. O teste Android continua obrigatório.
+
+## Gate do ModSystem antes do mundo
+
+Mods C# com pelo menos um ModSystem agora preparam Mono e exigem despacho confirmado de Load/OnModLoad antes da entrada no mundo; falhas temporárias de inicialização retornam à fila leve de retry, sem reinvocar Load após sucesso. Mods sem ModSystem não pagam o custo dessa etapa. A integração utiliza o estado systemsLoaded protegido pelo mutex de status e não o FPS de jogo para executar Load no mundo. **Ainda exige validação Android do gate e dos possíveis estados de falha, e não substitui o teste da ABI nativa.**
