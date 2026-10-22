@@ -1,0 +1,285 @@
+{
+  "schema": 1,
+  "upstream": "MantovaniDevTrue/Bunnyloader-Csharp",
+  "target_baseline": "0.1.10.16.90.29.87.1",
+  "mode": "isolated_source_overlays",
+  "activation": "none",
+  "distribution": "disabled",
+  "policy": "Use Bunny Loader/ExampleModBunny source; no tModLoader code, no JS runtime bridge, no APK or .bmod. Source-only staging is not a runtime merge or Android validation.",
+  "pull_requests": [
+    {
+      "number": 98,
+      "name": "World: Tile, Wall, Tree, TileEntity, GlobalTile",
+      "status": "mixed_incomplete",
+      "kind": "loader",
+      "head_sha": "45fb0bcc6a1fa57e317b138f2e9973e90eb125e2",
+      "base_sha": "6a106345c20c8de0c49f90271810c66dcd65a912",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 100,
+      "name": "PrefixLoader",
+      "status": "partial",
+      "kind": "loader",
+      "head_sha": "abbdde775c8a96b4ddea2fb9bba813e6c29f2041",
+      "base_sha": "06db1b578f193b4e3547cc57f974eaaca781bfec",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 101,
+      "name": "LocalizationLoader",
+      "status": "partial",
+      "kind": "loader",
+      "head_sha": "82c6afd4b7ff01a1f69eb491c527bb2a1ec1bc04",
+      "base_sha": "7b94f765c3a4d5c0b38f95192467cfc03f367182",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 102,
+      "name": "RarityLoader",
+      "status": "android_retest",
+      "kind": "loader",
+      "head_sha": "2ed7fb47988d561b678ab713f9b524bd4783f9f4",
+      "base_sha": "958c6ef31833aa9916780695fb5983bbea02b142",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 114,
+      "name": "AnglerQuestLoader",
+      "status": "android_qa_pending",
+      "kind": "loader",
+      "head_sha": "bad10822ad4771a03d9285f83171e0c25aedaf40",
+      "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 115,
+      "name": "DustLoader",
+      "status": "android_qa_pending",
+      "kind": "loader",
+      "head_sha": "d5a6e609c12351dd3d52e6b4840655f83cef28a2",
+      "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 116,
+      "name": "InvasionLoader",
+      "status": "android_qa_pending",
+      "kind": "loader",
+      "head_sha": "0074b0b73e7916c1d2529d48ccb5fde1072215a2",
+      "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 117,
+      "name": "CommandLoader",
+      "status": "android_qa_pending",
+      "kind": "loader",
+      "head_sha": "a32d159bb913dae508af503da375765c855d96bc",
+      "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 118,
+      "name": "SoundLoader",
+      "status": "android_qa_pending",
+      "kind": "loader",
+      "head_sha": "8ab77e59a353c071a3cd22dc0aec15ed72c2c9ff",
+      "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 119,
+      "name": "QA integration: Localization, Rarity, AnglerQuest, Dust, Invasion",
+      "status": "integration_reference",
+      "kind": "integration",
+      "head_sha": "489ec3e7b88b0e4540446a7cc404724e68408427",
+      "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 120,
+      "name": "KeybindLoader and TouchButtonLoader",
+      "status": "partial",
+      "kind": "loader",
+      "head_sha": "6bbc27f527f597f6e91f117a474c6df2e7e8bb00",
+      "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 121,
+      "name": "GoreLoader",
+      "status": "android_qa_pending",
+      "kind": "loader",
+      "head_sha": "d061f7654660223ea00e55c7d21d85dfdffcb8d9",
+      "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 122,
+      "name": "WorldSaveLoader",
+      "status": "partial",
+      "kind": "loader",
+      "head_sha": "bcaa1322e533e20a4365ae26b756f2207d3a3473",
+      "base_sha": "6398571dbd7f9f3195e7dedd6db262ce9f37852f",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 123,
+      "name": "Tooltip native activation",
+      "status": "fix_reference",
+      "kind": "support",
+      "head_sha": "ea0ac792e96180da8e734b453d6c8d69c82c0823",
+      "base_sha": "d96965414059f1e50d2644b4f4a387c1b4e06674",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 124,
+      "name": "ItemUse diagnostics",
+      "status": "fix_reference",
+      "kind": "support",
+      "head_sha": "57629f0df71ec3de1e33af7a5d1ded3e7f92f62d",
+      "base_sha": "6db6de22630a3d2fde7793c96f53a24d2bf805c3",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 125,
+      "name": "CloudLoader and Biome foundation",
+      "status": "partial",
+      "kind": "loader",
+      "head_sha": "79e674c7ce08b8049d19e3ba3b7607f78696db97",
+      "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 126,
+      "name": "SystemUpdateLoader (19/19 source hooks)",
+      "status": "android_qa_pending",
+      "kind": "loader",
+      "head_sha": "3451b14912ec658945ba4030d08576869c34749f",
+      "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 127,
+      "name": "Dust register before OnUse",
+      "status": "fix_reference",
+      "kind": "support",
+      "head_sha": "9036f8d882cd82617c2e01d616f34920bae58661",
+      "base_sha": "a206729f33cee0eee1a5fdb70928a9564f28af7f",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 128,
+      "name": "Dust compiled ExampleMod registration regression",
+      "status": "test_reference",
+      "kind": "support",
+      "head_sha": "4419e86b1e28a567b3c6e90a60b3e7fe8d180ed5",
+      "base_sha": "b64833c4976bd95003b0469b3e357e94b26175c2",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 129,
+      "name": "Invasion beacon feedback",
+      "status": "fix_reference",
+      "kind": "support",
+      "head_sha": "95d2d23485f18263f3ac685937e2b5d9418a83c3",
+      "base_sha": "b64833c4976bd95003b0469b3e357e94b26175c2",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 130,
+      "name": "15-loaders batch: BackgroundTexture, UndergroundBackground, SurfaceBackground, Water and others",
+      "status": "partial",
+      "kind": "loader",
+      "head_sha": "a4f5b255c5b2274deb258604e5a3956de58f1c0c",
+      "base_sha": "5a18a67899c1f6ee88a34097be3adb6e7877edd4",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 131,
+      "name": "SceneEffectLoader ranking core",
+      "status": "partial",
+      "kind": "loader",
+      "head_sha": "bcf95018b89604860c113584d2f2eac0f1a3cdab",
+      "base_sha": "e88ba0480fac6310ba33978f2488b2d585a0c593",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 132,
+      "name": "Dust NewDust and Invasion spawn diagnostics",
+      "status": "fix_reference",
+      "kind": "support",
+      "head_sha": "fcdc3fd2c30d1e7432fddbafc4af9f6d65ca473a",
+      "base_sha": "5a18a67899c1f6ee88a34097be3adb6e7877edd4",
+      "import": true,
+      "runtime_enabled": false
+    },
+    {
+      "number": 133,
+      "name": "StatModifier and StatInheritanceData shared foundation",
+      "status": "provenance_review",
+      "kind": "support",
+      "head_sha": "aeccdbd1ce2f2f1e3ee7c1ee3787eb666459a44d",
+      "base_sha": "ddcea5ced0c7ef7a290371aa02799a760b359e8d",
+      "import": false,
+      "runtime_enabled": false
+    },
+    {
+      "number": 134,
+      "name": "HairLoader",
+      "status": "provenance_review",
+      "kind": "loader",
+      "head_sha": "1e07974b6fbf88161f498f0c6ffd45c6c522ff60",
+      "base_sha": "d2e1b3df905818fbbc0ead766b9b27ea852cd596",
+      "import": false,
+      "runtime_enabled": false
+    },
+    {
+      "number": 135,
+      "name": "DamageClassLoader",
+      "status": "provenance_review",
+      "kind": "loader",
+      "head_sha": "d131da8f2e1ad39033cf009560af4cf4ce7bb4c6",
+      "base_sha": "aeccdbd1ce2f2f1e3ee7c1ee3787eb666459a44d",
+      "import": false,
+      "runtime_enabled": false
+    }
+  ],
+  "reviewed_not_imported": [
+    {
+      "number": 99,
+      "reason": "documentation-only PR, already merged upstream"
+    },
+    {
+      "range": "103-113",
+      "reason": "temporary PrefixLoader CI checks; main implementation is PR 100"
+    },
+    {
+      "number": 136,
+      "reason": "managed utility, not a loader; relies on tModLoader-derived source and requires separate provenance review"
+    }
+  ]
+}

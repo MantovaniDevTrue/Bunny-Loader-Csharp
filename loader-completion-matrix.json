@@ -1,0 +1,1457 @@
+{
+  "schema": 1,
+  "source": {
+    "repository": "MantovaniDevTrue/Bunnyloader-Csharp",
+    "file": "docs/csharp-loader-batches.json",
+    "branch": "feat/csharp-summon-lifecycle-v95",
+    "sha": "c7af78aa64e6f17119c87f812cab206ec3c51675",
+    "note": "Initial 10×5 planning snapshot; source-status is not current runtime parity."
+  },
+  "rules": {
+    "loaderCount": 50,
+    "loaderPackages": 10,
+    "requireFiveCompletePerApk": true,
+    "sourceReference": "Bunny Loader and ExampleModBunny only",
+    "noTModLoaderSource": true,
+    "noJsExecutionForCSharp": true,
+    "avoidFrequentApks": true
+  },
+  "required_checks": [
+    "source_contract",
+    "managed_compiler",
+    "native_binding",
+    "complete_example",
+    "host_tests",
+    "android_abi",
+    "android_gameplay",
+    "multi_mod_lifecycle",
+    "save_network",
+    "fps_memory"
+  ],
+  "release": "blocked",
+  "loaders": [
+    {
+      "group": "world-01",
+      "group_order": 1,
+      "name": "TileLoader",
+      "modules": [
+        "TileDrawLoader",
+        "TileLoader",
+        "TileUseLoader",
+        "TileWorldLoader"
+      ],
+      "source_prs": [
+        98
+      ],
+      "source_scope": "partial",
+      "reference_example": "Content/Tiles/ExampleTile.js",
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [
+        "GetItemDrops C# com no máximo dois itens e null para fallback já implementado; ainda faltam RegisterItemDrop por estilo, GrowSapling, resting, baús, PlaceInWorld com item, custom HitSound/MinPick/MineResist e validação Android.",
+        "Completar paridade do contexto HasSmartInteract além de LX/LY/HX/HY e validar o orçamento de 8 callbacks por varredura, renderização, sincronização de frames, persistência e multiplayer no Terraria Android."
+      ],
+      "notes": []
+    },
+    {
+      "group": "world-01",
+      "group_order": 1,
+      "name": "WallLoader",
+      "modules": [
+        "WallLoader"
+      ],
+      "source_prs": [
+        98
+      ],
+      "source_scope": "partial",
+      "reference_example": "Content/Walls/ExampleWallAdvanced.js",
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [
+        "Validar no Android as novas bridges: moradia/blend, frames, animação, dust, luz, colocação, drops, mapa e persistência.",
+        "Concluir callbacks C# arbitrários de parede (KillWall/NumDust/CreateDust/KillSound/Drop/ModifyLight/AnimateWall/RandomUpdate/WallFrame), além das políticas nativas implementadas.",
+        "Defaults efetivos do helper de colocação executam no host; getters C# anteriores à aplicação ainda representam a declaração, não uma consulta ao objeto Android."
+      ],
+      "notes": []
+    },
+    {
+      "group": "world-01",
+      "group_order": 1,
+      "name": "TreeLoader",
+      "modules": [
+        "TreeLoader"
+      ],
+      "source_prs": [
+        98
+      ],
+      "source_scope": "partial",
+      "reference_example": "Content/Tiles/Plants/ExampleTree.js",
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [
+        "Serviço compartilhado ModTrees desenha troncos/copas; C# ainda não registra o ciclo completo.",
+        "Exige chão ExampleTile, ExampleSapling, madeira ExampleItem, shake e gore original das folhas."
+      ],
+      "notes": []
+    },
+    {
+      "group": "world-01",
+      "group_order": 1,
+      "name": "TileEntityLoader",
+      "modules": [
+        "TileEntityItemHooks",
+        "TileEntityLoader"
+      ],
+      "source_prs": [
+        98
+      ],
+      "source_scope": "partial",
+      "reference_example": "Content/TileEntities/BasicTileEntity.js",
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [
+        "Faltam registro C#, instância por posição, callbacks, serialização e sincronização.",
+        "Barril original: chuva por 3600 ticks, status, balde no servidor, reset e Save/Load."
+      ],
+      "notes": []
+    },
+    {
+      "group": "world-01",
+      "group_order": 1,
+      "name": "GlobalTileLoader",
+      "modules": [
+        "GlobalTileLoader"
+      ],
+      "source_prs": [
+        98
+      ],
+      "source_scope": "provenance_blocked",
+      "reference_example": "REPLACE_WITH_BUNNY_ORIGINAL",
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [
+        "Não existe demonstração GlobalTile na referência JS; usar original PC pinado como comportamento.",
+        "Faltam agregação/ordem de globais, callbacks reais, contexto, drops e efeitos sem QuickJS."
+      ],
+      "notes": [
+        "Provenance review: never copy tModLoader implementation. Rebuild from Bunny Loader/ExampleModBunny sources."
+      ]
+    },
+    {
+      "group": "loaders-02",
+      "group_order": 2,
+      "name": "ItemLoader",
+      "modules": [
+        "ItemCombatHooks",
+        "ItemDataLoader",
+        "ItemDrawLoader",
+        "ItemHealingHooks",
+        "ItemLoader",
+        "ItemNetworkHooks",
+        "ItemPickupLoader",
+        "ItemUseHooks",
+        "TooltipLoader",
+        "VanillaTooltips"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-02",
+      "group_order": 2,
+      "name": "EquipLoader",
+      "modules": [
+        "EquipLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-02",
+      "group_order": 2,
+      "name": "ArmorSetLoader",
+      "modules": [
+        "ArmorSetLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-02",
+      "group_order": 2,
+      "name": "WingLoader",
+      "modules": [
+        "WingLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-02",
+      "group_order": 2,
+      "name": "PrefixLoader",
+      "modules": [
+        "PrefixLoader"
+      ],
+      "source_prs": [
+        100
+      ],
+      "source_scope": "partial",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-03",
+      "group_order": 3,
+      "name": "ProjectileLoader",
+      "modules": [
+        "ProjectileLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-03",
+      "group_order": 3,
+      "name": "DamageClassLoader",
+      "modules": [
+        "CombatLoader",
+        "DamageClassLoader"
+      ],
+      "source_prs": [
+        135
+      ],
+      "source_scope": "provenance_blocked",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": [
+        "Provenance review: never copy tModLoader implementation. Rebuild from Bunny Loader/ExampleModBunny sources."
+      ]
+    },
+    {
+      "group": "loaders-03",
+      "group_order": 3,
+      "name": "GlobalProjectileLoader",
+      "modules": [
+        "GlobalProjectileLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-03",
+      "group_order": 3,
+      "name": "BuffLoader",
+      "modules": [
+        "BuffLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-03",
+      "group_order": 3,
+      "name": "GlobalItemLoader",
+      "modules": [
+        "GlobalItemLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-04",
+      "group_order": 4,
+      "name": "NPCLoader",
+      "modules": [
+        "NPCLoader",
+        "SpawnLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-04",
+      "group_order": 4,
+      "name": "TownNPCLoader",
+      "modules": [
+        "BiomeShoppingLoader",
+        "TownNPCLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-04",
+      "group_order": 4,
+      "name": "GlobalNPCLoader",
+      "modules": [
+        "GlobalNPCLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-04",
+      "group_order": 4,
+      "name": "BossBarLoader",
+      "modules": [
+        "BossBarLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-04",
+      "group_order": 4,
+      "name": "GlobalLootLoader",
+      "modules": [
+        "GlobalLootLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-05",
+      "group_order": 5,
+      "name": "RecipeLoader",
+      "modules": [
+        "RecipeLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-05",
+      "group_order": 5,
+      "name": "RarityLoader",
+      "modules": [
+        "RarityLoader"
+      ],
+      "source_prs": [
+        102
+      ],
+      "source_scope": "retest_required",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-05",
+      "group_order": 5,
+      "name": "LocalizationLoader",
+      "modules": [
+        "LocalizationLoader"
+      ],
+      "source_prs": [
+        101
+      ],
+      "source_scope": "partial",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-05",
+      "group_order": 5,
+      "name": "CommandLoader",
+      "modules": [
+        "CommandLoader"
+      ],
+      "source_prs": [
+        117
+      ],
+      "source_scope": "qa_candidate",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-05",
+      "group_order": 5,
+      "name": "ConfigLoader",
+      "modules": [
+        "ConfigLoader",
+        "HostSettingsMenu",
+        "ModConfigMenu"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-06",
+      "group_order": 6,
+      "name": "BiomeLoader",
+      "modules": [
+        "BiomeLoader"
+      ],
+      "source_prs": [
+        125
+      ],
+      "source_scope": "partial",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-06",
+      "group_order": 6,
+      "name": "SceneEffectLoader",
+      "modules": [
+        "BackgroundTextureLoader",
+        "SceneEffectLoader",
+        "ScreenEffectsSetting"
+      ],
+      "source_prs": [
+        131
+      ],
+      "source_scope": "partial",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-06",
+      "group_order": 6,
+      "name": "SurfaceBackgroundLoader",
+      "modules": [
+        "SurfaceBackgroundLoader"
+      ],
+      "source_prs": [
+        130
+      ],
+      "source_scope": "partial",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-06",
+      "group_order": 6,
+      "name": "UndergroundBackgroundLoader",
+      "modules": [
+        "UndergroundBackgroundLoader"
+      ],
+      "source_prs": [
+        130
+      ],
+      "source_scope": "partial",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-06",
+      "group_order": 6,
+      "name": "MapBackgroundLoader",
+      "modules": [
+        "MapBackgroundLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-07",
+      "group_order": 7,
+      "name": "WaterStyleLoader",
+      "modules": [
+        "WaterStyleLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-07",
+      "group_order": 7,
+      "name": "WaterfallStyleLoader",
+      "modules": [
+        "WaterfallStyleLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-07",
+      "group_order": 7,
+      "name": "CloudLoader",
+      "modules": [
+        "CloudLoader"
+      ],
+      "source_prs": [
+        125
+      ],
+      "source_scope": "partial",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-07",
+      "group_order": 7,
+      "name": "GoreLoader",
+      "modules": [
+        "GoreLoader"
+      ],
+      "source_prs": [
+        121
+      ],
+      "source_scope": "qa_candidate",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-07",
+      "group_order": 7,
+      "name": "DustLoader",
+      "modules": [],
+      "source_prs": [
+        115,
+        127,
+        128,
+        132
+      ],
+      "source_scope": "qa_candidate_with_android_fixes+supporting_fix+supporting_fix+supporting_fix",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-08",
+      "group_order": 8,
+      "name": "MountLoader",
+      "modules": [
+        "MountLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-08",
+      "group_order": 8,
+      "name": "AnglerQuestLoader",
+      "modules": [
+        "AnglerQuestLoader"
+      ],
+      "source_prs": [
+        114
+      ],
+      "source_scope": "qa_candidate",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-08",
+      "group_order": 8,
+      "name": "PylonLoader",
+      "modules": [
+        "PylonLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-08",
+      "group_order": 8,
+      "name": "BannerLoader",
+      "modules": [
+        "BannerLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-08",
+      "group_order": 8,
+      "name": "BestiaryLoader",
+      "modules": [
+        "BestiaryLoader",
+        "BiomeBestiaryLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-09",
+      "group_order": 9,
+      "name": "AchievementLoader",
+      "modules": [
+        "AchievementLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-09",
+      "group_order": 9,
+      "name": "EmoteBubbleLoader",
+      "modules": [
+        "EmoteBubbleLoader"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-09",
+      "group_order": 9,
+      "name": "HairLoader",
+      "modules": [
+        "HairLoader"
+      ],
+      "source_prs": [
+        134
+      ],
+      "source_scope": "provenance_blocked",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": [
+        "Provenance review: never copy tModLoader implementation. Rebuild from Bunny Loader/ExampleModBunny sources."
+      ]
+    },
+    {
+      "group": "loaders-09",
+      "group_order": 9,
+      "name": "TouchButtonLoader",
+      "modules": [
+        "TouchButtonHooks",
+        "TouchButtonLayouts",
+        "TouchButtonLoader"
+      ],
+      "source_prs": [
+        120
+      ],
+      "source_scope": "partial",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-09",
+      "group_order": 9,
+      "name": "KeybindLoader",
+      "modules": [
+        "KeybindLoader"
+      ],
+      "source_prs": [
+        120
+      ],
+      "source_scope": "partial",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-10",
+      "group_order": 10,
+      "name": "PlayerLoader",
+      "modules": [
+        "PlayerDrawHooks",
+        "PlayerItemHooks",
+        "PlayerJumpHooks",
+        "PlayerLoader",
+        "PlayerNetworkHooks",
+        "PlayerUpdateHooks",
+        "PlayerWorldHooks"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-10",
+      "group_order": 10,
+      "name": "SystemLoader",
+      "modules": [
+        "SystemDrawHooks",
+        "SystemLoader",
+        "SystemNetworkHooks",
+        "SystemUpdateHooks",
+        "SystemWorldHooks"
+      ],
+      "source_prs": [
+        122,
+        126
+      ],
+      "source_scope": "partial+qa_candidate_subsystem_only",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-10",
+      "group_order": 10,
+      "name": "ServerSyncLoader",
+      "modules": [
+        "ChestNetworkHooks",
+        "PvpItemNetwork",
+        "ServerSyncLoader",
+        "ServerSyncMenu"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-10",
+      "group_order": 10,
+      "name": "SoundLoader",
+      "modules": [
+        "ModMusic",
+        "SoundLoader",
+        "VanillaMusic"
+      ],
+      "source_prs": [
+        118
+      ],
+      "source_scope": "qa_candidate_subsystem_only",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    },
+    {
+      "group": "loaders-10",
+      "group_order": 10,
+      "name": "MenuLoader",
+      "modules": [
+        "MenuLoader",
+        "MenuThemeSetting"
+      ],
+      "source_prs": [],
+      "source_scope": "source_audit_needed",
+      "reference_example": null,
+      "completion": "not_certified",
+      "checks": {
+        "source_contract": false,
+        "managed_compiler": false,
+        "native_binding": false,
+        "complete_example": false,
+        "host_tests": false,
+        "android_abi": false,
+        "android_gameplay": false,
+        "multi_mod_lifecycle": false,
+        "save_network": false,
+        "fps_memory": false
+      },
+      "blocking": [],
+      "notes": []
+    }
+  ],
+  "delivery_batches": [
+    {
+      "id": "fasttrack-01",
+      "names": [
+        "CommandLoader",
+        "GoreLoader",
+        "AnglerQuestLoader",
+        "RarityLoader",
+        "DustLoader"
+      ],
+      "state": "planned",
+      "purpose": "Finish the five most self-contained candidates with source evidence and mandatory Android QA; no build before all gates."
+    }
+  ]
+}

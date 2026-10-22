@@ -1,0 +1,2981 @@
+{
+  "schemaVersion": 1,
+  "sourceProject": "experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+  "warning": "Public SDK surface and execution contracts. Compilation is not Android validation. Managed entity AI is experimental, asynchronous, and requires native Android validation. Multiplayer is not implied.",
+  "types": [
+    {
+      "name": "BunnyLoader.Source.BunnyAccessException",
+      "kind": "class",
+      "baseType": "System.InvalidOperationException",
+      "constructors": [
+        "BunnyAccessException(BunnyAccessStatus status, string operation)"
+      ],
+      "properties": [
+        "BunnyAccessStatus Status { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyAccessStatus",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "Ok",
+        "Invalid",
+        "WrongThread",
+        "Capacity",
+        "NativeException",
+        "TimedOut",
+        "Busy",
+        "Expired",
+        "ReadOnly",
+        "TypeMismatch",
+        "Ambiguous",
+        "NotFound",
+        "Unavailable",
+        "Unsupported"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyAccessory",
+      "kind": "abstract class",
+      "baseType": "BunnyLoader.Source.BunnyRecipeSource",
+      "constructors": [],
+      "properties": [
+        "BunnyAccessoryVisualMode VisualMode { get; set; }",
+        "BunnyNativeDefaults NativeDefaults { get; }",
+        "Nullable\u003Cbool\u003E PrefixChance { get; set; }",
+        "UInt32 VisualColor { get; set; }",
+        "float VisualOpacity { get; set; }",
+        "float VisualScale { get; set; }",
+        "int DefenseBonus { get; set; }",
+        "string DisplayName { get; set; }",
+        "string NativeDefaultsDefinition { get; }",
+        "string Texture { get; set; }",
+        "string Tooltip { get; set; }",
+        "string VisualTexture { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "Nullable\u003Cbool\u003E DecidePrefixChance(BunnyPrefixItemSnapshot item, int request)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "bool AllowPrefix(BunnyPrefixItemSnapshot item, int prefix)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "int ChoosePrefix(BunnyPrefixItemSnapshot item)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "void ApplyPrefix(BunnyPrefixItemSnapshot item, int prefix, ref BunnyPrefixApplyStats effects)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "void ApplyPrefix(ref BunnyPrefixApplyStats effects)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ConfigurePrefixRules(BunnyItemPrefixRules rules)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void SetDefaults()",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyAccessoryVisualMode",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "None",
+        "EquippedSprite",
+        "EnergyBarrier",
+        "RunningTrail"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyAfterHurtHook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyAfterHurtHook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(BunnyHurtInfo info, AsyncCallback callback, Object object)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void EndInvoke(IAsyncResult result)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Invoke(BunnyHurtInfo info)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyArmorEffects",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyArmorEffects()"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "void Add(BunnyArmorInteger field, int value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Add(BunnyArmorStat field, float value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void ImmuneTo(string vanillaBuffName)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Multiply(BunnyArmorStat field, float value)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyArmorInteger",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "StatManaMax2",
+        "MaxMinions",
+        "StatDefense",
+        "LifeRegen"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyArmorSet",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyArmorSet(string head, string body, string legs, string text)"
+      ],
+      "properties": [
+        "BunnyArmorEffects Effects { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyArmorStat",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "MeleeDamage",
+        "RangedDamage",
+        "MagicDamage",
+        "MinionDamage",
+        "MoveSpeed"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyBeforeHurtHook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyBeforeHurtHook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(ref int damage, ref int hitDirection, ref bool cancel, AsyncCallback callback, Object object)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void EndInvoke(ref int damage, ref int hitDirection, ref bool cancel, IAsyncResult result)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Invoke(ref int damage, ref int hitDirection, ref bool cancel)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyBuff",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "bool IsDebuff { get; set; }",
+        "bool NoSave { get; set; }",
+        "bool NoTimeDisplay { get; set; }",
+        "bool NurseCannotRemove { get; set; }",
+        "int DefenseBonus { get; set; }",
+        "int DefenseMultiplierPercent { get; set; }",
+        "string Description { get; set; }",
+        "string DisplayName { get; set; }",
+        "string MinionProjectile { get; set; }",
+        "string Texture { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "void SetDefaults()",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyBuffPotion",
+      "kind": "abstract class",
+      "baseType": "BunnyLoader.Source.BunnyRecipeSource",
+      "constructors": [],
+      "properties": [
+        "BunnyNativeDefaults NativeDefaults { get; }",
+        "Nullable\u003Cbool\u003E PrefixChance { get; set; }",
+        "int Duration { get; set; }",
+        "string Buff { get; set; }",
+        "string DisplayName { get; set; }",
+        "string NativeDefaultsDefinition { get; }",
+        "string Texture { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "Nullable\u003Cbool\u003E DecidePrefixChance(BunnyPrefixItemSnapshot item, int request)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "bool AllowPrefix(BunnyPrefixItemSnapshot item, int prefix)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "int ChoosePrefix(BunnyPrefixItemSnapshot item)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "void ApplyPrefix(BunnyPrefixItemSnapshot item, int prefix, ref BunnyPrefixApplyStats effects)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "void ApplyPrefix(ref BunnyPrefixApplyStats effects)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ConfigurePrefixRules(BunnyItemPrefixRules rules)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void SetDefaults()",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyColor",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [
+        "BunnyColor(Byte red, Byte green, Byte blue, Byte alpha)"
+      ],
+      "properties": [
+        "UInt32 PackedRgba { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static BunnyColor FromPackedRgba(UInt32 value)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyCombat",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static BunnyHurtSource SourceOf(int npcIndex, int projectileIndex)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static bool HasSpatialContext(BunnyHurtInfo hit)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static bool HasSpatialContext(BunnyHurtModifiers hit)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static bool IsInArc(float angle, float center, float width)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static bool IsLowLife(int life, int maxLife, int thresholdPercent)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static bool IsWithinDistance(float distance, float maximumPixels)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static float NormalizeAngle(float radians)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static float Speed(float velocityX, float velocityY)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static int CapDamage(int damage, int maximum)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static int LifePercent(int life, int maxLife)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static int ReduceDamage(int damage, int percent, int minimum)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyContentAttribute",
+      "kind": "class",
+      "baseType": "System.Attribute",
+      "constructors": [
+        "BunnyContentAttribute(BunnyContentKind kind, string displayName, string texture)"
+      ],
+      "properties": [
+        "BunnyContentKind Kind { get; }",
+        "string DisplayName { get; }",
+        "string Texture { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyContentKind",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "Item",
+        "Tile",
+        "Weapon",
+        "Projectile",
+        "Buff",
+        "BuffPotion",
+        "Accessory",
+        "Player",
+        "NPC",
+        "Prefix"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyCraftContext",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "BunnyRecipeStage Stage { get; }",
+        "bool InDesert { get; }",
+        "bool InSnow { get; }",
+        "bool IsDay { get; }",
+        "bool NearWater { get; }",
+        "bool QuickCraft { get; }",
+        "int AvailableIngredientCount { get; }",
+        "int CurrentLife { get; }",
+        "int MaxLife { get; }",
+        "int ResultType { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "void GiveItem(int vanillaItemId, int count)",
+          "execution": "worker_craft_command_queue"
+        },
+        {
+          "signature": "void GiveItem(string modItemName, int count)",
+          "execution": "worker_craft_command_queue"
+        },
+        {
+          "signature": "void GiveItem\u003CTItem\u003E(int count)",
+          "execution": "worker_craft_command_queue"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyDodgeHook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyDodgeHook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(int damage, out bool dodge, AsyncCallback callback, Object object)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void EndInvoke(out bool dodge, IAsyncResult result)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Invoke(int damage, out bool dodge)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyEntitySourceDispatcher",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "string LastRegistrationError { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static Int64 TickNpc(int modSlot, int type, int slot, int generation, int life, int lifeMax, float x, float y, float vx, float vy, float playerX, float playerY)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "static Int64 TickProjectile(int modSlot, int type, int slot, int generation, int owner, float x, float y, float vx, float vy, float playerX, float playerY)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "static Int64 TickProjectile(int modSlot, int type, int slot, int generation, int owner, float x, float y, float vx, float vy, float playerX, float playerY, int targetNpc, float targetX, float targetY)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "static bool Bind(int modSlot, int kind, int type, string name)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "static bool HitNpc(int modSlot, int type, int slot, int generation, int damage, bool killed)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "static bool HitProjectile(int modSlot, int type, int slot, int generation, int owner, int npcIndex, int damage)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "static bool KillNpc(int modSlot, int type, int slot, int generation)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "static bool KillProjectile(int modSlot, int type, int slot, int generation, int owner)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "static int Register(string modId, string assemblyPath)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "static string Status(int modSlot)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "static void ResetWorld()",
+          "execution": "worker_async_entity"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyEquipDrawFlags",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "None",
+        "UseHairColor",
+        "ShowHands"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyEquipFlag",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "StrongBees"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyEquipFloat",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "MeleeDamage",
+        "RangedDamage",
+        "MagicDamage",
+        "MinionDamage",
+        "MoveSpeed"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyEquipKind",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "Head",
+        "Body",
+        "Legs",
+        "Beard",
+        "Back",
+        "Wings"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyGlobalItem",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "Nullable\u003Cbool\u003E DecidePrefixChance(BunnyPrefixItemSnapshot item, int request)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "bool AllowPrefix(BunnyPrefixItemSnapshot item, int prefix)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "bool AppliesTo(BunnyPrefixItemSnapshot item)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "int ChoosePrefix(BunnyPrefixItemSnapshot item)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "void ApplyPrefix(BunnyPrefixItemSnapshot item, int prefix, ref BunnyPrefixApplyStats effects)",
+          "execution": "worker_callback_isolated"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyHoldout",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyHoldout(float x, float y)"
+      ],
+      "properties": [
+        "float X { get; }",
+        "float Y { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyHookHandle",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [
+        "BunnyHookPhase Phase { get; }",
+        "bool IsValid { get; }",
+        "int Id { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyHookModule",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "string DiagnosticStatus()",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "void Load(BunnyHookScope hooks)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "void Unload()",
+          "execution": "experimental_worker_sync_void0"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyHookPhase",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "BeforeHurt",
+        "Dodge",
+        "AfterHurt"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyHookRegistry",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyHookRegistry()"
+      ],
+      "properties": [
+        "Int64 AfterCalls { get; }",
+        "Int64 BeforeCalls { get; }",
+        "Int64 CancelledByHook { get; }",
+        "Int64 DodgeChecks { get; }",
+        "Int64 FaultedHooks { get; }",
+        "Int64 SuccessfulDodges { get; }",
+        "Int64 UnhookCalls { get; }",
+        "bool HasLastDamage { get; }",
+        "bool LastEquipped { get; }",
+        "int Count { get; }",
+        "int LastDamageAfter { get; }",
+        "int LastDamageBefore { get; }",
+        "string LastHookError { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyHookHandle HookAfterHurt(BunnyAfterHurtHook handler)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyHookHandle HookBeforeHurt(BunnyBeforeHurtHook handler)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyHookHandle HookDodge(BunnyDodgeHook handler)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool InvokeDodge(int damage)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool Unhook(BunnyHookHandle handle)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Clear()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void InvokeAfter(BunnyHurtInfo info)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void InvokeBefore(ref int damage, ref int hitDirection, ref bool cancel)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyHookScope",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyHookScope()"
+      ],
+      "properties": [
+        "BunnyNativeScope Native { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyMethodHook HookInt32(string type, string method, BunnyInt32Hook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "BunnyMethodHook HookInt32Pair(string type, string method, BunnyInt32PairHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "BunnyMethodHook HookInt32Triple(string type, string method, BunnyInt32TripleHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "BunnyMethodHook HookInt32Zero(string type, string method, BunnyInt32ZeroHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "BunnyMethodHook HookVoid(string type, string method, BunnyVoidHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "BunnyMethodHook HookVoidInt32(string type, string method, BunnyVoidInt32Hook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "BunnyMethodHook HookVoidInt32Pair(string type, string method, BunnyVoidInt32PairHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "BunnyMethodHook HookVoidInt32Triple(string type, string method, BunnyVoidInt32TripleHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "void Dispose()",
+          "execution": "experimental_worker_sync_void0"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyHooks",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "Int64 Calls { get; }",
+        "Int64 Faults { get; }",
+        "Int64 TransientRetries { get; }",
+        "string LastError { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static BunnyMethodHook Hook(BunnyHookScope scope, string type, string method, BunnyVoidHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static BunnyMethodHook HookInt32(BunnyHookScope scope, string type, string method, BunnyInt32Hook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static BunnyMethodHook HookInt32Pair(BunnyHookScope scope, string type, string method, BunnyInt32PairHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static BunnyMethodHook HookInt32Triple(BunnyHookScope scope, string type, string method, BunnyInt32TripleHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static BunnyMethodHook HookInt32Zero(BunnyHookScope scope, string type, string method, BunnyInt32ZeroHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static BunnyMethodHook HookVoidInt32(BunnyHookScope scope, string type, string method, BunnyVoidInt32Hook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static BunnyMethodHook HookVoidInt32Pair(BunnyHookScope scope, string type, string method, BunnyVoidInt32PairHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static BunnyMethodHook HookVoidInt32Triple(BunnyHookScope scope, string type, string method, BunnyVoidInt32TripleHook callback, bool isStatic)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static int Dispatch(int slot, Int64 ticket, IntPtr self)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static string GetStatus()",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static void Invoke(int slot, Int64 ticket, IntPtr self, out int result)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static void InvokeExtended(int slot, Int64 ticket, IntPtr self, int first, int second, int third, int mode, out int success, out int returnedValue)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static void InvokeInt32(int slot, Int64 ticket, IntPtr self, int value, out int success, out int returnedValue)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static void InvokeInt32Pair(int slot, Int64 ticket, IntPtr self, int first, int second, out int success, out int returnedValue)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static void RemoveSlot(int slot)",
+          "execution": "experimental_worker_sync_void0"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyHurtInfo",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [
+        "BunnyHurtInfo(int damage, int sourceDamage, int hitDirection, int lifeRemaining, bool pvp, bool crit, int npcIndex, int projectileIndex, int npcType, int npcDamage, int npcLife, int projectileType, int projectileDamage, int projectileOwner, float attackerX, float attackerY, float attackerVelocityX, float attackerVelocityY, float attackerAngle, float attackerDistance)"
+      ],
+      "properties": [
+        "bool Crit { get; }",
+        "bool PvP { get; }",
+        "float AttackerAngle { get; }",
+        "float AttackerDistance { get; }",
+        "float AttackerVelocityX { get; }",
+        "float AttackerVelocityY { get; }",
+        "float AttackerX { get; }",
+        "float AttackerY { get; }",
+        "int Damage { get; }",
+        "int HitDirection { get; }",
+        "int LifeRemaining { get; }",
+        "int NpcDamage { get; }",
+        "int NpcIndex { get; }",
+        "int NpcLife { get; }",
+        "int NpcType { get; }",
+        "int ProjectileDamage { get; }",
+        "int ProjectileIndex { get; }",
+        "int ProjectileOwner { get; }",
+        "int ProjectileType { get; }",
+        "int SourceDamage { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyHurtModifiers",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyHurtModifiers()"
+      ],
+      "properties": [
+        "bool Cancelled { get; }",
+        "bool Crit { get; set; }",
+        "bool Dodgeable { get; set; }",
+        "bool PvP { get; set; }",
+        "bool Quiet { get; set; }",
+        "float AttackerAngle { get; set; }",
+        "float AttackerDistance { get; set; }",
+        "float AttackerVelocityX { get; set; }",
+        "float AttackerVelocityY { get; set; }",
+        "float AttackerX { get; set; }",
+        "float AttackerY { get; set; }",
+        "int CurrentLife { get; set; }",
+        "int Damage { get; set; }",
+        "int HitDirection { get; set; }",
+        "int MaxLife { get; set; }",
+        "int NpcDamage { get; set; }",
+        "int NpcIndex { get; set; }",
+        "int NpcLife { get; set; }",
+        "int NpcType { get; set; }",
+        "int ProjectileDamage { get; set; }",
+        "int ProjectileIndex { get; set; }",
+        "int ProjectileOwner { get; set; }",
+        "int ProjectileType { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "void Cancel()",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyHurtSource",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "Unknown",
+        "Npc",
+        "Projectile"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyInt32Hook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyInt32Hook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(BunnyOriginalInt32 original, IntPtr self, int value, AsyncCallback callback, Object object)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "int EndInvoke(IAsyncResult result)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "int Invoke(BunnyOriginalInt32 original, IntPtr self, int value)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyInt32PairHook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyInt32PairHook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(BunnyOriginalInt32 original, IntPtr self, int first, int second, AsyncCallback callback, Object object)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "int EndInvoke(IAsyncResult result)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "int Invoke(BunnyOriginalInt32 original, IntPtr self, int first, int second)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyInt32TripleHook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyInt32TripleHook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(BunnyOriginalInt32 original, IntPtr self, int first, int second, int third, AsyncCallback callback, Object object)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "int EndInvoke(IAsyncResult result)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "int Invoke(BunnyOriginalInt32 original, IntPtr self, int first, int second, int third)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyInt32ZeroHook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyInt32ZeroHook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(BunnyOriginalInt32 original, IntPtr self, AsyncCallback callback, Object object)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "int EndInvoke(IAsyncResult result)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "int Invoke(BunnyOriginalInt32 original, IntPtr self)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyItem",
+      "kind": "abstract class",
+      "baseType": "BunnyLoader.Source.BunnyShootSource",
+      "constructors": [],
+      "properties": [
+        "BunnyHoldout Holdout { get; set; }",
+        "BunnyItemBehavior Behavior { get; }",
+        "BunnyNativeDefaults NativeDefaults { get; }",
+        "BunnySoundStyle CustomUseSound { get; set; }",
+        "Dictionary\u003Cstring, string\u003E TooltipTranslations { get; }",
+        "Nullable\u003Cbool\u003E PrefixChance { get; set; }",
+        "bool Accessory { get; set; }",
+        "bool AutoReuse { get; set; }",
+        "bool Consumable { get; set; }",
+        "bool Melee { get; set; }",
+        "bool NoMelee { get; set; }",
+        "bool UseTurn { get; set; }",
+        "bool Vanity { get; set; }",
+        "float KnockBack { get; set; }",
+        "int Axe { get; set; }",
+        "int Crit { get; set; }",
+        "int Damage { get; set; }",
+        "int Defense { get; set; }",
+        "int Hammer { get; set; }",
+        "int Height { get; set; }",
+        "int MaxStack { get; set; }",
+        "int Pick { get; set; }",
+        "int Rare { get; set; }",
+        "int UseAnimation { get; set; }",
+        "int UseStyle { get; set; }",
+        "int UseTime { get; set; }",
+        "int Value { get; set; }",
+        "int Width { get; set; }",
+        "string BehaviorDefinition { get; }",
+        "string DisplayName { get; set; }",
+        "string NativeAccessoryEffectsDefinition { get; }",
+        "string NativeArmorDefinition { get; }",
+        "string NativeDefaultsDefinition { get; }",
+        "string PlacementDefinition { get; }",
+        "string Texture { get; set; }",
+        "string Tooltip { get; set; }",
+        "string UseSound { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "Nullable\u003Cbool\u003E DecidePrefixChance(BunnyPrefixItemSnapshot item, int request)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "bool AllowPrefix(BunnyPrefixItemSnapshot item, int prefix)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "int ChoosePrefix(BunnyPrefixItemSnapshot item)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "static int BuyPrice(int platinum, int gold, int silver, int copper)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static int SellPrice(int platinum, int gold, int silver, int copper)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void ApplyPrefix(BunnyPrefixItemSnapshot item, int prefix, ref BunnyPrefixApplyStats effects)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "void ApplyPrefix(ref BunnyPrefixApplyStats effects)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ConfigurePrefixRules(BunnyItemPrefixRules rules)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void DefaultToPlaceableTile(int vanillaTileId, int style)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void DefaultToPlaceableTile(string modTileName, int style)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void SetDefaults()",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyItemBehavior",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyItemBehavior()"
+      ],
+      "properties": [
+        "BunnyArmorEffects Armor { get; }",
+        "bool ColorFromPlayerHair { get; set; }",
+        "bool Robe { get; set; }",
+        "int Defense { get; set; }",
+        "string NativeAccessoryEffectsDefinition { get; }",
+        "string NativeArmorDefinition { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "void AddOnEquip(BunnyEquipFloat field, float value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Animate(int frames, int ticksPerFrame, bool animatesAsSoul, bool pulse, bool noGravity)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void CloneVanillaDefaults(string itemIdName)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void DefineArmorSet(BunnyArmorSet set)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void EquipTexture(BunnyEquipKind kind, string texture, BunnyEquipDrawFlags flags)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void MultiplyOnEquip(BunnyEquipFloat field, float multiplier)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void SetOnEquip(BunnyEquipFlag flag)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void SetWingStats(int flyTime, float flySpeed, float acceleration, float ascentWhenFalling, float ascentWhenRising, float maxCanAscendMultiplier, float maxAscentMultiplier, float constantAscend)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void WorldAlpha(Byte red, Byte green, Byte blue, Byte opacity)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void WorldLight(float red, float green, float blue, bool scaleByEssence)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyItemPrefixRules",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyItemPrefixRules()"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "string Serialize()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "string SerializeAttributeDenials()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "string SerializeStackChance()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "string SerializeStackChoice()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "string SerializeStackDenials()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ChooseWhenStackBetween(int prefixType, int minimum, int maximum)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ChooseWhenStackBetween(string ownModPrefixName, int minimum, int maximum)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void Deny(int prefixType)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void Deny(string ownModPrefixName)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void DenyWhenDamageBetween(int prefixType, int minimum, int maximum)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void DenyWhenDamageBetween(string ownModPrefixName, int minimum, int maximum)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void DenyWhenManaBetween(int prefixType, int minimum, int maximum)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void DenyWhenManaBetween(string ownModPrefixName, int minimum, int maximum)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void DenyWhenStackBetween(int prefixType, int minimum, int maximum)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void DenyWhenStackBetween(string ownModPrefixName, int minimum, int maximum)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void SetPrefixChanceWhenStackBetween(int minimum, int maximum, bool allowed)",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyItemPrefixRuntime",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static string Dispatch(string modId, string assemblyPath, string owner, int index, int kind, string snapshot)",
+          "execution": "worker_dispatcher"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyMethodHook",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "bool IsDisposed { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "void Dispose()",
+          "execution": "experimental_worker_sync_void0"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyMinionMovement",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyMinionMovement(float followSpeed, float attackSpeed, float catchUpSpeed, float followInertia, float attackInertia, float followOffsetX, float followOffsetY, float catchUpDistance, float idleDistance, float idleDamping, float catchUpInertia, float teleportDistance, float formationSpacing, float attackStopDistance, float ownerLeashDistance, float rotationFactor, float separation)"
+      ],
+      "properties": [
+        "BunnyMinionMovement Default { get; }",
+        "float AttackInertia { get; }",
+        "float AttackSpeed { get; }",
+        "float AttackStopDistance { get; }",
+        "float CatchUpDistance { get; }",
+        "float CatchUpInertia { get; }",
+        "float CatchUpSpeed { get; }",
+        "float FollowInertia { get; }",
+        "float FollowOffsetX { get; }",
+        "float FollowOffsetY { get; }",
+        "float FollowSpeed { get; }",
+        "float FormationSpacing { get; }",
+        "float IdleDamping { get; }",
+        "float IdleDistance { get; }",
+        "float OwnerLeashDistance { get; }",
+        "float RotationFactor { get; }",
+        "float Separation { get; }",
+        "float TeleportDistance { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyMinionSteering",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static bool FollowOrAttack(ref BunnyProjectileAiState state)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static bool FollowOrAttack(ref BunnyProjectileAiState state, BunnyMinionMovement movement)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyNPC",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "int AiStyle { get; set; }",
+        "int AnimationType { get; set; }",
+        "int Damage { get; set; }",
+        "int Defense { get; set; }",
+        "int Frames { get; set; }",
+        "int Height { get; set; }",
+        "int LifeMax { get; set; }",
+        "int Width { get; set; }",
+        "string DisplayName { get; set; }",
+        "string Texture { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "bool AI(ref BunnyNpcAiState state)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "void OnDespawn(ref BunnyNpcAiState state)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "void OnHit(ref BunnyNpcAiState state, int damage)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "void OnKill(ref BunnyNpcAiState state)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "void OnSpawn(ref BunnyNpcAiState state)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "void SetDefaults()",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyNameAttribute",
+      "kind": "class",
+      "baseType": "System.Attribute",
+      "constructors": [
+        "BunnyNameAttribute(string culture, string text)"
+      ],
+      "properties": [
+        "string Culture { get; }",
+        "string Text { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyNativeBatch",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "int Count { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyValue ReadAndInvoke(BunnyNativeMember method, BunnyValue[] destination, BunnyNativeObject target, BunnyValue arg0, BunnyValue arg1, BunnyValue arg2, BunnyValue arg3)",
+          "execution": "experimental_game_thread_access"
+        },
+        {
+          "signature": "void Read(BunnyValue[] destination, BunnyNativeObject target)",
+          "execution": "experimental_game_thread_access"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyNativeDefaults",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyNativeDefaults()"
+      ],
+      "properties": [
+        "string Definition { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyNativeDefaults SetBool(string field, bool value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyNativeDefaults SetFloat(string field, float value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyNativeDefaults SetId(string field, string idClass, string name)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyNativeDefaults SetInt(string field, int value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyNativeDefaults SetProjectile(string field, string key)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyNativeMember",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "BunnyValueKind Kind { get; }",
+        "bool CanWrite { get; }",
+        "bool IsStatic { get; }",
+        "string Name { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyValue Invoke(BunnyNativeObject target, BunnyValue arg0, BunnyValue arg1, BunnyValue arg2, BunnyValue arg3)",
+          "execution": "experimental_game_thread_access"
+        },
+        {
+          "signature": "BunnyValue Read(BunnyNativeObject target)",
+          "execution": "experimental_game_thread_access"
+        },
+        {
+          "signature": "void Write(BunnyValue value, BunnyNativeObject target)",
+          "execution": "experimental_game_thread_access"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyNativeObject",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [
+        "bool IsCurrent { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static BunnyNativeObject FromHook(IntPtr self)",
+          "execution": "experimental_game_thread_access"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyNativeScope",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "bool IsDisposed { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyNativeBatch Batch(BunnyNativeMember[] members)",
+          "execution": "experimental_game_thread_access"
+        },
+        {
+          "signature": "BunnyNativeType Type(string fullName)",
+          "execution": "experimental_game_thread_access"
+        },
+        {
+          "signature": "static string GetStatus()",
+          "execution": "experimental_game_thread_access"
+        },
+        {
+          "signature": "void Dispose()",
+          "execution": "experimental_game_thread_access"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyNativeType",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "string Name { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyNativeMember Field(string name, BunnyValueKind kind, bool isStatic, bool writable)",
+          "execution": "experimental_game_thread_access"
+        },
+        {
+          "signature": "BunnyNativeMember Method(string name, BunnyValueKind result, bool isStatic, string[] parameterTypes)",
+          "execution": "experimental_game_thread_access"
+        },
+        {
+          "signature": "BunnyNativeMember Property(string name, BunnyValueKind kind, bool isStatic, bool writable)",
+          "execution": "experimental_game_thread_access"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyNpcAiState",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyOriginalInt32",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "int Invoke()",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyOriginalVoid",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "void Invoke()",
+          "execution": "experimental_worker_sync_void0"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyPlayer",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "int DefenseBonus { get; }",
+        "int MoveSpeedPercent { get; }",
+        "string Accessory { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "bool FrameEffects(bool accessoryEquipped)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "bool FreeDodge(bool accessoryEquipped, BunnyHurtModifiers modifiers)",
+          "execution": "worker_sync_pre_hit"
+        },
+        {
+          "signature": "bool PostUpdate()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "bool PreUpdate()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "int UpdateLifeRegen(bool accessoryEquipped)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "int UpdateManaRegen(bool accessoryEquipped)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "int UpdateMovement(bool accessoryEquipped)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "string OnEnterWorld()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "string OnRespawn()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "string UpdateDead()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ModifyHitByNPC(bool accessoryEquipped, int npcIndex, BunnyHurtModifiers modifiers)",
+          "execution": "worker_sync_pre_hit"
+        },
+        {
+          "signature": "void ModifyHitByProjectile(bool accessoryEquipped, int projectileIndex, BunnyHurtModifiers modifiers)",
+          "execution": "worker_sync_pre_hit"
+        },
+        {
+          "signature": "void ModifyHurt(bool accessoryEquipped, BunnyHurtModifiers modifiers)",
+          "execution": "worker_sync_pre_hit"
+        },
+        {
+          "signature": "void OnHitByNPC(bool accessoryEquipped, int npcIndex, BunnyHurtInfo info)",
+          "execution": "worker_async_post_hit"
+        },
+        {
+          "signature": "void OnHitByProjectile(bool accessoryEquipped, int projectileIndex, BunnyHurtInfo info)",
+          "execution": "worker_async_post_hit"
+        },
+        {
+          "signature": "void OnHurt(bool accessoryEquipped, BunnyHurtInfo info)",
+          "execution": "worker_async_post_hit"
+        },
+        {
+          "signature": "void RegisterHooks(BunnyHookRegistry hooks)",
+          "execution": "worker_registration"
+        },
+        {
+          "signature": "void ResetEffects()",
+          "execution": "compile_policy_and_worker_hurt"
+        },
+        {
+          "signature": "void SetDefaults()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void UpdateEquips(bool accessoryEquipped)",
+          "execution": "compile_policy_and_worker_hurt"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyPlayerHurtDispatcher",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static Int64 Modify(int slot, int damage, int direction, int flags, int life, int maxLife, int equippedMask, int npcIndex, int projectileIndex, int npcType, int npcDamage, int npcLife, int projectileType, int projectileDamage, int projectileOwner, float attackerX, float attackerY, float attackerVelocityX, float attackerVelocityY, float attackerAngle, float attackerDistance)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static int After(int slot, int damage, int sourceDamage, int direction, int flags, int lifeRemaining, int equippedMask, int npcIndex, int projectileIndex, int npcType, int npcDamage, int npcLife, int projectileType, int projectileDamage, int projectileOwner, float attackerX, float attackerY, float attackerVelocityX, float attackerVelocityY, float attackerAngle, float attackerDistance)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static int Register(string modId, string assemblyPath)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static string GetHookSnapshot()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static string GetLastError(int slot)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyPrefix",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "PrefixCategory Category { get; set; }",
+        "bool RequireEffectiveStats { get; set; }",
+        "float RollWeight { get; set; }",
+        "string DisplayName { get; set; }",
+        "string ExtraTooltip { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IReadOnlyList\u003CBunnyPrefixTooltipLine\u003E GetTooltipLines(BunnyPrefixItemSnapshot item)",
+          "execution": "worker_callback_opt_in"
+        },
+        {
+          "signature": "bool AllStatChangesHaveEffectOn(BunnyPrefixItemSnapshot item)",
+          "execution": "worker_callback_opt_in"
+        },
+        {
+          "signature": "bool CanRoll(BunnyPrefixItemSnapshot item)",
+          "execution": "worker_callback_opt_in"
+        },
+        {
+          "signature": "int RollChance(BunnyPrefixItemSnapshot item)",
+          "execution": "worker_callback_opt_in"
+        },
+        {
+          "signature": "string SerializeTooltipItemLines()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "string SerializeTooltipLines()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void AddTooltipItemLine(string template)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void AddTooltipLine(string text)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void Apply(BunnyPrefixItemSnapshot item, ref BunnyPrefixApplyStats effects)",
+          "execution": "worker_callback_opt_in"
+        },
+        {
+          "signature": "void Apply(ref BunnyPrefixApplyStats effects)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ApplyAccessoryEffects(BunnyPrefixPlayerSnapshot player, ref int defenseBonus)",
+          "execution": "worker_callback_opt_in"
+        },
+        {
+          "signature": "void ApplyAccessoryEffects(ref int defenseBonus)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ConfigureItemConditions(BunnyPrefixItemConditions conditions)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ConfigureRollRules(BunnyPrefixRollRules rules)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ModifyValue(ref float valueMultiplier)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void SetDefaults()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void SetStats(ref PrefixStats stats)",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyPrefixApplyStats",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [
+        "int DamageBonus { get; set; }",
+        "int ValueBonus { get; set; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyPrefixItemConditions",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyPrefixItemConditions()"
+      ],
+      "properties": [
+        "Char AttributeRollWeightKind { get; }",
+        "bool HasAttributeRollWeight { get; }",
+        "bool HasStackRollWeight { get; }",
+        "int AttributeRollWeightMaximum { get; }",
+        "int AttributeRollWeightMinimum { get; }",
+        "int AttributeRollWeightValue { get; }",
+        "int MaxDamage { get; }",
+        "int MaxMana { get; }",
+        "int MaxStack { get; }",
+        "int MinDamage { get; }",
+        "int MinMana { get; }",
+        "int MinStack { get; }",
+        "int RollWeightInRange { get; }",
+        "int RollWeightMaxStack { get; }",
+        "int RollWeightMinStack { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "void OverrideRollWeightWhenDamageBetween(int minimum, int maximum, int weight)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void OverrideRollWeightWhenManaBetween(int minimum, int maximum, int weight)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void OverrideRollWeightWhenStackBetween(int minimum, int maximum, int weight)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void RequireDamageBetween(int minimum, int maximum)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void RequireManaBetween(int minimum, int maximum)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void RequireStackBetween(int minimum, int maximum)",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyPrefixItemSnapshot",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [
+        "bool Accessory { get; }",
+        "bool Consumable { get; }",
+        "bool Ranged { get; }",
+        "int CurrentPrefix { get; }",
+        "int Damage { get; }",
+        "int ItemType { get; }",
+        "int Mana { get; }",
+        "int Stack { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyPrefixPlayerSnapshot",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [
+        "int Life { get; }",
+        "int LifeMax { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyPrefixRollRules",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyPrefixRollRules()"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "string Serialize()",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void Allow(int itemType, int weight)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void Allow(string itemName, int weight)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void Deny(int itemType)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void Deny(string itemName)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void PreferFor(int itemType)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void PreferFor(string itemName)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void SetCanRoll(int itemType, bool allowed)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void SetCanRoll(string itemName, bool allowed)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void SetWeight(int itemType, int weight)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void SetWeight(string itemName, int weight)",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyPrefixRuntime",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static string Dispatch(string modId, string assemblyPath, string owner, int index, int kind, string snapshot)",
+          "execution": "worker_dispatcher"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyPrefixTooltipLine",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [
+        "BunnyPrefixTooltipLine(string text, bool isNegative)"
+      ],
+      "properties": [
+        "bool IsNegative { get; }",
+        "string Text { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyProjectile",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "BunnyMinionMovement MinionMovement { get; set; }",
+        "BunnyNativeDefaults NativeDefaults { get; }",
+        "bool Friendly { get; set; }",
+        "bool IgnoreWater { get; set; }",
+        "bool Minion { get; set; }",
+        "bool MinionContactDamage { get; set; }",
+        "bool TileCollide { get; set; }",
+        "float MinionSlots { get; set; }",
+        "float MinionTargetRange { get; set; }",
+        "int AiStyle { get; set; }",
+        "int AnimationFrameTicks { get; set; }",
+        "int Frames { get; set; }",
+        "int Height { get; set; }",
+        "int MinionScanTicks { get; set; }",
+        "int Penetrate { get; set; }",
+        "int TimeLeft { get; set; }",
+        "int Width { get; set; }",
+        "string DisplayName { get; set; }",
+        "string NativeDefaultsDefinition { get; }",
+        "string Texture { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "bool AI(ref BunnyProjectileAiState state)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "int OnHitNPC(int damage)",
+          "execution": "compile_sampled_policy"
+        },
+        {
+          "signature": "int OnKill(int damage)",
+          "execution": "compile_sampled_policy"
+        },
+        {
+          "signature": "int OnKillDuration(int damage)",
+          "execution": "compile_sampled_policy"
+        },
+        {
+          "signature": "void OnDespawn(ref BunnyProjectileAiState state)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "void OnHitNPC(ref BunnyProjectileAiState state, int npcIndex, int damage)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "void OnKill(ref BunnyProjectileAiState state)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "void OnSpawn(ref BunnyProjectileAiState state)",
+          "execution": "worker_async_entity"
+        },
+        {
+          "signature": "void SetDefaults()",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyProjectileAiState",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [
+        "bool HasTarget { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyRecipe",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyRecipe AddBehavior(BunnyRecipeBehavior behavior)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddCondition(BunnyRecipeCondition condition)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddCondition(string description, Func\u003CBunnyCraftContext, bool\u003E predicate)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddConsumeIngredientCallback(Func\u003CBunnyCraftContext, int, int, int\u003E callback)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddIngredient(int vanillaItemId, int count)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddIngredient(string modItemName, int count)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddIngredient\u003CTItem\u003E(int count)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddNativeRecipeGroup(string groupField, int count)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddOnCraftCallback(Action\u003CBunnyCraftContext\u003E callback)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddRecipeGroup(BunnyRecipeGroup group, int count)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddTile(int vanillaTileId)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddTile(string modTileName)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe AddTile\u003CTTile\u003E()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipe Clone()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool RemoveCondition(BunnyRecipeCondition condition)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool RemoveIngredient(int vanillaItemId)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool RemoveIngredient(string modItemName)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool RemoveIngredient\u003CTItem\u003E()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool RemoveNativeRecipeGroup(string groupField)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool RemoveRecipeGroup(string localGroupName)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Register()",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyRecipeBehavior",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "string ConditionDescription { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "bool IsAvailable(BunnyCraftContext context)",
+          "execution": "worker_sync_recipe_snapshot"
+        },
+        {
+          "signature": "int ConsumeIngredient(BunnyCraftContext context, int ingredientType, int amount)",
+          "execution": "worker_sync_recipe_snapshot"
+        },
+        {
+          "signature": "void OnCraft(BunnyCraftContext context)",
+          "execution": "worker_sync_recipe_snapshot"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyRecipeCondition",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyRecipeCondition(string description, Func\u003CBunnyCraftContext, bool\u003E predicate)"
+      ],
+      "properties": [
+        "BunnyRecipeCondition Day { get; }",
+        "BunnyRecipeCondition InDesert { get; }",
+        "BunnyRecipeCondition InSnow { get; }",
+        "BunnyRecipeCondition NearWater { get; }",
+        "BunnyRecipeCondition Night { get; }",
+        "string Description { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyRecipeCondition Not(string description)",
+          "execution": "managed_predicate_composition"
+        },
+        {
+          "signature": "bool Evaluate(BunnyCraftContext context)",
+          "execution": "managed_predicate_composition"
+        },
+        {
+          "signature": "static BunnyRecipeCondition All(string description, BunnyRecipeCondition[] conditions)",
+          "execution": "managed_predicate_composition"
+        },
+        {
+          "signature": "static BunnyRecipeCondition Any(string description, BunnyRecipeCondition[] conditions)",
+          "execution": "managed_predicate_composition"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyRecipeGroup",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnyRecipeGroup(string name, string displayName)"
+      ],
+      "properties": [
+        "string DisplayName { get; }",
+        "string Name { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyRecipeGroup AddItem(int vanillaItemId)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipeGroup AddItem(string modItemName)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRecipeGroup AddItem\u003CTItem\u003E()",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyRecipeLoader",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static string Dispatch(string modId, string assemblyPath, string owner, int index, int kind, string snapshot)",
+          "execution": "worker_sync_recipe_snapshot"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyRecipeRuntime",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static string Dispatch(string modId, string assemblyPath, string owner, int index, int kind, string snapshot)",
+          "execution": "worker_sync_recipe_snapshot"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyRecipeSource",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "IReadOnlyList\u003Cstring\u003E RecipeDefinitions { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyRecipe CreateRecipe(int stack)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void AddRecipes()",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyRecipeStage",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "Availability",
+        "Consumption",
+        "Craft"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyRectangle",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [
+        "BunnyRectangle(int x, int y, int width, int height)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "bool Contains(int x, int y)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyScreenEffect",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "float Intensity { get; set; }",
+        "int Layer { get; set; }",
+        "int Order { get; set; }",
+        "string DisplayName { get; set; }",
+        "string PipelineFile { get; set; }",
+        "string ShaderFile { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "void SetDefaults()",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyShootContext",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "Random Random { get; }",
+        "int ItemType { get; }",
+        "int PlayerIndex { get; }",
+        "int WeaponDamage { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "void Spawn(BunnyShot shot)",
+          "execution": "worker_shoot_command_batch"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyShootRuntime",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static string Dispatch(string modId, string assemblyPath, string owner, int index, int kind, string snapshot)",
+          "execution": "worker_sync_shoot_snapshot"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyShootSource",
+      "kind": "abstract class",
+      "baseType": "BunnyLoader.Source.BunnyRecipeSource",
+      "constructors": [],
+      "properties": [
+        "int ShootCallbackMask { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "bool CanShoot(BunnyShootContext context)",
+          "execution": "worker_sync_shoot_snapshot"
+        },
+        {
+          "signature": "bool OnShoot(BunnyShootContext context, BunnyShot shot)",
+          "execution": "worker_sync_shoot_snapshot"
+        },
+        {
+          "signature": "void ModifyShootStats(BunnyShootContext context, ref BunnyShot shot)",
+          "execution": "worker_sync_shoot_snapshot"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyShot",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnySoundLimitBehavior",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "IgnoreNew",
+        "ReplaceOldest"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnySoundStyle",
+      "kind": "class",
+      "baseType": "System.Object",
+      "constructors": [
+        "BunnySoundStyle(string path, float volume, float pitch, float pitchVariance, int maxInstances, BunnySoundLimitBehavior limitBehavior)"
+      ],
+      "properties": [
+        "BunnySoundLimitBehavior LimitBehavior { get; }",
+        "float Pitch { get; }",
+        "float PitchVariance { get; }",
+        "float Volume { get; }",
+        "int MaxInstances { get; }",
+        "string Definition { get; }",
+        "string Path { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyTile",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "BunnyTileFlags Flags { get; set; }",
+        "BunnyTileShape Shape { get; set; }",
+        "bool AllowBreaking { get; set; }",
+        "bool AllowDrops { get; set; }",
+        "int AdjacentTile { get; set; }",
+        "int AnimationFrameHeight { get; set; }",
+        "int AnimationFrameTicks { get; set; }",
+        "int AnimationFrames { get; set; }",
+        "int CoordinateHeight { get; set; }",
+        "int MapB { get; }",
+        "int MapG { get; }",
+        "int MapR { get; }",
+        "int TileCallbackMask { get; }",
+        "int[] AdjacentTiles { get; set; }",
+        "string DisplayName { get; set; }",
+        "string DustName { get; set; }",
+        "string MapName { get; }",
+        "string Texture { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "bool CanDrop(int x, int y)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool CanKillTile(int x, int y)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool PreDraw(int x, int y)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool RightClick(int x, int y)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool Slope(int x, int y)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "int NumDust(bool fail)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void AddMapEntry(int red, int green, int blue, string name)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void AnimateTile(ref int frame, ref int frameCounter)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void HitWire(int x, int y)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void ModifyLight(int x, int y, ref float r, ref float g, ref float b)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void MouseOver(int x, int y)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void MouseOverFar(int x, int y)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void NearbyEffects(int x, int y, bool closer)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void PlaceInWorld(int x, int y)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void RandomUpdate(int x, int y)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void SetStaticDefaults()",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyTileFlags",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "None",
+        "Table",
+        "SolidTop",
+        "NoAttach",
+        "LavaDeath",
+        "FrameImportant",
+        "DisableSmartCursor",
+        "HasOutlines",
+        "IgnoredByNpcStepUp",
+        "CountsAsTable",
+        "Solid",
+        "BlockLight",
+        "MergeDirt",
+        "Lighted",
+        "WaterDeath",
+        "ChecksForMerge",
+        "Cut"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyTileRuntime",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static string Dispatch(string modId, string assemblyPath, string owner, int index, int kind, string snapshot)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyTileShape",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "Single",
+        "Style2x1"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyUniversalHookDispatcher",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "string LastError { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static int Register(string id, string path)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static string GetStatusSnapshot(string id)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "static void UnloadAll()",
+          "execution": "experimental_worker_sync_void0"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyValue",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "BunnyColor AsColor()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyRectangle AsRectangle()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "BunnyVector2 AsVector2()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "Double AsDouble()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "Int64 AsInt64()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "UInt32 AsUInt32()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "UInt64 AsUInt64()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "bool AsBoolean()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "float AsSingle()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "int AsInt32()",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static BunnyValue FromBoolean(bool value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static BunnyValue FromColor(BunnyColor value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static BunnyValue FromDouble(Double value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static BunnyValue FromInt32(int value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static BunnyValue FromInt64(Int64 value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static BunnyValue FromRectangle(BunnyRectangle value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static BunnyValue FromSingle(float value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static BunnyValue FromUInt32(UInt32 value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static BunnyValue FromUInt64(UInt64 value)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "static BunnyValue FromVector2(BunnyVector2 value)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyValueKind",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "Void",
+        "Boolean",
+        "Int32",
+        "UInt32",
+        "Int64",
+        "Single",
+        "Double",
+        "Vector2",
+        "Rectangle",
+        "Color",
+        "UInt64"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyVanillaItems",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyVanillaTiles",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyVector2",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [
+        "BunnyVector2(float x, float y)"
+      ],
+      "properties": [
+        "float LengthSquared { get; }"
+      ],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyVisual",
+      "kind": "abstract class",
+      "baseType": "System.Object",
+      "constructors": [],
+      "properties": [
+        "int PendingCount { get; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "static bool ClearPlayerOverlay(int playerIndex, int effectId)",
+          "execution": "managed_command_queue"
+        },
+        {
+          "signature": "static bool SetEquipmentSprite(int playerIndex, int effectId, string texture)",
+          "execution": "managed_command_queue"
+        },
+        {
+          "signature": "static bool SetPlayerOverlay(int playerIndex, int effectId, string texture, float scale, float opacity, UInt32 color, int durationTicks)",
+          "execution": "managed_command_queue"
+        },
+        {
+          "signature": "static bool SpawnParticle(int playerIndex, int effectId, string texture, float x, float y, float scale, UInt32 color, int durationTicks)",
+          "execution": "managed_command_queue"
+        },
+        {
+          "signature": "static bool TryTake(out BunnyVisualCommand command)",
+          "execution": "managed_command_queue"
+        },
+        {
+          "signature": "static string TakeWire()",
+          "execution": "managed_command_queue"
+        },
+        {
+          "signature": "static void ClearPending()",
+          "execution": "managed_command_queue"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyVisualCommand",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [
+        "BunnyVisualCommand(BunnyVisualKind kind, int playerIndex, int effectId, string texture, float x, float y, float scale, float opacity, UInt32 color, int durationTicks)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyVisualKind",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "Particle",
+        "PlayerOverlay",
+        "ClearOverlay",
+        "EquipmentSprite"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyVoidHook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyVoidHook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(BunnyOriginalVoid original, IntPtr self, AsyncCallback callback, Object object)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "void EndInvoke(IAsyncResult result)",
+          "execution": "experimental_worker_sync_void0"
+        },
+        {
+          "signature": "void Invoke(BunnyOriginalVoid original, IntPtr self)",
+          "execution": "experimental_worker_sync_void0"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyVoidInt32Hook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyVoidInt32Hook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(BunnyOriginalVoid original, IntPtr self, int first, AsyncCallback callback, Object object)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void EndInvoke(IAsyncResult result)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Invoke(BunnyOriginalVoid original, IntPtr self, int first)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyVoidInt32PairHook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyVoidInt32PairHook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(BunnyOriginalVoid original, IntPtr self, int first, int second, AsyncCallback callback, Object object)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void EndInvoke(IAsyncResult result)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Invoke(BunnyOriginalVoid original, IntPtr self, int first, int second)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyVoidInt32TripleHook",
+      "kind": "class",
+      "baseType": "System.MulticastDelegate",
+      "constructors": [
+        "BunnyVoidInt32TripleHook(Object object, IntPtr method)"
+      ],
+      "properties": [],
+      "values": [],
+      "methods": [
+        {
+          "signature": "IAsyncResult BeginInvoke(BunnyOriginalVoid original, IntPtr self, int first, int second, int third, AsyncCallback callback, Object object)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void EndInvoke(IAsyncResult result)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void Invoke(BunnyOriginalVoid original, IntPtr self, int first, int second, int third)",
+          "execution": "managed_helper"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.BunnyWeapon",
+      "kind": "abstract class",
+      "baseType": "BunnyLoader.Source.BunnyShootSource",
+      "constructors": [],
+      "properties": [
+        "BunnyHoldout Holdout { get; set; }",
+        "BunnyNativeDefaults NativeDefaults { get; }",
+        "BunnySoundStyle CustomUseSound { get; set; }",
+        "Nullable\u003Cbool\u003E PrefixChance { get; set; }",
+        "bool Summon { get; set; }",
+        "float ShootSpeed { get; set; }",
+        "int Damage { get; set; }",
+        "int MinionBuffTime { get; set; }",
+        "int UseTime { get; set; }",
+        "string DisplayName { get; set; }",
+        "string MinionBuff { get; set; }",
+        "string NativeDefaultsDefinition { get; }",
+        "string Shoot { get; set; }",
+        "string Texture { get; set; }"
+      ],
+      "values": [],
+      "methods": [
+        {
+          "signature": "Nullable\u003Cbool\u003E DecidePrefixChance(BunnyPrefixItemSnapshot item, int request)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "bool AllowPrefix(BunnyPrefixItemSnapshot item, int prefix)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "int ChoosePrefix(BunnyPrefixItemSnapshot item)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "void ApplyPrefix(BunnyPrefixItemSnapshot item, int prefix, ref BunnyPrefixApplyStats effects)",
+          "execution": "worker_callback_isolated"
+        },
+        {
+          "signature": "void ApplyPrefix(ref BunnyPrefixApplyStats effects)",
+          "execution": "compile_policy"
+        },
+        {
+          "signature": "void ConfigurePrefixRules(BunnyItemPrefixRules rules)",
+          "execution": "managed_helper"
+        },
+        {
+          "signature": "void SetDefaults()",
+          "execution": "compile_policy"
+        }
+      ]
+    },
+    {
+      "name": "BunnyLoader.Source.PrefixCategory",
+      "kind": "enum",
+      "baseType": "System.Enum",
+      "constructors": [],
+      "properties": [],
+      "values": [
+        "Melee",
+        "Ranged",
+        "Magic",
+        "Summon",
+        "AnyWeapon",
+        "Accessory",
+        "Custom"
+      ],
+      "methods": []
+    },
+    {
+      "name": "BunnyLoader.Source.PrefixStats",
+      "kind": "struct",
+      "baseType": "System.ValueType",
+      "constructors": [],
+      "properties": [
+        "PrefixStats Identity { get; }",
+        "float DamageMultiplier { get; set; }",
+        "float KnockbackMultiplier { get; set; }",
+        "float ManaMultiplier { get; set; }",
+        "float ScaleMultiplier { get; set; }",
+        "float ShootSpeedMultiplier { get; set; }",
+        "float UseTimeMultiplier { get; set; }",
+        "int ArmorPenetrationBonus { get; set; }",
+        "int CriticalBonus { get; set; }",
+        "int TagDamageBonus { get; set; }"
+      ],
+      "values": [],
+      "methods": []
+    }
+  ]
+}

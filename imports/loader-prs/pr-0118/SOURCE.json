@@ -1,0 +1,110 @@
+{
+  "pr": 118,
+  "name": "SoundLoader",
+  "kind": "loader",
+  "status": "android_qa_pending",
+  "runtime_enabled": false,
+  "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+  "head_sha": "8ab77e59a353c071a3cd22dc0aec15ed72c2c9ff",
+  "current_pr_head_when_fetched": "8ab77e59a353c071a3cd22dc0aec15ed72c2c9ff",
+  "file_count": 16,
+  "excluded_paths": 1,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-soundloader.yml",
+      "path": "integration/ci-reference/check-csharp-soundloader.yml",
+      "sha256": "18cf57983a678631e6c0fa3e0c8dad3d7f3b2bfd97f2e67fb41a0d535ab9a470",
+      "bytes": 11803
+    },
+    {
+      "original": "app/src/main/assets/managed/framework.sha256",
+      "path": "integration/android-host/assets/managed/framework.sha256",
+      "sha256": "9856f373253b5ed519da966308c1e8dbdeafe94a746a2358544a96120f35d8e4",
+      "bytes": 16523
+    },
+    {
+      "original": "app/src/main/cpp/content/sounds/NativeSoundRouter.cpp",
+      "path": "src/native/host-patches/content/sounds/NativeSoundRouter.cpp",
+      "sha256": "b3901f94d504fca6200a4ee85a265e5d21e506cee9dbe3133b882e8cae50810d",
+      "bytes": 12678
+    },
+    {
+      "original": "app/src/main/cpp/content/sounds/NativeSoundRouter.h",
+      "path": "src/native/host-patches/content/sounds/NativeSoundRouter.h",
+      "sha256": "18685a59dcb8c2eb9de8167c201575e49a4fa65e8407e87510a593d89246c594",
+      "bytes": 663
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "9938f1df0922142724b15070e26f80ed722945ca00907592450bbd8b22299e98",
+      "bytes": 69488
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedSoundLoader.cpp",
+      "path": "src/native/experiments/csharp/ManagedSoundLoader.cpp",
+      "sha256": "f938dfa2c1096c48da5f3edd13f325a5cccdba1193ec9ea9be812b7cff50182d",
+      "bytes": 15051
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedSoundLoader.h",
+      "path": "src/native/experiments/csharp/ManagedSoundLoader.h",
+      "sha256": "b28c45e90016fcdfdc485683b7699bfbfaea0a47e48a942c58a1428b541dd35d",
+      "bytes": 239
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySounds.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySounds.cs",
+      "sha256": "985f3f33ae83bc5196dcc81c174f1ce83c282c21c89868872c78347dc6e91744",
+      "bytes": 5298
+    },
+    {
+      "original": "experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "d1c96c4deb5be167d3ac5e6494fc4532067ac87dffe701555b52398f7cdcc045",
+      "bytes": 2522
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Common/Audio/ExampleSoundEffects.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Audio/ExampleSoundEffects.cs",
+      "sha256": "cf6b8bfa121cd3e990ba8e7437fc8db2b8f600362ca26b1d9991b51532708ea0",
+      "bytes": 1554
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleWaveBolt.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleWaveBolt.cs",
+      "sha256": "fb64022823bac2c497e900908435e9a67f7d84560aa8f41758c423df8a744d12",
+      "bytes": 1327
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Documentation/CUSTOM_AUDIO.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/CUSTOM_AUDIO.md",
+      "sha256": "5cdc4545964b10b9a4a4b9325fb5e271f4ac756b52c426838f73ee7d0032189b",
+      "bytes": 5435
+    },
+    {
+      "original": "tests/summon_lifecycle/ManagedSoundPInvokeTest.cs",
+      "path": "tests/native-and-managed/summon_lifecycle/ManagedSoundPInvokeTest.cs",
+      "sha256": "9c4e56b50d2c4060631333f5459e67164ebbda19240f9401355990ff967d2d6f",
+      "bytes": 4669
+    },
+    {
+      "original": "tests/summon_lifecycle/managed_sound_loader_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/managed_sound_loader_test.cpp",
+      "sha256": "ee27e557befa935817e24a7f38f4d747325276a7b5b0b61cb6b36f18faa8f8a4",
+      "bytes": 6774
+    },
+    {
+      "original": "tests/summon_lifecycle/managed_sound_pinvoke_mock.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/managed_sound_pinvoke_mock.cpp",
+      "sha256": "a54009c1845c440f327707b185e770fbbee08becb9ac47ebe3d2f934cb713c6a",
+      "bytes": 2561
+    },
+    {
+      "original": "tests/summon_lifecycle/sound_router_test.cpp",
+      "path": "tests/native-and-managed/summon_lifecycle/sound_router_test.cpp",
+      "sha256": "d628dbc95b8260c82826db0618785f542f320cddd8d82b5f24198fc24fdc603d",
+      "bytes": 6790
+    }
+  ]
+}

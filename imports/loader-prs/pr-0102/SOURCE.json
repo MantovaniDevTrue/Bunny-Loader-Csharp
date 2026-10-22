@@ -1,0 +1,320 @@
+{
+  "pr": 102,
+  "name": "RarityLoader",
+  "kind": "loader",
+  "status": "android_retest",
+  "runtime_enabled": false,
+  "base_sha": "958c6ef31833aa9916780695fb5983bbea02b142",
+  "head_sha": "2ed7fb47988d561b678ab713f9b524bd4783f9f4",
+  "current_pr_head_when_fetched": "2ed7fb47988d561b678ab713f9b524bd4783f9f4",
+  "file_count": 51,
+  "excluded_paths": 2,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-rarity-arm64.yml",
+      "path": "integration/ci-reference/check-csharp-rarity-arm64.yml",
+      "sha256": "1a826b7c16da788f618f0da1698278a7c187373427c49e68ff9150092739b2a2",
+      "bytes": 2980
+    },
+    {
+      "original": ".github/workflows/check-csharp-rarity-loader.yml",
+      "path": "integration/ci-reference/check-csharp-rarity-loader.yml",
+      "sha256": "efe4a5f501134ebd89cc37218917ec30d70146617afa9b92e1f464c96d19b74c",
+      "bytes": 6989
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/items/ModItemSave.cpp",
+      "path": "src/native/host-patches/content/items/ModItemSave.cpp",
+      "sha256": "979ac6f9115940feffd86a2dc625feadd85111256f52c34f53a6e91cebf90050",
+      "bytes": 71274
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/items/ModItemSaveFormat.h",
+      "path": "src/native/host-patches/content/items/ModItemSaveFormat.h",
+      "sha256": "e6294225c18190d93e5d401d48f9d26f2d21056beac7328dd415075add9c3a5f",
+      "bytes": 6018
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/items/ModItemSaveSafety.h",
+      "path": "src/native/host-patches/content/items/ModItemSaveSafety.h",
+      "sha256": "c4bd80c6a1a03eac0414f54df35dad84b1f1db45d0bd1e4a83aa9a7dd3e4adc5",
+      "bytes": 2656
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/content/items/NativeRarityPending.h",
+      "path": "src/native/host-patches/content/items/NativeRarityPending.h",
+      "sha256": "77ff9efc7037e384a8a9573c8e39cbe45b3ad6bfbaf579aeab7eb6f0be7508a0",
+      "bytes": 1884
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "392587665a8aa013056457f57b9fe304cb1edfb3fb1c28ff9b4593d9088888d7",
+      "bytes": 71103
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/BasicItemDefaults.h",
+      "path": "src/native/experiments/csharp/BasicItemDefaults.h",
+      "sha256": "f3e2b6702c9b0e864a69fd37d1f8625b54f81718e8f075dbe169fbc4ef49b0b5",
+      "bytes": 17929
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "45e80c35c0cdb80ec1fb66077f93047d6a0996c2034462b795be522956314349",
+      "bytes": 208740
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "31aa57670788a89b239b915f187ead056b374354ec205d4d04d0f49ae30cd457",
+      "bytes": 16918
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeRarityColorWire.h",
+      "path": "src/native/experiments/csharp/NativeRarityColorWire.h",
+      "sha256": "09fae746f0db2fd0a5f9bdff6409adcd8e58e09ea4a157061320fea9707d7003",
+      "bytes": 1703
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeRarityGameplay.cpp",
+      "path": "src/native/experiments/csharp/NativeRarityGameplay.cpp",
+      "sha256": "4e7ab3f4a565ef6fad63474f2d2f92a9422d6fc3d188475b7007b5ee5a673b01",
+      "bytes": 41154
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeRarityGameplay.h",
+      "path": "src/native/experiments/csharp/NativeRarityGameplay.h",
+      "sha256": "5bf37a38b78ed5ac6c807e37b02a73acf655d5d6cfec9e6125a3fbe5cb5218e4",
+      "bytes": 256
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeRarityPalette.h",
+      "path": "src/native/experiments/csharp/NativeRarityPalette.h",
+      "sha256": "e4fe67d97b06ea9cfdeeccf58fed264fcbc329958dc44f1ff471d2c789a74366",
+      "bytes": 1520
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeRarityRegistry.h",
+      "path": "src/native/experiments/csharp/NativeRarityRegistry.h",
+      "sha256": "b9576d62822ae4eeaf9bd6896e2b924594ecc2967b82633c2d2e8f322b1c4eaf",
+      "bytes": 4654
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/NativeRarityTextColor.h",
+      "path": "src/native/experiments/csharp/NativeRarityTextColor.h",
+      "sha256": "b4313e50f40114ef4cb773d34be96ae8681d7685fcecbd31782254e00eb2735c",
+      "bytes": 1133
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceContentIdentity.h",
+      "path": "src/native/experiments/csharp/SourceContentIdentity.h",
+      "sha256": "c07b83e6fc055939449c76404f6557ecb397409ec31919bdfa3ea90d05e384a3",
+      "bytes": 1775
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "e0487852b6f074a46a4ca4322ad7032b75265661056f4e6936a43265d3234ecc",
+      "bytes": 72016
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceLoader.h",
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "sha256": "bdfbd8b905e75d76727be9c5e8c210ac94f31feb8261a2771c43f077249733d7",
+      "bytes": 1117
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/experiments/csharp/SourceParser.cpp",
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "sha256": "de82fe98fd22f7656a53bd451f830b1056d07f7b7a89ac3bf594911e31fdabf7",
+      "bytes": 21354
+    },
+    {
+      "original": "Split/Bunny-Loader/app/src/main/cpp/script/api/CSharpPrototypeApi.cpp",
+      "path": "src/native/script/api/CSharpPrototypeApi.cpp",
+      "sha256": "fef8fc73a51cc88b083a5baab772158d68731e7fc61c2884ce376de1e0012601",
+      "bytes": 162755
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/sdk_public_reference.json",
+      "path": "docs/reference/generated/sdk_public_reference.json",
+      "sha256": "bce23b7b2b7b73ed5cba725f446f545a17c48dacef80ec5a99cccf73f4c90800",
+      "bytes": 86853
+    },
+    {
+      "original": "Split/Bunny-Loader/docs/generated/sdk_public_reference.md",
+      "path": "docs/reference/generated/sdk_public_reference.md",
+      "sha256": "0002362ee9aafbe4cda835dced642d05ab227d522eb2e24508148961ae9ad58d",
+      "bytes": 50777
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyItem.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyItem.cs",
+      "sha256": "126f9b80fe548c951cc793a9e1aef1ddd4c2f862c8bb069bdffa8e5a9c171797",
+      "bytes": 20270
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyRarity.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyRarity.cs",
+      "sha256": "b1db09cff68c4dcadb68eb599fdec1681fbd662beae4194f618d92c32b520ec6",
+      "bytes": 6251
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyRarityReference.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyRarityReference.cs",
+      "sha256": "1a5043dbd01e34f234f76065f5b4939b26649dbf61f2adeeef7020838295d7c5",
+      "bytes": 663
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnyRarityRuntime.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyRarityRuntime.cs",
+      "sha256": "17598b153b29d022e88fba1bfcbcb7bd0e1370280a18d81e1c9dae902267a3d9",
+      "bytes": 7737
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "sha256": "2801b3d6eb7ee13d4468138ddee809ff4a46e8173f8dc8718b7dee15b468f6fc",
+      "bytes": 14408
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "026fe2869a316814b3a354f1c2243b50a8a89cdc9da5f7a5f8fe154d09012109",
+      "bytes": 64889
+    },
+    {
+      "original": "Split/Bunny-Loader/experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "b3636b5e5cab4ead55bdb665ed09c421879478671bb4ecc7ca07266c5dc7c089",
+      "bytes": 2949
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleStatAccessory.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Accessories/ExampleStatAccessory.cs",
+      "sha256": "9bcdeb44d3c0d9c3813b19ea89c45f9d398d8e91384742f24a1c434c534ac7fa",
+      "bytes": 776
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleBuffPotion.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleBuffPotion.cs",
+      "sha256": "08525b47e97807f1927ce6f88d9e1794fdb471b7350238442eca781f4dff0ed3",
+      "bytes": 1066
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/ExampleItem.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/ExampleItem.cs",
+      "sha256": "49aaf63ed9afa2b891e5e1c8a3beeab5aafee5e884b033881dbe277c98e60e13",
+      "bytes": 1152
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/ExampleWand.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/ExampleWand.cs",
+      "sha256": "93f15cb81e091fdf051b394026157220006188f7a0691500630e2a74a4617423",
+      "bytes": 1047
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Melee/ExampleMeleeWeapon.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Melee/ExampleMeleeWeapon.cs",
+      "sha256": "83e3a26d1dbbdc984f4ff78e60709f28f02823f432a7fb8118a1055b35403d98",
+      "bytes": 821
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Rarities/ExampleHigherTierModRarity.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Rarities/ExampleHigherTierModRarity.cs",
+      "sha256": "e9b390256c552bd2d9d1d564ffe3f2420efe3c299d25a67649c24efc7128a6cf",
+      "bytes": 576
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Content/Rarities/ExampleModRarity.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Rarities/ExampleModRarity.cs",
+      "sha256": "db1e43855add34173bf2390511e06b4c0c8015533de4fa0642be268e8bd36b8d",
+      "bytes": 385
+    },
+    {
+      "original": "Split/Bunny-Loader/samples/ExampleModCSharp/Playable/content/Documentation/RARIDADES_CSHARP.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/RARIDADES_CSHARP.md",
+      "sha256": "8e39c5fce20d4ecc33d649a517a26a7e692c40795b43237d6a6d2cf350362b92",
+      "bytes": 1557
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/ExampleRarities/ExampleModRarities.cs",
+      "path": "tests/native-and-managed/rarity_loader/ExampleRarities/ExampleModRarities.cs",
+      "sha256": "dc602fe858d9ebf45bfd38161f1d92545c13d56daf5a82871db5958aaebec4b6",
+      "bytes": 2604
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/ExampleRarities/ExampleRarities.csproj",
+      "path": "tests/native-and-managed/rarity_loader/ExampleRarities/ExampleRarities.csproj",
+      "sha256": "8799f15b79dd68e4a42f137a563fbcd5128bcbdcf616d161f93bbe454d9641b9",
+      "bytes": 334
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/PlayableRarity.csproj",
+      "path": "tests/native-and-managed/rarity_loader/PlayableRarity.csproj",
+      "sha256": "604dae2cea2a5fe5f858701e4541a19c96e71b0f3ff7ca9edeb36cb4aea80ecb",
+      "bytes": 1719
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/PlayableRarityProgram.cs",
+      "path": "tests/native-and-managed/rarity_loader/PlayableRarityProgram.cs",
+      "sha256": "0dfe8533bd3476fa4d27c70a1923808a4c8b65087a37fea46c4945537a1fd910",
+      "bytes": 1468
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/Program.cs",
+      "path": "tests/native-and-managed/rarity_loader/Program.cs",
+      "sha256": "8946c5e820d83716281f26c5fb6acf5c509d193d962f079c9aa4772f0885e671",
+      "bytes": 15784
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/RarityLoaderHost.csproj",
+      "path": "tests/native-and-managed/rarity_loader/RarityLoaderHost.csproj",
+      "sha256": "90d1e547009c2fc8e171d8b5a9fd0468cd9d20c31ebbfad1d00f35785419e7fc",
+      "bytes": 677
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/check_rarity_tooltip_js.cjs",
+      "path": "tests/native-and-managed/rarity_loader/check_rarity_tooltip_js.cjs",
+      "sha256": "421c492c45d6383a567489edb310b12e66c69560542916eeebf765f818c4ba07",
+      "bytes": 2188
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/check_shared_rarity_js.cjs",
+      "path": "tests/native-and-managed/rarity_loader/check_shared_rarity_js.cjs",
+      "sha256": "03d6e6b370a8e6e56e76df46abadd1e7f64dadac48a9163f7f94a1392c578ea6",
+      "bytes": 1987
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/native_rarity_color_test.cpp",
+      "path": "tests/native-and-managed/rarity_loader/native_rarity_color_test.cpp",
+      "sha256": "8639368b91c32c654b002461b2bb93488917b2dd0e6e905f1105fa17adaff3ec",
+      "bytes": 4382
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/native_rarity_item_test.cpp",
+      "path": "tests/native-and-managed/rarity_loader/native_rarity_item_test.cpp",
+      "sha256": "549db2bdd61e0ea1a8ef2713566cc67c93b258b91b4c8d85eb1ea4ced2be1348",
+      "bytes": 1115
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/native_rarity_registry_test.cpp",
+      "path": "tests/native-and-managed/rarity_loader/native_rarity_registry_test.cpp",
+      "sha256": "dbf7146cd1b9ed98079d3ec456d84337784d74777a8a7d3c69325291535fcb16",
+      "bytes": 6374
+    },
+    {
+      "original": "Split/Bunny-Loader/tests/rarity_loader/native_rarity_save_test.cpp",
+      "path": "tests/native-and-managed/rarity_loader/native_rarity_save_test.cpp",
+      "sha256": "b156ab7820785a7575bc79032538e471cb2053c541679f75129f64d5c9108bbe",
+      "bytes": 14574
+    },
+    {
+      "original": "docs/csharp-rarity-loader.md",
+      "path": "docs/reference/csharp-rarity-loader.md",
+      "sha256": "51809a6fcac23083d76b13922eea3f8238365646dc479b5104b4d0a5537675af",
+      "bytes": 30930
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "pr": 132,
+  "name": "Dust NewDust and Invasion spawn diagnostics",
+  "kind": "support",
+  "status": "fix_reference",
+  "runtime_enabled": false,
+  "base_sha": "5a18a67899c1f6ee88a34097be3adb6e7877edd4",
+  "head_sha": "fcdc3fd2c30d1e7432fddbafc4af9f6d65ca473a",
+  "current_pr_head_when_fetched": "fcdc3fd2c30d1e7432fddbafc4af9f6d65ca473a",
+  "file_count": 4,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeDustEmission.cpp",
+      "path": "src/native/experiments/csharp/NativeDustEmission.cpp",
+      "sha256": "896fc1df9af5b9299c890bc4380dfa9961d35ad17e84277fc1690996ad5a09eb",
+      "bytes": 8254
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/NativeInvasionMailbox.cpp",
+      "path": "src/native/experiments/csharp/NativeInvasionMailbox.cpp",
+      "sha256": "d0fe985fbb0fab7e01f2ad8ff1ccd331cebd81f96ae994944981b6f0e14dab88",
+      "bytes": 8285
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "sha256": "960694dd19e88e0438c676e3dc1d1d04e3fb202541deffc6121ae3354bde8913",
+      "bytes": 33958
+    },
+    {
+      "original": "tests/invasion/check_item_use_contract.py",
+      "path": "tests/native-and-managed/invasion/check_item_use_contract.py",
+      "sha256": "6a316719a21a769f5723112588f2d160c6306fb045dae8719e5a258757e6bb5b",
+      "bytes": 8821
+    }
+  ]
+}

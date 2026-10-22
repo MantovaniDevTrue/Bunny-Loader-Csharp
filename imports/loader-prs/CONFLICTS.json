@@ -1,0 +1,1271 @@
+{
+  "schema": 1,
+  "different_content_shared_paths": 137,
+  "files": [
+    {
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        125,
+        128,
+        130
+      ],
+      "variants": 16
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        114,
+        115,
+        116,
+        117,
+        119,
+        120,
+        122,
+        124,
+        125,
+        127,
+        129,
+        130
+      ],
+      "variants": 16
+    },
+    {
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        115,
+        117,
+        118,
+        119,
+        121,
+        122,
+        125,
+        126,
+        130,
+        131
+      ],
+      "variants": 14
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        114,
+        115,
+        116,
+        117,
+        119,
+        120,
+        122,
+        125,
+        130
+      ],
+      "variants": 13
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        114,
+        115,
+        117,
+        119,
+        121,
+        122,
+        125,
+        130
+      ],
+      "variants": 12
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        114,
+        115,
+        117,
+        119,
+        122,
+        125,
+        130
+      ],
+      "variants": 11
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "prs": [
+        98,
+        102,
+        114,
+        115,
+        117,
+        119,
+        121,
+        122,
+        125,
+        130
+      ],
+      "variants": 10
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "prs": [
+        98,
+        100,
+        102,
+        114,
+        115,
+        117,
+        119,
+        122,
+        125,
+        130
+      ],
+      "variants": 10
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "prs": [
+        116,
+        119,
+        124,
+        127,
+        128,
+        129,
+        130,
+        132
+      ],
+      "variants": 7
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceContentIdentity.h",
+      "prs": [
+        98,
+        100,
+        102,
+        115,
+        117,
+        119,
+        125,
+        130
+      ],
+      "variants": 8
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyItem.cs",
+      "prs": [
+        98,
+        100,
+        102,
+        114,
+        116,
+        119,
+        129
+      ],
+      "variants": 7
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "prs": [
+        98,
+        100,
+        102,
+        114,
+        116,
+        119,
+        130
+      ],
+      "variants": 7
+    },
+    {
+      "path": "tests/native-and-managed/invasion/check_item_use_contract.py",
+      "prs": [
+        116,
+        119,
+        124,
+        127,
+        128,
+        129,
+        132
+      ],
+      "variants": 7
+    },
+    {
+      "path": "docs/reference/generated/sdk_public_reference.json",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        119,
+        130
+      ],
+      "variants": 6
+    },
+    {
+      "path": "docs/reference/generated/sdk_public_reference.md",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        119,
+        130
+      ],
+      "variants": 6
+    },
+    {
+      "path": "tools/support/sdk_reference/Program.cs",
+      "prs": [
+        98,
+        100,
+        101,
+        119,
+        130
+      ],
+      "variants": 4
+    },
+    {
+      "path": "docs/reference/generated/example_completion/matrix.json",
+      "prs": [
+        98,
+        101,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "integration/android-host/assets/managed/framework.sha256",
+      "prs": [
+        115,
+        118,
+        119,
+        121
+      ],
+      "variants": 4
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "prs": [
+        98,
+        101,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyContentDeclaration.cs",
+      "prs": [
+        98,
+        115,
+        119,
+        130
+      ],
+      "variants": 4
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "prs": [
+        114,
+        119,
+        126,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/Program.cs",
+      "prs": [
+        98,
+        101,
+        119,
+        130
+      ],
+      "variants": 4
+    },
+    {
+      "path": "docs/reference/csharp-completion-plan.md",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "docs/reference/csharp-independence-audit.md",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "docs/reference/csharp-loader-batches.md",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "docs/reference/generated/example_completion/matrix.md",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "integration/ci-reference/check-csharp-dust.yml",
+      "prs": [
+        115,
+        119,
+        128
+      ],
+      "variants": 2
+    },
+    {
+      "path": "integration/ci-reference/check-csharp-rarity-loader.yml",
+      "prs": [
+        102,
+        119,
+        123
+      ],
+      "variants": 3
+    },
+    {
+      "path": "integration/ci-reference/test-csharp-invasion.yml",
+      "prs": [
+        116,
+        119,
+        129
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleInvasionBeacon.cs",
+      "prs": [
+        116,
+        119,
+        129
+      ],
+      "variants": 3
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/ExampleWand.cs",
+      "prs": [
+        100,
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Weapons/Melee/ExampleMeleeWeapon.cs",
+      "prs": [
+        98,
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleGuardedPrefix.cs",
+      "prs": [
+        98,
+        100,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Prefixes/ExampleMightyPrefix.cs",
+      "prs": [
+        98,
+        100,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.md",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/manifest.json",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "samples/ExampleModCSharp/Tests/check_examples.py",
+      "prs": [
+        98,
+        100,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyDustSourceDispatcher.cs",
+      "prs": [
+        115,
+        119,
+        128
+      ],
+      "variants": 3
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyGore.cs",
+      "prs": [
+        98,
+        121,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/Compiler.cs",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "src/native/experiments/csharp/BasicItemDefaults.h",
+      "prs": [
+        98,
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedSourceClassCount.h",
+      "prs": [
+        117,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeInvasionMailbox.cpp",
+      "prs": [
+        116,
+        119,
+        132
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/host-patches/content/common/ModContent.cpp",
+      "prs": [
+        115,
+        119,
+        125
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/host-patches/menu/Cheats.cpp",
+      "prs": [
+        115,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/script/api/CSharpPrototypeApi.cpp",
+      "prs": [
+        100,
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/basic_source_parser_test.cpp",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/check_full_wire.py",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "tests/native-and-managed/invasion/DispatcherIntegration.cs",
+      "prs": [
+        116,
+        119,
+        129
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/invasion/MultiInvasionIntegration.cs",
+      "prs": [
+        116,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/invasion/NativeMailboxStub.cpp",
+      "prs": [
+        116,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/invasion/TransportIntegration.cs",
+      "prs": [
+        116,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/ready_prs/FullExampleRuntime/Program.cs",
+      "prs": [
+        119,
+        128,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "tools/support/example_completion/evidence.json",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "tools/support/example_completion_audit.py",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "docs/reference/csharp-loader-batches.json",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "docs/reference/csharp/GORE_LOADER_IMPLEMENTATION.md",
+      "prs": [
+        121,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "integration/ci-reference/check-csharp-localization.yml",
+      "prs": [
+        101,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "integration/ci-reference/check-csharp-rarity-arm64.yml",
+      "prs": [
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "integration/ci-reference/check-csharp-world-update-loader.yml",
+      "prs": [
+        126,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "integration/ci-reference/csharp-gore-source-check.yml",
+      "prs": [
+        121,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/DustLoaderPreview/ExampleSparkDust.cs",
+      "prs": [
+        115,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Localization/ExampleLocalizationModule.cs",
+      "prs": [
+        101,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Players/ExampleWelcomePlayer.cs",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleBuffPotion.cs",
+      "prs": [
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Quests/ExampleQuestFish.cs",
+      "prs": [
+        114,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/NPCs/ExampleInvasionEliteSlimeNPC.cs",
+      "prs": [
+        116,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleWaveBolt.cs",
+      "prs": [
+        118,
+        121
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Rarities/ExampleHigherTierModRarity.cs",
+      "prs": [
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Rarities/ExampleModRarity.cs",
+      "prs": [
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleWorldUpdateCounter.cs",
+      "prs": [
+        126,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Tiles/ExampleTile.cs",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/CUSTOM_AUDIO.md",
+      "prs": [
+        98,
+        118
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/SYSTEM_UPDATE_LOADER.md",
+      "prs": [
+        126,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/WORLD_LOADERS.md",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyCommand.cs",
+      "prs": [
+        117,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyDust.cs",
+      "prs": [
+        115,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyLocalizationModule.cs",
+      "prs": [
+        101,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyRarity.cs",
+      "prs": [
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyRarityRuntime.cs",
+      "prs": [
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyTile.cs",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyTileRuntime.cs",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyWall.cs",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler.Smoke/Program.cs",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/TileWriter.cs",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedGoreRuntime.cpp",
+      "prs": [
+        121,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeBasicItems.cpp",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeBasicItems.h",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeCSharpItemUse.cpp",
+      "prs": [
+        116,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeContent.cpp",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeContent.h",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeDustEmission.cpp",
+      "prs": [
+        119,
+        132
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeInvasionHud.cpp",
+      "prs": [
+        116,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeInvasionNetwork.cpp",
+      "prs": [
+        116,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeRarityGameplay.cpp",
+      "prs": [
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeRecipeCallbacks.cpp",
+      "prs": [
+        114,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeRecipeCallbacks.h",
+      "prs": [
+        114,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeTileAnimationPolicy.h",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeTileFlags.h",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeTileGameplay.cpp",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeTileGameplay.h",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeTilePolicy.h",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/NativeTileWirePolicy.h",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceParser.h",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/UniversalHooks.cpp",
+      "prs": [
+        126,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/UniversalSystemStages.cpp",
+      "prs": [
+        126,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/experiments/csharp/UniversalSystemStages.h",
+      "prs": [
+        126,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/host-patches/content/sounds/NativeSoundRouter.cpp",
+      "prs": [
+        98,
+        118
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/host-patches/content/sounds/NativeSoundRouter.h",
+      "prs": [
+        98,
+        118
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/host-patches/content/tiles/ModTiles.cpp",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "src/native/host-patches/content/tiles/ModTiles.h",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/check_csharp_tooltip_refresh.py",
+      "prs": [
+        123,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/commands/Program.cs",
+      "prs": [
+        117,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/csharp_gore_discovery_test.cpp",
+      "prs": [
+        121,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/csharp_gore_examples/GoreExamples.csproj",
+      "prs": [
+        121,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/entity_source/Program.cs",
+      "prs": [
+        127,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/invasion/DispatcherIntegration.csproj",
+      "prs": [
+        116,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/invasion/MultiInvasionIntegration.csproj",
+      "prs": [
+        116,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/invasion/SampleCompile.csproj",
+      "prs": [
+        116,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/invasion/TransportIntegration.csproj",
+      "prs": [
+        116,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/localization_loader/Program.cs",
+      "prs": [
+        101,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/rarity_loader/PlayableRarityProgram.cs",
+      "prs": [
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/rarity_loader/Program.cs",
+      "prs": [
+        102,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/ready_prs/full_source_bootstrap_test.cpp",
+      "prs": [
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/ready_prs/managed_source_class_count_test.cpp",
+      "prs": [
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/ready_prs/run.sh",
+      "prs": [
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/summon_lifecycle/sound_router_test.cpp",
+      "prs": [
+        98,
+        118
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/world_loaders/run.sh",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/world_loaders/tile_animation_test.cpp",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/world_loaders/tile_break_policy_test.cpp",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/world_loaders/tile_flags_test.cpp",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/world_loaders/tile_wire_test.cpp",
+      "prs": [
+        98,
+        119
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/world_update_loader/Program.cs",
+      "prs": [
+        126,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/world_update_loader/WorldUpdateLoader.csproj",
+      "prs": [
+        126,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tests/native-and-managed/world_update_loader/check_contract.py",
+      "prs": [
+        126,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tools/support/ci/publish_ready_preview.sh",
+      "prs": [
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "tools/support/ci/ready_pr_checks.json",
+      "prs": [
+        119,
+        123
+      ],
+      "variants": 2
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+name: Verify 50 CSharp loader completion gates
+
+on:
+  push:
+    paths:
+      - "loader-completion-matrix.json"
+      - "tools/check_loader_completion.py"
+      - ".github/workflows/check-loader-completion.yml"
+  pull_request:
+    paths:
+      - "loader-completion-matrix.json"
+      - "tools/check_loader_completion.py"
+      - ".github/workflows/check-loader-completion.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout dedicated CSharp sources
+        uses: actions/checkout@v4
+      - name: Validate 50-loader matrix and source-only certification policy
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/check_loader_completion.py
+          python3 tools/check_loader_completion.py

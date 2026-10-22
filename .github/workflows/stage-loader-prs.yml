@@ -1,0 +1,90 @@
+name: Stage PR98+ CSharp loader sources
+
+on:
+  push:
+    branches:
+      - feature/pr98-plus-csharp-loaders-inventory
+    paths:
+      - "loader-prs.json"
+      - "tools/import_loader_prs.py"
+      - ".github/workflows/stage-loader-prs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: csharp-loader-pr-overlays
+  cancel-in-progress: false
+
+jobs:
+  stage:
+    if: github.ref == 'refs/heads/feature/pr98-plus-csharp-loaders-inventory'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout CSharp-only repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Checkout source repository with full commit history
+        uses: actions/checkout@v4
+        with:
+          repository: MantovaniDevTrue/Bunnyloader-Csharp
+          path: _upstream
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Stage source-only PR overlays
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/import_loader_prs.py
+          python3 tools/import_loader_prs.py --source _upstream
+
+      - name: Validate immutable manifests and exclusion policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          root = Path('imports/loader-prs')
+          index = json.loads((root / 'INDEX.json').read_text())
+          catalog = json.loads(Path('loader-prs.json').read_text())
+          assert index['runtime_enabled'] is False
+          assert index['apk_generated'] is False
+          assert len(index['imported']) == sum(p['import'] for p in catalog['pull_requests'])
+          for summary in index['imported']:
+              folder = root / ('pr-%04d' % summary['pr'])
+              meta = json.loads((folder / 'SOURCE.json').read_text())
+              assert meta['runtime_enabled'] is False
+              assert meta['file_count'] == len(meta['files']) > 0
+              for entry in meta['files']:
+                  file = folder / entry['path']
+                  assert file.is_file()
+                  assert file.stat().st_size == entry['bytes']
+                  assert hashlib.sha256(file.read_bytes()).hexdigest() == entry['sha256']
+                  assert file.suffix.lower() not in ('.js', '.mjs', '.apk', '.bmod', '.dll', '.so', '.tmod', '.tl')
+          print('CSHARP_PR_IMPORT_AUDIT=PASS', len(index['imported']))
+          PY
+          rm -rf _upstream
+          test ! -d _upstream
+
+      - name: Save isolated source overlays to branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "Bunny CSharp Source Import"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A imports/loader-prs
+          if git diff --cached --quiet; then
+            echo "No source differences"
+            exit 0
+          fi
+          git commit -m "chore(csharp): stage pinned PR98+ source-only loader overlays"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase FETCH_HEAD
+          git push origin "HEAD:${GITHUB_REF_NAME}"

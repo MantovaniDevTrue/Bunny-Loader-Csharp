@@ -1,0 +1,152 @@
+{
+  "pr": 121,
+  "name": "GoreLoader",
+  "kind": "loader",
+  "status": "android_qa_pending",
+  "runtime_enabled": false,
+  "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+  "head_sha": "d061f7654660223ea00e55c7d21d85dfdffcb8d9",
+  "current_pr_head_when_fetched": "d061f7654660223ea00e55c7d21d85dfdffcb8d9",
+  "file_count": 23,
+  "excluded_paths": 1,
+  "files": [
+    {
+      "original": ".github/workflows/csharp-gore-native-link-no-apk.yml",
+      "path": "integration/ci-reference/csharp-gore-native-link-no-apk.yml",
+      "sha256": "fee24ad4ea95a2521f4c624bca4fdce39e1cef41b225b8b34f2e90c1bfd9b198",
+      "bytes": 2614
+    },
+    {
+      "original": ".github/workflows/csharp-gore-source-check.yml",
+      "path": "integration/ci-reference/csharp-gore-source-check.yml",
+      "sha256": "0bacb515728b394fbc677d14b0049ed7cc3c67fb7c3b5108fb47059b2c506bd2",
+      "bytes": 2395
+    },
+    {
+      "original": ".github/workflows/stage-csharp-gore-sdk-no-apk.yml",
+      "path": "integration/ci-reference/stage-csharp-gore-sdk-no-apk.yml",
+      "sha256": "d080f43a5d9f2ccd253ffbe2a7011590d0b42c8c1dfc83a4956c94ee9bd0c54e",
+      "bytes": 3687
+    },
+    {
+      "original": "app/src/main/assets/managed/framework.sha256",
+      "path": "integration/android-host/assets/managed/framework.sha256",
+      "sha256": "bee87961bf9df7fcd5999b6df7b94f8b0458ee280435a6a776075c1824cb0aad",
+      "bytes": 16523
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "ab2f576e61d8b5d3c750fe974b8f421e47ae59b4ee131ac1d40205e4622ccdf9",
+      "bytes": 69512
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedGoreCatalog.h",
+      "path": "src/native/experiments/csharp/ManagedGoreCatalog.h",
+      "sha256": "ff605475f97951bf6f7884d82c08ee4f5fa7a604ea0a207e378d7239a5d45814",
+      "bytes": 3902
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedGoreDiscovery.cpp",
+      "path": "src/native/experiments/csharp/ManagedGoreDiscovery.cpp",
+      "sha256": "33cb42fa1bc2507db2792d9bec7ad2842a0360875e2e3df17755b27c094d4af2",
+      "bytes": 11025
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedGoreDiscovery.h",
+      "path": "src/native/experiments/csharp/ManagedGoreDiscovery.h",
+      "sha256": "47c29496ccfdd9b195b873c182478427ea1af408d7c8cadea211861ce7ca3f13",
+      "bytes": 853
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedGoreRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedGoreRuntime.cpp",
+      "sha256": "27653358f69b5e40de44a5c71a570f0f4a5c573f3fff3cdf4e2727e7616f8557",
+      "bytes": 20524
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedGoreRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedGoreRuntime.h",
+      "sha256": "5a7f781720b19086ad11084b75d997494c63cf25dca83c506bee699cdf308c87",
+      "bytes": 730
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "1bcaa2e312c9443807fd3bb87b7992925dbf25d3cb2c97138370b270455db998",
+      "bytes": 62005
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.h",
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "sha256": "f5e0e28b8f60304746a37bb19d31ec1e6feb125e8704a40671f143611d526e57",
+      "bytes": 1111
+    },
+    {
+      "original": "docs/csharp/GORE_LOADER_IMPLEMENTATION.md",
+      "path": "docs/reference/csharp/GORE_LOADER_IMPLEMENTATION.md",
+      "sha256": "9c92d7ab6adcc55d3d1e4951daf07994651315aba3abb4f2f9ebc23188b7be2a",
+      "bytes": 8175
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyGore.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyGore.cs",
+      "sha256": "2e4bf971fe7ade158b3dac2ff4a4dc1dc3a6e61da0479a0779ddab000b67ee22",
+      "bytes": 5695
+    },
+    {
+      "original": "experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "bd1b112dba16455a8eb57fe271e6ae8f42977b4841546f7e8f8de4684527a493",
+      "bytes": 2518
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleBoss_GoreFront.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleBoss_GoreFront.png",
+      "sha256": "88539a306ad15004cae715c3005dde108cd059eb44c6ea5b8980595c94b0857f",
+      "bytes": 1193
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleDroplet.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleDroplet.png",
+      "sha256": "4d884ceae0f84e55205037d84853416d216b9030419641f906f9f7da4f2289b0",
+      "bytes": 639
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/NPCs/ExampleSlimeNPC.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/NPCs/ExampleSlimeNPC.cs",
+      "sha256": "866bb16b06f4925994eb99b7acb512eda96a725e8f7e0b2653f8e97e4461e98c",
+      "bytes": 1487
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleWaveBolt.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Projectiles/ExampleWaveBolt.cs",
+      "sha256": "c6795f863be4341baf17566b582066ce566f6a2572d6c3557b47c9ce5e1d2124",
+      "bytes": 2240
+    },
+    {
+      "original": "tests/csharp_gore_catalog_test.cpp",
+      "path": "tests/native-and-managed/csharp_gore_catalog_test.cpp",
+      "sha256": "3e1e157380c517e15018623d281d0bda32c5bec18fd33a7e463d05924407519b",
+      "bytes": 1648
+    },
+    {
+      "original": "tests/csharp_gore_discovery_test.cpp",
+      "path": "tests/native-and-managed/csharp_gore_discovery_test.cpp",
+      "sha256": "ab770448311848a403d4e52aa4b569ce3200b27e39e9594bc36bd661955fe890",
+      "bytes": 5302
+    },
+    {
+      "original": "tests/csharp_gore_examples/GoreExamples.csproj",
+      "path": "tests/native-and-managed/csharp_gore_examples/GoreExamples.csproj",
+      "sha256": "d0a75408f38b7437a38b616990353f3e4f739a48d7bd65b77d491f8576edf530",
+      "bytes": 615
+    },
+    {
+      "original": "tests/stubs/android/log.h",
+      "path": "tests/native-and-managed/stubs/android/log.h",
+      "sha256": "5825ccad293c46a98d7209b5c6bfd5bf90a2f0b18cb1440f3ba9587dbe763e8f",
+      "bytes": 124
+    }
+  ]
+}

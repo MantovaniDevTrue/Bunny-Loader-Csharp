@@ -1,0 +1,278 @@
+{
+  "pr": 115,
+  "name": "DustLoader",
+  "kind": "loader",
+  "status": "android_qa_pending",
+  "runtime_enabled": false,
+  "base_sha": "cfbe784ee3cbc0ba2fabafce56c59e6eac41b67b",
+  "head_sha": "d5a6e609c12351dd3d52e6b4840655f83cef28a2",
+  "current_pr_head_when_fetched": "d5a6e609c12351dd3d52e6b4840655f83cef28a2",
+  "file_count": 44,
+  "excluded_paths": 3,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-dust-native.yml",
+      "path": "integration/ci-reference/check-csharp-dust-native.yml",
+      "sha256": "6a667084d65f45351f6a609f9eedd1f570aa22690a53fbb10add6074a869ebcd",
+      "bytes": 4393
+    },
+    {
+      "original": ".github/workflows/check-csharp-dust.yml",
+      "path": "integration/ci-reference/check-csharp-dust.yml",
+      "sha256": "ef6822c16177de9438a27957df79983b4607f25a9281da596c8e4cbad04deda6",
+      "bytes": 6522
+    },
+    {
+      "original": ".github/workflows/stage-dust-managed-dlls.yml",
+      "path": "integration/ci-reference/stage-dust-managed-dlls.yml",
+      "sha256": "3aa3d85cb61774dff4563413b2633d93be218c12bc8ef813ffb7e3d9c3735553",
+      "bytes": 5985
+    },
+    {
+      "original": "app/src/main/assets/managed/framework.sha256",
+      "path": "integration/android-host/assets/managed/framework.sha256",
+      "sha256": "d1cd5f62e2a99fc5d7a11d3bfe2ea0ab8baf23415b9a85275861929a236609b5",
+      "bytes": 16523
+    },
+    {
+      "original": "app/src/main/cpp/CMakeLists.txt",
+      "path": "src/native/host-patches/CMakeLists.txt",
+      "sha256": "19e8e1259cf2f00b1fc4bf83e25e60541759650a6aed76c5c305cef263f62656",
+      "bytes": 10036
+    },
+    {
+      "original": "app/src/main/cpp/content/common/ModContent.cpp",
+      "path": "src/native/host-patches/content/common/ModContent.cpp",
+      "sha256": "f7c3817911a67e60dfe774f8c3519fd802a61fcbcf739fc75dfb4e8aa547020b",
+      "bytes": 2451
+    },
+    {
+      "original": "app/src/main/cpp/content/dusts/ModDusts.cpp",
+      "path": "src/native/host-patches/content/dusts/ModDusts.cpp",
+      "sha256": "24a47d0d58a6b288db2f47bf6bcc6756b8cac146a49e563a69e61cb933d9d37c",
+      "bytes": 42000
+    },
+    {
+      "original": "app/src/main/cpp/content/dusts/ModDusts.h",
+      "path": "src/native/host-patches/content/dusts/ModDusts.h",
+      "sha256": "ebde513717a952b9257d32deea737a3becf194665cec2f6cab18d9f5e6bbd046",
+      "bytes": 4568
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "1cac81d730550650a204800676f3d3e6243468e763d2c5fa1619fc892daef818",
+      "bytes": 71074
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedDustBindingSelection.h",
+      "path": "src/native/experiments/csharp/ManagedDustBindingSelection.h",
+      "sha256": "351a9e794361abd4e19c6a33383adfff02a4a2ceba2c22124697573c9a0d5064",
+      "bytes": 774
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedDustContract.h",
+      "path": "src/native/experiments/csharp/ManagedDustContract.h",
+      "sha256": "896e6a1ae9bd60ee3786471083b304acd7567e0efb1a82271956a562d3bc5310",
+      "bytes": 4386
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedDustDecision.h",
+      "path": "src/native/experiments/csharp/ManagedDustDecision.h",
+      "sha256": "d0c2d1c536905a97b210d6b992dbe000218917521da925adb05ff524acfd7d6c",
+      "bytes": 543
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedDustFlagMask.h",
+      "path": "src/native/experiments/csharp/ManagedDustFlagMask.h",
+      "sha256": "caaea5daa240c0bd46e0290993774d81872805fdcc7bc2ed73e0adabc70fc50a",
+      "bytes": 578
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedDustFrameBudget.h",
+      "path": "src/native/experiments/csharp/ManagedDustFrameBudget.h",
+      "sha256": "984fbc819d2d87be19ef7105946d10ae9d5bc0b12ec6781744fe245e1bc75c40",
+      "bytes": 1290
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedDustLifecycle.h",
+      "path": "src/native/experiments/csharp/ManagedDustLifecycle.h",
+      "sha256": "342826809ee0a8a294a7fa9922e126d0bde03f1cc18f14e6d27986c7a12ad8dd",
+      "bytes": 3617
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedDustMailbox.h",
+      "path": "src/native/experiments/csharp/ManagedDustMailbox.h",
+      "sha256": "61322fd45cb006e0fc2b65b869fd8753ec7c7b8d3ac0f1a2aa77eca70f9f5524",
+      "bytes": 11914
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedDustSlotLookup.h",
+      "path": "src/native/experiments/csharp/ManagedDustSlotLookup.h",
+      "sha256": "133fd81bfcfa67c34372f141696599b24b023e040e726c793cf07b82e0999ce2",
+      "bytes": 2087
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "62627512bc9083f5548b2421388c6d8d06e6297596b063d0c05c5ba138c2a48a",
+      "bytes": 212516
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "c34d480f7111940ee5cb70f7b727b7204db03200f8d406f2eada26c1fbb5ec4e",
+      "bytes": 16082
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceContentIdentity.h",
+      "path": "src/native/experiments/csharp/SourceContentIdentity.h",
+      "sha256": "6c9cdb32f2947d8409cd9b2db5911de36f5283000271b9553e04894a174c89d1",
+      "bytes": 1707
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "ec147899e5251fa50b26f44d049403d996604b6023ffa8c178f6882971f1e4de",
+      "bytes": 65825
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.h",
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "sha256": "42cb6e5f3fb24369f6ac059f8b8fcfc0bd80d898a0c6506d0b75d0a19b9dbe0f",
+      "bytes": 1195
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceParser.cpp",
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "sha256": "773b2a1b9660658e11f464e2f9f5944a562d0a280d5b90e0b73821d7cfb4c280",
+      "bytes": 21182
+    },
+    {
+      "original": "app/src/main/cpp/menu/Cheats.cpp",
+      "path": "src/native/host-patches/menu/Cheats.cpp",
+      "sha256": "23090fc6e6772ad92b3cb537e6557841d30f3042f269329e133392fc3efa4c31",
+      "bytes": 53789
+    },
+    {
+      "original": "docs/DUST-LOADER-STATUS.md",
+      "path": "docs/reference/DUST-LOADER-STATUS.md",
+      "sha256": "73df1e17004f2c2523c6d5c0139a77217b7eb8a25c3a25a81158b37bfbab76a7",
+      "bytes": 10390
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyContentDeclaration.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyContentDeclaration.cs",
+      "sha256": "54713d2e33491c2d023ffe158f5ec12e4236e28a1b2e3019f8e4ddeaaf347759",
+      "bytes": 2439
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyDust.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyDust.cs",
+      "sha256": "8193d2f8e64e243f1998c28aad84683228403a09d6a7f42f4c62e50389990715",
+      "bytes": 13501
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyDustSourceDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyDustSourceDispatcher.cs",
+      "sha256": "e340f860fa224f1dd0b6460964d46ea5c00bd8d86f3a6fd5a5f5b2ef83b68c40",
+      "bytes": 7215
+    },
+    {
+      "original": "experiments/csharp/BunnyDustCompilerSmoke/BunnyDustCompilerSmoke.csproj",
+      "path": "src/managed/BunnyDustCompilerSmoke/BunnyDustCompilerSmoke.csproj",
+      "sha256": "1b0bdfd698496f667cbc014aae1edc3b6ee2edda0a92de1e0d76c630f9cae457",
+      "bytes": 474
+    },
+    {
+      "original": "experiments/csharp/BunnyDustCompilerSmoke/Program.cs",
+      "path": "src/managed/BunnyDustCompilerSmoke/Program.cs",
+      "sha256": "816131dad30bef402bfb9a34dabeb59f08759974a7ebb258c896bb1798120324",
+      "bytes": 8441
+    },
+    {
+      "original": "experiments/csharp/BunnyDustTests/BunnyDustTests.csproj",
+      "path": "src/managed/BunnyDustTests/BunnyDustTests.csproj",
+      "sha256": "4eeea8f3ef1775924cbda632abea22053835d94d0e844be42854acf980e5eb9e",
+      "bytes": 341
+    },
+    {
+      "original": "experiments/csharp/BunnyDustTests/Program.cs",
+      "path": "src/managed/BunnyDustTests/Program.cs",
+      "sha256": "2593c1f48306307fe3d2c61dfd35588580cdd53f55dec44b0f221b6c9367b568",
+      "bytes": 10115
+    },
+    {
+      "original": "experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "4d306486e4bd723d34c76dad702a4a6573bd71ef84d5ab467249931d6c4fe41b",
+      "bytes": 65080
+    },
+    {
+      "original": "experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "c3f5e39b2b7428fa0f9d9cf395dbd1c2a34d4b218239268de9a379c0459a97f8",
+      "bytes": 2671
+    },
+    {
+      "original": "samples/ExampleModCSharp/DustLoaderPreview/ExampleSparkDust.cs",
+      "path": "samples/ExampleModCSharp/DustLoaderPreview/ExampleSparkDust.cs",
+      "sha256": "e32f82e4d1bc04e727962ae4737436f7e6ca1f4be303cde49b846db4a13e70ca",
+      "bytes": 853
+    },
+    {
+      "original": "tests/csharp/native_dust_binding_selection.cpp",
+      "path": "tests/native-and-managed/csharp/native_dust_binding_selection.cpp",
+      "sha256": "8bcbec97371f26e4f3529bf0366e694f85010b15f58409ef29d352122e6f59fb",
+      "bytes": 1041
+    },
+    {
+      "original": "tests/csharp/native_dust_contract.cpp",
+      "path": "tests/native-and-managed/csharp/native_dust_contract.cpp",
+      "sha256": "31939b75cb875b9e84a1cfaed93148fe9ca59283de08ec3d43eaf27ebc2d44ff",
+      "bytes": 2561
+    },
+    {
+      "original": "tests/csharp/native_dust_decision.cpp",
+      "path": "tests/native-and-managed/csharp/native_dust_decision.cpp",
+      "sha256": "fb8ab762a538fbbb35a1598e8d28ae5c99fcbf3619dd1d91670824f02dd58cd5",
+      "bytes": 884
+    },
+    {
+      "original": "tests/csharp/native_dust_flags.cpp",
+      "path": "tests/native-and-managed/csharp/native_dust_flags.cpp",
+      "sha256": "be3cb5ebcd2dde37848d5726c0fe7f58e3474efe47af7ea05daec12f194e86c6",
+      "bytes": 1051
+    },
+    {
+      "original": "tests/csharp/native_dust_lifecycle.cpp",
+      "path": "tests/native-and-managed/csharp/native_dust_lifecycle.cpp",
+      "sha256": "6981ecd994d56862de2c5b5aff6c50c496821cb229619fcfd3d931b2ab25bed3",
+      "bytes": 3649
+    },
+    {
+      "original": "tests/csharp/native_dust_mailbox.cpp",
+      "path": "tests/native-and-managed/csharp/native_dust_mailbox.cpp",
+      "sha256": "0dc38b524bbad33340b668a0a55853809337f7d80b2b5eebe303c5f5072f1e82",
+      "bytes": 7016
+    },
+    {
+      "original": "tests/csharp/native_dust_parser.cpp",
+      "path": "tests/native-and-managed/csharp/native_dust_parser.cpp",
+      "sha256": "c38b9f99bf6253519aa9329e7cb3d433e8fc7da79d70c066ac835697c92bc8ca",
+      "bytes": 2293
+    },
+    {
+      "original": "tests/csharp/native_dust_slot_lookup.cpp",
+      "path": "tests/native-and-managed/csharp/native_dust_slot_lookup.cpp",
+      "sha256": "88a381505682c271c329f6ff31e22417a637162cd247163fb8249645e8a25759",
+      "bytes": 1651
+    },
+    {
+      "original": "tests/csharp/native_dust_sync.cpp",
+      "path": "tests/native-and-managed/csharp/native_dust_sync.cpp",
+      "sha256": "57da83588b120e1b4fbf1ac4c9537510c9ee175363c23a442f5ceeceade698a3",
+      "bytes": 3235
+    }
+  ]
+}

@@ -1,0 +1,1262 @@
+{
+  "pr": 130,
+  "name": "15-loaders batch: BackgroundTexture, UndergroundBackground, SurfaceBackground, Water and others",
+  "kind": "loader",
+  "status": "partial",
+  "runtime_enabled": false,
+  "base_sha": "5a18a67899c1f6ee88a34097be3adb6e7877edd4",
+  "head_sha": "a4f5b255c5b2274deb258604e5a3956de58f1c0c",
+  "current_pr_head_when_fetched": "a4f5b255c5b2274deb258604e5a3956de58f1c0c",
+  "file_count": 208,
+  "excluded_paths": 22,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-world-update-loader.yml",
+      "path": "integration/ci-reference/check-csharp-world-update-loader.yml",
+      "sha256": "b6b682bb0493826f5791d40ab4ecdb8437b77350668b841640df8264e28ab71b",
+      "bytes": 2594
+    },
+    {
+      "original": ".github/workflows/check-ready-prs-source-only.yml",
+      "path": "integration/ci-reference/check-ready-prs-source-only.yml",
+      "sha256": "3808dc85c658b3b4963bbfeff8363286ad083c0b28b00ceeb54e61dcfc52b16b",
+      "bytes": 11958
+    },
+    {
+      "original": ".github/workflows/csharp-gore-native-link-no-apk.yml",
+      "path": "integration/ci-reference/csharp-gore-native-link-no-apk.yml",
+      "sha256": "fee24ad4ea95a2521f4c624bca4fdce39e1cef41b225b8b34f2e90c1bfd9b198",
+      "bytes": 2614
+    },
+    {
+      "original": ".github/workflows/csharp-gore-source-check.yml",
+      "path": "integration/ci-reference/csharp-gore-source-check.yml",
+      "sha256": "527753a687d409773541574f54c08b90988f406be697d41e40aeec3e5db59878",
+      "bytes": 2424
+    },
+    {
+      "original": ".github/workflows/stage-csharp-gore-sdk-no-apk.yml",
+      "path": "integration/ci-reference/stage-csharp-gore-sdk-no-apk.yml",
+      "sha256": "d080f43a5d9f2ccd253ffbe2a7011590d0b42c8c1dfc83a4956c94ee9bd0c54e",
+      "bytes": 3687
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/BackgroundAssetLifetime.cpp",
+      "path": "src/native/host-patches/content/backgrounds/BackgroundAssetLifetime.cpp",
+      "sha256": "962a84d0990528876ac324bf39930c0851548bd3030b4a5aca115aeda3cf1db6",
+      "bytes": 2834
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/BackgroundAssetLifetime.h",
+      "path": "src/native/host-patches/content/backgrounds/BackgroundAssetLifetime.h",
+      "sha256": "3086b3c46fffd4ee93a7cfc8553fe6bcf756c52947f45e7b6de2410d7d56de52",
+      "bytes": 524
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/BackgroundTextures.cpp",
+      "path": "src/native/host-patches/content/backgrounds/BackgroundTextures.cpp",
+      "sha256": "b6a6dc7900473d9d9b5bc9a07954d3c5dc2a13fba1c2570f1e4a1e3c4a9e419e",
+      "bytes": 16022
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/BackgroundTextures.h",
+      "path": "src/native/host-patches/content/backgrounds/BackgroundTextures.h",
+      "sha256": "b6f58c182a289ffeac16bbef9afaf976446c85ac048a56a0bd6272f5ae6a8032",
+      "bytes": 892
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/SurfaceBackgrounds.cpp",
+      "path": "src/native/host-patches/content/backgrounds/SurfaceBackgrounds.cpp",
+      "sha256": "f7a6b5b3f35a79ce6742b4e8f9a2659d62d2afa0873a37dd5ffab2275a10749a",
+      "bytes": 37677
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/SurfaceBackgrounds.h",
+      "path": "src/native/host-patches/content/backgrounds/SurfaceBackgrounds.h",
+      "sha256": "1e2a9da2d18fec9de43e7551141c09b7fce8aa2595db664e926e0180d71c2704",
+      "bytes": 1372
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/SurfaceGeometry.cpp",
+      "path": "src/native/host-patches/content/backgrounds/SurfaceGeometry.cpp",
+      "sha256": "4a01d311b969232171cc84267f8ca7aa89a1b63f8f059f680798bc891627c85f",
+      "bytes": 4609
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/SurfaceGeometry.h",
+      "path": "src/native/host-patches/content/backgrounds/SurfaceGeometry.h",
+      "sha256": "bfda32e445629270e2745a9d03d3fb490ee8ba4e800be96a5047543bf1eec30b",
+      "bytes": 1275
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/SurfaceProperties.h",
+      "path": "src/native/host-patches/content/backgrounds/SurfaceProperties.h",
+      "sha256": "1728475c78174097850cdf675c11e8fde066aa6f19393bafa96401bda1118855",
+      "bytes": 5711
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/SurfaceSpriteBatch.cpp",
+      "path": "src/native/host-patches/content/backgrounds/SurfaceSpriteBatch.cpp",
+      "sha256": "d3e2cfe28115be2fe94889b073e0700f07b53d529eed93b45d018f0415d61dca",
+      "bytes": 13616
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/SurfaceSpriteBatch.h",
+      "path": "src/native/host-patches/content/backgrounds/SurfaceSpriteBatch.h",
+      "sha256": "48002676d836c6bf9e3e86d63a9a8ed7f68d0b0fa3f27e9959bff4b39f9c2985",
+      "bytes": 967
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/SurfaceTables.cpp",
+      "path": "src/native/host-patches/content/backgrounds/SurfaceTables.cpp",
+      "sha256": "b3675df8b7a357da911e0238352d6d58a05b66a13167159deb1f81a5caabd07f",
+      "bytes": 314
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/SurfaceTables.h",
+      "path": "src/native/host-patches/content/backgrounds/SurfaceTables.h",
+      "sha256": "e7d82a4f18203d7d8f748da48ee0f41af6d8a45fa4a42d5c489bdc231feb47a3",
+      "bytes": 552
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/UndergroundBackgrounds.cpp",
+      "path": "src/native/host-patches/content/backgrounds/UndergroundBackgrounds.cpp",
+      "sha256": "18b639724dd6c45894676d72e907e9fd6f452b5f01dbfbf0634fcef002b3107b",
+      "bytes": 21020
+    },
+    {
+      "original": "app/src/main/cpp/content/backgrounds/UndergroundBackgrounds.h",
+      "path": "src/native/host-patches/content/backgrounds/UndergroundBackgrounds.h",
+      "sha256": "79b2b3c79089cd8d9a17217517c61df98d76dd4d96c9478574c1f409b2113283",
+      "bytes": 825
+    },
+    {
+      "original": "app/src/main/cpp/content/systems/SystemContracts.h",
+      "path": "src/native/host-patches/content/systems/SystemContracts.h",
+      "sha256": "af9ea839de755e5bb590f83e5ec5e21d55173968afb4d118553a8ba4c0eb5bdb",
+      "bytes": 4989
+    },
+    {
+      "original": "app/src/main/cpp/content/systems/SystemTimeRates.cpp",
+      "path": "src/native/host-patches/content/systems/SystemTimeRates.cpp",
+      "sha256": "43e7e66202ebae6d5797f0afa83152ca40ced8f75c3ef76337ff93e78de71a95",
+      "bytes": 5546
+    },
+    {
+      "original": "app/src/main/cpp/content/systems/SystemTimeRates.h",
+      "path": "src/native/host-patches/content/systems/SystemTimeRates.h",
+      "sha256": "6c7d4d62bbab1738d9a0d7b61ef9977de12e33e7577816ab8fcf1a3f1ae80a5c",
+      "bytes": 886
+    },
+    {
+      "original": "app/src/main/cpp/content/tiles/ModWater.cpp",
+      "path": "src/native/host-patches/content/tiles/ModWater.cpp",
+      "sha256": "b1908f2a75d51c92ae46323bc95290ea8f23419da96abfcb061407be74e59139",
+      "bytes": 9052
+    },
+    {
+      "original": "app/src/main/cpp/content/tiles/ModWater.h",
+      "path": "src/native/host-patches/content/tiles/ModWater.h",
+      "sha256": "01c4929a4d325acf239064813e2f07559c3cbae6e3f0fdae7d231cb30ecdf815",
+      "bytes": 1823
+    },
+    {
+      "original": "app/src/main/cpp/content/tiles/WaterAlphaTables.cpp",
+      "path": "src/native/host-patches/content/tiles/WaterAlphaTables.cpp",
+      "sha256": "40b64bb3b05d36012990fa6fd19da5c1a32f0d740793ed048cdf5840eb329d6e",
+      "bytes": 3116
+    },
+    {
+      "original": "app/src/main/cpp/content/tiles/WaterAlphaTables.h",
+      "path": "src/native/host-patches/content/tiles/WaterAlphaTables.h",
+      "sha256": "0d4bb873672bfe73751ba226dc889458962e2e00cd751fe45e22c7ef6803f358",
+      "bytes": 344
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "899713443a8b70a30bfbd14528d74e72c41a4dbdf303c9a91cbaf6d4c734e390",
+      "bytes": 85110
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/BackgroundTextureWire.h",
+      "path": "src/native/experiments/csharp/BackgroundTextureWire.h",
+      "sha256": "9295e463ec5b220d0fcd87be561b6ac328599279ebb9a38571b69868648f6752",
+      "bytes": 1496
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedGoreCatalog.h",
+      "path": "src/native/experiments/csharp/ManagedGoreCatalog.h",
+      "sha256": "ff605475f97951bf6f7884d82c08ee4f5fa7a604ea0a207e378d7239a5d45814",
+      "bytes": 3902
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedGoreDiscovery.cpp",
+      "path": "src/native/experiments/csharp/ManagedGoreDiscovery.cpp",
+      "sha256": "33cb42fa1bc2507db2792d9bec7ad2842a0360875e2e3df17755b27c094d4af2",
+      "bytes": 11025
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedGoreDiscovery.h",
+      "path": "src/native/experiments/csharp/ManagedGoreDiscovery.h",
+      "sha256": "47c29496ccfdd9b195b873c182478427ea1af408d7c8cadea211861ce7ca3f13",
+      "bytes": 853
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedGoreRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedGoreRuntime.cpp",
+      "sha256": "7ba1ba54a1fa1da7f7ecd70ec559cac89ed4332859363560477cbec92f4ed0a5",
+      "bytes": 34640
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedGoreRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedGoreRuntime.h",
+      "sha256": "5a7f781720b19086ad11084b75d997494c63cf25dca83c506bee699cdf308c87",
+      "bytes": 730
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.cpp",
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "sha256": "bbcfbdaec26d8d8d6431f761f83fbcb822327de15afad7881d000dba912cbd4e",
+      "bytes": 265136
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedRuntime.h",
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "sha256": "581b009bab2e7b95dcf6d271d1e234040524c076ded3baef53b4d1ebe4a4b6b5",
+      "bytes": 19001
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedSourceClassCount.h",
+      "path": "src/native/experiments/csharp/ManagedSourceClassCount.h",
+      "sha256": "2ab927f0af9a6c8c628dda3301042ad23b296764a0df6b8f6eeb5d5f38e3250a",
+      "bytes": 2026
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedSurfaceBackgrounds.cpp",
+      "path": "src/native/experiments/csharp/ManagedSurfaceBackgrounds.cpp",
+      "sha256": "4324c2e066052b0ab85308f1583439fa63b37230ef6ef8e4c09f221a19e7233d",
+      "bytes": 10744
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedSurfaceBackgrounds.h",
+      "path": "src/native/experiments/csharp/ManagedSurfaceBackgrounds.h",
+      "sha256": "d2ba099272c6f05abee95c6a5a550cac016cb0621aebad55d9afa0322bb8704e",
+      "bytes": 123
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedUndergroundBackgrounds.cpp",
+      "path": "src/native/experiments/csharp/ManagedUndergroundBackgrounds.cpp",
+      "sha256": "4520e6b135bfdc6ea5eac94f8d642b7b25bbf7841749a27b0ac479b31b6129fa",
+      "bytes": 4241
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/ManagedUndergroundBackgrounds.h",
+      "path": "src/native/experiments/csharp/ManagedUndergroundBackgrounds.h",
+      "sha256": "1ab807403dba0b04e6d6f4e59b9dbb1420f247f4e85f42e6e1fab6a49735e645",
+      "bytes": 131
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/MonoWorkerJni.cpp",
+      "path": "src/native/experiments/csharp/MonoWorkerJni.cpp",
+      "sha256": "e2d9431527e8d3e1d322b826f7955e43136d97c766cad264205122d35ed2af84",
+      "bytes": 4465
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceContentIdentity.h",
+      "path": "src/native/experiments/csharp/SourceContentIdentity.h",
+      "sha256": "518f81516c248b0e6b965d1fb18fb0a85c5883923a02d5c0277bca5e0071f7a2",
+      "bytes": 2027
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.cpp",
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "sha256": "4943d4d048c492bcb4edfa35c91381cc6d2457772ff90584c9cd265ead8900e1",
+      "bytes": 90746
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceLoader.h",
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "sha256": "f3066e4a326d75bce9d88a73f7ef9eddfffffc047eebb3b9b8209c393b6c9624",
+      "bytes": 1439
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SourceParser.cpp",
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "sha256": "f065d0bac532c399154efae9e3275b252e5529294d8aab16e59860780c8bdb36",
+      "bytes": 25397
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SystemStageContracts.h",
+      "path": "src/native/experiments/csharp/SystemStageContracts.h",
+      "sha256": "ec77d5d55e46d3e29b0a22dbd07b96c05ff97512c25fb4b1957e6e24d2660b35",
+      "bytes": 277
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/SystemTimeRateMailbox.h",
+      "path": "src/native/experiments/csharp/SystemTimeRateMailbox.h",
+      "sha256": "581e123edc470b9f7d36b5254093dcbf12cd0779c146bfa02b38d24cea8c4647",
+      "bytes": 1804
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalHooks.cpp",
+      "path": "src/native/experiments/csharp/UniversalHooks.cpp",
+      "sha256": "db9ebc15997bf47b2611d4106348e8a98d50830494cafeb2e45fdaed4efa05b2",
+      "bytes": 29426
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalHooks.h",
+      "path": "src/native/experiments/csharp/UniversalHooks.h",
+      "sha256": "fdbf834e8fd1e921b90373e37571d93a69b7beb83c3ff5430f40fed36753d6cf",
+      "bytes": 748
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalSystemStages.cpp",
+      "path": "src/native/experiments/csharp/UniversalSystemStages.cpp",
+      "sha256": "46fe2052eb311de955e22478726d7d107d7505ff89ee51db652bd805ef6b9421",
+      "bytes": 17933
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/UniversalSystemStages.h",
+      "path": "src/native/experiments/csharp/UniversalSystemStages.h",
+      "sha256": "ff52c37f7106480cf653b6e43dec9425f8374e8e9a8b589ee0cfa95ebef5e18f",
+      "bytes": 552
+    },
+    {
+      "original": "app/src/main/cpp/hook/CodePatchTransaction.cpp",
+      "path": "src/native/host-interfaces/hook/CodePatchTransaction.cpp",
+      "sha256": "0051200fb9857cf9c4a72077cd9851f01c49eae979dacc235225b1c5e2372a5c",
+      "bytes": 8723
+    },
+    {
+      "original": "app/src/main/cpp/hook/CodePatchTransaction.h",
+      "path": "src/native/host-interfaces/hook/CodePatchTransaction.h",
+      "sha256": "f87a552e9f7f5b3d8bfe930026fb4b253a10751e622d4cf2058bbdbb2c9cfe4c",
+      "bytes": 1109
+    },
+    {
+      "original": "app/src/main/cpp/hook/HookManager.cpp",
+      "path": "src/native/host-interfaces/hook/HookManager.cpp",
+      "sha256": "de8f631731d9b42ba929f95dab1150540ea96178492f0b3c4a4de64953d30e6a",
+      "bytes": 4601
+    },
+    {
+      "original": "app/src/main/cpp/hook/HookManager.h",
+      "path": "src/native/host-interfaces/hook/HookManager.h",
+      "sha256": "82795063e832f7e3e26fb65065bf46352ca7d8c566a40f97f24bef0be79a886f",
+      "bytes": 1139
+    },
+    {
+      "original": "app/src/main/cpp/il2cpp/CheckedFieldWrite.h",
+      "path": "src/native/host-interfaces/il2cpp/CheckedFieldWrite.h",
+      "sha256": "875f124ea7f52215cfc827f0765727a7d2a9f7958d1335ce21a9b898f4832b99",
+      "bytes": 3623
+    },
+    {
+      "original": "app/src/main/cpp/il2cpp/CheckedProperty.h",
+      "path": "src/native/host-interfaces/il2cpp/CheckedProperty.h",
+      "sha256": "1ee436835fd0268607b673ac1937a93ac144b7e3f49229bc76f58f2befec34a3",
+      "bytes": 10231
+    },
+    {
+      "original": "app/src/main/cpp/il2cpp/NullableLayout.h",
+      "path": "src/native/host-interfaces/il2cpp/NullableLayout.h",
+      "sha256": "e8b02741098fd7f449b44e0441e462859dc3244acd695e0b0603f5c60eabf258",
+      "bytes": 5845
+    },
+    {
+      "original": "app/src/main/cpp/il2cpp/PrimitiveArrayTransaction.h",
+      "path": "src/native/host-interfaces/il2cpp/PrimitiveArrayTransaction.h",
+      "sha256": "8f6576eaba392974a4d9f8d984e9c4ec6e19832b3c6f11169b6d48c53c1f7631",
+      "bytes": 6287
+    },
+    {
+      "original": "app/src/main/cpp/menu/Cheats.cpp",
+      "path": "src/native/host-patches/menu/Cheats.cpp",
+      "sha256": "00e9ad00bd2abeee9d06771ce4b3a3e5406b8cfec2deade179f27d904fda9c95",
+      "bytes": 54381
+    },
+    {
+      "original": "app/src/main/cpp/script/bridge/Bindings.cpp",
+      "path": "src/native/host-patches/script/bridge/Bindings.cpp",
+      "sha256": "d44c509ee6aeedd06eb3a2244a18c65419c051ef51ac898f1bbcdcc602bb1c94",
+      "bytes": 88981
+    },
+    {
+      "original": "docs/csharp-background-textures.md",
+      "path": "docs/reference/csharp-background-textures.md",
+      "sha256": "e635b1974f978074b98adb98e9664ed68ecb6ed9300c467f3b948fa4e81a6bb4",
+      "bytes": 4490
+    },
+    {
+      "original": "docs/csharp-completion-plan.md",
+      "path": "docs/reference/csharp-completion-plan.md",
+      "sha256": "681ec8fff3222577e3358094cef50037381dd1c0cd147ec11252139be57f3c0b",
+      "bytes": 30738
+    },
+    {
+      "original": "docs/csharp-independence-audit.md",
+      "path": "docs/reference/csharp-independence-audit.md",
+      "sha256": "2d531e2d28bc1db8ffd7b80f2161e83a23f8f7e8ae2be6cd5bccc0e10fcbc322",
+      "bytes": 21030
+    },
+    {
+      "original": "docs/csharp-loader-batches.md",
+      "path": "docs/reference/csharp-loader-batches.md",
+      "sha256": "9d884acb7a586a2ea6cb54c3660275486428f938b73a219b630e1bbf2b33f56e",
+      "bytes": 28279
+    },
+    {
+      "original": "docs/csharp-loader-completion-15.json",
+      "path": "docs/reference/csharp-loader-completion-15.json",
+      "sha256": "61741ed1c1edbe382703b0cb43217a9366c9aedce85d4d2fb9fa3e73b929ef69",
+      "bytes": 39292
+    },
+    {
+      "original": "docs/csharp-loader-integration-20261021.md",
+      "path": "docs/reference/csharp-loader-integration-20261021.md",
+      "sha256": "eea15d96d574c7c65eafe81811075ab6ca06b0152ae7611be48d2cd8c565492a",
+      "bytes": 29680
+    },
+    {
+      "original": "docs/csharp-surface-background-audit.md",
+      "path": "docs/reference/csharp-surface-background-audit.md",
+      "sha256": "8a6dce2384f5fc9052f2f6e81bf5b37a276310289d5cfd70dcb9a51adc96094b",
+      "bytes": 5486
+    },
+    {
+      "original": "docs/csharp-surface-backgrounds.md",
+      "path": "docs/reference/csharp-surface-backgrounds.md",
+      "sha256": "681d5fd421b3ad9e67473f8ea1eafc61fb8bbf9e6e8fd888c5a67cbdc57bf846",
+      "bytes": 9063
+    },
+    {
+      "original": "docs/csharp-surface-native-components.md",
+      "path": "docs/reference/csharp-surface-native-components.md",
+      "sha256": "9b67ffc97b1d4de1a8d7075b6f218be9e399cebeb52ea2e172644eb4cc7bf79f",
+      "bytes": 8401
+    },
+    {
+      "original": "docs/csharp-surface-native-runtime.md",
+      "path": "docs/reference/csharp-surface-native-runtime.md",
+      "sha256": "b13197747a9633c2e40bf72c7c12b8f411dc25d70fc15c82dd4071e4b4898add",
+      "bytes": 7926
+    },
+    {
+      "original": "docs/csharp-underground-backgrounds.md",
+      "path": "docs/reference/csharp-underground-backgrounds.md",
+      "sha256": "5337a5fb83ea3273bc2559dbe55d7144398235f7191b24b0339d774a3d459019",
+      "bytes": 7391
+    },
+    {
+      "original": "docs/csharp-water-native-safety.md",
+      "path": "docs/reference/csharp-water-native-safety.md",
+      "sha256": "bafcd318adc5bed771047c64a4d891edf9e00d43ca1ca071b36405794ea03250",
+      "bytes": 6192
+    },
+    {
+      "original": "docs/csharp-water-rendering-audit.md",
+      "path": "docs/reference/csharp-water-rendering-audit.md",
+      "sha256": "5c2dfc7807cb34d0d8bf55650ebdaf7a3360ed30f9b1939e1e8460c10b936e62",
+      "bytes": 6297
+    },
+    {
+      "original": "docs/csharp/GORE_LOADER_IMPLEMENTATION.md",
+      "path": "docs/reference/csharp/GORE_LOADER_IMPLEMENTATION.md",
+      "sha256": "12bbf8c86d24752530bfd197efefd3e2b3a3ea1f94d32c795c0404ed598ad81f",
+      "bytes": 11560
+    },
+    {
+      "original": "docs/generated/example_completion/matrix.json",
+      "path": "docs/reference/generated/example_completion/matrix.json",
+      "sha256": "ef65c50af88a8a98a21c45e3f9cb68f5edfbe56d862f927eb1cad7191bc747b4",
+      "bytes": 654310
+    },
+    {
+      "original": "docs/generated/example_completion/matrix.md",
+      "path": "docs/reference/generated/example_completion/matrix.md",
+      "sha256": "2c208422b786eecf85ffd2e24fd68641cf76d49f7720f68db1a0bf77cdb44ea8",
+      "bytes": 52681
+    },
+    {
+      "original": "docs/generated/examplemod-1.9.0-upload-inventory.json",
+      "path": "docs/reference/generated/examplemod-1.9.0-upload-inventory.json",
+      "sha256": "a952b31f08a98ad4b74ae471add4caf0f58b24ee87899f38012c803e2e7b75b7",
+      "bytes": 37803
+    },
+    {
+      "original": "docs/generated/sdk_public_reference.json",
+      "path": "docs/reference/generated/sdk_public_reference.json",
+      "sha256": "a37a455de9fa2f324c56504566371d2b752b8ec09adac1228adaa5ebeff915b0",
+      "bytes": 141132
+    },
+    {
+      "original": "docs/generated/sdk_public_reference.md",
+      "path": "docs/reference/generated/sdk_public_reference.md",
+      "sha256": "524eed0c4cc962ff951e649dbefbf6f9c25b2311c44956af42b2339143d06bd4",
+      "bytes": 81747
+    },
+    {
+      "original": "docs/validation/csharp-backgrounds-2026-10-22.json",
+      "path": "docs/reference/validation/csharp-backgrounds-2026-10-22.json",
+      "sha256": "f679a57f00f0cf30e911b6646f006aac338c3cae2ef9d0fb123da966ff67d25e",
+      "bytes": 3896
+    },
+    {
+      "original": "docs/validation/csharp-loader-integration-20261021.json",
+      "path": "docs/reference/validation/csharp-loader-integration-20261021.json",
+      "sha256": "268ce1f8f1b5bd1629b18ec6927f625f0b60248775c6bae308324e742ef4ff2c",
+      "bytes": 1661
+    },
+    {
+      "original": "docs/validation/csharp-surface-components-2026-10-22.json",
+      "path": "docs/reference/validation/csharp-surface-components-2026-10-22.json",
+      "sha256": "3cb31e36fca16fef14397ce900912f5166afe64a745175bfe750eb3b4a401850",
+      "bytes": 5035
+    },
+    {
+      "original": "docs/validation/csharp-surface-managed-bridges-2026-10-22.json",
+      "path": "docs/reference/validation/csharp-surface-managed-bridges-2026-10-22.json",
+      "sha256": "199ae131bf713fdab49c91365408ed9823507c4f1a4c49a2471424192c662706",
+      "bytes": 7298
+    },
+    {
+      "original": "docs/validation/csharp-surface-native-hooks-2026-10-22.json",
+      "path": "docs/reference/validation/csharp-surface-native-hooks-2026-10-22.json",
+      "sha256": "ad1ff935ba077f19ed7d4d381762398910345f7e2420daf82464b877250965dc",
+      "bytes": 5571
+    },
+    {
+      "original": "docs/validation/csharp-water-native-safety-2026-10-22.json",
+      "path": "docs/reference/validation/csharp-water-native-safety-2026-10-22.json",
+      "sha256": "d6a02f9b08a017f7933802a20af7e5dd7877d5b1ea9a46a1bc4d5cb26f7893ef",
+      "bytes": 16214
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyBackgroundTexture.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyBackgroundTexture.cs",
+      "sha256": "5a22b72886fc6c10fee820e0dd5c31b269c1089fe0471d90c81c051e61738589",
+      "bytes": 3795
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyCommand.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyCommand.cs",
+      "sha256": "fa6b634f274cb2a709d01edc78c177a10647d1a64f837a0f1283158dd327fad0",
+      "bytes": 15470
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyContentDeclaration.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyContentDeclaration.cs",
+      "sha256": "8aa9e93528de45161fc064ea522c4ae991ad7ddf828717b68e60fda6a852e698",
+      "bytes": 2464
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "sha256": "9256c0ff9c43d546982e9eadfa72839ef9ae5f49bcc6c882d3ca27c1e6ac8aab",
+      "bytes": 34355
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyGore.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyGore.cs",
+      "sha256": "b19c8e87f242df3ee9b3f8c00d2abdb39e82452aa5649e4568b2d2045d4eab3c",
+      "bytes": 6916
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "sha256": "562be0d000561a5679c476d6b327170014f907e8fe02ea497813b56046a4487c",
+      "bytes": 14876
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySurfaceBackgroundStyle.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySurfaceBackgroundStyle.cs",
+      "sha256": "989ef8ed30a91ab499f44e3de68fd7f508d7ad9581e2331b08ea32468b35ca19",
+      "bytes": 6537
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySurfaceDrawContext.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySurfaceDrawContext.cs",
+      "sha256": "689d937a48f19b54ee2a372b3da15a2a5282eaa528806894aeaa791c5d7021aa",
+      "bytes": 3432
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySurfaceRegistry.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySurfaceRegistry.cs",
+      "sha256": "81ddf90f45d4582cad233213ae6e0792fe3612153e63e9099899ef70091698a7",
+      "bytes": 6758
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyUndergroundBackgroundStyle.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyUndergroundBackgroundStyle.cs",
+      "sha256": "24ce9990bd6d62e49a2712ae1b176b4465419f6a4d3cc99e1233a422f0ade3d2",
+      "bytes": 8835
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "sha256": "d2abcb98e3ba9964c3615027219a4f7a6c4beb5e7af14d4e30d1b7585d4bab23",
+      "bytes": 36951
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyWorldUpdateLoader.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyWorldUpdateLoader.cs",
+      "sha256": "b02cd79d8bc3fd8620290aa5db460ca81f0c58a3f42d961563203a3cb8094b2c",
+      "bytes": 21944
+    },
+    {
+      "original": "experiments/csharp/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "sha256": "135aebb90a48b016d50a6d17dc716f2a1b149c46871572d4ea191f0bc977bfe0",
+      "bytes": 82009
+    },
+    {
+      "original": "experiments/csharp/BunnySourceCompiler/Compiler.cs",
+      "path": "src/managed/BunnySourceCompiler/Compiler.cs",
+      "sha256": "bd8e5d2ea4f16ef8252c0f557d90fd56098624a778d7ae9c4b5c33b11a569cf8",
+      "bytes": 21197
+    },
+    {
+      "original": "experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "7dc7941f69c7767b19b050aa5c0d8358d538b1f1d7ac73b2fea071680562b0fa",
+      "bytes": 5754
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceClose.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceClose.png",
+      "sha256": "ebd3908386964d71c389eaed2e154416e4bee2f332f99bdda7d41cffe99a3d99",
+      "bytes": 16023
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceFar.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceFar.png",
+      "sha256": "78579e82472bbfc42435bcd65301cb5ef1765fb25ce09a289569855df3e35709",
+      "bytes": 11780
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid0.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid0.png",
+      "sha256": "0e76cb90fe3ccf2ce3c87fde7a3a9ed7f810992338a6d2fe2c3d7be396761c83",
+      "bytes": 25707
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid1.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid1.png",
+      "sha256": "1e09641e19174a45bb063c469cbe29cba8748e382bb20ba0c04af001ed7da6b3",
+      "bytes": 25726
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid2.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid2.png",
+      "sha256": "311601ece48f3eb05cd9d1251806289ba283a9d8249f40bb59e010e4f1930650",
+      "bytes": 25775
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid3.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeSurfaceMid3.png",
+      "sha256": "1d81159043c79d5d827995cd839fcf5fd8d839742fab193271de6c5bf5ed24b3",
+      "bytes": 25717
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeUnderground0.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeUnderground0.png",
+      "sha256": "1c7d1293e7e4e463e9746be18ebb1104c678887e4cea470e9d54ce9c144d5493",
+      "bytes": 500
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeUnderground1.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeUnderground1.png",
+      "sha256": "d88ae010cf9d505d5e7ce4f986a64f25b41b76ea7a0eea69e7bfbd6c20b50b0d",
+      "bytes": 1165
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeUnderground2.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeUnderground2.png",
+      "sha256": "2fcf77513365f35cafef4f1afc5382a2477ea6d3c68e017a58c10695a7e166fc",
+      "bytes": 551
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeUnderground3.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Assets/Textures/Backgrounds/ExampleBiomeUnderground3.png",
+      "sha256": "f517593f05e8af5e7d2a017de6201cd5ba22ea73c619df384ff416af53900c0f",
+      "bytes": 1930
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Common/Backgrounds/ExampleBackgroundTexture.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Backgrounds/ExampleBackgroundTexture.cs",
+      "sha256": "625ff98aad5efe07020e179ae85d0a6dc1726c84f6b717858d0703cfec898bda",
+      "bytes": 672
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleBackgroundCommand.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleBackgroundCommand.cs",
+      "sha256": "2a0e81e02b141577eafa75a5fa871883a81d15f2ff4253b441d1ff7405b11691",
+      "bytes": 1376
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleSurfaceBackgroundCommand.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleSurfaceBackgroundCommand.cs",
+      "sha256": "c9bc63a4e5f01f537ccf6bc915cfa92d1b1ebd5bab8d2e3e9a8f16f7a43de470",
+      "bytes": 1303
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleUndergroundBackgroundCommand.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Common/Commands/ExampleUndergroundBackgroundCommand.cs",
+      "sha256": "1ef8cf6afd7d9c20842925a9c6868ec8197ab490ce242ecf0b87a01e4061d1c3",
+      "bytes": 1483
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Biomes/ExampleSurfaceBackgroundStyle.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Biomes/ExampleSurfaceBackgroundStyle.cs",
+      "sha256": "c3dfffbd649f88915d22fe31ac902dca8deec02be511a0c49a506f49b2d623a3",
+      "bytes": 2470
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Biomes/ExampleUndergroundBackgroundStyle.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Biomes/ExampleUndergroundBackgroundStyle.cs",
+      "sha256": "1b6caf972906fab8a7d1176ab989cb6b14a752c970badd752b40d6da6e7d2f6e",
+      "bytes": 1154
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleBoss_GoreBack.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleBoss_GoreBack.png",
+      "sha256": "750e30e8bc805461cd1fcab333fbb5c3e7456cb7a6aa648df11c410097d33ba2",
+      "bytes": 826
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleBoss_GoreFront.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleBoss_GoreFront.png",
+      "sha256": "88539a306ad15004cae715c3005dde108cd059eb44c6ea5b8980595c94b0857f",
+      "bytes": 1193
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleDroplet.png",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Gores/ExampleDroplet.png",
+      "sha256": "4d884ceae0f84e55205037d84853416d216b9030419641f906f9f7da4f2289b0",
+      "bytes": 639
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/NPCs/ExampleGoreSlime.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/NPCs/ExampleGoreSlime.cs",
+      "sha256": "b5920a80a698fcdaaa9bc0f7876ef7ec9c00b08e407b0ee5f0a34cf2ebbb3419",
+      "bytes": 2761
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleDustAndInvasionSystem.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleDustAndInvasionSystem.cs",
+      "sha256": "194ffe55dfefdad08675c27ff8b417374343e661d31bac0fb407eef0cce19180",
+      "bytes": 1658
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleTimeRateSystem.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleTimeRateSystem.cs",
+      "sha256": "65f60b0563470551281b0450b6f0ed5ccd86b5817c3025b3623b3d1b3be016dc",
+      "bytes": 1444
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleWorldUpdateCounter.cs",
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Systems/ExampleWorldUpdateCounter.cs",
+      "sha256": "1eafb6946121b536c4edfbde8cd320d7ab7dcb70570b1d209ebb19c6971ecf0c",
+      "bytes": 1448
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "sha256": "ef65c50af88a8a98a21c45e3f9cb68f5edfbe56d862f927eb1cad7191bc747b4",
+      "bytes": 654310
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.md",
+      "sha256": "2c208422b786eecf85ffd2e24fd68641cf76d49f7720f68db1a0bf77cdb44ea8",
+      "bytes": 52681
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Documentation/SURFACE_BACKGROUNDS.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/SURFACE_BACKGROUNDS.md",
+      "sha256": "681d5fd421b3ad9e67473f8ea1eafc61fb8bbf9e6e8fd888c5a67cbdc57bf846",
+      "bytes": 9063
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/content/Documentation/SYSTEM_UPDATE_LOADER.md",
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/SYSTEM_UPDATE_LOADER.md",
+      "sha256": "bf27756d94de00d144e187e2a8a085a6d1197025cc3e265cb2e34f97c8e53fe0",
+      "bytes": 9357
+    },
+    {
+      "original": "samples/ExampleModCSharp/Playable/manifest.json",
+      "path": "samples/ExampleModCSharp/Playable/manifest.json",
+      "sha256": "422ce1560b6a55c8c87617df7a3d53de68dd7299d17898015dc0f4cf67d0c302",
+      "bytes": 535
+    },
+    {
+      "original": "tests/Directory.Build.props",
+      "path": "tests/native-and-managed/Directory.Build.props",
+      "sha256": "ac63ee377d09ae66003dc7a8b7ab9847b2ed04d9ff7099e6cb73f884cc922d02",
+      "bytes": 384
+    },
+    {
+      "original": "tests/backgrounds/Backgrounds.csproj",
+      "path": "tests/native-and-managed/backgrounds/Backgrounds.csproj",
+      "sha256": "97a9c55f8c2fee5e45f2f4c3994e2bd1eca3ef56f0a42bae5f300d45739a7038",
+      "bytes": 622
+    },
+    {
+      "original": "tests/backgrounds/Program.cs",
+      "path": "tests/native-and-managed/backgrounds/Program.cs",
+      "sha256": "f019be076025ce6d1dea188494dcdd9a27a64c98fa42881c6f6b10c94bf53ab3",
+      "bytes": 3249
+    },
+    {
+      "original": "tests/backgrounds/native_background_test.cpp",
+      "path": "tests/native-and-managed/backgrounds/native_background_test.cpp",
+      "sha256": "534fae95a00241c5f432a5a63de7392eb46be5dcfaff781e12c84b7711c21a3e",
+      "bytes": 9957
+    },
+    {
+      "original": "tests/backgrounds/run.sh",
+      "path": "tests/native-and-managed/backgrounds/run.sh",
+      "sha256": "94e997d9b025ed70113c91d90a292e3fa1dd5ccd33aad52b0133c4ede95107e6",
+      "bytes": 910
+    },
+    {
+      "original": "tests/backgrounds/shared_background_js_test.cjs",
+      "path": "tests/native-and-managed/backgrounds/shared_background_js_test.cjs",
+      "sha256": "8cec0f35cbe754b1c85937985d4b6ee2ece188911d9d017fc372edae52c06d10",
+      "bytes": 2013
+    },
+    {
+      "original": "tests/basic_items/Program.cs",
+      "path": "tests/native-and-managed/basic_items/Program.cs",
+      "sha256": "f9565ab29198a6ffa088ad09fb9eb73a3f8b3c11f7f26dc740ad0fddec62f382",
+      "bytes": 51040
+    },
+    {
+      "original": "tests/basic_items/basic_source_parser_test.cpp",
+      "path": "tests/native-and-managed/basic_items/basic_source_parser_test.cpp",
+      "sha256": "0415d7d95fbe6a6950a0bfc3f2b307e720b67358cb563975db30e5c775453b10",
+      "bytes": 3304
+    },
+    {
+      "original": "tests/basic_items/check_csharp_tooltip_refresh.py",
+      "path": "tests/native-and-managed/basic_items/check_csharp_tooltip_refresh.py",
+      "sha256": "5b90c47476515445b85d63cb01b620b1ac9cc22f02931257996c0a00035e0387",
+      "bytes": 6048
+    },
+    {
+      "original": "tests/basic_items/check_full_wire.py",
+      "path": "tests/native-and-managed/basic_items/check_full_wire.py",
+      "sha256": "c8e67f3efb3d8ea53e1ef76cde27415a41b78724ef8b4959f01d225146ce7532",
+      "bytes": 3090
+    },
+    {
+      "original": "tests/commands/Program.cs",
+      "path": "tests/native-and-managed/commands/Program.cs",
+      "sha256": "2a86c2192fec784a70934fd04491f2bb3fffa069cdb9f73010d970b87d3ca23e",
+      "bytes": 9773
+    },
+    {
+      "original": "tests/csharp_gore_catalog_test.cpp",
+      "path": "tests/native-and-managed/csharp_gore_catalog_test.cpp",
+      "sha256": "3e1e157380c517e15018623d281d0bda32c5bec18fd33a7e463d05924407519b",
+      "bytes": 1648
+    },
+    {
+      "original": "tests/csharp_gore_discovery_test.cpp",
+      "path": "tests/native-and-managed/csharp_gore_discovery_test.cpp",
+      "sha256": "c80cbe389a66d7f6b72bfdc83d705c432c738780d3ffbc57b7b3cae619621ff5",
+      "bytes": 5360
+    },
+    {
+      "original": "tests/csharp_gore_examples/GoreExamples.csproj",
+      "path": "tests/native-and-managed/csharp_gore_examples/GoreExamples.csproj",
+      "sha256": "0f3b86cfa11f534b5cb27100290ecdd8b917420064f365eb85fc68bd6293314a",
+      "bytes": 503
+    },
+    {
+      "original": "tests/entity_source/Program.cs",
+      "path": "tests/native-and-managed/entity_source/Program.cs",
+      "sha256": "298927d844a2581c26093aa718dbee3f918329f10a4eaf80ca034ef302088210",
+      "bytes": 10989
+    },
+    {
+      "original": "tests/gore/Gore.HostTests.csproj",
+      "path": "tests/native-and-managed/gore/Gore.HostTests.csproj",
+      "sha256": "33fa88e640be1adc1a1587cdf90737f47b73b764b574a16fb3acd6463191792e",
+      "bytes": 497
+    },
+    {
+      "original": "tests/gore/Program.cs",
+      "path": "tests/native-and-managed/gore/Program.cs",
+      "sha256": "daf9b0fd4c59b2889b1d9de90d9e662ae5396463066d041e9914b504f5dbc1c9",
+      "bytes": 4604
+    },
+    {
+      "original": "tests/gore/mixed_js_gore_test.cjs",
+      "path": "tests/native-and-managed/gore/mixed_js_gore_test.cjs",
+      "sha256": "f2673c4915d537df6a9417f2894de31b775aa3347642531b9292b36878ea749e",
+      "bytes": 1979
+    },
+    {
+      "original": "tests/gore/native_gore_runtime_test.cpp",
+      "path": "tests/native-and-managed/gore/native_gore_runtime_test.cpp",
+      "sha256": "b7fe8ec7653564b0766a88a98facb0c83d1a47f3a5292453173f541103cbbc6c",
+      "bytes": 12662
+    },
+    {
+      "original": "tests/gore/run.sh",
+      "path": "tests/native-and-managed/gore/run.sh",
+      "sha256": "2310593f6114aa0972a1713f396de38eec174f458e981c2c29547a5f7ecd4ebf",
+      "bytes": 1157
+    },
+    {
+      "original": "tests/invasion/MultiInvasionIntegration.cs",
+      "path": "tests/native-and-managed/invasion/MultiInvasionIntegration.cs",
+      "sha256": "710997f60948a3edc45ee2f2056ac2916167b5a2200864b5f6b07430f5b1227f",
+      "bytes": 3579
+    },
+    {
+      "original": "tests/invasion/NativeMailboxStub.cpp",
+      "path": "tests/native-and-managed/invasion/NativeMailboxStub.cpp",
+      "sha256": "2aa55861b3e315beb290caa5f2beb04f8ce2a62b5deea87ab3161f9f447b24cb",
+      "bytes": 4797
+    },
+    {
+      "original": "tests/invasion/TransportIntegration.cs",
+      "path": "tests/native-and-managed/invasion/TransportIntegration.cs",
+      "sha256": "3c84532dc49f91d198742e10ff9e4fe53c11b6e97899d178c5b2c9ba6514421e",
+      "bytes": 7067
+    },
+    {
+      "original": "tests/loader_delivery/test_example_evidence.py",
+      "path": "tests/native-and-managed/loader_delivery/test_example_evidence.py",
+      "sha256": "d643401ddfe77f5ac02cc3c1a1c71ca315a2afcd63fd50fffe4e1048b52b55ca",
+      "bytes": 972
+    },
+    {
+      "original": "tests/loader_delivery/test_gate.py",
+      "path": "tests/native-and-managed/loader_delivery/test_gate.py",
+      "sha256": "292edf06eb274217b3d70a2c5cf3d31c2010ef89fdecbd445251b089a68aa1fb",
+      "bytes": 1731
+    },
+    {
+      "original": "tests/ready_prs/FullExampleRuntime/Program.cs",
+      "path": "tests/native-and-managed/ready_prs/FullExampleRuntime/Program.cs",
+      "sha256": "7bf07a7d4bd9731eb1ee8eaa127ac5dff4476ed846b739395b2935380613b1f1",
+      "bytes": 9293
+    },
+    {
+      "original": "tests/ready_prs/full_source_bootstrap_test.cpp",
+      "path": "tests/native-and-managed/ready_prs/full_source_bootstrap_test.cpp",
+      "sha256": "b66ab474167e4d85c0b0886dde2a81aebf047b03020d49edf352cbf0e44e219d",
+      "bytes": 4377
+    },
+    {
+      "original": "tests/ready_prs/managed_source_class_count_test.cpp",
+      "path": "tests/native-and-managed/ready_prs/managed_source_class_count_test.cpp",
+      "sha256": "fc1faddf314009309390d6128169a3b7925aa2707cbe96984b490ed39cca7695",
+      "bytes": 3574
+    },
+    {
+      "original": "tests/ready_prs/run.sh",
+      "path": "tests/native-and-managed/ready_prs/run.sh",
+      "sha256": "c129d63f3cb74d4fe24e382a39f32f133ab2fe10ad768a271d602fcc27f290fc",
+      "bytes": 1524
+    },
+    {
+      "original": "tests/stubs/android/log.h",
+      "path": "tests/native-and-managed/stubs/android/log.h",
+      "sha256": "5825ccad293c46a98d7209b5c6bfd5bf90a2f0b18cb1440f3ba9587dbe763e8f",
+      "bytes": 124
+    },
+    {
+      "original": "tests/surface_backgrounds/Mixed.HostTests.csproj",
+      "path": "tests/native-and-managed/surface_backgrounds/Mixed.HostTests.csproj",
+      "sha256": "49061f1640b3dc0fedc4d8dae89a862b24398c8054a8905fc544d91936d940f4",
+      "bytes": 555
+    },
+    {
+      "original": "tests/surface_backgrounds/MixedProgram.cs",
+      "path": "tests/native-and-managed/surface_backgrounds/MixedProgram.cs",
+      "sha256": "55646635484ff091160ff9f6a7444209836c0c3e844588006f9e9f3a6269f165",
+      "bytes": 3929
+    },
+    {
+      "original": "tests/surface_backgrounds/Program.cs",
+      "path": "tests/native-and-managed/surface_backgrounds/Program.cs",
+      "sha256": "f2a0c355202ac0562241be03d84a5e28af85fa39459de42ec3d6587138801cdf",
+      "bytes": 7144
+    },
+    {
+      "original": "tests/surface_backgrounds/Session.HostTests.csproj",
+      "path": "tests/native-and-managed/surface_backgrounds/Session.HostTests.csproj",
+      "sha256": "650b7e68c981151b60733eedf0ffe631d05a11c47478d7c48dc915d946b0ecc4",
+      "bytes": 533
+    },
+    {
+      "original": "tests/surface_backgrounds/SessionProgram.cs",
+      "path": "tests/native-and-managed/surface_backgrounds/SessionProgram.cs",
+      "sha256": "da524e02643e17136c17a8083949eb1f4e5a07965bc65dd0f5d1c2c212f87caf",
+      "bytes": 3666
+    },
+    {
+      "original": "tests/surface_backgrounds/Surface.HostTests.csproj",
+      "path": "tests/native-and-managed/surface_backgrounds/Surface.HostTests.csproj",
+      "sha256": "22cf719f7f1482fa80ce55766130954bed732564d808cf1f008c29929690ed9f",
+      "bytes": 550
+    },
+    {
+      "original": "tests/surface_backgrounds/mailbox_surface_test.cpp",
+      "path": "tests/native-and-managed/surface_backgrounds/mailbox_surface_test.cpp",
+      "sha256": "21b0db2a728644d447f09b74a0e844edea503e8b3ba77e5cffa3b293f100d9fe",
+      "bytes": 5149
+    },
+    {
+      "original": "tests/surface_backgrounds/managed_surface_fixture.cpp",
+      "path": "tests/native-and-managed/surface_backgrounds/managed_surface_fixture.cpp",
+      "sha256": "a0178caa09eddb1e315194f319d2ac13bec714e56d1e652002a76b48c632193b",
+      "bytes": 6096
+    },
+    {
+      "original": "tests/surface_backgrounds/native_surface_loader_test.cpp",
+      "path": "tests/native-and-managed/surface_backgrounds/native_surface_loader_test.cpp",
+      "sha256": "a721d9aa695b6d82f843047fd04bbcb6919f2a47bfea9444fa32c72bc8da4170",
+      "bytes": 17787
+    },
+    {
+      "original": "tests/surface_backgrounds/native_surface_test.cpp",
+      "path": "tests/native-and-managed/surface_backgrounds/native_surface_test.cpp",
+      "sha256": "6d7b380b7ee588a558eedb60de7be3b125f6c1c21f28e3b7a6e612cfa2a563f6",
+      "bytes": 20979
+    },
+    {
+      "original": "tests/surface_backgrounds/original_surface_comparison.cjs",
+      "path": "tests/native-and-managed/surface_backgrounds/original_surface_comparison.cjs",
+      "sha256": "5da68e83467f75657a16cec13fbd2427f9fa6b7e11fd0a35f368564642eb1834",
+      "bytes": 9081
+    },
+    {
+      "original": "tests/surface_backgrounds/quickjs_surface_test.cpp",
+      "path": "tests/native-and-managed/surface_backgrounds/quickjs_surface_test.cpp",
+      "sha256": "48c804a64dd33b972f3d8780d4804db5d0d6264ef670a34361a788a4d9d97f23",
+      "bytes": 6196
+    },
+    {
+      "original": "tests/surface_backgrounds/run.sh",
+      "path": "tests/native-and-managed/surface_backgrounds/run.sh",
+      "sha256": "d33726233f926df55e24ea4d578ca6c1725d97446fb3b80558c5c80720d51922",
+      "bytes": 3161
+    },
+    {
+      "original": "tests/surface_backgrounds/run_managed.sh",
+      "path": "tests/native-and-managed/surface_backgrounds/run_managed.sh",
+      "sha256": "1fe8a7ac185caf6b137dbd1ac2a7f5a45e030cbaf1fe1f14cf8d569bb7e792e6",
+      "bytes": 1106
+    },
+    {
+      "original": "tests/surface_backgrounds/run_quickjs.sh",
+      "path": "tests/native-and-managed/surface_backgrounds/run_quickjs.sh",
+      "sha256": "350b30255d44066af96adbd784a36952f1277d92c903ad62cb40d8378514236c",
+      "bytes": 1367
+    },
+    {
+      "original": "tests/surface_backgrounds/session_fixture/ExampleWorldSessionProbe.cs",
+      "path": "tests/native-and-managed/surface_backgrounds/session_fixture/ExampleWorldSessionProbe.cs",
+      "sha256": "c224a53b836911d9e351ea4f8c199b53a3b00abf3d5e4bded360f7edc6c764dd",
+      "bytes": 792
+    },
+    {
+      "original": "tests/surface_backgrounds/session_fixture/Fixture.csproj",
+      "path": "tests/native-and-managed/surface_backgrounds/session_fixture/Fixture.csproj",
+      "sha256": "504d81681c841eee0398f9e3627dcdc0d609da61ed2249d3fca95858aeab556d",
+      "bytes": 433
+    },
+    {
+      "original": "tests/underground_backgrounds/Mixed.HostTests.csproj",
+      "path": "tests/native-and-managed/underground_backgrounds/Mixed.HostTests.csproj",
+      "sha256": "b8f268b84615a386c9a5c48955bb2de4fea8d7a302a02721007e5591688ee959",
+      "bytes": 559
+    },
+    {
+      "original": "tests/underground_backgrounds/MixedProgram.cs",
+      "path": "tests/native-and-managed/underground_backgrounds/MixedProgram.cs",
+      "sha256": "b1d00f81e7248d0002a53c2e4ce13917892b7ff0507d0cb54f0780c77074412f",
+      "bytes": 2905
+    },
+    {
+      "original": "tests/underground_backgrounds/Program.cs",
+      "path": "tests/native-and-managed/underground_backgrounds/Program.cs",
+      "sha256": "87c5f259584e726cd0d02844666015d7e374b05789deac56b16f100a31c0e565",
+      "bytes": 4585
+    },
+    {
+      "original": "tests/underground_backgrounds/Underground.HostTests.csproj",
+      "path": "tests/native-and-managed/underground_backgrounds/Underground.HostTests.csproj",
+      "sha256": "d02d2324ac47c19258da963948f093364e48e804195408f3828e0d9f6fea3e32",
+      "bytes": 554
+    },
+    {
+      "original": "tests/underground_backgrounds/mailbox_underground_test.cpp",
+      "path": "tests/native-and-managed/underground_backgrounds/mailbox_underground_test.cpp",
+      "sha256": "6bd5483f2cc87c7d94dec17627de2899c72ce6cac8d2acbda3d6563c33e0dc04",
+      "bytes": 4322
+    },
+    {
+      "original": "tests/underground_backgrounds/mixed_underground_test.cpp",
+      "path": "tests/native-and-managed/underground_backgrounds/mixed_underground_test.cpp",
+      "sha256": "73460d85697651de60ed293c866e1c9b02f03fac31d57d170ec9dece5f981008",
+      "bytes": 2178
+    },
+    {
+      "original": "tests/underground_backgrounds/native_underground_test.cpp",
+      "path": "tests/native-and-managed/underground_backgrounds/native_underground_test.cpp",
+      "sha256": "738f5c31596c7bd5f95a42f4e4aea2841408fe9317e038b8eea394211d48ef97",
+      "bytes": 20270
+    },
+    {
+      "original": "tests/underground_backgrounds/quickjs_underground_test.cpp",
+      "path": "tests/native-and-managed/underground_backgrounds/quickjs_underground_test.cpp",
+      "sha256": "c499b429ecf859ca8e229c7fe718ba9e9c5a5d8020302ebab1ded8e63535da3b",
+      "bytes": 4993
+    },
+    {
+      "original": "tests/underground_backgrounds/run.sh",
+      "path": "tests/native-and-managed/underground_backgrounds/run.sh",
+      "sha256": "787d2ec302d9b314e7c57bdad99a8b3deedf9e9f7d936e7e2e560fa006d81a3b",
+      "bytes": 1190
+    },
+    {
+      "original": "tests/underground_backgrounds/run_quickjs.sh",
+      "path": "tests/native-and-managed/underground_backgrounds/run_quickjs.sh",
+      "sha256": "4e70ce2a2f9d1a9732ca88d4d8871b10d5804b90e22425ac97cbef2565db42a4",
+      "bytes": 1650
+    },
+    {
+      "original": "tests/water_styles/js_water_install_test.cjs",
+      "path": "tests/native-and-managed/water_styles/js_water_install_test.cjs",
+      "sha256": "da368967bc253ab88be10296648f1158240ef30376bc8713b5b29265802d801e",
+      "bytes": 5457
+    },
+    {
+      "original": "tests/water_styles/native_code_patch_test.cpp",
+      "path": "tests/native-and-managed/water_styles/native_code_patch_test.cpp",
+      "sha256": "c4939308490efbe8d5908cf5d15eb9bbfe062e71cde4c8b862ac4e9f7d8212ba",
+      "bytes": 7998
+    },
+    {
+      "original": "tests/water_styles/native_water_count_test.cpp",
+      "path": "tests/native-and-managed/water_styles/native_water_count_test.cpp",
+      "sha256": "2e71bd87093a92853451803a0ebf010844acb0b21bffb73ef07fc3d809a84502",
+      "bytes": 12536
+    },
+    {
+      "original": "tests/water_styles/run.sh",
+      "path": "tests/native-and-managed/water_styles/run.sh",
+      "sha256": "d68c06398e3aaae3ad0cfe03ee4b3a18085b5f07abbfebdef82a6a3b489dcdb3",
+      "bytes": 1186
+    },
+    {
+      "original": "tests/world_update_loader/Program.cs",
+      "path": "tests/native-and-managed/world_update_loader/Program.cs",
+      "sha256": "19d4ff882f9c8e94d57167f557b6b33003fda91abf2c1b663214991e8c02b982",
+      "bytes": 18702
+    },
+    {
+      "original": "tests/world_update_loader/WorldUpdateLoader.csproj",
+      "path": "tests/native-and-managed/world_update_loader/WorldUpdateLoader.csproj",
+      "sha256": "86a05c26132d1ca1a38786796219c7d8e28484a70db55a93189f4ed2b67f8163",
+      "bytes": 1024
+    },
+    {
+      "original": "tests/world_update_loader/check_arm64_assembly.py",
+      "path": "tests/native-and-managed/world_update_loader/check_arm64_assembly.py",
+      "sha256": "a48d5a7e7fcbe8f2f1caa603fbb8c82ab744ae250179d3d32ea20f565e97ecc9",
+      "bytes": 1778
+    },
+    {
+      "original": "tests/world_update_loader/check_contract.py",
+      "path": "tests/native-and-managed/world_update_loader/check_contract.py",
+      "sha256": "c28ff7aeb948dcfcbe41bb00bb69ee91e5b5254ab642005a6ed7d0247d95b4cc",
+      "bytes": 4055
+    },
+    {
+      "original": "tests/world_update_loader/include/shadowhook.h",
+      "path": "tests/native-and-managed/world_update_loader/include/shadowhook.h",
+      "sha256": "1df0b98c3c0339a781c2253396df4b17461a7e4fc3025bacabf6bd1d5a870420",
+      "bytes": 133
+    },
+    {
+      "original": "tests/world_update_loader/native_contract_test.cpp",
+      "path": "tests/native-and-managed/world_update_loader/native_contract_test.cpp",
+      "sha256": "38765d15d6a6c8b34f67fe009aacefe21578924c6ae25bc44dff14407ce854c3",
+      "bytes": 5022
+    },
+    {
+      "original": "tests/world_update_loader/quickjs_shared_time_rates_test.cpp",
+      "path": "tests/native-and-managed/world_update_loader/quickjs_shared_time_rates_test.cpp",
+      "sha256": "bddf5877c5a9e3df39e5e21e6acdf7108c4bf19d4aecaf98175076c9db58d1e5",
+      "bytes": 6279
+    },
+    {
+      "original": "tests/world_update_loader/run_native.sh",
+      "path": "tests/native-and-managed/world_update_loader/run_native.sh",
+      "sha256": "dfb00d50d9650e22f32c6c5111ebefb7b6f468cc4fe90657985371dd3b340bae",
+      "bytes": 688
+    },
+    {
+      "original": "tests/world_update_loader/run_quickjs.sh",
+      "path": "tests/native-and-managed/world_update_loader/run_quickjs.sh",
+      "sha256": "8fbfb203a59027e08c984d8e1ea86a9b1dae7ef537b932425bb2012219b93635",
+      "bytes": 841
+    },
+    {
+      "original": "tests/world_update_loader/shared_time_rates_test.cpp",
+      "path": "tests/native-and-managed/world_update_loader/shared_time_rates_test.cpp",
+      "sha256": "42930788e3352141768345cce80565c53174128e44b565dce98b690b4723201d",
+      "bytes": 5527
+    },
+    {
+      "original": "tests/world_update_loader/time_rate_mailbox_test.cpp",
+      "path": "tests/native-and-managed/world_update_loader/time_rate_mailbox_test.cpp",
+      "sha256": "43c5e1976835f0e9d2ac88164ab905627a8b64b84f9d7ef7a003d6ad0e583b4b",
+      "bytes": 1944
+    },
+    {
+      "original": "tests/world_update_loader/verified_hook_chain_test.cpp",
+      "path": "tests/native-and-managed/world_update_loader/verified_hook_chain_test.cpp",
+      "sha256": "a4e4e7786ea2c65aa2a160b1bf8d677e8bad2c1fb17a73c9e5464962b1c4148b",
+      "bytes": 4102
+    },
+    {
+      "original": "tools/ci/check_loader_delivery_gate.py",
+      "path": "tools/support/ci/check_loader_delivery_gate.py",
+      "sha256": "48109e2123819eec916bd9ca7bc848c059aae6ee3ac7d810112db509f984c414",
+      "bytes": 2545
+    },
+    {
+      "original": "tools/ci/publish_ready_preview.sh",
+      "path": "tools/support/ci/publish_ready_preview.sh",
+      "sha256": "a8b8b3621b75d883beef78f3af8578ba3505195f25392677cc1f6938a81a8eb8",
+      "bytes": 3543
+    },
+    {
+      "original": "tools/example_completion/evidence.json",
+      "path": "tools/support/example_completion/evidence.json",
+      "sha256": "8af5169601dcb4078af6bdfe133fb4c808732ccd4c230f9694a987de4b1943d7",
+      "bytes": 94701
+    },
+    {
+      "original": "tools/example_completion_audit.py",
+      "path": "tools/support/example_completion_audit.py",
+      "sha256": "5d880180f408cef1c83d39f17b9ea34bfde43fd16f5cc1176dfc39108da979fb",
+      "bytes": 14826
+    },
+    {
+      "original": "tools/sdk_reference/Program.cs",
+      "path": "tools/support/sdk_reference/Program.cs",
+      "sha256": "3a7f15754d8f82e4bf5b4abf1ca41d4ab49336904bfad45b4e8e76425497562e",
+      "bytes": 8842
+    }
+  ]
+}

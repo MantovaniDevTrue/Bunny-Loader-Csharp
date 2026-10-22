@@ -1,0 +1,184 @@
+name: CSharp combined source-only integration checks (no APK)
+'on':
+  push:
+    branches:
+      - integration/ready-prs-source-fixes-20261020
+      - feat/csharp-loader-completion-15-20261021
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  managed-and-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Compile combined SDK, compiler and all playable CSharp samples
+        run: |
+          dotnet build experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj -c Release --nologo
+          dotnet build experiments/csharp/BunnySourceCompiler/BunnySourceCompiler.csproj -c Release --nologo
+          dotnet build tests/ready_prs/FullExampleManaged.csproj -c Release --nologo
+      - name: Check generated reference for the complete public SDK
+        run: dotnet run --project tools/sdk_reference/SdkReference.csproj -c Release -- --check
+      - name: Bunny JS tooltip renderer and managed activation regression
+        run: |
+          node --check app/src/main/cpp/script/js/mod/Loaders/TooltipLoader.js
+          node --check app/src/main/cpp/script/js/mod/Exports.js
+          node --check samples/ExampleMod/content/Content/Items/ExampleTooltipItem.js
+          python3 tests/basic_items/check_managed_tooltip_activation.py
+      - name: Run all playable source defaults with real managed compiler
+        run: dotnet run --project tests/ready_prs/FullExampleRuntime/FullExampleRuntime.csproj -c Release -- samples/ExampleModCSharp/Playable
+      - name: Verify staged managed SDK and compiler from combined sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash tools/ci/stage_ready_managed.sh
+          grep -a -q BunnySounds app/src/main/assets/managed/BunnySourceSdk.dll
+          grep -a -q BunnyCommandWorker app/src/main/assets/managed/BunnySourceSdk.dll
+          python3 - <<'PY'
+          import hashlib
+          from pathlib import Path
+          root = Path('app/src/main/assets/managed')
+          pairs = [line.split('\t') for line in (root / 'framework.sha256').read_text().splitlines()]
+          assert pairs
+          assert all(hashlib.sha256((root / name).read_bytes()).hexdigest() == sha for name,sha in pairs)
+          PY
+      - name: CommandLoader registration and action regressions
+        run: |
+          dotnet run --project tests/commands/Commands.HostTests.csproj -c Release
+          dotnet run --project tests/commands/CommandManifest.HostTests.csproj -c Release
+          dotnet run --project tests/commands/Actions.HostTests.csproj -c Release
+      - name: World update full contract, standalone module discovery and ARM64 trampoline
+        run: |
+          dotnet run --project tests/world_update_loader/WorldUpdateLoader.csproj -c Release
+          python3 tests/world_update_loader/check_contract.py
+          python3 tests/world_update_loader/check_arm64_assembly.py
+          bash tests/world_update_loader/run_native.sh
+          BUNNY_MODSYSTEM_BEHAVIOR_ONLY=1 node tools/tests/modsystemhooks/check.mjs
+          bash tests/world_update_loader/run_quickjs.sh
+      - name: Background texture registry CSharp native round trip and JS interoperability
+        run: bash tests/backgrounds/run.sh
+      - name: Underground background real CSharp and original JavaScript callbacks
+        run: |
+          bash tests/underground_backgrounds/run.sh
+          bash tests/underground_backgrounds/run_quickjs.sh
+      - name: Surface native drawing, nullable layouts and transactional fade tables
+        run: BUNNY_SURFACE_SANITIZE=1 bash tests/surface_backgrounds/run.sh
+      - name: Surface actual managed worker, original QuickJS example and mixed language unload
+        run: |
+          bash tests/surface_backgrounds/run_managed.sh
+          bash tests/surface_backgrounds/run_quickjs.sh
+      - name: Water native grouped loop publication, world-recreated arrays and JS retry
+        run: BUNNY_WATER_SANITIZE=1 bash tests/water_styles/run.sh
+      - name: Gore actual ExampleMod callbacks to production native registry
+        run: bash tests/gore/run.sh
+      - name: APK source completeness gate must reject this unfinished scope
+        run: python3 -m unittest discover -s tests/loader_delivery -p "test_*.py"
+      - name: Existing five-loader combined regression suite
+        run: |
+          python3 tools/ci/test_ready_prs.py
+          bash tests/ready_prs/run.sh
+  native-host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Native SoundLoader and Bunny original sound router tests
+        run: |
+          set -euo pipefail
+          g++ -std=c++20 -O1 -Wall -Wextra -pthread -Iapp/src/main/cpp -Itests/basic_items/include tests/summon_lifecycle/managed_sound_loader_test.cpp -o /tmp/bunny-managed-sound-test
+          /tmp/bunny-managed-sound-test
+          g++ -std=c++20 -O1 -Wall -Wextra -pthread -Iapp/src/main/cpp -Itests/basic_items/include tests/summon_lifecycle/sound_router_test.cpp -o /tmp/bunny-sound-router-test
+          /tmp/bunny-sound-router-test
+      - name: Native CommandLoader contracts and manifest
+        run: |
+          set -euo pipefail
+          for entry in native_command_clock_test native_command_manifest_test native_command_result_test native_command_source_parser_test native_mailbox_test; do
+            if [ "$entry" = native_command_source_parser_test ]; then
+              g++ -std=c++20 -O1 -Wall -Wextra -pthread -Iapp/src/main/cpp -Itests/basic_items/include "tests/commands/${entry}.cpp" app/src/main/cpp/experiments/csharp/SourceParser.cpp -o "/tmp/${entry}"
+            else
+              g++ -std=c++20 -O1 -Wall -Wextra -pthread -Iapp/src/main/cpp -Itests/basic_items/include "tests/commands/${entry}.cpp" -o "/tmp/${entry}"
+            fi
+            "/tmp/${entry}"
+          done
+      - name: Ensure source-only workflow never produces an APK
+        run: |
+          if find app/build -type f -name '*.apk' -print 2>/dev/null | grep -q .; then
+            echo 'Unexpected APK in source-only build' >&2
+            exit 1
+          fi
+
+  native-arm64-syntax:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile all touched Android native integration units without APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          NDK_VERSION=27.2.12479018
+          NDK="$ANDROID_HOME/ndk/$NDK_VERSION"
+          if [ ! -x "$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang++" ]; then
+            yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+            "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;$NDK_VERSION"
+          fi
+          CXX="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang++"
+          for file in SourceParser SourceLoader AutoSourceRuntime ManagedRuntime NativeCommandChatHooks ManagedSoundLoader NativeRarityGameplay NativeDustEmission NativeCSharpItemUse UniversalSystemStages UniversalHooks ManagedGoreDiscovery ManagedGoreRuntime ManagedUndergroundBackgrounds ManagedSurfaceBackgrounds; do
+            "$CXX" -std=c++20 -fsyntax-only -fno-exceptions -fno-rtti -D__ANDROID__ -DANDROID -D_GNU_SOURCE -Iapp/src/main/cpp -Iapp/src/main/cpp/third_party/quickjs "app/src/main/cpp/experiments/csharp/$file.cpp"
+          done
+          "$CXX" -std=c++20 -fsyntax-only -fno-exceptions -fno-rtti -D__ANDROID__ -DANDROID -D_GNU_SOURCE -Iapp/src/main/cpp app/src/main/cpp/content/backgrounds/BackgroundTextures.cpp
+          "$CXX" -std=c++20 -fsyntax-only -fno-exceptions -fno-rtti -D__ANDROID__ -DANDROID -D_GNU_SOURCE -Iapp/src/main/cpp app/src/main/cpp/content/systems/SystemTimeRates.cpp
+          "$CXX" -std=c++20 -fsyntax-only -fno-exceptions -fno-rtti -D__ANDROID__ -DANDROID -D_GNU_SOURCE -DBL_HAVE_QUICKJS=1 -Iapp/src/main/cpp -Iapp/src/main/cpp/third_party/quickjs app/src/main/cpp/script/api/SystemHooks.cpp
+          "$CXX" -std=c++20 -fsyntax-only -fno-exceptions -fno-rtti -D__ANDROID__ -DANDROID -D_GNU_SOURCE -Iapp/src/main/cpp -Itests/world_update_loader/include app/src/main/cpp/hook/HookManager.cpp
+          "$CXX" -std=c++20 -fsyntax-only -fno-exceptions -fno-rtti -D__ANDROID__ -DANDROID -D_GNU_SOURCE -DBL_HAVE_QUICKJS=1 -Iapp/src/main/cpp -Iapp/src/main/cpp/third_party/quickjs app/src/main/cpp/script/api/SystemTimeRates.cpp
+          for file in content/backgrounds/UndergroundBackgrounds content/backgrounds/BackgroundAssetLifetime content/backgrounds/SurfaceGeometry content/backgrounds/SurfaceTables content/backgrounds/SurfaceSpriteBatch content/backgrounds/SurfaceBackgrounds script/api/UndergroundBackgrounds script/api/SurfaceBackgrounds; do
+            "$CXX" -std=c++20 -fsyntax-only -fno-exceptions -fno-rtti -D__ANDROID__ -DANDROID -D_GNU_SOURCE -DBL_HAVE_QUICKJS=1 -Iapp/src/main/cpp -Iapp/src/main/cpp/third_party/quickjs "app/src/main/cpp/$file.cpp"
+          done
+          for file in hook/CodePatchTransaction content/tiles/ModWater content/tiles/WaterAlphaTables script/api/Tiles; do
+            "$CXX" -std=c++20 -fsyntax-only -fno-exceptions -fno-rtti -D__ANDROID__ -DANDROID -D_GNU_SOURCE -DBL_HAVE_QUICKJS=1 -Iapp/src/main/cpp -Iapp/src/main/cpp/third_party/quickjs "app/src/main/cpp/$file.cpp"
+          done
+          echo CSHARP_SOURCE_COMBINED_ANDROID_ARM64_SYNTAX_PASS_NO_APK
+  native-android-link-no-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Link complete Android ARM64 native library without APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;30.0.16248370" "cmake;3.22.1" "platforms;android-34"
+          gradle :app:externalNativeBuildDebug --no-daemon -Pbl.uiOnly=true -Pbl.readyPrPreview=true -Pbl.dustPreview=true
+          LIB="$(find app/build -type f -name libbunny.so -size +0c -print -quit)"
+          test -n "$LIB"
+          NM="$ANDROID_HOME/ndk/30.0.16248370/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-nm"
+          "$NM" -D --defined-only "$LIB" > "$RUNNER_TEMP/bunny-native-symbols.txt"
+          for symbol in bunny_csharp_sound_register bunny_csharp_sound_play bunny_item_use_bind bunny_item_use_poll_context bunny_dust_emit bunny_background_texture_slot bunny_csharp_gore_type bunny_csharp_gore_type_any bunny_csharp_gore_spawn bunny_csharp_gore_configure bunny_csharp_gore_configure_v2 bunny_csharp_gore_last_error bunny_underground_reserve bunny_underground_find bunny_underground_select bunny_underground_retire bunny_underground_last_error bunny_underground_fill_read bunny_underground_fill_write bunny_surface_reserve bunny_surface_find bunny_surface_vanilla_count bunny_surface_select bunny_surface_retire bunny_surface_last_error bunny_surface_read bunny_surface_context bunny_surface_fades bunny_surface_draw bunny_surface_complete bunny_surface_reject; do
+            if ! grep -F -q "$symbol" "$RUNNER_TEMP/bunny-native-symbols.txt"; then
+              echo "Missing native export: $symbol" >&2
+              exit 1
+            fi
+          done
+          if find app/build -type f -name '*.apk' -print | grep -q .; then
+            echo 'APK created during no-APK link gate' >&2
+            exit 1
+          fi
+          echo CSHARP_SEVEN_PRS_FULL_NATIVE_LINK_PASS_NO_APK

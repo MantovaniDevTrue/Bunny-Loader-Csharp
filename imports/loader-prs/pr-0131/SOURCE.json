@@ -1,0 +1,80 @@
+{
+  "pr": 131,
+  "name": "SceneEffectLoader ranking core",
+  "kind": "loader",
+  "status": "partial",
+  "runtime_enabled": false,
+  "base_sha": "e88ba0480fac6310ba33978f2488b2d585a0c593",
+  "head_sha": "bcf95018b89604860c113584d2f2eac0f1a3cdab",
+  "current_pr_head_when_fetched": "bcf95018b89604860c113584d2f2eac0f1a3cdab",
+  "file_count": 11,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-scene-effects.yml",
+      "path": "integration/ci-reference/check-csharp-scene-effects.yml",
+      "sha256": "108fab7605585927febc838c90d26c8fbd4f97206266f0c620a8112bb485a6f8",
+      "bytes": 1070
+    },
+    {
+      "original": "app/src/main/cpp/content/scene/SceneEffects.cpp",
+      "path": "src/native/host-patches/content/scene/SceneEffects.cpp",
+      "sha256": "fed6614788920fbca77a11399645efc35902485de9ad5f21541a41e3efa95f36",
+      "bytes": 2219
+    },
+    {
+      "original": "app/src/main/cpp/content/scene/SceneEffects.h",
+      "path": "src/native/host-patches/content/scene/SceneEffects.h",
+      "sha256": "209b5e331339349c36adc60465138350a2493c3658373414a958f265adeedf65",
+      "bytes": 2046
+    },
+    {
+      "original": "docs/csharp-scene-effect-core.md",
+      "path": "docs/reference/csharp-scene-effect-core.md",
+      "sha256": "622a496014899819f28995de59d69c7090ff320d8c3c9a0f80a863d4f68ae78d",
+      "bytes": 2895
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySceneEffect.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySceneEffect.cs",
+      "sha256": "d5300487ad29b30df7f6888d5bf23679449eded91d5ec4daae8a399f4b1f2be9",
+      "bytes": 13702
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnySceneRanking.cs",
+      "path": "src/managed/BunnyCsSdk/BunnySceneRanking.cs",
+      "sha256": "2f210636143a438a027ad0fc9a68ab4923e76b84e4c052b7a33d79a8121faa90",
+      "bytes": 1441
+    },
+    {
+      "original": "experiments/csharp/BunnySourceSdk/BunnySourceSdk.csproj",
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "sha256": "1b7060893ff68a69570daf388af7fa248fa80825429fafef2992b7723136e482",
+      "bytes": 5930
+    },
+    {
+      "original": "tests/scene_effects/Program.cs",
+      "path": "tests/native-and-managed/scene_effects/Program.cs",
+      "sha256": "8fff23efe83887a9467e26ef1488f3a5c42651a4c9f194e160ed2099c4e125eb",
+      "bytes": 4010
+    },
+    {
+      "original": "tests/scene_effects/SceneRanking.HostTests.csproj",
+      "path": "tests/native-and-managed/scene_effects/SceneRanking.HostTests.csproj",
+      "sha256": "a2d84f9edfe3874430e4553bd25679a791327ca1d7a174639ea4a52522dc601a",
+      "bytes": 416
+    },
+    {
+      "original": "tests/scene_effects/run.sh",
+      "path": "tests/native-and-managed/scene_effects/run.sh",
+      "sha256": "293553e6828f35c7ea939cb96c38cf25508642044826feb9c2f25a7bf8d6ae2e",
+      "bytes": 399
+    },
+    {
+      "original": "tests/scene_effects/scene_effects_test.cpp",
+      "path": "tests/native-and-managed/scene_effects/scene_effects_test.cpp",
+      "sha256": "114e6f8b379d073e8bf0c15af78f2a5e23eace048a48b9aa21260173aa01a3a3",
+      "bytes": 6664
+    }
+  ]
+}

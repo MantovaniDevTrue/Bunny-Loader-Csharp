@@ -1,0 +1,50 @@
+{
+  "pr": 128,
+  "name": "Dust compiled ExampleMod registration regression",
+  "kind": "support",
+  "status": "test_reference",
+  "runtime_enabled": false,
+  "base_sha": "b64833c4976bd95003b0469b3e357e94b26175c2",
+  "head_sha": "4419e86b1e28a567b3c6e90a60b3e7fe8d180ed5",
+  "current_pr_head_when_fetched": "4419e86b1e28a567b3c6e90a60b3e7fe8d180ed5",
+  "file_count": 6,
+  "excluded_paths": 0,
+  "files": [
+    {
+      "original": ".github/workflows/check-csharp-dust.yml",
+      "path": "integration/ci-reference/check-csharp-dust.yml",
+      "sha256": "3c903d81bbdef05058919238ea5f23a88178b323a8478480485ce3a9637fb633",
+      "bytes": 6725
+    },
+    {
+      "original": "app/src/main/cpp/experiments/csharp/AutoSourceRuntime.cpp",
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "sha256": "1a636ee831dec411658a7e27ffc1368ffd83c03f41806487d590a14399f65841",
+      "bytes": 84065
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyDustSourceDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyDustSourceDispatcher.cs",
+      "sha256": "71d3d69c25c984f7a3d36365ef731325d86ee140cc54b9dd88a53c57820abc40",
+      "bytes": 8255
+    },
+    {
+      "original": "experiments/csharp/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "path": "src/managed/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "sha256": "7b1750dc4898d1a9b09630ea3699987820241df13b0959ef9d56aac825b0587d",
+      "bytes": 32995
+    },
+    {
+      "original": "tests/invasion/check_item_use_contract.py",
+      "path": "tests/native-and-managed/invasion/check_item_use_contract.py",
+      "sha256": "7d9bb840f5ca532f91d8459ec9a456828294a6b02ec59cd107c8fc692be3977f",
+      "bytes": 6781
+    },
+    {
+      "original": "tests/ready_prs/FullExampleRuntime/Program.cs",
+      "path": "tests/native-and-managed/ready_prs/FullExampleRuntime/Program.cs",
+      "sha256": "63984dd91610a11c33cef78b7a150cca27a5eb547002fb2a9f871a8befebdae2",
+      "bytes": 8937
+    }
+  ]
+}
