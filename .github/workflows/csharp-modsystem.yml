@@ -4,6 +4,11 @@ on:
   push:
     paths:
       - 'src/managed/BunnyCsSdk/ModSystem.cs'
+      - 'src/managed/BunnyCsSdk/BunnyItem.cs'
+      - 'src/managed/BunnyCsSdk/BunnySystemRecipes.cs'
+      - 'src/managed/BunnySourceCompiler/**'
+      - 'samples/ExampleModCSharp/Playable/content/Common/Systems/**'
+      - 'docs/reference/repository/csharp-modsystem-coverage.json'
       - 'src/native/experiments/csharp/ManagedRuntime.cpp'
       - 'src/native/experiments/csharp/AutoSourceRuntime.cpp'
       - 'src/managed/BunnySourceSdk/BunnySourceSdk.csproj'
@@ -12,7 +17,11 @@ on:
   pull_request:
     paths:
       - 'src/managed/BunnyCsSdk/ModSystem.cs'
+      - 'src/managed/BunnyCsSdk/BunnyItem.cs'
+      - 'src/managed/BunnyCsSdk/BunnySystemRecipes.cs'
+      - 'src/managed/BunnySourceCompiler/**'
       - 'src/managed/BunnySourceSdk/BunnySourceSdk.csproj'
+      - 'docs/reference/repository/csharp-modsystem-coverage.json'
       - 'tests/native-and-managed/system_lifecycle/**'
 
 concurrency:
@@ -29,6 +38,7 @@ jobs:
           dotnet-version: '8.0.x'
       - run: dotnet run --project tests/native-and-managed/system_lifecycle/SystemLifecycle.csproj --configuration Release
       - run: dotnet build tests/native-and-managed/system_lifecycle/SampleLifecycleCompile.csproj --configuration Release
+      - run: dotnet build src/managed/BunnySourceCompiler/BunnySourceCompiler.csproj --configuration Release
       - run: python3 tests/native-and-managed/system_lifecycle/check_coverage.py
       - run: python3 tests/native-and-managed/system_lifecycle/check_native_stages.py
       - run: |
