@@ -4,6 +4,12 @@ Repositório dedicado **somente ao subsistema C# do BunnyLoader para Terraria Mo
 
 Este repositório reúne todos os componentes C# relevantes e os adaptadores nativos indispensáveis, **sem clonar o aplicativo Android completo, o launcher, as interfaces gerais ou o mecanismo de mods JavaScript**.
 
+## Loader PR #98 em diante (fontes isolados)
+
+A branch de integração mantém um inventário reproduzível em [loader-prs.json](loader-prs.json) e preserva os arquivos de 23 PRs em [imports/loader-prs](imports/loader-prs), com SHA de origem e checksums por arquivo. O processo não modifica o runtime C# ativo da base .87.1, não gera APK e não declara loaders completos por uma compilação de host.
+
+Consulte [docs/LOADER-PRS-98-PLUS.md](docs/LOADER-PRS-98-PLUS.md) para os estados reais, dependências cruzadas e critérios de promoção. As PRs #133, #134 e #135 ficam somente catalogadas até revisão da proveniência dos fontes.
+
 ## Organização
 
 | Pasta | Conteúdo |
