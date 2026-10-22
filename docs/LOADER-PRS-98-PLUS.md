@@ -11,6 +11,8 @@ O repositório dedicado continua usando a base ativa `.87.1`. As branches de imp
 - `imports/loader-prs/INDEX.json`: inventário gerado, quantidades, PRs bloqueadas e status de ativação.
 - `imports/loader-prs/CONFLICTS.json`: caminhos alterados em várias PRs com conteúdo diferente, priorizados pela quantidade de branches envolvidas.
 
+A auditoria de conflitos do snapshot atual encontrou **137 caminhos com conteúdos divergentes entre PRs**. Os mais concorridos são `AutoSourceRuntime.cpp` (16 PRs), `ManagedRuntime.cpp` (16), `BunnySourceSdk.csproj` (14) e `SourceLoader.cpp` (12). Por isso, não há merge automático desses arquivos: o relatório completo está em `imports/loader-prs/CONFLICTS.json`.
+
 Cada sobreposição é um *delta* em relação ao `base_sha` da PR, **não é um loader independente executável**. A base `.87.1` pode não satisfazer as dependências de PRs posteriores. Para integrar um loader, é preciso reconciliar o código compartilhado do SDK, compilador, SourceLoader, MonoVM, hooks, assets e testes; revisar a API do ExampleModBunny e comprovar a ABI Android.
 
 ## Grupos e estado observado em 22/10/2026
