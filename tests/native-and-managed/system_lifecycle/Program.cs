@@ -21,6 +21,7 @@ public sealed class AlphaSystem : ModSystem
     public override void ResizeArrays() => Events.Add("A.ResizeArrays");
     public override void PostSetupContent() => Events.Add("A.PostSetupContent");
     public override void OnWorldLoad() => Events.Add("A.OnWorldLoad");
+    public override void PostWorldLoad() => Events.Add("A.PostWorldLoad");
     public override void ClearWorld() => Events.Add("A.ClearWorld");
     public override void PreWorldGen() => Events.Add("A.PreWorldGen");
     public override void PreUpdatePlayers() => Events.Add("A.PreUpdatePlayers");
@@ -99,6 +100,8 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 8) != 0) return 26;
         if (ModSystemLoader.Dispatch(assembly, 9) != 0) return 27;
         if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 3;
+        if (ModSystemLoader.Dispatch(assembly, 35) != 0) return 45;
+        if (ModSystemLoader.Dispatch(assembly, 35) != 0) return 46;
         for (int phase = 10; phase <= 21; phase++)
             if (ModSystemLoader.Dispatch(assembly, phase) != 0) return 34;
         for (int phase = 22; phase <= 30; phase++)
@@ -114,6 +117,7 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 8) != 0) return 28;
         if (ModSystemLoader.Dispatch(assembly, 9) != 0) return 29;
         if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 7;
+        if (ModSystemLoader.Dispatch(assembly, 35) != 0) return 47;
         for (int phase = 22; phase <= 30; phase++)
             if (ModSystemLoader.Dispatch(assembly, phase) != 0) return 37;
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 25;
@@ -123,6 +127,7 @@ internal static class Program
             "A.OnLocalizationsLoaded,A.OnLocalizationsLoaded," +
             "A.ClearWorld,B.ClearWorld,A.ResetNearbyTileEffects,A.PreWorldGen,B.PreWorldGen," +
             "A.PostWorldGen,B.PostWorldGen,A.OnWorldLoad,B.OnWorldLoad," +
+            "A.PostWorldLoad," +
             "A.PreUpdateWorld," +
             "A.PostUpdateWorld," +
             "A.PreUpdateTime," +
@@ -147,6 +152,7 @@ internal static class Program
             "A.PreSaveAndQuit,B.PreSaveAndQuit,A.OnWorldUnload,B.OnWorldUnload," +
             "A.ClearWorld,B.ClearWorld,A.PreWorldGen,B.PreWorldGen," +
             "A.PostWorldGen,B.PostWorldGen,A.OnWorldLoad,B.OnWorldLoad," +
+            "A.PostWorldLoad," +
             "A.PreUpdatePlayers," +
             "A.PostUpdatePlayers," +
             "A.PreUpdateNPCs," +

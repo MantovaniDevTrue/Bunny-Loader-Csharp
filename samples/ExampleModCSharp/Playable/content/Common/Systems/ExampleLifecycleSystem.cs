@@ -107,6 +107,13 @@ public sealed class ExampleLifecycleSystem : ModSystem
         if (!insideWorld) worldTicks = 0;
     }
 
+    public override void PostWorldLoad()
+    {
+        // Após OnWorldLoad: mundo pronto para lógica de pós-entrada.
+        // Carga de dados persistentes terá hook separado.
+        Console.WriteLine("[ExampleMod C#] post-world inicializado");
+    }
+
     public override void OnWorldUnload()
     {
         // Nao mantenha referencias para entidades ou tiles de um mundo anterior.

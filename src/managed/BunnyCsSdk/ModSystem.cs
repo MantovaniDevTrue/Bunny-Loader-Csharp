@@ -17,6 +17,7 @@ public abstract class ModSystem
     public virtual void ResizeArrays() { }
     public virtual void PostSetupContent() { }
     public virtual void OnWorldLoad() { }
+    public virtual void PostWorldLoad() { }
     public virtual void ClearWorld() { }
     public virtual void PreWorldGen() { }
     public virtual void PostWorldGen() { }
@@ -71,6 +72,7 @@ public static class ModSystemLoader
         public readonly Entry[] Entries;
         public bool ModLoaded;
         public bool WorldLoaded;
+        public bool PostWorldLoaded;
         public bool ArraysResized;
         public bool ContentSetup;
         public bool Unloaded;
@@ -262,13 +264,13 @@ public static class ModSystemLoader
     /// 4=OnModUnload, 5=Unload, 6=ClearWorld, 7=PreSaveAndQuit,
     /// 8=PreWorldGen, 9=PostWorldGen, 10..30=hooks de atualizacao.
     /// 31=ResizeArrays, 32=PostSetupContent, 33=OnLocalizationsLoaded,
-    /// 34=ResetNearbyTileEffects.
+    /// 34=ResetNearbyTileEffects, 35=PostWorldLoad.
     /// Retorna o numero de falhas isoladas.
     /// </summary>
     public static int Dispatch(Assembly assembly, int phase)
     {
         if (assembly == null) throw new ArgumentNullException(nameof(assembly));
-        if ((uint)phase > 34) throw new ArgumentOutOfRangeException(nameof(phase));
+        if ((uint)phase > 35) throw new ArgumentOutOfRangeException(nameof(phase));
         lock (Sync)
         {
             if (!Registries.TryGetValue(assembly, out Registry? registry))
@@ -295,6 +297,14 @@ public static class ModSystemLoader
                         failures += Invoke(entry, x => x.OnModLoad(), nameof(ModSystem.OnModLoad));
             }
 
+            if (phase == 35 && registry.WorldLoaded && !registry.PostWorldLoaded)
+            {
+                registry.PostWorldLoaded = true;
+                foreach (Entry entry in registry.Entries)
+                    if (entry.Loaded && (entry.OverrideMask & (1UL << 12)) != 0)
+                        failures += Invoke(entry, x => x.PostWorldLoad(),
+                            nameof(ModSystem.PostWorldLoad));
+            }
             if (phase == 34 && registry.ModLoaded)
             {
                 foreach (Entry entry in registry.Entries)
@@ -368,6 +378,7 @@ public static class ModSystemLoader
             if (phase == 2 && registry.ModLoaded && !registry.WorldLoaded)
             {
                 registry.WorldLoaded = true;
+                registry.PostWorldLoaded = false;
                 foreach (Entry entry in registry.Entries)
                     if (entry.Loaded)
                         failures += Invoke(entry, x => x.OnWorldLoad(), nameof(ModSystem.OnWorldLoad));
@@ -375,6 +386,7 @@ public static class ModSystemLoader
             if ((phase == 3 || phase == 4 || phase == 5) && registry.WorldLoaded)
             {
                 registry.WorldLoaded = false;
+                registry.PostWorldLoaded = false;
                 foreach (Entry entry in registry.Entries)
                     if (entry.Loaded)
                         failures += Invoke(entry, x => x.OnWorldUnload(), nameof(ModSystem.OnWorldUnload));

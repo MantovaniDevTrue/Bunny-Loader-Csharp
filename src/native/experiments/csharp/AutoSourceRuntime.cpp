@@ -1323,6 +1323,7 @@ void dispatchAutoSourceSystems(int phase) {
     else if (phase == 32) hookBit = 9;
     else if (phase == 33) hookBit = 3;
     else if (phase == 34) hookBit = 52;
+    else if (phase == 35) hookBit = 12;
     if (hookBit >= 0 &&
         (activeManagedSourceSystemHooks() & (1ULL << hookBit)) == 0)
         return;
@@ -1723,6 +1724,7 @@ void noteAutoGameUpdate() {
         if (context.netMode != 0 || context.gameMenu == 1) return;
         g_worldSessionReady.store(true, std::memory_order_release);
         dispatchAutoSourceSystems(2);
+        dispatchAutoSourceSystems(35);
         requestBasicItemInstanceRefresh("WorldLoaded");
         enableUniversalHooks();
         resumeUniversalHookMods();
