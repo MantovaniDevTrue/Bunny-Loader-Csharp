@@ -103,6 +103,10 @@ using LocalizationLoadFn = void (*)(Il2CppObject*, Il2CppObject*, const MethodIn
 LocalizationLoadFn g_originalModSystemLanguage = nullptr;
 std::atomic<bool> g_modSystemLanguageHookAttempted{false};
 std::atomic<bool> g_modSystemLanguageHookReady{false};
+InstanceUpdateFn g_originalModSystemSceneMetricsReset = nullptr;
+const MethodInfo* g_modSystemGetPlayerMetrics = nullptr;
+std::atomic<bool> g_modSystemSceneMetricsHookAttempted{false};
+std::atomic<bool> g_modSystemSceneMetricsHookReady{false};
 std::atomic<bool> g_worldTilesLoaded{false};
 std::atomic<bool> g_worldSessionReady{false};
 std::atomic<int> g_worldReadyFrames{0};
@@ -1291,6 +1295,7 @@ void dispatchAutoSourceSystems(int phase) {
     else if (phase == 31) hookBit = 4;
     else if (phase == 32) hookBit = 9;
     else if (phase == 33) hookBit = 3;
+    else if (phase == 34) hookBit = 52;
     if (hookBit >= 0 &&
         (activeManagedSourceSystemHooks() & (1ULL << hookBit)) == 0)
         return;
@@ -1380,6 +1385,41 @@ bool installModSystemLanguageHookOnGameThread() {
             BL_WARN("[CSharp][ModSystem] LanguageManager.LoadFilesForCulture indisponivel");
     }
     return g_modSystemLanguageHookReady.load(std::memory_order_acquire);
+}
+
+void hkCSharpModSystemSceneMetricsReset(Il2CppObject* self,
+                                         const MethodInfo* method) {
+    if (g_originalModSystemSceneMetricsReset)
+        g_originalModSystemSceneMetricsReset(self, method);
+    if (!self || !g_worldSessionReady.load(std::memory_order_acquire) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 52)) == 0 ||
+        !g_modSystemGetPlayerMetrics) return;
+    Il2CppObject* exception = nullptr;
+    Il2CppObject* playerMetrics =
+        il2cpp::api().runtime_invoke(g_modSystemGetPlayerMetrics, nullptr, nullptr, &exception);
+    if (!exception && self == playerMetrics)
+        dispatchAutoSourceSystems(34);
+}
+
+bool installModSystemSceneMetricsHookOnGameThread() {
+    if ((activeManagedSourceSystemHooks() & (1ULL << 52)) == 0) return true;
+    if (!g_modSystemSceneMetricsHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* metrics = il2cpp::findClass({"Terraria", "SceneMetrics", {}});
+        Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+        g_modSystemGetPlayerMetrics = main
+            ? il2cpp::api().class_get_method_from_name(main, "get_PlayerSceneMetrics", 0)
+            : nullptr;
+        const MethodInfo* reset = metrics
+            ? il2cpp::api().class_get_method_from_name(metrics, "Reset", 0)
+            : nullptr;
+        if (reset && g_modSystemGetPlayerMetrics &&
+            bl::hook::install(reset, hkCSharpModSystemSceneMetricsReset,
+                              &g_originalModSystemSceneMetricsReset))
+            g_modSystemSceneMetricsHookReady.store(true, std::memory_order_release);
+        else
+            BL_WARN("[CSharp][ModSystem] SceneMetrics.Reset local nao disponivel");
+    }
+    return g_modSystemSceneMetricsHookReady.load(std::memory_order_acquire);
 }
 
 bool installModSystemUpdateHooksOnGameThread() {
@@ -1506,11 +1546,14 @@ bool hkCSharpGenerateWorld(Il2CppObject* self, const MethodInfo* method) {
 void hkCSharpClearWorld(const MethodInfo* method) {
     if (g_originalClearWorld) g_originalClearWorld(method);
     dispatchAutoSourceSystems(6);
+    dispatchAutoSourceSystems(34);
 }
 
 void hkCSharpSaveAndQuit(const MethodInfo* method) {
-    if (g_worldSessionReady.load(std::memory_order_acquire))
+    if (g_worldSessionReady.load(std::memory_order_acquire)) {
+        dispatchAutoSourceSystems(34);
         dispatchAutoSourceSystems(7);
+    }
     if (g_originalSaveAndQuit) g_originalSaveAndQuit(method);
 }
 
@@ -1575,6 +1618,7 @@ void noteAutoGameUpdate() {
     installModSystemUpdateHooksOnGameThread();
     installNativeModSystemStageHooks(activeManagedSourceSystemHooks());
     installModSystemLanguageHookOnGameThread();
+    installModSystemSceneMetricsHookOnGameThread();
     pumpModSystemContentLifecycleOnGameThread();
     if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
         static unsigned systemRetryFrame = 0;
@@ -1685,7 +1729,8 @@ bool preWorldCSharpContentReady() {
     const auto content = basicItemLoadStatus();
     if (!installModSystemUpdateHooksOnGameThread() ||
         !installNativeModSystemStageHooks(activeManagedSourceSystemHooks()) ||
-        !installModSystemLanguageHookOnGameThread()) return false;
+        !installModSystemLanguageHookOnGameThread() ||
+        !installModSystemSceneMetricsHookOnGameThread()) return false;
     bool needsNpcDispatcher = false;
     for (const auto& status : autoSourceStatuses())
         if (status.applied && !status.systemsLoaded && status.phase != "failed")
