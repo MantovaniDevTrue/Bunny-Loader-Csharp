@@ -20,6 +20,7 @@ public abstract class ModSystem
     public virtual void ClearWorld() { }
     public virtual void PreWorldGen() { }
     public virtual void PostWorldGen() { }
+    public virtual void ResetNearbyTileEffects() { }
     public virtual void PreSaveAndQuit() { }
     public virtual void PreUpdateWorld() { }
     public virtual void PostUpdateWorld() { }
@@ -260,13 +261,14 @@ public static class ModSystemLoader
     /// 0=Load, 1=OnModLoad, 2=OnWorldLoad, 3=OnWorldUnload,
     /// 4=OnModUnload, 5=Unload, 6=ClearWorld, 7=PreSaveAndQuit,
     /// 8=PreWorldGen, 9=PostWorldGen, 10..30=hooks de atualizacao.
-    /// 31=ResizeArrays, 32=PostSetupContent, 33=OnLocalizationsLoaded.
+    /// 31=ResizeArrays, 32=PostSetupContent, 33=OnLocalizationsLoaded,
+    /// 34=ResetNearbyTileEffects.
     /// Retorna o numero de falhas isoladas.
     /// </summary>
     public static int Dispatch(Assembly assembly, int phase)
     {
         if (assembly == null) throw new ArgumentNullException(nameof(assembly));
-        if ((uint)phase > 33) throw new ArgumentOutOfRangeException(nameof(phase));
+        if ((uint)phase > 34) throw new ArgumentOutOfRangeException(nameof(phase));
         lock (Sync)
         {
             if (!Registries.TryGetValue(assembly, out Registry? registry))
@@ -293,6 +295,13 @@ public static class ModSystemLoader
                         failures += Invoke(entry, x => x.OnModLoad(), nameof(ModSystem.OnModLoad));
             }
 
+            if (phase == 34 && registry.ModLoaded)
+            {
+                foreach (Entry entry in registry.Entries)
+                    if (entry.Loaded && (entry.OverrideMask & (1UL << 52)) != 0)
+                        failures += Invoke(entry, x => x.ResetNearbyTileEffects(),
+                            nameof(ModSystem.ResetNearbyTileEffects));
+            }
             if (phase == 33 && registry.ModLoaded && registry.ContentSetup)
             {
                 foreach (Entry entry in registry.Entries)

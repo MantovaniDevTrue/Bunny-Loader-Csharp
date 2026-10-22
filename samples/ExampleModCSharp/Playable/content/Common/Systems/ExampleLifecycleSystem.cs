@@ -48,6 +48,15 @@ public sealed class ExampleLifecycleSystem : ModSystem
         Console.WriteLine("[ExampleMod C#] mundo limpo");
     }
 
+    private int nearbyCount;
+
+    public override void ResetNearbyTileEffects()
+    {
+        // Recomeça a contagem de bioma apenas na varredura do jogador local.
+        // Não guarde arrays de SceneMetrics e não faça scans do mundo.
+        nearbyCount = 0;
+    }
+
     public override void PreWorldGen()
     {
         // Antes do gerador nativo. Nao guarde referencias do mundo anterior.
