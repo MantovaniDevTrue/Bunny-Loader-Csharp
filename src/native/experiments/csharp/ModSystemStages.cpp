@@ -197,6 +197,8 @@ bool installNativeModSystemStageHooks(uint64_t hookMask) {
     const MethodInfo* updateInWorld = nullptr;
     for (Stage& stage : stages) {
         if (!(hookMask & stage.hookBits)) continue;
+        if (*stage.original) continue;
+        if (stage.failed) { ready = false; continue; }
         if (!updateInWorld) {
             auto* cls = bl::il2cpp::findClass({"Terraria", "Main", {}});
             updateInWorld = cls
