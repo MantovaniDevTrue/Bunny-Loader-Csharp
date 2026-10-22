@@ -25,5 +25,10 @@ for idx,(name,offset,phases,bits,signature) in enumerate(expected):
 assert re.search(r'using QuitGameFn\s*=\s*void\s*\(\*\)\(Il2CppObject\*,\s*const MethodInfo\*\)',runtime), "QuitGame must receive Main self"
 assert re.search(r'void hkCSharpQuitGame\(Il2CppObject\* self, const MethodInfo\* method\)',runtime), "QuitGame hook ABI changed"
 assert 'g_originalQuitGame(self, method)' in runtime, "QuitGame must forward Main instance"
+assert 'LoadFilesForCulture' in runtime and 'hkCSharpModSystemLanguage' in runtime, "Missing native reload event"
+assert re.search(r'else if\s*\(phase\s*==\s*33\)\s*hookBit\s*=\s*3',runtime), "Wrong localization bit"
+assert re.search(r'else if\s*\(phase\s*==\s*34\)\s*hookBit\s*=\s*52',runtime), "Wrong nearby tile bit"
+assert 'self == playerMetrics' in runtime and 'get_PlayerSceneMetrics' in runtime, "Scene reset must only use player metrics"
+assert 'dispatchAutoSourceSystems(34);' in runtime, "Missing world change reset"
 assert len(expected)==7
 print("MODSYSTEM_NATIVE_STAGES=PASS edges=7 hooks=9 version=301720")

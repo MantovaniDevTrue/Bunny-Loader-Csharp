@@ -2,7 +2,7 @@
 
 Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/mod/ModSystem.js` consultado em 22/10/2026. Convenção C# autorizada: mesmo nome dos hooks do Bunny/tModLoader quando aplicável, sem copiar o interpretador JS nem considerar método vazio como implementado.
 
-**Status: INCOMPLETO, APK PROIBIDO.** Existem 58 hooks originais; 32 estão declarados no SDK C# como integração de ciclo de vida/eventos, e 26 estão ausentes. A API também tem `Unload`, que não integra os 58 métodos do `ModSystem` original. Mesmo os 5 declarados não estão certificados no Android.
+**Status: INCOMPLETO, APK PROIBIDO.** Existem 58 hooks originais; 34 estão declarados no SDK C# como integração de ciclo de vida/eventos, e 24 estão ausentes. A API também tem `Unload`, que não integra os 58 métodos do `ModSystem` original. Mesmo os 5 declarados não estão certificados no Android.
 
 ## Inicialização e conteúdo (10)
 
@@ -11,7 +11,7 @@ Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/m
 | `Load` | Declarado / integração parcial | Pendente |
 | `OnModLoad` | Declarado / integração parcial | Pendente |
 | `OnModUnload` | Declarado / integração parcial | Pendente |
-| `OnLocalizationsLoaded` | Ausente | Pendente |
+| `OnLocalizationsLoaded` | C# + hook IL2CPP / QA Android pendente | Pendente |
 | `ResizeArrays` | Disparo de inicialização C# nativo / QA pendente | Pendente |
 | `AddRecipeGroups` | Ausente | Pendente |
 | `AddRecipes` | Ausente | Pendente |
@@ -75,7 +75,7 @@ Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/m
 | `ModifyLightingBrightness` | Ausente | Pendente |
 | `ModifyScreenPosition` | Ausente | Pendente |
 | `ModifyTransformMatrix` | Ausente | Pendente |
-| `ResetNearbyTileEffects` | Ausente | Pendente |
+| `ResetNearbyTileEffects` | C# + hook IL2CPP / QA Android pendente | Pendente |
 | `TileCountsAvailable` | Ausente | Pendente |
 
 ## Multiplayer (4)
@@ -89,7 +89,7 @@ Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/m
 
 ## Bloqueios de lançamento
 
-1. Implementar todos os 26 hooks ausentes, com contratos C# adequados para cada parâmetro, retorno e objeto utilizado pelo Terraria. Para métodos com semântica diferente ou API móvel indisponível, documentar equivalência funcional demonstrável ou bloqueio real; não usar `stub`.
+1. Implementar todos os 24 hooks ausentes, com contratos C# adequados para cada parâmetro, retorno e objeto utilizado pelo Terraria. Para métodos com semântica diferente ou API móvel indisponível, documentar equivalência funcional demonstrável ou bloqueio real; não usar `stub`.
 2. Fazer `Load` e `OnModLoad` realmente executarem antes de entrar no mundo, mesmo que o Mono não esteja pronto no primeiro despacho. Uma simples mensagem de erro sem retry não basta.
 3. Fazer `OnWorldLoad`, `LoadWorldData`, `PostWorldLoad`, `SaveWorldData`, `OnWorldUnload` e `Unload` obedecerem à ordem correta, sem duplicação em mundos locais, save/quit e novo mundo.
 4. Inspecionar ABI do hook de `Main.QuitGame` no Android; a assinatura e o vínculo nativo precisam ser comprovados e não podem ser presumidos com base no JS.
