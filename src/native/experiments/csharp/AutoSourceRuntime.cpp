@@ -1234,6 +1234,8 @@ void pumpModSystemContentLifecycleOnGameThread() {
     if (!g_preWorldBindingsArmed.load(std::memory_order_acquire)) return;
     if (!g_modSystemContentSetup.exchange(true, std::memory_order_acq_rel)) {
         dispatchAutoSourceSystems(32);
+        dispatchAutoSourceSystems(36);
+        dispatchAutoSourceSystems(37);
         dispatchAutoSourceSystems(33);
     }
 }
@@ -1330,6 +1332,8 @@ void dispatchAutoSourceSystems(int phase) {
     else if (phase == 33) hookBit = 3;
     else if (phase == 34) hookBit = 52;
     else if (phase == 35) hookBit = 12;
+    else if (phase == 36) hookBit = 7;
+    else if (phase == 37) hookBit = 8;
     if (hookBit >= 0 &&
         (activeManagedSourceSystemHooks() & (1ULL << hookBit)) == 0)
         return;

@@ -3711,7 +3711,7 @@ bool modifyManagedSourceSystemBrightness(const std::string& modId,
 bool dispatchManagedSourceSystem(const std::string& modId,
                                  const std::string& assemblyPath,
                                  int phase, int* failures) {
-    if (!failures || phase < 0 || phase > 35 ||
+    if (!failures || phase < 0 || phase > 37 ||
         modId.empty() || modId.size() > 128 ||
         assemblyPath.empty() || assemblyPath.size() > 2048) return false;
     if (g_withinModSystemCallback) {

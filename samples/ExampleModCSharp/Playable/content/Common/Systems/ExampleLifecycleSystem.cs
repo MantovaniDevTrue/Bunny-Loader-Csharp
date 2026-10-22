@@ -38,6 +38,16 @@ public sealed class ExampleLifecycleSystem : ModSystem
             .Register();
     }
 
+    public override void PostAddRecipes()
+    {
+        Console.WriteLine("[ExampleMod C#] registro nativo de receitas concluido");
+    }
+
+    public override void PostSetupRecipes()
+    {
+        Console.WriteLine("[ExampleMod C#] receitas prontas para crafting");
+    }
+
     public override void OnLocalizationsLoaded()
     {
         // O Bunny chama novamente após trocar a cultura ativa do jogo.

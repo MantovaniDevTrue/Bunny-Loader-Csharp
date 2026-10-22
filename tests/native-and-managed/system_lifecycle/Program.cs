@@ -25,6 +25,8 @@ public sealed class AlphaSystem : ModSystem
     public override void ResetNearbyTileEffects() => Events.Add("A.ResetNearbyTileEffects");
     public override void ResizeArrays() => Events.Add("A.ResizeArrays");
     public override void PostSetupContent() => Events.Add("A.PostSetupContent");
+    public override void PostAddRecipes() => Events.Add("A.PostAddRecipes");
+    public override void PostSetupRecipes() => Events.Add("A.PostSetupRecipes");
     public override void OnWorldLoad() => Events.Add("A.OnWorldLoad");
     public override void PostWorldLoad() => Events.Add("A.PostWorldLoad");
     public override void ClearWorld() => Events.Add("A.ClearWorld");
@@ -139,6 +141,9 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 31) != 0) return 39;
         if (ModSystemLoader.Dispatch(assembly, 32) != 0) return 40;
         if (ModSystemLoader.Dispatch(assembly, 32) != 0) return 41;
+        if (ModSystemLoader.Dispatch(assembly, 36) != 0) return 56;
+        if (ModSystemLoader.Dispatch(assembly, 37) != 0) return 57;
+        if (ModSystemLoader.Dispatch(assembly, 37) != 0) return 58;
         if (ModSystemLoader.Dispatch(assembly, 33) != 0) return 42;
         if (ModSystemLoader.Dispatch(assembly, 33) != 0) return 43;
         if (ModSystemLoader.Dispatch(assembly, 6) != 0) return 21;
@@ -171,7 +176,7 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 25;
         if (ModSystemLoader.Dispatch(assembly, 5) != 0) return 8;
         Expect("A.Load,B.Load,A.OnModLoad,B.OnModLoad," +
-            "A.ResizeArrays,A.PostSetupContent," +
+            "A.ResizeArrays,A.PostSetupContent,A.PostAddRecipes,A.PostSetupRecipes," +
             "A.OnLocalizationsLoaded,A.OnLocalizationsLoaded," +
             "A.ClearWorld,B.ClearWorld,A.ResetNearbyTileEffects,A.PreWorldGen,B.PreWorldGen," +
             "A.PostWorldGen,B.PostWorldGen,A.OnWorldLoad,B.OnWorldLoad," +
