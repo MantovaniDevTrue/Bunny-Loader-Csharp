@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using BunnyLoader.Source;
+
+namespace BunnyLoader.SystemLifecycleTests;
+
+internal static class Events
+{
+    internal static readonly List<string> Items = new();
+    internal static void Add(string value) => Items.Add(value);
+}
+
+public sealed class AlphaSystem : ModSystem
+{
+    public override void Load() => Events.Add("A.Load");
+    public override void OnModLoad() => Events.Add("A.OnModLoad");
+    public override void OnWorldLoad() => Events.Add("A.OnWorldLoad");
+    public override void OnWorldUnload() => Events.Add("A.OnWorldUnload");
+    public override void OnModUnload() => Events.Add("A.OnModUnload");
+    public override void Unload() => Events.Add("A.Unload");
+}
+
+public sealed class BetaSystem : ModSystem
+{
+    public override void Load() => Events.Add("B.Load");
+    public override void OnModLoad() => Events.Add("B.OnModLoad");
+    public override void OnWorldLoad()
+    {
+        Events.Add("B.OnWorldLoad");
+        throw new InvalidOperationException("Falha proposital: outros sistemas devem continuar");
+    }
+    public override void OnWorldUnload() => Events.Add("B.OnWorldUnload");
+    public override void OnModUnload() => Events.Add("B.OnModUnload");
+    public override void Unload() => Events.Add("B.Unload");
+}
+
+internal static class Program
+{
+    private static void Expect(string expected)
+    {
+        string actual = string.Join(",", Events.Items);
+        if (actual != expected)
+            throw new Exception("Sequencia diferente. Esperado=" + expected + " Obtido=" + actual);
+    }
+
+    private static int Main()
+    {
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        if (ModSystemLoader.Dispatch(assembly, 0) != 0) return 1;
+        if (ModSystemLoader.Dispatch(assembly, 0) != 0) return 2;
+        Expect("A.Load,B.Load,A.OnModLoad,B.OnModLoad");
+        if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 3;
+        if (ModSystemLoader.Dispatch(assembly, 2) != 0) return 4;
+        if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 5;
+        if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 6;
+        if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 7;
+        if (ModSystemLoader.Dispatch(assembly, 5) != 0) return 8;
+        Expect("A.Load,B.Load,A.OnModLoad,B.OnModLoad," +
+            "A.OnWorldLoad,B.OnWorldLoad,A.OnWorldUnload,B.OnWorldUnload," +
+            "A.OnWorldLoad,B.OnWorldLoad,A.OnWorldUnload,B.OnWorldUnload," +
+            "A.OnModUnload,B.OnModUnload,B.Unload,A.Unload");
+        if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 9;
+        Console.WriteLine("MODSYSTEM_LIFECYCLE_HOST=PASS");
+        return 0;
+    }
+}
