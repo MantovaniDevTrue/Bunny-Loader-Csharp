@@ -2,11 +2,13 @@
   "reference": "JonataOliveiraa/Bunny-Loader:app/src/main/cpp/script/js/mod/ModSystem.js",
   "originalHookCount": 58,
   "declaredOriginalHooks": [
+    "ClearWorld",
     "Load",
     "OnModLoad",
     "OnModUnload",
     "OnWorldLoad",
-    "OnWorldUnload"
+    "OnWorldUnload",
+    "PreSaveAndQuit"
   ],
   "missingOriginalHooks": [
     "OnLocalizationsLoaded",
@@ -26,8 +28,6 @@
     "ModifyWorldGenTasks",
     "PostWorldGen",
     "ModifyHardmodeTasks",
-    "ClearWorld",
-    "PreSaveAndQuit",
     "PreUpdateWorld",
     "PostUpdateWorld",
     "PreUpdateTime",

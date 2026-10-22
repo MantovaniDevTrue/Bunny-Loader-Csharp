@@ -1,6 +1,6 @@
 # ModSystem em C# — integração de ciclo de vida
 
-> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, somente 5 estão declarados, 53 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
+> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 7 estão declarados, 51 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
 
 
 Este módulo usa o nome e as assinaturas de eventos `ModSystem` do tModLoader, mas a execução é implementada diretamente no SDK C# do Bunny Loader, sem executar JavaScript.
@@ -38,3 +38,7 @@ O hook C# de `Main.QuitGame()` executa `OnWorldUnload`, `OnModUnload` e `Unload`
 ## Gate do ModSystem antes do mundo
 
 Mods C# com pelo menos um ModSystem agora preparam Mono e exigem despacho confirmado de Load/OnModLoad antes da entrada no mundo; falhas temporárias de inicialização retornam à fila leve de retry, sem reinvocar Load após sucesso. Mods sem ModSystem não pagam o custo dessa etapa. A integração utiliza o estado systemsLoaded protegido pelo mutex de status e não o FPS de jogo para executar Load no mundo. **Ainda exige validação Android do gate e dos possíveis estados de falha, e não substitui o teste da ABI nativa.**
+
+## ClearWorld e PreSaveAndQuit
+
+O `ClearWorld` C# executa depois do `WorldGen.clearWorld()` original, e `PreSaveAndQuit` antes de `WorldGen.SaveAndQuit()` original quando a sessão está ativa, conforme os hooks existentes no SystemLoader.js. O primeiro ensaio de regressão encontrou a condição `phase >= 4` descarregando indevidamente o mod durante PreSaveAndQuit; a condição foi corrigida para aceitar somente as fases de unload (3/4/5). Ambos exigem validação de ABI, compilação Android e QA real.
