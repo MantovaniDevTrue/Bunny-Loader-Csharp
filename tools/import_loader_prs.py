@@ -151,8 +151,33 @@ def main():
             imported.append(import_entry(source, target, entry, total))
         else:
             skipped.append({"pr": entry["number"], "name": entry["name"], "status": entry["status"], "reason": "origem tModLoader exige auditoria antes de reutilizar fontes"})
+    owners = {}
+    for summary in imported:
+        manifest_path = target / ("pr-%04d" % summary["pr"]) / "SOURCE.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        for record in manifest["files"]:
+            owners.setdefault(record["path"], []).append({
+                "pr": summary["pr"],
+                "sha256": record["sha256"],
+            })
+    overlaps = []
+    for path, entries in owners.items():
+        variants = {entry["sha256"] for entry in entries}
+        if len(variants) > 1:
+            overlaps.append({
+                "path": path,
+                "prs": [entry["pr"] for entry in entries],
+                "variants": len(variants),
+            })
+    overlaps.sort(key=lambda entry: (-len(entry["prs"]), entry["path"]))
+    (target / "CONFLICTS.json").write_text(
+        json.dumps({"schema": 1, "different_content_shared_paths": len(overlaps), "files": overlaps},
+                   indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8")
     inventory = {
         "schema": 1,
+        "different_content_shared_paths": len(overlaps),
+        "highest_collision_paths": overlaps[:30],
         "upstream": config["upstream"],
         "target_baseline": config["target_baseline"],
         "mode": "isolated_source_overlays",
