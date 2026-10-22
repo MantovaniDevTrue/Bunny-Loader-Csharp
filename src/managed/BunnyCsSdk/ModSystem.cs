@@ -53,8 +53,13 @@ public static class ModSystemLoader
     private sealed class Entry
     {
         public readonly ModSystem System;
+        public readonly ulong OverrideMask;
         public bool Loaded;
-        public Entry(ModSystem system) => System = system;
+        public Entry(ModSystem system, ulong mask)
+        {
+            System = system;
+            OverrideMask = mask;
+        }
     }
 
     private sealed class Registry
@@ -74,6 +79,11 @@ public static class ModSystemLoader
     private static readonly object Sync = new();
     private static readonly Dictionary<Assembly, Registry> Registries = new();
     private const int MaxSystemsPerMod = 256;
+    private static readonly int[] UpdateBitIndexes =
+    {
+        24, 25, 26, 27, 32, 28, 39, 43, 44, 45, 46, 31,
+        33, 34, 35, 36, 37, 38, 40, 41, 42
+    };
     private static readonly (string Name, Action<ModSystem> Call)[] UpdateHooks =
     {
         ("PreUpdateWorld", x => x.PreUpdateWorld()),
@@ -165,6 +175,23 @@ public static class ModSystemLoader
     /// ModSystem.js do Bunny. Um bit so entra se uma instancia ativa o sobrescreve.
     /// Usado pelo host para nao consultar Mono em hooks sem assinantes.
     /// </summary>
+    private static ulong ResolveHookMask(Type type)
+    {
+        ulong mask = 0;
+        for (int index = 0; index < OriginalHookNames.Length; index++)
+        {
+            MethodInfo? original = typeof(ModSystem).GetMethod(
+                OriginalHookNames[index], BindingFlags.Public | BindingFlags.Instance);
+            if (original == null) continue;
+            MethodInfo? method = type.GetMethod(OriginalHookNames[index],
+                BindingFlags.Public | BindingFlags.Instance);
+            if (method != null && method.DeclaringType != typeof(ModSystem) &&
+                method.GetBaseDefinition().Equals(original))
+                mask |= 1UL << index;
+        }
+        return mask;
+    }
+
     public static ulong HookMask(Assembly assembly)
     {
         if (assembly == null) throw new ArgumentNullException(nameof(assembly));
@@ -174,21 +201,7 @@ public static class ModSystemLoader
                 !registry.ModLoaded) return 0;
             ulong mask = 0;
             foreach (Entry entry in registry.Entries)
-            {
-                if (!entry.Loaded) continue;
-                Type type = entry.System.GetType();
-                for (int index = 0; index < OriginalHookNames.Length; index++)
-                {
-                    MethodInfo? baseMethod = typeof(ModSystem).GetMethod(OriginalHookNames[index],
-                        BindingFlags.Public | BindingFlags.Instance);
-                    if (baseMethod == null) continue;
-                    MethodInfo? method = type.GetMethod(OriginalHookNames[index],
-                        BindingFlags.Public | BindingFlags.Instance);
-                    if (method != null && method.DeclaringType != typeof(ModSystem) &&
-                        method.GetBaseDefinition().Equals(baseMethod))
-                        mask |= 1UL << index;
-                }
-            }
+                if (entry.Loaded) mask |= entry.OverrideMask;
             return mask;
         }
     }
@@ -210,7 +223,8 @@ public static class ModSystemLoader
             {
                 if (type.GetConstructor(Type.EmptyTypes) == null)
                     throw new InvalidOperationException("Construtor publico sem parametros obrigatorio");
-                entries.Add(new Entry((ModSystem)Activator.CreateInstance(type)!));
+                entries.Add(new Entry((ModSystem)Activator.CreateInstance(type)!,
+                    ResolveHookMask(type)));
             }
             catch (Exception error)
             {
@@ -277,8 +291,9 @@ public static class ModSystemLoader
                 (registry.WorldLoaded || phase == 21))
             {
                 var hook = UpdateHooks[phase - 10];
+                ulong hookBit = 1UL << UpdateBitIndexes[phase - 10];
                 foreach (Entry entry in registry.Entries)
-                    if (entry.Loaded)
+                    if (entry.Loaded && (entry.OverrideMask & hookBit) != 0)
                         failures += Invoke(entry, hook.Call, hook.Name);
             }
             if (phase == 6 && registry.ModLoaded)
