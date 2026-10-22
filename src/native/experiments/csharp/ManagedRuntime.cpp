@@ -3670,9 +3670,19 @@ uint64_t managedSourceSystemHookMask(const std::string& modId) {
 bool dispatchManagedSourceSystem(const std::string& modId,
                                  const std::string& assemblyPath,
                                  int phase, int* failures) {
-    if (!failures || phase < 0 || phase > 32 ||
+    if (!failures || phase < 0 || phase > 35 ||
         modId.empty() || modId.size() > 128 ||
         assemblyPath.empty() || assemblyPath.size() > 2048) return false;
+    static thread_local bool withinSystemCallback = false;
+    if (withinSystemCallback) {
+        *failures = 0;
+        return true;
+    }
+    struct SystemCallbackScope {
+        bool& flag;
+        explicit SystemCallbackScope(bool& value) : flag(value) { flag = true; }
+        ~SystemCallbackScope() { flag = false; }
+    } scope(withinSystemCallback);
     std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
     std::unique_lock<std::mutex> guard(g_mutex);
     if (!g_domain || !g_status.domainInitialized || !g_status.methodExecuted ||
