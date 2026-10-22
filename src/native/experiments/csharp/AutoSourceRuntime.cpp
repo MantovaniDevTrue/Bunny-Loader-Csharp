@@ -1151,12 +1151,13 @@ bool loadPendingAutoSourceSystems() {
         if (!dispatchManagedSourceSystem(modId,
                 work + "compiled/" + modId + ".dll", 0, &failures))
             continue;
+        const uint64_t loadedMask = managedSourceSystemHookMask(modId);
         {
             std::lock_guard<std::mutex> guard(g_lock);
             for (auto& status : g_statuses)
                 if (status.modId == modId) {
                     status.systemsLoaded = true;
-                    status.systemHookMask = managedSourceSystemHookMask(modId);
+                    status.systemHookMask = loadedMask;
                 }
         }
         if (failures)

@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import re
+root=Path(__file__).resolve().parents[3]
+stage=(root/"src/native/experiments/csharp/ModSystemStages.cpp").read_text()
+runtime=(root/"src/native/experiments/csharp/AutoSourceRuntime.cpp").read_text()
+expected=[
+    ("PlayersBegin","0x1b8",(22,),(33,),("0xd00100bd","0xd001011a","0xf00100f9","0xd000ffdc")),
+    ("PlayersEnd","0x57c",(23,),(34,),("0xd0010028","0xf940b108","0x2a1f03f5","0xf9400108")),
+    ("NPCsBegin","0x884",(24,),(35,),("0xaa1f03e0","0x3900811f","0x94063b0a","0xaa1f03e0")),
+    ("NPCsEnd","0xf40",(25,26),(36,37),("0xd0010028","0xf940b108","0x120002c9","0xd00100f5")),
+    ("GoresEnd","0x114c",(27,),(38,),("0x2a1f03f5","0xf94003a0","0xb940e008","0x35000068")),
+    ("ItemsBegin","0x1740",(28,29),(40,41),("0xd000feb7","0xf000fed8","0xd000ff99","0x9001017c")),
+    ("ItemsEnd","0x1a14",(30,),(42,),("0x9000ffc8","0xf9437908","0xb0010037","0xd00100b6")),
+]
+for idx,(name,offset,phases,bits,signature) in enumerate(expected):
+    table=r'\{"'+name+r'",\s*'+offset+r',\s*\{'+r',\s*'.join(signature)+r'\},'
+    assert re.search(table,stage), "Native original instruction mismatch: "+name
+    case=re.search(r'case\s+'+str(idx)+r':(.*?)break;',stage,re.S)
+    assert case, "Missing native stage "+name
+    assert tuple(map(int,re.findall(r'dispatchAutoSourceSystems\((\d+)\)',case.group(1))))==phases, "Wrong phase ordering "+name
+    assert "blCsSystemStageBridge"+str(idx) in stage
+    for phase,bit in zip(phases,bits):
+        assert re.search(r'(?:if|else if)\s*\(phase\s*==\s*'+str(phase)+r'\)\s*hookBit\s*=\s*'+str(bit)+r';',runtime), "Mask/phase mismatch"
+assert len(expected)==7
+print("MODSYSTEM_NATIVE_STAGES=PASS edges=7 hooks=9 version=301720")

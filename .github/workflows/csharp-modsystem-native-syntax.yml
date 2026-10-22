@@ -51,4 +51,11 @@ jobs:
             "$compiler" -std=c++20 -O2 -fno-exceptions -fno-rtti \
               -DBL_HAVE_QUICKJS=0 -I"$src" -fsyntax-only "$file"
           done
+          "$compiler" -std=c++20 -O2 -fno-exceptions -fno-rtti \
+            -DBL_HAVE_QUICKJS=0 -I"$src" -c \
+            "$src/experiments/csharp/ModSystemStages.cpp" -o /tmp/modsystem-stages-arm64.o
+          nm="$ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-nm"
+          "$nm" /tmp/modsystem-stages-arm64.o | grep -q blCsSystemStageDispatch
+          "$nm" /tmp/modsystem-stages-arm64.o | grep -q blCsSystemStageBridge6
+          echo "MODSYSTEM_ARM64_NATIVE_ASSEMBLY=PASS"
           echo "MODSYSTEM_ARM64_NATIVE_SYNTAX=PASS"

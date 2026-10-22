@@ -26,6 +26,7 @@ jobs:
       - run: dotnet run --project tests/native-and-managed/system_lifecycle/SystemLifecycle.csproj --configuration Release
       - run: dotnet build tests/native-and-managed/system_lifecycle/SampleLifecycleCompile.csproj --configuration Release
       - run: python3 tests/native-and-managed/system_lifecycle/check_coverage.py
+      - run: python3 tests/native-and-managed/system_lifecycle/check_native_stages.py
       - run: |
           c++ -std=c++20 -Isrc/native \
             src/native/experiments/csharp/SourceParser.cpp \
