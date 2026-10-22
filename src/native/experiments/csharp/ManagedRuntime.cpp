@@ -122,9 +122,13 @@ struct LiveEntry {
 struct SourceSystemEntry {
     std::string path;
     void* method = nullptr;
+    void* maskMethod = nullptr;
+    uint64_t mask = 0;
+    bool maskKnown = false;
 };
 std::map<std::string, SourceSystemEntry> g_sourceSystemEntries;
 std::mutex g_sourceSystemDispatchMutex;
+std::atomic<uint64_t> g_sourceSystemOriginalMask{0};
 std::map<std::string, LiveEntry> g_sourceLiveEntries;
 uint64_t g_liveMethodCacheHits = 0;
 uint64_t g_liveMethodCacheMisses = 0;
@@ -3652,6 +3656,10 @@ LiveSourceStatus invokeLiveSourceTick(const std::string& modId,
     return status;
 }
 
+uint64_t activeManagedSourceSystemHooks() {
+    return g_sourceSystemOriginalMask.load(std::memory_order_acquire);
+}
+
 bool dispatchManagedSourceSystem(const std::string& modId,
                                  const std::string& assemblyPath,
                                  int phase, int* failures) {
@@ -3680,7 +3688,8 @@ bool dispatchManagedSourceSystem(const std::string& modId,
         void* image = assembly ? g_api.image(assembly) : nullptr;
         void* klass = image ? g_api.findClass(image, "BunnyLoader.Source", "BunnySystemEntry") : nullptr;
         entry.method = klass ? g_api.findMethod(klass, "Invoke", 1) : nullptr;
-        if (!entry.method) {
+        entry.maskMethod = klass ? g_api.findMethod(klass, "HookMask", 0) : nullptr;
+        if (!entry.method || !entry.maskMethod) {
             g_sourceSystemEntries.erase(modId);
             return false;
         }
@@ -3698,6 +3707,15 @@ bool dispatchManagedSourceSystem(const std::string& modId,
     int result = -1;
     std::memcpy(&result, unboxed, sizeof(result));
     if (result < 0 || result > 256) return false;
+    if (phase == 0 && !entry.maskKnown) {
+        void* maskException = nullptr;
+        void* boxedMask = g_api.invoke(entry.maskMethod, nullptr, nullptr, &maskException);
+        void* unboxedMask = maskException || !boxedMask ? nullptr : g_api.unbox(boxedMask);
+        if (!unboxedMask) return false;
+        std::memcpy(&entry.mask, unboxedMask, sizeof(entry.mask));
+        entry.maskKnown = true;
+        g_sourceSystemOriginalMask.fetch_or(entry.mask, std::memory_order_acq_rel);
+    }
     *failures = result;
     if (phase == 5) {
         guard.lock();

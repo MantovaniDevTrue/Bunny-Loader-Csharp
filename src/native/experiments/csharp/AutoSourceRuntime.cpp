@@ -1215,6 +1215,14 @@ void retryWorldManagedPrefixesWhenReady() {
 }
 
 void dispatchAutoSourceSystems(int phase) {
+    int hookBit = -1;
+    if (phase == 6) hookBit = 21;
+    else if (phase == 7) hookBit = 22;
+    else if (phase == 8) hookBit = 17;
+    else if (phase == 9) hookBit = 19;
+    if (hookBit >= 0 &&
+        (activeManagedSourceSystemHooks() & (1ULL << hookBit)) == 0)
+        return;
     std::vector<std::string> ids;
     {
         std::lock_guard<std::mutex> guard(g_lock);

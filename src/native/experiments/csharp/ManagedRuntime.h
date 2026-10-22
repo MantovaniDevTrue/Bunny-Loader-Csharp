@@ -10,6 +10,7 @@
 
 namespace bl::csharp {
 
+uint64_t activeManagedSourceSystemHooks();
 bool dispatchManagedSourceSystem(const std::string& modId,
                                  const std::string& assemblyPath,
                                  int phase, int* failures);
