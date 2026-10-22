@@ -1454,6 +1454,17 @@ void hkCSharpModSystemCamera(const MethodInfo* method) {
         il2cpp::api().field_static_set_value(g_modSystemCameraPosition, &position);
 }
 
+bool isModSystemNativeStructField(FieldInfo* field, int expectedBytes) {
+    const auto& api = il2cpp::api();
+    if (!field || !api.field_get_type || !api.class_from_il2cpp_type ||
+        !api.class_value_size) return false;
+    const Il2CppType* type = api.field_get_type(field);
+    Il2CppClass* cls = type ? api.class_from_il2cpp_type(type) : nullptr;
+    if (!cls) return false;
+    uint32_t alignment = 0;
+    return api.class_value_size(cls, &alignment) == expectedBytes;
+}
+
 bool installModSystemSunlightAndCameraHooksOnGameThread() {
     const uint64_t mask = activeManagedSourceSystemHooks();
     if ((mask & (1ULL << 48)) != 0 &&
@@ -1464,7 +1475,9 @@ bool installModSystemSunlightAndCameraHooksOnGameThread() {
         const MethodInfo* sunlight = main
             ? il2cpp::api().class_get_method_from_name(main, "ApplyColorOfTheSkiesToTiles", 0)
             : nullptr;
-        if (sunlight && g_modSystemTileColor && g_modSystemSkyColor &&
+        if (sunlight &&
+            isModSystemNativeStructField(g_modSystemTileColor, 4) &&
+            isModSystemNativeStructField(g_modSystemSkyColor, 4) &&
             bl::hook::install(sunlight, hkCSharpModSystemSunlight,
                               &g_originalModSystemSunlight))
             g_modSystemSunlightHookReady.store(true, std::memory_order_release);
@@ -1478,7 +1491,7 @@ bool installModSystemSunlightAndCameraHooksOnGameThread() {
         const MethodInfo* camera = main
             ? il2cpp::api().class_get_method_from_name(main, "DoDraw_UpdateCameraPosition", 0)
             : nullptr;
-        if (camera && g_modSystemCameraPosition &&
+        if (camera && isModSystemNativeStructField(g_modSystemCameraPosition, 8) &&
             bl::hook::install(camera, hkCSharpModSystemCamera,
                               &g_originalModSystemCamera))
             g_modSystemCameraHookReady.store(true, std::memory_order_release);
