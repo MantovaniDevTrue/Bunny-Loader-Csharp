@@ -78,7 +78,7 @@ def fetch_refs(source, entry):
 
 def import_entry(source, target, entry, total):
     base, head, current = fetch_refs(source, entry)
-    paths = [p for p in run(source, "diff", "--name-only", "--diff-filter=ACMR", base, head, "--").splitlines() if p]
+    paths = [p for p in run(source, "diff", "--name-only", "--diff-filter=ACMR", base + "..." + head, "--").splitlines() if p]
     number = entry["number"]
     folder = target / ("pr-%04d" % number)
     folder.mkdir(parents=True, exist_ok=True)
