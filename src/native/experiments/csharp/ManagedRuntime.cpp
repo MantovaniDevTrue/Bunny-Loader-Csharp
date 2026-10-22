@@ -3661,9 +3661,18 @@ bool dispatchManagedSourceSystem(const std::string& modId,
     std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
     std::unique_lock<std::mutex> guard(g_mutex);
     if (!g_domain || !g_status.domainInitialized || !g_status.methodExecuted ||
-        !g_api.attach || !g_api.openAssembly || !g_api.image ||
-        !g_api.findClass || !g_api.findMethod || !g_api.invoke || !g_api.unbox ||
-        !g_api.attach(g_domain)) return false;
+        !g_api.attach || !g_api.currentThread || !g_api.detachThread ||
+        !g_api.openAssembly || !g_api.image ||
+        !g_api.findClass || !g_api.findMethod || !g_api.invoke || !g_api.unbox)
+        return false;
+    const void* alreadyAttached = g_api.currentThread();
+    void* attached = g_api.attach(g_domain);
+    if (!attached) return false;
+    struct ScopedMonoDetach {
+        DetachFn detach;
+        void* owned;
+        ~ScopedMonoDetach() { if (owned) detach(owned); }
+    } monoThread{g_api.detachThread, alreadyAttached ? nullptr : attached};
     SourceSystemEntry& entry = g_sourceSystemEntries[modId];
     if (!entry.path.empty() && entry.path != assemblyPath) return false;
     if (!entry.method) {

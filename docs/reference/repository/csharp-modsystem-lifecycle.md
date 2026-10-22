@@ -46,3 +46,7 @@ O `ClearWorld` C# executa depois do `WorldGen.clearWorld()` original, e `PreSave
 ## Eventos reais de geracao do mundo
 
 A ponte em C++ usa `Terraria.WorldBuilding.WorldGenerator.GenerateWorld()` do mesmo ponto de extensão do `SystemWorldHooks.js` original. `PreWorldGen` é chamado antes da função original e `PostWorldGen` somente se ela retorna `true`. O método permanece sem suporte a `ModifyWorldGenTasks` porque esse requer representação C# real de GenPass, lista mutável e aplicação segura na thread do gerador. Sem essa API, não declarar worldgen completo. Falta confirmar a assinatura nativa e a ordem de callbacks num mundo novo no Android.
+
+## Threads do Mono em hooks nativos
+
+No despacho de `ModSystem`, a ponte C++ exige `mono_thread_current` e `mono_thread_detach`, detecta se a thread já pertence ao domínio e desanexa somente as threads anexadas por esta própria chamada. Isso evita deixar threads temporárias de worldgen anexadas indefinidamente ao Mono. O lock global de métodos é solto antes de chamar a função do mod. É necessário testar especificamente criação de mundo e cancelamento da geração no Android; a implementação em fonte não prova ausência de crash em ARM64.
