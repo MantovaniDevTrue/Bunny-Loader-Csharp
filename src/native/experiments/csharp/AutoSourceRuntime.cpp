@@ -5,6 +5,7 @@
 #include "experiments/csharp/UniversalHooks.h"
 #include "experiments/csharp/AutoSourceCache.h"
 #include "experiments/csharp/AutoSourceRuntime.h"
+#include "experiments/csharp/ModSystemStages.h"
 #include "experiments/csharp/NativeVisualRenderer.h"
 #include "graphics/CSharpScreenEffects.h"
 #include "experiments/csharp/NativeContent.h"
@@ -46,6 +47,8 @@
 #include <iomanip>
 #include <cstdint>
 #include <mutex>
+#include <memory>
+#include <cmath>
 #include <sstream>
 #include <set>
 #include <string>
@@ -67,9 +70,18 @@ std::atomic<bool> g_runtimeWarming{false};
 std::mutex g_lock;
 std::mutex g_worldTransitionMutex;
 std::vector<AutoSourceStatus> g_statuses;
+struct SystemDispatchTarget {
+    std::string modId;
+    std::string assemblyPath;
+    uint64_t hookMask = 0;
+};
+std::shared_ptr<const std::vector<SystemDispatchTarget>> g_systemDispatchSnapshot;
 std::atomic<bool> g_started{false};
 std::atomic<bool> g_initialCSharpRegistrationFinished{false};
 std::atomic<bool> g_initialCSharpSummaryShown{false};
+std::atomic<bool> g_modSystemArraysResized{false};
+std::atomic<bool> g_modSystemContentSetup{false};
+std::array<std::atomic<uint32_t>, 36> g_modSystemFailedDispatchCount{};
 std::atomic<bool> g_preWorldBindingsArmed{false};
 std::atomic<bool> g_preWorldBindingsRunning{false};
 std::atomic<bool> g_delayedWorldEntry{false};
@@ -77,6 +89,59 @@ std::chrono::steady_clock::time_point g_delayedWorldSince{};
 const MethodInfo* g_delayedPlayWorldMethod=nullptr;
 using PlayWorldFn=void (*)(const MethodInfo*);
 PlayWorldFn g_originalPlayWorld=nullptr;
+using QuitGameFn = void (*)(Il2CppObject*, const MethodInfo*);
+QuitGameFn g_originalQuitGame = nullptr;
+using ClearWorldFn = void (*)(const MethodInfo*);
+ClearWorldFn g_originalClearWorld = nullptr;
+using SaveAndQuitFn = void (*)(const MethodInfo*);
+SaveAndQuitFn g_originalSaveAndQuit = nullptr;
+using GenerateWorldFn = bool (*)(Il2CppObject*, const MethodInfo*);
+GenerateWorldFn g_originalGenerateWorld = nullptr;
+using StaticUpdateFn = void (*)(const MethodInfo*);
+using InstanceUpdateFn = void (*)(Il2CppObject*, const MethodInfo*);
+std::atomic<uint32_t> g_modSystemUpdateHookAttempts{0};
+std::atomic<uint32_t> g_modSystemUpdateHookReady{0};
+StaticUpdateFn g_originalModSystemWorld = nullptr;
+StaticUpdateFn g_originalModSystemTime = nullptr;
+InstanceUpdateFn g_originalModSystemEntities = nullptr;
+InstanceUpdateFn g_originalModSystemProjectiles = nullptr;
+StaticUpdateFn g_originalModSystemDust = nullptr;
+StaticUpdateFn g_originalModSystemBrightness = nullptr;
+StaticUpdateFn g_originalModSystemSunlight = nullptr;
+StaticUpdateFn g_originalModSystemCamera = nullptr;
+FieldInfo* g_modSystemBrightnessField = nullptr;
+FieldInfo* g_modSystemTileColor = nullptr;
+FieldInfo* g_modSystemSkyColor = nullptr;
+FieldInfo* g_modSystemCameraPosition = nullptr;
+std::atomic<bool> g_modSystemSunlightHookAttempted{false};
+std::atomic<bool> g_modSystemSunlightHookReady{false};
+std::atomic<bool> g_modSystemCameraHookAttempted{false};
+std::atomic<bool> g_modSystemCameraHookReady{false};
+std::atomic<bool> g_modSystemBrightnessHookAttempted{false};
+std::atomic<bool> g_modSystemBrightnessHookReady{false};
+StaticUpdateFn g_originalModSystemInvasions = nullptr;
+InstanceUpdateFn g_originalModSystemInput = nullptr;
+using LocalizationLoadFn = void (*)(Il2CppObject*, Il2CppObject*, const MethodInfo*);
+LocalizationLoadFn g_originalModSystemLanguage = nullptr;
+std::atomic<bool> g_modSystemLanguageHookAttempted{false};
+std::atomic<bool> g_modSystemLanguageHookReady{false};
+InstanceUpdateFn g_originalModSystemSceneMetricsReset = nullptr;
+InstanceUpdateFn g_originalModSystemTileCounts = nullptr;
+using ModSystemUiFn = void (*)(Il2CppObject*, const MethodInfo*);
+ModSystemUiFn g_originalModSystemUpdateUI = nullptr;
+size_t g_modSystemUiTotalOffset = 0;
+size_t g_modSystemUiElapsedOffset = 0;
+size_t g_modSystemUiSlowOffset = 0;
+std::atomic<bool> g_modSystemUiHookAttempted{false};
+std::atomic<bool> g_modSystemUiHookReady{false};
+std::atomic<uint32_t> g_modSystemUiFailures{0};
+size_t g_modSystemTileCountsOffset = 0;
+std::atomic<bool> g_modSystemTileCountsHookAttempted{false};
+std::atomic<bool> g_modSystemTileCountsHookReady{false};
+std::atomic<uint32_t> g_modSystemTileCountFailures{0};
+const MethodInfo* g_modSystemGetPlayerMetrics = nullptr;
+std::atomic<bool> g_modSystemSceneMetricsHookAttempted{false};
+std::atomic<bool> g_modSystemSceneMetricsHookReady{false};
 std::atomic<bool> g_worldTilesLoaded{false};
 std::atomic<bool> g_worldSessionReady{false};
 std::atomic<int> g_worldReadyFrames{0};
@@ -154,15 +219,34 @@ bool writeText(const std::string& path, const std::string& value) {
     return true;
 }
 
+void refreshSystemDispatchSnapshotLocked() {
+    const std::string root = folderOfCheckpoint();
+    auto next = std::make_shared<std::vector<SystemDispatchTarget>>();
+    if (!root.empty()) {
+        next->reserve(g_statuses.size());
+        for (const auto& mod : g_statuses) {
+            if (!mod.applied || !mod.systemsLoaded || !mod.error.empty())
+                continue;
+            next->push_back({mod.modId,
+                root + "compiled/" + mod.modId + ".dll", mod.systemHookMask});
+        }
+    }
+    std::shared_ptr<const std::vector<SystemDispatchTarget>> ready = std::move(next);
+    std::atomic_store_explicit(&g_systemDispatchSnapshot, std::move(ready),
+                               std::memory_order_release);
+}
+
 void setStatus(const AutoSourceStatus& next) {
     std::lock_guard<std::mutex> guard(g_lock);
     for (auto& entry : g_statuses) {
         if (entry.modId == next.modId) {
             entry = next;
+            refreshSystemDispatchSnapshotLocked();
             return;
         }
     }
     g_statuses.push_back(next);
+    refreshSystemDispatchSnapshotLocked();
 }
 
 void note(AutoSourceStatus* status, const std::string& phase,
@@ -814,7 +898,7 @@ void run() {
             note(&status, "failed", "Tabelas de projetil nao ficaram prontas");
             continue;
         }
-        if ((mod.projectiles > 0 || mod.npcs > 0 || hasUniversalHooks) &&
+        if ((mod.projectiles > 0 || mod.npcs > 0 || mod.systems > 0 || hasUniversalHooks) &&
             !g_runtimeWarmStarted.exchange(true, std::memory_order_acq_rel)) {
             const std::string probe = work + "BunnyManagedProbe.dll";
             struct stat probeStat{};
@@ -865,6 +949,21 @@ void run() {
                 mod.id.c_str(),status.cached?"Hit":"Miss",cacheReason.c_str(),cacheWrite.c_str(),
                 tablesMs,cacheMs,compileMs,elapsedMilliseconds(applyStarted));
         status.applied = true;
+        status.systemsLoaded = mod.systems == 0;
+        if (!status.systemsLoaded) {
+            int failures = 0;
+            if (!dispatchManagedSourceSystem(mod.id, assembly, 0, &failures)) {
+                BL_DEBUG("[CSharp][ModSystem] mod=%s aguardando inicializacao Mono",
+                         mod.id.c_str());
+            } else {
+                status.systemsLoaded = true;
+                status.systemHookMask = managedSourceSystemHookMask(mod.id);
+                if (failures)
+                    BL_WARN("[CSharp][ModSystem] mod=%s Load encontrou %d falha(s)",
+                            mod.id.c_str(), failures);
+            }
+        }
+        setStatus(status);
         if (hasUniversalHooks && !registerUniversalHookMod(mod.id, assembly))
             BL_WARN("csharp universal hooks: fila recusada mod=%s", mod.id.c_str());
         if (mod.npcs > 0 || mod.projectiles > 0) {
@@ -1100,6 +1199,69 @@ void pumpInteractiveConsoleOnGameThread() {
     }
 }
 
+bool loadPendingAutoSourceSystems() {
+    std::vector<std::string> pending;
+    {
+        std::lock_guard<std::mutex> guard(g_lock);
+        for (const auto& status : g_statuses)
+            if (status.applied && !status.systemsLoaded && status.phase != "failed")
+                pending.push_back(status.modId);
+    }
+    if (pending.empty()) return true;
+    const std::string work = folderOfCheckpoint();
+    if (work.empty()) return false;
+    for (const auto& modId : pending) {
+        int failures = 0;
+        if (!dispatchManagedSourceSystem(modId,
+                work + "compiled/" + modId + ".dll", 0, &failures))
+            continue;
+        const uint64_t loadedMask = managedSourceSystemHookMask(modId);
+        {
+            std::lock_guard<std::mutex> guard(g_lock);
+            for (auto& status : g_statuses)
+                if (status.modId == modId) {
+                    status.systemsLoaded = true;
+                    status.systemHookMask = loadedMask;
+                }
+            refreshSystemDispatchSnapshotLocked();
+        }
+        if (failures)
+            BL_WARN("[CSharp][ModSystem] mod=%s Load encontrou %d falha(s)",
+                    modId.c_str(), failures);
+    }
+    std::lock_guard<std::mutex> guard(g_lock);
+    for (const auto& status : g_statuses)
+        if (status.applied && !status.systemsLoaded && status.phase != "failed")
+            return false;
+    return true;
+}
+
+void dispatchAutoSourceSystems(int phase);
+
+void pumpModSystemContentLifecycleOnGameThread() {
+    if (!g_initialCSharpRegistrationFinished.load(std::memory_order_acquire) ||
+        g_modSystemContentSetup.load(std::memory_order_acquire)) return;
+    {
+        std::lock_guard<std::mutex> guard(g_lock);
+        for (const auto& state : g_statuses) {
+            if (state.phase == "failed") continue;
+            if (!state.applied || !state.systemsLoaded) return;
+        }
+    }
+    if (!g_modSystemArraysResized.exchange(true, std::memory_order_acq_rel))
+        dispatchAutoSourceSystems(31);
+    const auto ready = basicItemLoadStatus();
+    if (ready.pendingRecipes || ready.pendingBehaviors || ready.pendingPlacements ||
+        pendingNativeVisualRenderer()) return;
+    if (!g_preWorldBindingsArmed.load(std::memory_order_acquire)) return;
+    if (!g_modSystemContentSetup.exchange(true, std::memory_order_acq_rel)) {
+        dispatchAutoSourceSystems(32);
+        dispatchAutoSourceSystems(36);
+        dispatchAutoSourceSystems(37);
+        dispatchAutoSourceSystems(33);
+    }
+}
+
 void reportCSharpLoadSummary() {
     if (!g_initialCSharpRegistrationFinished.load(std::memory_order_acquire) ||
         g_initialCSharpSummaryShown.load(std::memory_order_acquire)) return;
@@ -1110,7 +1272,7 @@ void reportCSharpLoadSummary() {
     int successful = 0, failed = 0, pendingCallbacks = 0;
     for (const auto& status : statuses) {
         if (status.phase == "failed" || !status.error.empty()) ++failed;
-        else if (!status.applied) ++pendingCallbacks;
+        else if (!status.applied || !status.systemsLoaded) ++pendingCallbacks;
         else {
             ++successful;
             if (status.enabledCurves < status.curves ||
@@ -1160,8 +1322,651 @@ void retryWorldManagedPrefixesWhenReady() {
     bl::runtime::retryPendingManagedPrefixesOnWorldReady();
 }
 
+void dispatchAutoSourceSystems(int phase) {
+    int hookBit = -1;
+    if (phase == 6) hookBit = 21;
+    else if (phase == 7) hookBit = 22;
+    else if (phase == 8) hookBit = 17;
+    else if (phase == 9) hookBit = 19;
+    else if (phase == 10) hookBit = 24;
+    else if (phase == 11) hookBit = 25;
+    else if (phase == 12) hookBit = 26;
+    else if (phase == 13) hookBit = 27;
+    else if (phase == 14) hookBit = 32;
+    else if (phase == 15) hookBit = 28;
+    else if (phase == 16) hookBit = 39;
+    else if (phase == 17) hookBit = 43;
+    else if (phase == 18) hookBit = 44;
+    else if (phase == 19) hookBit = 45;
+    else if (phase == 20) hookBit = 46;
+    else if (phase == 21) hookBit = 31;
+    else if (phase == 22) hookBit = 33;
+    else if (phase == 23) hookBit = 34;
+    else if (phase == 24) hookBit = 35;
+    else if (phase == 25) hookBit = 36;
+    else if (phase == 26) hookBit = 37;
+    else if (phase == 27) hookBit = 38;
+    else if (phase == 28) hookBit = 40;
+    else if (phase == 29) hookBit = 41;
+    else if (phase == 30) hookBit = 42;
+    else if (phase == 31) hookBit = 4;
+    else if (phase == 32) hookBit = 9;
+    else if (phase == 33) hookBit = 3;
+    else if (phase == 34) hookBit = 52;
+    else if (phase == 35) hookBit = 12;
+    else if (phase == 36) hookBit = 7;
+    else if (phase == 37) hookBit = 8;
+    if (hookBit >= 0 &&
+        (activeManagedSourceSystemHooks() & (1ULL << hookBit)) == 0)
+        return;
+    if (phase >= 10 && phase <= 30 && phase != 21 &&
+        !g_worldSessionReady.load(std::memory_order_acquire)) return;
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    for (const auto& target : *snapshot) {
+        if (hookBit >= 0 && (target.hookMask & (1ULL << hookBit)) == 0) continue;
+        int failures = 0;
+        const bool ready = dispatchManagedSourceSystem(target.modId,
+                target.assemblyPath, phase, &failures);
+        if (!ready || failures) {
+            uint32_t count = g_modSystemFailedDispatchCount[phase].fetch_add(
+                1, std::memory_order_relaxed) + 1;
+            if (count <= 3 || (count & (count - 1)) == 0) {
+                if (!ready)
+                    BL_WARN("[CSharp][ModSystem] mod=%s phase=%d Mono indisponivel (%u x)",
+                            target.modId.c_str(), phase, count);
+                else
+                    BL_WARN("[CSharp][ModSystem] mod=%s phase=%d erros=%d (%u x)",
+                            target.modId.c_str(), phase, failures, count);
+            }
+        }
+    }
+}
+
+void hkCSharpModSystemWorld(const MethodInfo* method) {
+    dispatchAutoSourceSystems(10);
+    if (g_originalModSystemWorld) g_originalModSystemWorld(method);
+    dispatchAutoSourceSystems(11);
+}
+
+void hkCSharpModSystemTime(const MethodInfo* method) {
+    dispatchAutoSourceSystems(12);
+    if (g_originalModSystemTime) g_originalModSystemTime(method);
+    dispatchAutoSourceSystems(13);
+}
+
+void hkCSharpModSystemEntities(Il2CppObject* self, const MethodInfo* method) {
+    dispatchAutoSourceSystems(14);
+    if (g_originalModSystemEntities) g_originalModSystemEntities(self, method);
+    dispatchAutoSourceSystems(15);
+}
+
+void hkCSharpModSystemProjectiles(Il2CppObject* self, const MethodInfo* method) {
+    dispatchAutoSourceSystems(16);
+    if (g_originalModSystemProjectiles) g_originalModSystemProjectiles(self, method);
+}
+
+void hkCSharpModSystemDust(const MethodInfo* method) {
+    dispatchAutoSourceSystems(17);
+    if (g_originalModSystemDust) g_originalModSystemDust(method);
+    dispatchAutoSourceSystems(18);
+}
+
+void hkCSharpModSystemSunlight(const MethodInfo* method) {
+    if (g_originalModSystemSunlight)
+        g_originalModSystemSunlight(method);
+    if (!g_worldSessionReady.load(std::memory_order_acquire) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 48)) == 0 ||
+        !g_modSystemTileColor || !g_modSystemSkyColor) return;
+    uint32_t tiles = 0, sky = 0;
+    il2cpp::api().field_static_get_value(g_modSystemTileColor, &tiles);
+    il2cpp::api().field_static_get_value(g_modSystemSkyColor, &sky);
+    uint64_t colors = tiles | (static_cast<uint64_t>(sky) << 32);
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    bool changed = false;
+    for (const auto& target : *snapshot) {
+        if ((target.hookMask & (1ULL << 48)) == 0) continue;
+        uint64_t updated = colors;
+        if (modifyManagedSourceSystemPackedValue(target.modId, 48, &updated)) {
+            colors = updated;
+            changed = true;
+        }
+    }
+    if (!changed) return;
+    tiles = static_cast<uint32_t>(colors);
+    sky = static_cast<uint32_t>(colors >> 32);
+    il2cpp::api().field_static_set_value(g_modSystemTileColor, &tiles);
+    il2cpp::api().field_static_set_value(g_modSystemSkyColor, &sky);
+}
+
+void hkCSharpModSystemCamera(const MethodInfo* method) {
+    if (g_originalModSystemCamera)
+        g_originalModSystemCamera(method);
+    if (!g_worldSessionReady.load(std::memory_order_acquire) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 50)) == 0 ||
+        !g_modSystemCameraPosition ||
+        readActivationContext().gameMenu == 1) return;
+    uint64_t position = 0;
+    il2cpp::api().field_static_get_value(g_modSystemCameraPosition, &position);
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    bool changed = false;
+    for (const auto& target : *snapshot) {
+        if ((target.hookMask & (1ULL << 50)) == 0) continue;
+        uint64_t updated = position;
+        if (modifyManagedSourceSystemPackedValue(target.modId, 50, &updated)) {
+            position = updated;
+            changed = true;
+        }
+    }
+    if (changed)
+        il2cpp::api().field_static_set_value(g_modSystemCameraPosition, &position);
+}
+
+bool isModSystemNativeStructField(FieldInfo* field, int expectedBytes) {
+    const auto& api = il2cpp::api();
+    if (!field || !api.field_get_type || !api.class_from_il2cpp_type ||
+        !api.class_value_size) return false;
+    const Il2CppType* type = api.field_get_type(field);
+    Il2CppClass* cls = type ? api.class_from_il2cpp_type(type) : nullptr;
+    if (!cls) return false;
+    uint32_t alignment = 0;
+    return api.class_value_size(cls, &alignment) == expectedBytes;
+}
+
+bool installModSystemSunlightAndCameraHooksOnGameThread() {
+    const uint64_t mask = activeManagedSourceSystemHooks();
+    if ((mask & (1ULL << 48)) != 0 &&
+        !g_modSystemSunlightHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+        g_modSystemTileColor = main ? il2cpp::findField(main, "tileColor") : nullptr;
+        g_modSystemSkyColor = main ? il2cpp::findField(main, "ColorOfTheSkies") : nullptr;
+        const MethodInfo* sunlight = main
+            ? il2cpp::api().class_get_method_from_name(main, "ApplyColorOfTheSkiesToTiles", 0)
+            : nullptr;
+        if (sunlight &&
+            isModSystemNativeStructField(g_modSystemTileColor, 4) &&
+            isModSystemNativeStructField(g_modSystemSkyColor, 4) &&
+            bl::hook::install(sunlight, hkCSharpModSystemSunlight,
+                              &g_originalModSystemSunlight))
+            g_modSystemSunlightHookReady.store(true, std::memory_order_release);
+        else BL_WARN("[CSharp][ModSystem] Main.ApplyColorOfTheSkiesToTiles indisponivel");
+    }
+    if ((mask & (1ULL << 50)) != 0 &&
+        !g_modSystemCameraHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+        g_modSystemCameraPosition = main
+            ? il2cpp::findField(main, "screenPosition") : nullptr;
+        const MethodInfo* camera = main
+            ? il2cpp::api().class_get_method_from_name(main, "DoDraw_UpdateCameraPosition", 0)
+            : nullptr;
+        if (camera && isModSystemNativeStructField(g_modSystemCameraPosition, 8) &&
+            bl::hook::install(camera, hkCSharpModSystemCamera,
+                              &g_originalModSystemCamera))
+            g_modSystemCameraHookReady.store(true, std::memory_order_release);
+        else BL_WARN("[CSharp][ModSystem] Main.DoDraw_UpdateCameraPosition indisponivel");
+    }
+    return ((mask & (1ULL << 48)) == 0 ||
+            g_modSystemSunlightHookReady.load(std::memory_order_acquire)) &&
+           ((mask & (1ULL << 50)) == 0 ||
+            g_modSystemCameraHookReady.load(std::memory_order_acquire));
+}
+
+void hkCSharpModSystemBrightness(const MethodInfo* method) {
+    if (g_originalModSystemBrightness)
+        g_originalModSystemBrightness(method);
+    if (!g_worldSessionReady.load(std::memory_order_acquire) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 49)) == 0 ||
+        !g_modSystemBrightnessField) return;
+    float brightness = 1.f;
+    il2cpp::api().field_static_get_value(g_modSystemBrightnessField, &brightness);
+    if (!std::isfinite(brightness) || brightness < 0.f) return;
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    bool changed = false;
+    for (const auto& target : *snapshot) {
+        if ((target.hookMask & (1ULL << 49)) == 0) continue;
+        float result = brightness;
+        if (modifyManagedSourceSystemBrightness(target.modId, &result)) {
+            brightness = result;
+            changed = true;
+        }
+    }
+    if (changed)
+        il2cpp::api().field_static_set_value(g_modSystemBrightnessField, &brightness);
+}
+
+bool installModSystemBrightnessHookOnGameThread() {
+    if ((activeManagedSourceSystemHooks() & (1ULL << 49)) == 0) return true;
+    if (!g_modSystemBrightnessHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* lighting = il2cpp::findClass({"Terraria", "Lighting", {}});
+        g_modSystemBrightnessField = lighting
+            ? il2cpp::findField(lighting, "GlobalBrightness")
+            : nullptr;
+        const MethodInfo* method = lighting
+            ? il2cpp::api().class_get_method_from_name(lighting, "UpdateGlobalBrightness", 0)
+            : nullptr;
+        if (method && g_modSystemBrightnessField &&
+            bl::hook::install(method, hkCSharpModSystemBrightness,
+                              &g_originalModSystemBrightness))
+            g_modSystemBrightnessHookReady.store(true, std::memory_order_release);
+        else
+            BL_WARN("[CSharp][ModSystem] Lighting.UpdateGlobalBrightness indisponivel");
+    }
+    return g_modSystemBrightnessHookReady.load(std::memory_order_acquire);
+}
+
+void hkCSharpModSystemInvasions(const MethodInfo* method) {
+    dispatchAutoSourceSystems(19);
+    if (g_originalModSystemInvasions) g_originalModSystemInvasions(method);
+    dispatchAutoSourceSystems(20);
+}
+
+void hkCSharpModSystemInput(Il2CppObject* self, const MethodInfo* method) {
+    if (g_originalModSystemInput) g_originalModSystemInput(self, method);
+    dispatchAutoSourceSystems(21);
+}
+
+void hkCSharpModSystemLanguage(Il2CppObject* self, Il2CppObject* culture,
+                                 const MethodInfo* method) {
+    if (g_originalModSystemLanguage)
+        g_originalModSystemLanguage(self, culture, method);
+    if (g_modSystemContentSetup.load(std::memory_order_acquire))
+        dispatchAutoSourceSystems(33);
+}
+
+bool installModSystemLanguageHookOnGameThread() {
+    if ((activeManagedSourceSystemHooks() & (1ULL << 3)) == 0) return true;
+    if (!g_modSystemLanguageHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* cls = il2cpp::findClass({"Terraria.Localization", "LanguageManager", {}});
+        const MethodInfo* method = cls
+            ? il2cpp::api().class_get_method_from_name(cls, "LoadFilesForCulture", 1)
+            : nullptr;
+        if (method && bl::hook::install(
+                method, hkCSharpModSystemLanguage, &g_originalModSystemLanguage))
+            g_modSystemLanguageHookReady.store(true, std::memory_order_release);
+        else
+            BL_WARN("[CSharp][ModSystem] LanguageManager.LoadFilesForCulture indisponivel");
+    }
+    return g_modSystemLanguageHookReady.load(std::memory_order_acquire);
+}
+
+void hkCSharpModSystemSceneMetricsReset(Il2CppObject* self,
+                                         const MethodInfo* method) {
+    if (g_originalModSystemSceneMetricsReset)
+        g_originalModSystemSceneMetricsReset(self, method);
+    if (!self || !g_worldSessionReady.load(std::memory_order_acquire) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 52)) == 0 ||
+        !g_modSystemGetPlayerMetrics) return;
+    Il2CppObject* exception = nullptr;
+    Il2CppObject* playerMetrics =
+        il2cpp::api().runtime_invoke(g_modSystemGetPlayerMetrics, nullptr, nullptr, &exception);
+    if (!exception && self == playerMetrics)
+        dispatchAutoSourceSystems(34);
+}
+
+bool installModSystemSceneMetricsHookOnGameThread() {
+    if ((activeManagedSourceSystemHooks() & (1ULL << 52)) == 0) return true;
+    if (!g_modSystemSceneMetricsHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* metrics = il2cpp::findClass({"Terraria", "SceneMetrics", {}});
+        Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+        g_modSystemGetPlayerMetrics = main
+            ? il2cpp::api().class_get_method_from_name(main, "get_PlayerSceneMetrics", 0)
+            : nullptr;
+        const MethodInfo* reset = metrics
+            ? il2cpp::api().class_get_method_from_name(metrics, "Reset", 0)
+            : nullptr;
+        if (reset && g_modSystemGetPlayerMetrics &&
+            bl::hook::install(reset, hkCSharpModSystemSceneMetricsReset,
+                              &g_originalModSystemSceneMetricsReset))
+            g_modSystemSceneMetricsHookReady.store(true, std::memory_order_release);
+        else
+            BL_WARN("[CSharp][ModSystem] SceneMetrics.Reset local nao disponivel");
+    }
+    return g_modSystemSceneMetricsHookReady.load(std::memory_order_acquire);
+}
+
+bool isModSystemLocalPlayerMetrics(Il2CppObject* self) {
+    if (!self || !g_worldSessionReady.load(std::memory_order_acquire) ||
+        !g_modSystemGetPlayerMetrics) return false;
+    Il2CppObject* exception = nullptr;
+    Il2CppObject* local = il2cpp::api().runtime_invoke(
+        g_modSystemGetPlayerMetrics, nullptr, nullptr, &exception);
+    return !exception && local == self;
+}
+
+void hkCSharpModSystemTileCounts(Il2CppObject* self, const MethodInfo* method) {
+    if (g_originalModSystemTileCounts)
+        g_originalModSystemTileCounts(self, method);
+    if (!isModSystemLocalPlayerMetrics(self) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 53)) == 0 ||
+        !g_modSystemTileCountsOffset) return;
+    Il2CppArray* array = nullptr;
+    std::memcpy(&array, reinterpret_cast<const char*>(self) +
+        g_modSystemTileCountsOffset, sizeof(array));
+    if (!array || array->bounds != nullptr ||
+        array->length == 0 || array->length > 8192) return;
+    auto* values = static_cast<const int32_t*>(arrayData(array));
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    for (const auto& target : *snapshot) {
+        if ((target.hookMask & (1ULL << 53)) == 0) continue;
+        int failures = 0;
+        if (!dispatchManagedSourceSystemTileCounts(target.modId, values,
+                                                   array->length, &failures) ||
+            failures != 0) {
+            const uint32_t seen = g_modSystemTileCountFailures.fetch_add(
+                1, std::memory_order_relaxed) + 1;
+            if (seen <= 3 || (seen & (seen - 1)) == 0)
+                BL_WARN("[CSharp][ModSystem] TileCountsAvailable mod=%s falhou %u vezes",
+                        target.modId.c_str(), seen);
+        }
+    }
+}
+
+bool installModSystemTileCountsHookOnGameThread() {
+    if ((activeManagedSourceSystemHooks() & (1ULL << 53)) == 0) return true;
+    if (g_modSystemTileCountsHookReady.load(std::memory_order_acquire)) return true;
+    if (g_modSystemTileCountsHookAttempted.load(std::memory_order_acquire)) return false;
+    if (!managedSourceSystemTileCountsSupported()) return false;
+    if (!g_modSystemTileCountsHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* metrics = il2cpp::findClass({"Terraria", "SceneMetrics", {}});
+        Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+        const auto& api = il2cpp::api();
+        if (!g_modSystemGetPlayerMetrics)
+            g_modSystemGetPlayerMetrics = main
+                ? api.class_get_method_from_name(main, "get_PlayerSceneMetrics", 0)
+                : nullptr;
+        FieldInfo* field = metrics
+            ? il2cpp::findField(metrics, "_tileCounts") : nullptr;
+        const Il2CppType* type = field && api.field_get_type
+            ? api.field_get_type(field) : nullptr;
+        Il2CppClass* arrayType = type && api.class_from_il2cpp_type
+            ? api.class_from_il2cpp_type(type) : nullptr;
+        Il2CppClass* element = arrayType && api.class_get_element_class
+            ? api.class_get_element_class(arrayType) : nullptr;
+        const char* name = element && api.class_get_name
+            ? api.class_get_name(element) : nullptr;
+        const char* ns = element && api.class_get_namespace
+            ? api.class_get_namespace(element) : nullptr;
+        const size_t offset = field && api.field_get_offset
+            ? api.field_get_offset(field) : 0;
+        const MethodInfo* aggregate = metrics
+            ? api.class_get_method_from_name(metrics, "AggregateTileCounts", 0)
+            : nullptr;
+        if (aggregate && g_modSystemGetPlayerMetrics && arrayType &&
+            api.class_get_rank && api.class_get_rank(arrayType) == 1 &&
+            name && ns && std::strcmp(name, "Int32") == 0 &&
+            std::strcmp(ns, "System") == 0 &&
+            offset >= sizeof(Il2CppObject) && offset <= 4096 &&
+            bl::hook::install(aggregate, hkCSharpModSystemTileCounts,
+                              &g_originalModSystemTileCounts)) {
+            g_modSystemTileCountsOffset = offset;
+            g_modSystemTileCountsHookReady.store(true, std::memory_order_release);
+        } else
+            BL_WARN("[CSharp][ModSystem] SceneMetrics.AggregateTileCounts sem contrato int[] compativel");
+    }
+    return g_modSystemTileCountsHookReady.load(std::memory_order_acquire);
+}
+
+FieldInfo* findModSystemUiField(Il2CppClass* cls,
+                                const char* a, const char* b, const char* c) {
+    if (!cls) return nullptr;
+    const auto& api = il2cpp::api();
+    FieldInfo* result = il2cpp::findField(cls, a);
+    if (!result) result = il2cpp::findField(cls, b);
+    if (!result) result = il2cpp::findField(cls, c);
+    return result;
+}
+
+bool validateModSystemUiField(FieldInfo* field, const char* expected,
+                              int width, size_t* offset) {
+    if (!field || !offset) return false;
+    const auto& api = il2cpp::api();
+    if (!api.field_get_type || !api.class_from_il2cpp_type ||
+        !api.class_get_name || !api.class_get_namespace ||
+        !api.class_value_size || !api.field_get_offset) return false;
+    const Il2CppType* t = api.field_get_type(field);
+    Il2CppClass* cls = t ? api.class_from_il2cpp_type(t) : nullptr;
+    if (!cls) return false;
+    const char* name = api.class_get_name(cls);
+    const char* space = api.class_get_namespace(cls);
+    uint32_t alignment = 0;
+    size_t location = api.field_get_offset(field);
+    if (!name || !space || std::strcmp(name, expected) != 0 ||
+        std::strcmp(space, "System") != 0 ||
+        api.class_value_size(cls, &alignment) != width ||
+        location < sizeof(Il2CppObject) || location > 2048) return false;
+    *offset = location;
+    return true;
+}
+
+void hkCSharpModSystemUpdateUI(Il2CppObject* gameTime, const MethodInfo* method) {
+    if (g_originalModSystemUpdateUI)
+        g_originalModSystemUpdateUI(gameTime, method);
+    if (!gameTime || !g_worldSessionReady.load(std::memory_order_acquire) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 29)) == 0 ||
+        readActivationContext().gameMenu == 1 ||
+        !g_modSystemUiElapsedOffset || !g_modSystemUiTotalOffset ||
+        !g_modSystemUiSlowOffset) return;
+    int64_t total = 0, elapsed = 0;
+    uint8_t slow = 0;
+    const auto* bytes = reinterpret_cast<const char*>(gameTime);
+    std::memcpy(&total, bytes + g_modSystemUiTotalOffset, sizeof(total));
+    std::memcpy(&elapsed, bytes + g_modSystemUiElapsedOffset, sizeof(elapsed));
+    std::memcpy(&slow, bytes + g_modSystemUiSlowOffset, sizeof(slow));
+    if (total < 0 || elapsed < 0) return;
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    for (const auto& target : *snapshot) {
+        if (!(target.hookMask & (1ULL << 29))) continue;
+        int failures = 0;
+        if (!dispatchManagedSourceSystemUpdateUI(target.modId, total,
+                                                  elapsed, slow != 0, &failures) ||
+            failures != 0) {
+            uint32_t seen = g_modSystemUiFailures.fetch_add(
+                1, std::memory_order_relaxed) + 1;
+            if (seen <= 3 || (seen & (seen - 1)) == 0)
+                BL_WARN("[CSharp][ModSystem] UpdateUI mod=%s falhou %u vezes",
+                        target.modId.c_str(), seen);
+        }
+    }
+}
+
+bool installModSystemUiHookOnGameThread() {
+    if (!(activeManagedSourceSystemHooks() & (1ULL << 29))) return true;
+    if (!g_modSystemUiHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* time = il2cpp::findClass(
+            {"Microsoft.Xna.Framework", "GameTime", {}});
+        Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+        const auto& api = il2cpp::api();
+        FieldInfo* total = findModSystemUiField(time, "_totalGameTime",
+            "totalGameTime", "<TotalGameTime>k__BackingField");
+        FieldInfo* elapsed = findModSystemUiField(time, "_elapsedGameTime",
+            "elapsedGameTime", "<ElapsedGameTime>k__BackingField");
+        FieldInfo* slow = findModSystemUiField(time, "_isRunningSlowly",
+            "isRunningSlowly", "<IsRunningSlowly>k__BackingField");
+        size_t totalOffset = 0, elapsedOffset = 0, slowOffset = 0;
+        const MethodInfo* update = main
+            ? api.class_get_method_from_name(main, "UpdateUIStates", 1) : nullptr;
+        if (update &&
+            validateModSystemUiField(total, "TimeSpan", 8, &totalOffset) &&
+            validateModSystemUiField(elapsed, "TimeSpan", 8, &elapsedOffset) &&
+            validateModSystemUiField(slow, "Boolean", 1, &slowOffset) &&
+            totalOffset != elapsedOffset && slowOffset != totalOffset &&
+            slowOffset != elapsedOffset &&
+            bl::hook::install(update, hkCSharpModSystemUpdateUI,
+                              &g_originalModSystemUpdateUI)) {
+            g_modSystemUiTotalOffset = totalOffset;
+            g_modSystemUiElapsedOffset = elapsedOffset;
+            g_modSystemUiSlowOffset = slowOffset;
+            g_modSystemUiHookReady.store(true, std::memory_order_release);
+        } else
+            BL_WARN("[CSharp][ModSystem] UpdateUIStates/GameTime ABI nao compativel");
+    }
+    return g_modSystemUiHookReady.load(std::memory_order_acquire);
+}
+
+bool installModSystemUpdateHooksOnGameThread() {
+    const uint64_t enabled = activeManagedSourceSystemHooks();
+    if (!enabled) return true;
+    bool ready = true;
+    if (enabled & ((1ULL << 24) | (1ULL << 25))) {
+        constexpr uint32_t flag = 1u << 0;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "WorldGen", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "UpdateWorld", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemWorld, &g_originalModSystemWorld))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook WorldGen.UpdateWorld indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 26) | (1ULL << 27))) {
+        constexpr uint32_t flag = 1u << 1;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Main", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "UpdateTime", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemTime, &g_originalModSystemTime))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Main.UpdateTime indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 32) | (1ULL << 28))) {
+        constexpr uint32_t flag = 1u << 2;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Main", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "DoUpdateInWorld", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemEntities, &g_originalModSystemEntities))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Main.DoUpdateInWorld indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 39))) {
+        constexpr uint32_t flag = 1u << 3;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Main", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "PreUpdateAllProjectiles", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemProjectiles, &g_originalModSystemProjectiles))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Main.PreUpdateAllProjectiles indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 43) | (1ULL << 44))) {
+        constexpr uint32_t flag = 1u << 4;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Dust", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "UpdateDust", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemDust, &g_originalModSystemDust))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Dust.UpdateDust indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 45) | (1ULL << 46))) {
+        constexpr uint32_t flag = 1u << 5;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Main", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "UpdateInvasion", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemInvasions, &g_originalModSystemInvasions))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Main.UpdateInvasion indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 31))) {
+        constexpr uint32_t flag = 1u << 6;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Main", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "DoUpdate_HandleInput", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemInput, &g_originalModSystemInput))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Main.DoUpdate_HandleInput indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    return ready;
+}
+
+bool hkCSharpGenerateWorld(Il2CppObject* self, const MethodInfo* method) {
+    dispatchAutoSourceSystems(8);
+    const bool completed = g_originalGenerateWorld
+        ? g_originalGenerateWorld(self, method)
+        : false;
+    if (completed) dispatchAutoSourceSystems(9);
+    return completed;
+}
+
+void hkCSharpClearWorld(const MethodInfo* method) {
+    if (g_originalClearWorld) g_originalClearWorld(method);
+    dispatchAutoSourceSystems(6);
+    dispatchAutoSourceSystems(34);
+}
+
+void hkCSharpSaveAndQuit(const MethodInfo* method) {
+    if (g_worldSessionReady.load(std::memory_order_acquire)) {
+        dispatchAutoSourceSystems(34);
+        dispatchAutoSourceSystems(7);
+    }
+    if (g_originalSaveAndQuit) g_originalSaveAndQuit(method);
+}
+
+void hkCSharpQuitGame(Il2CppObject* self, const MethodInfo* method) {
+    {
+        std::lock_guard<std::mutex> guard(g_worldTransitionMutex);
+        if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
+            // Preserva a ordem do ModSystem JS: mundo sai antes do mod.
+            if (g_worldSessionReady.load(std::memory_order_acquire))
+                dispatchAutoSourceSystems(3);
+            dispatchAutoSourceSystems(4);
+            dispatchAutoSourceSystems(5);
+        }
+    }
+    if (g_originalQuitGame) g_originalQuitGame(self, method);
+}
+
 void noteAutoWorldTilesLoaded() {
     std::lock_guard<std::mutex> sessionGuard(g_worldTransitionMutex);
+    if (g_worldSessionReady.load(std::memory_order_acquire))
+        dispatchAutoSourceSystems(3);
     clearManagedVisualCommands();
     resetNativeVisualRenderer();
     g_visualUpdateTick.store(0, std::memory_order_relaxed);
@@ -1202,6 +2007,19 @@ void noteAutoGameUpdate() {
     pumpInteractiveConsoleOnGameThread();
     pumpBasicRecipesOnGameThread();
     pumpNativeVisualRendererOnGameThread();
+    installModSystemUpdateHooksOnGameThread();
+    installNativeModSystemStageHooks(activeManagedSourceSystemHooks());
+    installModSystemLanguageHookOnGameThread();
+    installModSystemSceneMetricsHookOnGameThread();
+    installModSystemTileCountsHookOnGameThread();
+    installModSystemUiHookOnGameThread();
+    installModSystemBrightnessHookOnGameThread();
+    installModSystemSunlightAndCameraHooksOnGameThread();
+    pumpModSystemContentLifecycleOnGameThread();
+    if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
+        static unsigned systemRetryFrame = 0;
+        if (++systemRetryFrame % 12u == 0) loadPendingAutoSourceSystems();
+    }
     if (!g_worldTilesLoaded.load(std::memory_order_acquire))
         updateManagedNpcBuffDispatcherOnGameThread();
     if (!g_worldTilesLoaded.load(std::memory_order_acquire) &&
@@ -1244,6 +2062,7 @@ void noteAutoGameUpdate() {
         graphics::clearCSharpScreenEffects();
         resetNativeVisualRenderer();
         g_visualUpdateTick.store(0, std::memory_order_relaxed);
+        dispatchAutoSourceSystems(3);
         g_worldExits.fetch_add(1, std::memory_order_relaxed);
         g_worldEpoch.fetch_add(1, std::memory_order_acq_rel);
         g_worldSessionReady.store(false, std::memory_order_release);
@@ -1278,6 +2097,8 @@ void noteAutoGameUpdate() {
         const ActivationContext context = readActivationContext();
         if (context.netMode != 0 || context.gameMenu == 1) return;
         g_worldSessionReady.store(true, std::memory_order_release);
+        dispatchAutoSourceSystems(2);
+        dispatchAutoSourceSystems(35);
         requestBasicItemInstanceRefresh("WorldLoaded");
         enableUniversalHooks();
         resumeUniversalHookMods();
@@ -1299,10 +2120,22 @@ bool preWorldCSharpContentReady() {
         }
     if (!hasCSharpMods) return true;
     if (!g_initialCSharpRegistrationFinished.load(std::memory_order_acquire) ||
-        !g_preWorldBindingsArmed.load(std::memory_order_acquire))
+        !g_preWorldBindingsArmed.load(std::memory_order_acquire) ||
+        !g_modSystemContentSetup.load(std::memory_order_acquire))
         return false;
     const auto content = basicItemLoadStatus();
+    if (!installModSystemUpdateHooksOnGameThread() ||
+        !installNativeModSystemStageHooks(activeManagedSourceSystemHooks()) ||
+        !installModSystemLanguageHookOnGameThread() ||
+        !installModSystemSceneMetricsHookOnGameThread() ||
+        !installModSystemTileCountsHookOnGameThread() ||
+        !installModSystemUiHookOnGameThread() ||
+        !installModSystemBrightnessHookOnGameThread() ||
+        !installModSystemSunlightAndCameraHooksOnGameThread()) return false;
     bool needsNpcDispatcher = false;
+    for (const auto& status : autoSourceStatuses())
+        if (status.applied && !status.systemsLoaded && status.phase != "failed")
+            return false;
     {
         std::lock_guard<std::mutex> lock(g_lock);
         needsNpcDispatcher = !g_pendingLiveSpecs.empty();
@@ -1419,6 +2252,30 @@ bool installCSharpWorldEntryGate() {
         BL_ERROR("[CSharp][ERROR][WorldLoading] Stage=InstallEntryHook Reason=WorldGenPlayWorldUnavailable");
         return false;
     }
+    Il2CppClass* main = il2cpp::findClass({"Terraria", "Main", {}});
+    const MethodInfo* quitGame = main
+        ? il2cpp::api().class_get_method_from_name(main, "QuitGame", 0)
+        : nullptr;
+    if (!quitGame || !bl::hook::install(quitGame, hkCSharpQuitGame, &g_originalQuitGame))
+        BL_WARN("[CSharp][ModSystem] QuitGame nao disponivel; descarregamento final requer validacao");
+    const MethodInfo* clearWorld = worldGen
+        ? il2cpp::api().class_get_method_from_name(worldGen, "clearWorld", 0)
+        : nullptr;
+    if (!clearWorld || !bl::hook::install(clearWorld, hkCSharpClearWorld, &g_originalClearWorld))
+        BL_WARN("[CSharp][ModSystem] WorldGen.clearWorld nao disponivel");
+    const MethodInfo* saveAndQuit = worldGen
+        ? il2cpp::api().class_get_method_from_name(worldGen, "SaveAndQuit", 0)
+        : nullptr;
+    if (!saveAndQuit || !bl::hook::install(saveAndQuit, hkCSharpSaveAndQuit, &g_originalSaveAndQuit))
+        BL_WARN("[CSharp][ModSystem] WorldGen.SaveAndQuit nao disponivel");
+    Il2CppClass* worldGenerator = il2cpp::findClass(
+        {"Terraria.WorldBuilding", "WorldGenerator", {}});
+    const MethodInfo* generateWorld = worldGenerator
+        ? il2cpp::api().class_get_method_from_name(worldGenerator, "GenerateWorld", 0)
+        : nullptr;
+    if (!generateWorld ||
+        !bl::hook::install(generateWorld, hkCSharpGenerateWorld, &g_originalGenerateWorld))
+        BL_WARN("[CSharp][ModSystem] WorldGenerator.GenerateWorld nao disponivel");
     return true;
 }
 

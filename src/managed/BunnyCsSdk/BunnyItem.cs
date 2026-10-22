@@ -66,6 +66,13 @@ public abstract class BunnyItem
     }
     public abstract void SetDefaults();
     public virtual void AddRecipes() { }
+    private bool recipesPrepared;
+    public void PrepareRecipes()
+    {
+        if (recipesPrepared) return;
+        AddRecipes();
+        recipesPrepared = true;
+    }
     private readonly List<string> recipes = new();
     public IReadOnlyList<string> RecipeDefinitions => recipes;
     public BunnyRecipe CreateRecipe(int stack = 1) => new(this, stack);

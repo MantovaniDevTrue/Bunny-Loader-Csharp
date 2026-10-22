@@ -80,6 +80,8 @@ public static class Compiler
             return -3;
         }
 
+        bool interactiveConsole = files.Length == 1 &&
+            string.Equals(Path.GetFileName(files[0]), "ConsoleEntry.cs", StringComparison.Ordinal);
         Stage(diagnosticsFile, "sources-found-" + files.Length);
         var sources = new List<(string Path, byte[] Bytes)>(files.Length);
         Stage(diagnosticsFile, "initializing-portable-sha256");
@@ -173,6 +175,28 @@ public static class Compiler
             sources[i] = default;
         }
         sources.Clear();
+        if (!interactiveConsole)
+        {
+            const string systemEntry =
+                "namespace BunnyLoader.Source { internal static class BunnySystemEntry { " +
+                "public static int Invoke(int phase) => " +
+                "ModSystemLoader.Dispatch(typeof(BunnySystemEntry).Assembly, phase); " +
+                "public static ulong HookMask() => " +
+                "ModSystemLoader.HookMask(typeof(BunnySystemEntry).Assembly); " +
+                "public static float Brightness(float value) => " +
+                "ModSystemLoader.ModifyLightingBrightness(typeof(BunnySystemEntry).Assembly, value); " +
+                "public static ulong Sunlight(ulong value) => " +
+                "ModSystemLoader.ModifySunLightColor(typeof(BunnySystemEntry).Assembly, value); " +
+                "public static ulong Camera(ulong value) => " +
+                "ModSystemLoader.ModifyScreenPosition(typeof(BunnySystemEntry).Assembly, value); " +
+                "public static int TileCounts(int[] counts) => " +
+                "ModSystemLoader.TileCountsAvailable(typeof(BunnySystemEntry).Assembly, counts); " +
+                "public static int UpdateUiTime(long totalTicks, long elapsedTicks, int isSlow) => " +
+                "ModSystemLoader.UpdateUI(typeof(BunnySystemEntry).Assembly, totalTicks, elapsedTicks, isSlow); } }";
+            trees.Add(CSharpSyntaxTree.ParseText(systemEntry,
+                CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp12),
+                "__BunnySystemEntry.generated.cs"));
+        }
         Stage(diagnosticsFile, "source-trees-created");
 
         long parsingMs = Environment.TickCount64 - parsingStarted;

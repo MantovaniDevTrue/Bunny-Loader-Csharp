@@ -1,0 +1,49 @@
+name: CSharp ModSystem contract
+
+on:
+  push:
+    paths:
+      - 'src/managed/BunnyCsSdk/ModSystem.cs'
+      - 'src/managed/BunnyCsSdk/BunnyItem.cs'
+      - 'src/managed/BunnyCsSdk/BunnySystemRecipes.cs'
+      - 'src/managed/BunnySourceCompiler/**'
+      - 'samples/ExampleModCSharp/Playable/content/Common/Systems/**'
+      - 'docs/reference/repository/csharp-modsystem-coverage.json'
+      - 'src/native/experiments/csharp/ManagedRuntime.cpp'
+      - 'src/native/experiments/csharp/AutoSourceRuntime.cpp'
+      - 'src/managed/BunnySourceSdk/BunnySourceSdk.csproj'
+      - 'tests/native-and-managed/system_lifecycle/**'
+      - '.github/workflows/csharp-modsystem.yml'
+  pull_request:
+    paths:
+      - 'src/managed/BunnyCsSdk/ModSystem.cs'
+      - 'src/managed/BunnyCsSdk/BunnyItem.cs'
+      - 'src/managed/BunnyCsSdk/BunnySystemRecipes.cs'
+      - 'src/managed/BunnySourceCompiler/**'
+      - 'src/managed/BunnySourceSdk/BunnySourceSdk.csproj'
+      - 'docs/reference/repository/csharp-modsystem-coverage.json'
+      - 'tests/native-and-managed/system_lifecycle/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  managed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - run: dotnet run --project tests/native-and-managed/system_lifecycle/SystemLifecycle.csproj --configuration Release
+      - run: dotnet build tests/native-and-managed/system_lifecycle/SampleLifecycleCompile.csproj --configuration Release
+      - run: dotnet build src/managed/BunnySourceCompiler/BunnySourceCompiler.csproj --configuration Release
+      - run: python3 tests/native-and-managed/system_lifecycle/check_coverage.py
+      - run: python3 tests/native-and-managed/system_lifecycle/check_native_stages.py
+      - run: |
+          c++ -std=c++20 -Isrc/native \
+            src/native/experiments/csharp/SourceParser.cpp \
+            tests/native-and-managed/system_lifecycle/source_parser_test.cpp \
+            -o /tmp/source_parser_test
+          /tmp/source_parser_test

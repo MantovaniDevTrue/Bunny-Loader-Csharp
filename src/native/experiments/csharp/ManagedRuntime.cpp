@@ -74,6 +74,9 @@ using ClassFn = void* (*)(void*, const char*, const char*);
 using MethodFn = void* (*)(void*, const char*, int);
 using InvokeFn = void* (*)(void*, void*, void**, void**);
 using UnboxFn = void* (*)(void*);
+using MonoInt32ClassFn = void* (*)();
+using MonoArrayNewFn = void* (*)(void*, void*, uintptr_t);
+using MonoArrayAddrFn = char* (*)(void*, int, uintptr_t);
 using NewStringFn = void* (*)(void*, const char*);
 using MonoGcSizeFn = int64_t (*)();
 
@@ -89,6 +92,9 @@ struct MonoApi {
     MethodFn findMethod = nullptr;
     InvokeFn invoke = nullptr;
     UnboxFn unbox = nullptr;
+    MonoInt32ClassFn int32Class = nullptr;
+    MonoArrayNewFn arrayNew = nullptr;
+    MonoArrayAddrFn arrayAddr = nullptr;
     NewStringFn newString = nullptr;
     MonoGcSizeFn gcHeapSize = nullptr;
     MonoGcSizeFn gcUsedSize = nullptr;
@@ -119,6 +125,22 @@ struct LiveEntry {
     LiveSourceStatus status;
 };
 
+struct SourceSystemEntry {
+    std::string path;
+    void* method = nullptr;
+    void* maskMethod = nullptr;
+    void* brightnessMethod = nullptr;
+    void* sunlightMethod = nullptr;
+    void* cameraMethod = nullptr;
+    void* tileCountsMethod = nullptr;
+    void* updateUiMethod = nullptr;
+    uint64_t mask = 0;
+    bool maskKnown = false;
+};
+std::map<std::string, SourceSystemEntry> g_sourceSystemEntries;
+std::mutex g_sourceSystemDispatchMutex;
+std::atomic<uint64_t> g_sourceSystemOriginalMask{0};
+thread_local bool g_withinModSystemCallback = false;
 std::map<std::string, LiveEntry> g_sourceLiveEntries;
 uint64_t g_liveMethodCacheHits = 0;
 uint64_t g_liveMethodCacheMisses = 0;
@@ -200,6 +222,9 @@ bool loadLibrary() {
     g_api.findMethod = resolve<MethodFn>("mono_class_get_method_from_name");
     g_api.invoke = resolve<InvokeFn>("mono_runtime_invoke");
     g_api.unbox = resolve<UnboxFn>("mono_object_unbox");
+    g_api.int32Class = resolve<MonoInt32ClassFn>("mono_get_int32_class");
+    g_api.arrayNew = resolve<MonoArrayNewFn>("mono_array_new");
+    g_api.arrayAddr = resolve<MonoArrayAddrFn>("mono_array_addr_with_size");
     g_api.newString = resolve<NewStringFn>("mono_string_new");
     g_api.gcHeapSize = resolve<MonoGcSizeFn>("mono_gc_get_heap_size");
     g_api.gcUsedSize = resolve<MonoGcSizeFn>("mono_gc_get_used_size");
@@ -3644,6 +3669,287 @@ LiveSourceStatus invokeLiveSourceTick(const std::string& modId,
     status.ready = true;
     status.error.clear();
     return status;
+}
+
+uint64_t activeManagedSourceSystemHooks() {
+    return g_sourceSystemOriginalMask.load(std::memory_order_acquire);
+}
+
+uint64_t managedSourceSystemHookMask(const std::string& modId) {
+    std::lock_guard<std::mutex> guard(g_sourceSystemDispatchMutex);
+    auto found = g_sourceSystemEntries.find(modId);
+    return found != g_sourceSystemEntries.end() && found->second.maskKnown
+        ? found->second.mask : 0;
+}
+
+bool modifyManagedSourceSystemBrightness(const std::string& modId,
+                                         float* brightness) {
+    if (!brightness || !std::isfinite(*brightness) || *brightness < 0.f ||
+        modId.empty() || g_withinModSystemCallback) return false;
+    struct ScopedDispatch {
+        ~ScopedDispatch() { g_withinModSystemCallback = false; }
+    } scope;
+    g_withinModSystemCallback = true;
+    std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
+    std::unique_lock<std::mutex> guard(g_mutex);
+    const auto found = g_sourceSystemEntries.find(modId);
+    if (found == g_sourceSystemEntries.end() || !found->second.maskKnown ||
+        (found->second.mask & (1ULL << 49)) == 0 ||
+        !found->second.brightnessMethod || !g_domain ||
+        !g_api.currentThread || !g_api.attach || !g_api.detachThread ||
+        !g_api.invoke || !g_api.unbox) return false;
+    const void* alreadyAttached = g_api.currentThread();
+    void* thread = g_api.attach(g_domain);
+    if (!thread) return false;
+    struct ScopedThread {
+        DetachFn detach;
+        void* owned;
+        ~ScopedThread() { if (owned) detach(owned); }
+    } attached{g_api.detachThread, alreadyAttached ? nullptr : thread};
+    void* method = found->second.brightnessMethod;
+    guard.unlock();
+    float value = *brightness;
+    void* args[] = { &value };
+    void* exception = nullptr;
+    void* boxed = g_api.invoke(method, nullptr, args, &exception);
+    void* result = exception || !boxed ? nullptr : g_api.unbox(boxed);
+    if (!result) return false;
+    float candidate = value;
+    std::memcpy(&candidate, result, sizeof(candidate));
+    if (!std::isfinite(candidate) || candidate < 0.f) return false;
+    *brightness = candidate;
+    return true;
+}
+
+bool modifyManagedSourceSystemPackedValue(const std::string& modId,
+                                          int kind, uint64_t* packed) {
+    if (!packed || modId.empty() || g_withinModSystemCallback ||
+        (kind != 48 && kind != 50)) return false;
+    struct ScopedDispatch {
+        ~ScopedDispatch() { g_withinModSystemCallback = false; }
+    } scope;
+    g_withinModSystemCallback = true;
+    std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
+    std::unique_lock<std::mutex> guard(g_mutex);
+    const auto found = g_sourceSystemEntries.find(modId);
+    if (found == g_sourceSystemEntries.end() || !found->second.maskKnown ||
+        (found->second.mask & (1ULL << kind)) == 0 ||
+        !g_domain || !g_api.currentThread || !g_api.attach ||
+        !g_api.detachThread || !g_api.invoke || !g_api.unbox) return false;
+    void* method = kind == 48 ? found->second.sunlightMethod :
+        found->second.cameraMethod;
+    if (!method) return false;
+    const void* alreadyAttached = g_api.currentThread();
+    void* thread = g_api.attach(g_domain);
+    if (!thread) return false;
+    struct ScopedThread {
+        DetachFn detach;
+        void* owned;
+        ~ScopedThread() { if (owned) detach(owned); }
+    } attached{g_api.detachThread, alreadyAttached ? nullptr : thread};
+    guard.unlock();
+    uint64_t value = *packed;
+    void* args[] = {&value};
+    void* exception = nullptr;
+    void* boxed = g_api.invoke(method, nullptr, args, &exception);
+    void* unboxed = exception || !boxed ? nullptr : g_api.unbox(boxed);
+    if (!unboxed) return false;
+    uint64_t returned = 0;
+    std::memcpy(&returned, unboxed, sizeof(returned));
+    if (kind == 50) {
+        const uint32_t bitsX = static_cast<uint32_t>(returned);
+        const uint32_t bitsY = static_cast<uint32_t>(returned >> 32);
+        float x = 0, y = 0;
+        std::memcpy(&x, &bitsX, sizeof(x));
+        std::memcpy(&y, &bitsY, sizeof(y));
+        if (!std::isfinite(x) || !std::isfinite(y)) return false;
+    }
+    *packed = returned;
+    return true;
+}
+
+bool dispatchManagedSourceSystemUpdateUI(const std::string& modId,
+                                         int64_t totalTicks, int64_t elapsedTicks,
+                                         int32_t isRunningSlowly, int* failures) {
+    if (!failures || modId.empty() || totalTicks < 0 || elapsedTicks < 0 ||
+        g_withinModSystemCallback) return false;
+    struct ScopedDispatch {
+        ~ScopedDispatch() { g_withinModSystemCallback = false; }
+    } scope;
+    g_withinModSystemCallback = true;
+    std::lock_guard<std::mutex> systemLock(g_sourceSystemDispatchMutex);
+    std::unique_lock<std::mutex> lock(g_mutex);
+    const auto found = g_sourceSystemEntries.find(modId);
+    if (found == g_sourceSystemEntries.end() || !found->second.maskKnown ||
+        !(found->second.mask & (1ULL << 29)) ||
+        !found->second.updateUiMethod || !g_domain ||
+        !g_api.currentThread || !g_api.attach || !g_api.detachThread ||
+        !g_api.invoke || !g_api.unbox) return false;
+    const void* current = g_api.currentThread();
+    void* attached = g_api.attach(g_domain);
+    if (!attached) return false;
+    struct ScopedMonoThread {
+        DetachFn detach;
+        void* owned;
+        ~ScopedMonoThread() { if (owned) detach(owned); }
+    } monoThread{g_api.detachThread, current ? nullptr : attached};
+    void* method = found->second.updateUiMethod;
+    lock.unlock();
+    void* args[] = {&totalTicks, &elapsedTicks, &isRunningSlowly};
+    void* exception = nullptr;
+    void* boxed = g_api.invoke(method, nullptr, args, &exception);
+    void* result = exception || !boxed ? nullptr : g_api.unbox(boxed);
+    if (!result) return false;
+    int32_t status = -1;
+    std::memcpy(&status, result, sizeof(status));
+    if (status < 0 || status > 256) return false;
+    *failures = status;
+    return true;
+}
+
+bool managedSourceSystemTileCountsSupported() {
+    std::lock_guard<std::mutex> lock(g_mutex);
+    return g_domain && g_api.int32Class && g_api.arrayNew &&
+           g_api.arrayAddr && g_api.invoke && g_api.unbox &&
+           g_api.attach && g_api.currentThread && g_api.detachThread;
+}
+
+bool dispatchManagedSourceSystemTileCounts(const std::string& modId,
+                                           const int32_t* values, size_t length,
+                                           int* failures) {
+    if (!failures || !values || length == 0 || length > 8192 ||
+        modId.empty() || g_withinModSystemCallback) return false;
+    struct ScopedDispatch {
+        ~ScopedDispatch() { g_withinModSystemCallback = false; }
+    } scope;
+    g_withinModSystemCallback = true;
+    std::lock_guard<std::mutex> systemLock(g_sourceSystemDispatchMutex);
+    std::unique_lock<std::mutex> lock(g_mutex);
+    const auto found = g_sourceSystemEntries.find(modId);
+    if (found == g_sourceSystemEntries.end() || !found->second.maskKnown ||
+        !(found->second.mask & (1ULL << 53)) ||
+        !found->second.tileCountsMethod || !g_domain ||
+        !g_api.currentThread || !g_api.attach || !g_api.detachThread ||
+        !g_api.int32Class || !g_api.arrayNew || !g_api.arrayAddr ||
+        !g_api.invoke || !g_api.unbox) return false;
+    const void* current = g_api.currentThread();
+    void* attached = g_api.attach(g_domain);
+    if (!attached) return false;
+    struct ScopedMonoThread {
+        DetachFn detach;
+        void* owned;
+        ~ScopedMonoThread() { if (owned) detach(owned); }
+    } monoThread{g_api.detachThread, current ? nullptr : attached};
+    void* int32 = g_api.int32Class();
+    void* array = int32 ? g_api.arrayNew(g_domain, int32, length) : nullptr;
+    if (!array) return false;
+    char* first = g_api.arrayAddr(array, sizeof(int32_t), 0);
+    if (!first) return false;
+    std::memcpy(first, values, length * sizeof(int32_t));
+    void* method = found->second.tileCountsMethod;
+    lock.unlock();
+    void* args[] = {array};
+    void* exception = nullptr;
+    void* boxed = g_api.invoke(method, nullptr, args, &exception);
+    void* result = exception || !boxed ? nullptr : g_api.unbox(boxed);
+    if (!result) return false;
+    int32_t status = -1;
+    std::memcpy(&status, result, sizeof(status));
+    if (status < 0 || status > 256) return false;
+    *failures = status;
+    return true;
+}
+
+bool dispatchManagedSourceSystem(const std::string& modId,
+                                 const std::string& assemblyPath,
+                                 int phase, int* failures) {
+    if (!failures || phase < 0 || phase > 37 ||
+        modId.empty() || modId.size() > 128 ||
+        assemblyPath.empty() || assemblyPath.size() > 2048) return false;
+    if (g_withinModSystemCallback) {
+        *failures = 0;
+        return true;
+    }
+    struct SystemCallbackScope {
+        bool& flag;
+        explicit SystemCallbackScope(bool& value) : flag(value) { flag = true; }
+        ~SystemCallbackScope() { flag = false; }
+    } scope(g_withinModSystemCallback);
+    std::lock_guard<std::mutex> systemGuard(g_sourceSystemDispatchMutex);
+    std::unique_lock<std::mutex> guard(g_mutex);
+    if (!g_domain || !g_status.domainInitialized || !g_status.methodExecuted ||
+        !g_api.attach || !g_api.currentThread || !g_api.detachThread ||
+        !g_api.openAssembly || !g_api.image ||
+        !g_api.findClass || !g_api.findMethod || !g_api.invoke || !g_api.unbox)
+        return false;
+    const void* alreadyAttached = g_api.currentThread();
+    void* attached = g_api.attach(g_domain);
+    if (!attached) return false;
+    struct ScopedMonoDetach {
+        DetachFn detach;
+        void* owned;
+        ~ScopedMonoDetach() { if (owned) detach(owned); }
+    } monoThread{g_api.detachThread, alreadyAttached ? nullptr : attached};
+    SourceSystemEntry& entry = g_sourceSystemEntries[modId];
+    if (!entry.path.empty() && entry.path != assemblyPath) return false;
+    if (!entry.method) {
+        // Only stat the mod assembly before first opening it, not every tick.
+        if (!validAssembly(assemblyPath)) {
+            g_sourceSystemEntries.erase(modId);
+            return false;
+        }
+        void* assembly = g_api.openAssembly(g_domain, assemblyPath.c_str());
+        void* image = assembly ? g_api.image(assembly) : nullptr;
+        void* klass = image ? g_api.findClass(image, "BunnyLoader.Source", "BunnySystemEntry") : nullptr;
+        entry.method = klass ? g_api.findMethod(klass, "Invoke", 1) : nullptr;
+        entry.maskMethod = klass ? g_api.findMethod(klass, "HookMask", 0) : nullptr;
+        entry.brightnessMethod = klass
+            ? g_api.findMethod(klass, "Brightness", 1) : nullptr;
+        entry.sunlightMethod = klass
+            ? g_api.findMethod(klass, "Sunlight", 1) : nullptr;
+        entry.cameraMethod = klass
+            ? g_api.findMethod(klass, "Camera", 1) : nullptr;
+        entry.tileCountsMethod = klass
+            ? g_api.findMethod(klass, "TileCounts", 1) : nullptr;
+        entry.updateUiMethod = klass
+            ? g_api.findMethod(klass, "UpdateUiTime", 3) : nullptr;
+        if (!entry.method || !entry.maskMethod) {
+            g_sourceSystemEntries.erase(modId);
+            return false;
+        }
+        entry.path = assemblyPath;
+    }
+    // A entrada gerenciada pode invocar APIs nativas. Nunca manter g_mutex
+    // enquanto o codigo do mod estiver sendo executado.
+    guard.unlock();
+    int action = phase;
+    void* arguments[] = {&action};
+    void* exception = nullptr;
+    void* boxed = g_api.invoke(entry.method, nullptr, arguments, &exception);
+    void* unboxed = exception || !boxed ? nullptr : g_api.unbox(boxed);
+    if (!unboxed) return false;
+    int result = -1;
+    std::memcpy(&result, unboxed, sizeof(result));
+    if (result < 0 || result > 256) return false;
+    if (phase == 0 && !entry.maskKnown) {
+        void* maskException = nullptr;
+        void* boxedMask = g_api.invoke(entry.maskMethod, nullptr, nullptr, &maskException);
+        void* unboxedMask = maskException || !boxedMask ? nullptr : g_api.unbox(boxedMask);
+        if (!unboxedMask) return false;
+        std::memcpy(&entry.mask, unboxedMask, sizeof(entry.mask));
+        entry.maskKnown = true;
+        g_sourceSystemOriginalMask.fetch_or(entry.mask, std::memory_order_acq_rel);
+    }
+    *failures = result;
+    if (phase == 5) {
+        guard.lock();
+        g_sourceSystemEntries.erase(modId);
+        uint64_t remainingHooks = 0;
+        for (const auto& [id, system] : g_sourceSystemEntries)
+            if (system.maskKnown) remainingHooks |= system.mask;
+        g_sourceSystemOriginalMask.store(remainingHooks, std::memory_order_release);
+    }
+    return true;
 }
 
 LiveCallbackResult invokeLiveSourceEvent(const std::string& modId,

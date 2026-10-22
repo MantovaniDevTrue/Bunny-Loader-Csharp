@@ -1,0 +1,65 @@
+name: ModSystem native ARM64 source check
+
+on:
+  push:
+    paths:
+      - "src/native/**"
+      - ".github/workflows/csharp-modsystem-native-syntax.yml"
+  pull_request:
+    paths:
+      - "src/native/**"
+      - ".github/workflows/csharp-modsystem-native-syntax.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  native-syntax:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout CSharp modules
+        uses: actions/checkout@v4
+      - name: Checkout pinned complete CSharp host
+        uses: actions/checkout@v4
+        with:
+          repository: MantovaniDevTrue/Bunnyloader-Csharp
+          ref: dc6243850c1d7ac83eb528bc2d56cf585066fc85
+          path: _host
+          persist-credentials: false
+      - name: Overlay new CSharp sources onto native host
+        shell: bash
+        run: |
+          set -euo pipefail
+          dir="_host/Split/Bunny-Loader/app/src/main/cpp"
+          test -f "$dir/experiments/csharp/AutoSourceRuntime.cpp"
+          cp -a src/native/. "$dir/"
+      - name: Check Android ARM64 C++ syntax only
+        shell: bash
+        run: |
+          set -euo pipefail
+          ndk_root="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/opt/android-sdk}}/ndk"
+          test -d "$ndk_root"
+          ndk="$(find "$ndk_root" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)"
+          compiler="$ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang++"
+          test -x "$compiler"
+          src="_host/Split/Bunny-Loader/app/src/main/cpp"
+          for file in \
+            "$src/experiments/csharp/AutoSourceRuntime.cpp" \
+            "$src/experiments/csharp/ManagedRuntime.cpp" \
+            "$src/experiments/csharp/SourceLoader.cpp" \
+            "$src/experiments/csharp/SourceParser.cpp" \
+            "$src/experiments/csharp/ModSystemStages.cpp"; do
+            echo "CHECKING $file"
+            "$compiler" -std=c++20 -O2 -fno-exceptions -fno-rtti \
+              -DBL_HAVE_QUICKJS=0 -I"$src" -fsyntax-only "$file"
+          done
+          "$compiler" -std=c++20 -O2 -fno-exceptions -fno-rtti \
+            -DBL_HAVE_QUICKJS=0 -I"$src" -c \
+            "$src/experiments/csharp/ModSystemStages.cpp" -o /tmp/modsystem-stages-arm64.o
+          nm="$ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-nm"
+          "$nm" /tmp/modsystem-stages-arm64.o | grep -q blCsSystemStageDispatch
+          "$nm" /tmp/modsystem-stages-arm64.o | grep -q blCsSystemStageBridge6
+          echo "MODSYSTEM_ARM64_NATIVE_ASSEMBLY=PASS"
+          echo "MODSYSTEM_ARM64_NATIVE_SYNTAX=PASS"
