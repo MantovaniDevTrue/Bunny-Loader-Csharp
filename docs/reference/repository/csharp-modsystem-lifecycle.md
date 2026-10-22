@@ -1,6 +1,6 @@
 # ModSystem em C# — integração de ciclo de vida
 
-> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 9 estão declarados, 49 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
+> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 21 estão declarados, 37 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
 
 
 Este módulo usa o nome e as assinaturas de eventos `ModSystem` do tModLoader, mas a execução é implementada diretamente no SDK C# do Bunny Loader, sem executar JavaScript.
@@ -56,3 +56,7 @@ No despacho de `ModSystem`, a ponte C++ exige `mono_thread_current` e `mono_thre
 O compilador gera uma entrada gerenciada por assembly que informa uma máscara de 58 bits dos hooks originais. Apenas `override` verdadeiros (`GetBaseDefinition`) de instâncias carregadas contam; métodos com o mesmo nome que apenas escondem a base não são registrados. O host guarda a máscara em cache e ignora `ClearWorld`, `PreSaveAndQuit`, `PreWorldGen` e `PostWorldGen` quando nenhum mod os sobrescreve. Isso elimina chamadas Mono desnecessárias sem remover callbacks existentes. A integração de fases de alto custo por frame depende desse mecanismo e de benchmark Android.
 
 O `Unload` também atualiza a máscara agregada de hooks: quando um mod sai, os bits que não pertencem mais a nenhum outro mod são retirados. Nenhum hook de outro mod é desligado por causa desse descarregamento.
+
+## Hooks de atualizacao em lote
+
+O SDK possui os 12 métodos `PreUpdateWorld`, `PostUpdateWorld`, `PreUpdateTime`, `PostUpdateTime`, `PreUpdateEntities`, `PostUpdateEverything`, `PreUpdateProjectiles`, `PreUpdateDusts`, `PostUpdateDusts`, `PreUpdateInvasions`, `PostUpdateInvasions`, `PostUpdateInput`. A ponte nativa intercepta `WorldGen.UpdateWorld`, `Main.UpdateTime`, `Main.DoUpdateInWorld`, `Main.PreUpdateAllProjectiles`, `Dust.UpdateDust`, `Main.UpdateInvasion` e `Main.DoUpdate_HandleInput`, conservando a ordem antes/depois do método original do Bunny. Os hooks nativos são instalados somente se uma classe ModSystem sobrescreveu o callback; a máscara de 58 bits impede invocações gerenciadas desnecessárias por frame. O gate pré-mundo não permite entrar se uma instalação requerida falhar. Os métodos que o Bunny implementa por system stages internos (Players/NPCs/Items/Gores) continuam pendentes, assim como todo o grupo de rede e persistência. Sem benchmark Android, não declarar 60 FPS nem lote fechado.

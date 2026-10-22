@@ -2,7 +2,7 @@
 
 Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/mod/ModSystem.js` consultado em 22/10/2026. Convenção C# autorizada: mesmo nome dos hooks do Bunny/tModLoader quando aplicável, sem copiar o interpretador JS nem considerar método vazio como implementado.
 
-**Status: INCOMPLETO, APK PROIBIDO.** Existem 58 hooks originais; 9 estão declarados no SDK C# como integração de ciclo de vida/eventos, e 49 estão ausentes. A API também tem `Unload`, que não integra os 58 métodos do `ModSystem` original. Mesmo os 5 declarados não estão certificados no Android.
+**Status: INCOMPLETO, APK PROIBIDO.** Existem 58 hooks originais; 21 estão declarados no SDK C# como integração de ciclo de vida/eventos, e 37 estão ausentes. A API também tem `Unload`, que não integra os 58 métodos do `ModSystem` original. Mesmo os 5 declarados não estão certificados no Android.
 
 ## Inicialização e conteúdo (10)
 
@@ -42,26 +42,26 @@ Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/m
 
 | Hook do original | C# no PR #1 | Teste Android |
 |---|---|---|
-| `PreUpdateWorld` | Ausente | Pendente |
-| `PostUpdateWorld` | Ausente | Pendente |
-| `PreUpdateTime` | Ausente | Pendente |
-| `PostUpdateTime` | Ausente | Pendente |
-| `PostUpdateEverything` | Ausente | Pendente |
-| `PreUpdateEntities` | Ausente | Pendente |
+| `PreUpdateWorld` | Implementado em fonte / Android pendente | Pendente |
+| `PostUpdateWorld` | Implementado em fonte / Android pendente | Pendente |
+| `PreUpdateTime` | Implementado em fonte / Android pendente | Pendente |
+| `PostUpdateTime` | Implementado em fonte / Android pendente | Pendente |
+| `PostUpdateEverything` | Implementado em fonte / Android pendente | Pendente |
+| `PreUpdateEntities` | Implementado em fonte / Android pendente | Pendente |
 | `PreUpdatePlayers` | Ausente | Pendente |
 | `PostUpdatePlayers` | Ausente | Pendente |
 | `PreUpdateNPCs` | Ausente | Pendente |
 | `PostUpdateNPCs` | Ausente | Pendente |
 | `PreUpdateGores` | Ausente | Pendente |
 | `PostUpdateGores` | Ausente | Pendente |
-| `PreUpdateProjectiles` | Ausente | Pendente |
+| `PreUpdateProjectiles` | Implementado em fonte / Android pendente | Pendente |
 | `PostUpdateProjectiles` | Ausente | Pendente |
 | `PreUpdateItems` | Ausente | Pendente |
 | `PostUpdateItems` | Ausente | Pendente |
-| `PreUpdateDusts` | Ausente | Pendente |
-| `PostUpdateDusts` | Ausente | Pendente |
-| `PreUpdateInvasions` | Ausente | Pendente |
-| `PostUpdateInvasions` | Ausente | Pendente |
+| `PreUpdateDusts` | Implementado em fonte / Android pendente | Pendente |
+| `PostUpdateDusts` | Implementado em fonte / Android pendente | Pendente |
+| `PreUpdateInvasions` | Implementado em fonte / Android pendente | Pendente |
+| `PostUpdateInvasions` | Implementado em fonte / Android pendente | Pendente |
 
 ## Interface, iluminação, entrada e biomas (10)
 
@@ -69,7 +69,7 @@ Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/m
 |---|---|---|
 | `UpdateUI` | Ausente | Pendente |
 | `ModifyInterfaceLayers` | Ausente | Pendente |
-| `PostUpdateInput` | Ausente | Pendente |
+| `PostUpdateInput` | Implementado em fonte / Android pendente | Pendente |
 | `ModifyTimeRate` | Ausente | Pendente |
 | `ModifySunLightColor` | Ausente | Pendente |
 | `ModifyLightingBrightness` | Ausente | Pendente |
@@ -89,7 +89,7 @@ Fonte de referência: `JonataOliveiraa/Bunny-Loader/app/src/main/cpp/script/js/m
 
 ## Bloqueios de lançamento
 
-1. Implementar todos os 49 hooks ausentes, com contratos C# adequados para cada parâmetro, retorno e objeto utilizado pelo Terraria. Para métodos com semântica diferente ou API móvel indisponível, documentar equivalência funcional demonstrável ou bloqueio real; não usar `stub`.
+1. Implementar todos os 37 hooks ausentes, com contratos C# adequados para cada parâmetro, retorno e objeto utilizado pelo Terraria. Para métodos com semântica diferente ou API móvel indisponível, documentar equivalência funcional demonstrável ou bloqueio real; não usar `stub`.
 2. Fazer `Load` e `OnModLoad` realmente executarem antes de entrar no mundo, mesmo que o Mono não esteja pronto no primeiro despacho. Uma simples mensagem de erro sem retry não basta.
 3. Fazer `OnWorldLoad`, `LoadWorldData`, `PostWorldLoad`, `SaveWorldData`, `OnWorldUnload` e `Unload` obedecerem à ordem correta, sem duplicação em mundos locais, save/quit e novo mundo.
 4. Inspecionar ABI do hook de `Main.QuitGame` no Android; a assinatura e o vínculo nativo precisam ser comprovados e não podem ser presumidos com base no JS.
