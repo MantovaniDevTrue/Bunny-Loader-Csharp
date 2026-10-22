@@ -1,5 +1,392 @@
 {
   "schema": 1,
+  "different_content_shared_paths": 137,
+  "highest_collision_paths": [
+    {
+      "path": "src/native/experiments/csharp/AutoSourceRuntime.cpp",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        125,
+        128,
+        130
+      ],
+      "variants": 16
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedRuntime.cpp",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        114,
+        115,
+        116,
+        117,
+        119,
+        120,
+        122,
+        124,
+        125,
+        127,
+        129,
+        130
+      ],
+      "variants": 16
+    },
+    {
+      "path": "src/managed/BunnySourceSdk/BunnySourceSdk.csproj",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        115,
+        117,
+        118,
+        119,
+        121,
+        122,
+        125,
+        126,
+        130,
+        131
+      ],
+      "variants": 14
+    },
+    {
+      "path": "src/native/experiments/csharp/ManagedRuntime.h",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        114,
+        115,
+        116,
+        117,
+        119,
+        120,
+        122,
+        125,
+        130
+      ],
+      "variants": 13
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceLoader.cpp",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        114,
+        115,
+        117,
+        119,
+        121,
+        122,
+        125,
+        130
+      ],
+      "variants": 12
+    },
+    {
+      "path": "src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        114,
+        115,
+        117,
+        119,
+        122,
+        125,
+        130
+      ],
+      "variants": 11
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceLoader.h",
+      "prs": [
+        98,
+        102,
+        114,
+        115,
+        117,
+        119,
+        121,
+        122,
+        125,
+        130
+      ],
+      "variants": 10
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceParser.cpp",
+      "prs": [
+        98,
+        100,
+        102,
+        114,
+        115,
+        117,
+        119,
+        122,
+        125,
+        130
+      ],
+      "variants": 10
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyEntitySourceDispatcher.cs",
+      "prs": [
+        116,
+        119,
+        124,
+        127,
+        128,
+        129,
+        130,
+        132
+      ],
+      "variants": 7
+    },
+    {
+      "path": "src/native/experiments/csharp/SourceContentIdentity.h",
+      "prs": [
+        98,
+        100,
+        102,
+        115,
+        117,
+        119,
+        125,
+        130
+      ],
+      "variants": 8
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyItem.cs",
+      "prs": [
+        98,
+        100,
+        102,
+        114,
+        116,
+        119,
+        129
+      ],
+      "variants": 7
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnySourceScriptApi.cs",
+      "prs": [
+        98,
+        100,
+        102,
+        114,
+        116,
+        119,
+        130
+      ],
+      "variants": 7
+    },
+    {
+      "path": "tests/native-and-managed/invasion/check_item_use_contract.py",
+      "prs": [
+        116,
+        119,
+        124,
+        127,
+        128,
+        129,
+        132
+      ],
+      "variants": 7
+    },
+    {
+      "path": "docs/reference/generated/sdk_public_reference.json",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        119,
+        130
+      ],
+      "variants": 6
+    },
+    {
+      "path": "docs/reference/generated/sdk_public_reference.md",
+      "prs": [
+        98,
+        100,
+        101,
+        102,
+        119,
+        130
+      ],
+      "variants": 6
+    },
+    {
+      "path": "tools/support/sdk_reference/Program.cs",
+      "prs": [
+        98,
+        100,
+        101,
+        119,
+        130
+      ],
+      "variants": 4
+    },
+    {
+      "path": "docs/reference/generated/example_completion/matrix.json",
+      "prs": [
+        98,
+        101,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "integration/android-host/assets/managed/framework.sha256",
+      "prs": [
+        115,
+        118,
+        119,
+        121
+      ],
+      "variants": 4
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Documentation/COMPATIBILIDADE.json",
+      "prs": [
+        98,
+        101,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyContentDeclaration.cs",
+      "prs": [
+        98,
+        115,
+        119,
+        130
+      ],
+      "variants": 4
+    },
+    {
+      "path": "src/managed/BunnyCsSdk/BunnyUniversalHooks.cs",
+      "prs": [
+        114,
+        119,
+        126,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "tests/native-and-managed/basic_items/Program.cs",
+      "prs": [
+        98,
+        101,
+        119,
+        130
+      ],
+      "variants": 4
+    },
+    {
+      "path": "docs/reference/csharp-completion-plan.md",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "docs/reference/csharp-independence-audit.md",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "docs/reference/csharp-loader-batches.md",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 3
+    },
+    {
+      "path": "docs/reference/generated/example_completion/matrix.md",
+      "prs": [
+        98,
+        119,
+        130
+      ],
+      "variants": 2
+    },
+    {
+      "path": "integration/ci-reference/check-csharp-dust.yml",
+      "prs": [
+        115,
+        119,
+        128
+      ],
+      "variants": 2
+    },
+    {
+      "path": "integration/ci-reference/check-csharp-rarity-loader.yml",
+      "prs": [
+        102,
+        119,
+        123
+      ],
+      "variants": 3
+    },
+    {
+      "path": "integration/ci-reference/test-csharp-invasion.yml",
+      "prs": [
+        116,
+        119,
+        129
+      ],
+      "variants": 2
+    },
+    {
+      "path": "samples/ExampleModCSharp/Playable/content/Content/Items/Consumables/ExampleInvasionBeacon.cs",
+      "prs": [
+        116,
+        119,
+        129
+      ],
+      "variants": 3
+    }
+  ],
   "upstream": "MantovaniDevTrue/Bunnyloader-Csharp",
   "target_baseline": "0.1.10.16.90.29.87.1",
   "mode": "isolated_source_overlays",
