@@ -188,7 +188,9 @@ public static class Compiler
                 "public static ulong Sunlight(ulong value) => " +
                 "ModSystemLoader.ModifySunLightColor(typeof(BunnySystemEntry).Assembly, value); " +
                 "public static ulong Camera(ulong value) => " +
-                "ModSystemLoader.ModifyScreenPosition(typeof(BunnySystemEntry).Assembly, value); } }";
+                "ModSystemLoader.ModifyScreenPosition(typeof(BunnySystemEntry).Assembly, value); " +
+                "public static int TileCounts(int[] counts) => " +
+                "ModSystemLoader.TileCountsAvailable(typeof(BunnySystemEntry).Assembly, counts); } }";
             trees.Add(CSharpSyntaxTree.ParseText(systemEntry,
                 CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp12),
                 "__BunnySystemEntry.generated.cs"));

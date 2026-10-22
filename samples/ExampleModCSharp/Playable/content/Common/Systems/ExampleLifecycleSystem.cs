@@ -68,6 +68,11 @@ public sealed class ExampleLifecycleSystem : ModSystem
 
     private int nearbyCount;
 
+    public override void TileCountsAvailable(int[] counts)
+    {
+        nearbyCount = counts.Length > 754 ? counts[754] : 0;
+    }
+
     public override void ResetNearbyTileEffects()
     {
         // Recomeça a contagem de bioma apenas na varredura do jogador local.

@@ -91,6 +91,7 @@ public abstract class ModSystem
     public virtual void PreWorldGen() { }
     public virtual void PostWorldGen() { }
     public virtual void ResetNearbyTileEffects() { }
+    public virtual void TileCountsAvailable(int[] tileCounts) { }
     public virtual void PreSaveAndQuit() { }
     public virtual void PreUpdateWorld() { }
     public virtual void PostUpdateWorld() { }
@@ -382,6 +383,25 @@ public static class ModSystemLoader
             Console.Error.WriteLine("[CSharp][ModSystem] " +
                 entry.System.GetType().FullName + "." + hook +
                 " falhou (" + count + "x): " + error);
+    }
+
+    public static int TileCountsAvailable(Assembly assembly, int[] tileCounts)
+    {
+        if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+        if (tileCounts == null) throw new ArgumentNullException(nameof(tileCounts));
+        if (tileCounts.Length == 0 || tileCounts.Length > 8192)
+            throw new ArgumentOutOfRangeException(nameof(tileCounts));
+        lock (Sync)
+        {
+            if (!Registries.TryGetValue(assembly, out Registry? registry) ||
+                !registry.ModLoaded || !registry.WorldLoaded) return 0;
+            int failures = 0;
+            foreach (Entry entry in registry.Entries)
+                if (entry.Loaded && (entry.OverrideMask & (1UL << 53)) != 0)
+                    failures += Invoke(entry, x => x.TileCountsAvailable(tileCounts),
+                        nameof(ModSystem.TileCountsAvailable));
+            return failures;
+        }
     }
 
     public static ulong HookMask(Assembly assembly)

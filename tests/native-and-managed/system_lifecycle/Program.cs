@@ -10,6 +10,9 @@ namespace BunnyLoader.SystemLifecycleTests;
 internal static class Events
 {
     internal static readonly List<string> Items = new();
+    internal static int TileCountCalls;
+    internal static int LastCount;
+    internal static int LastLength;
     internal static void Add(string value) => Items.Add(value);
 }
 
@@ -33,6 +36,12 @@ public sealed class AlphaSystem : ModSystem
         brightness = brightness * 0.8f;
     }
     public override void ResetNearbyTileEffects() => Events.Add("A.ResetNearbyTileEffects");
+    public override void TileCountsAvailable(int[] counts)
+    {
+        Events.TileCountCalls++;
+        Events.LastLength = counts.Length;
+        Events.LastCount = counts[754];
+    }
     public override void ResizeArrays() => Events.Add("A.ResizeArrays");
     public override void PostSetupContent() => Events.Add("A.PostSetupContent");
     public override void PostAddRecipes() => Events.Add("A.PostAddRecipes");
@@ -147,6 +156,10 @@ internal static class Program
         }
         catch (InvalidOperationException) { }
 
+        int[] nearby = new int[755];
+        nearby[754] = 41;
+        if (ModSystemLoader.TileCountsAvailable(assembly, nearby) != 0 ||
+            Events.TileCountCalls != 0) return 63;
         if (ModSystemLoader.Dispatch(assembly, 0) != 0) return 1;
         if (ModSystemLoader.Dispatch(assembly, 0) != 0) return 2;
         ulong expectedMask = 0;
@@ -186,6 +199,9 @@ internal static class Program
         try { _ = BunnySystemCamera.ScreenPosition; return 61; }
         catch (InvalidOperationException) { }
         if (!float.IsNaN(ModSystemLoader.ModifyLightingBrightness(assembly, float.NaN))) return 50;
+        if (ModSystemLoader.TileCountsAvailable(assembly, nearby) != 0 ||
+            Events.TileCountCalls != 1 || Events.LastCount != 41 ||
+            Events.LastLength != 755) return 64;
         if (ModSystemLoader.Dispatch(assembly, 35) != 0) return 45;
         if (ModSystemLoader.Dispatch(assembly, 35) != 0) return 46;
         for (int phase = 10; phase <= 21; phase++)
@@ -195,6 +211,8 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 22;
         if (ModSystemLoader.Dispatch(assembly, 2) != 0) return 4;
         if (ModSystemLoader.Dispatch(assembly, 3) != 0) return 5;
+        if (ModSystemLoader.TileCountsAvailable(assembly, nearby) != 0 ||
+            Events.TileCountCalls != 1) return 65;
         for (int phase = 10; phase <= 20; phase++)
             if (ModSystemLoader.Dispatch(assembly, phase) != 0) return 35;
         if (ModSystemLoader.Dispatch(assembly, 7) != 0) return 23;
@@ -203,6 +221,9 @@ internal static class Program
         if (ModSystemLoader.Dispatch(assembly, 8) != 0) return 28;
         if (ModSystemLoader.Dispatch(assembly, 9) != 0) return 29;
         if (ModSystemLoader.Dispatch(assembly, 2) != 1) return 7;
+        nearby[754] = 40;
+        if (ModSystemLoader.TileCountsAvailable(assembly, nearby) != 0 ||
+            Events.TileCountCalls != 2 || Events.LastCount != 40) return 66;
         if (ModSystemLoader.Dispatch(assembly, 35) != 0) return 47;
         for (int phase = 22; phase <= 30; phase++)
             if (ModSystemLoader.Dispatch(assembly, phase) != 0) return 37;
