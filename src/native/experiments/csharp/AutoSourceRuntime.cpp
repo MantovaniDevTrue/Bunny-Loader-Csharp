@@ -48,6 +48,7 @@
 #include <cstdint>
 #include <mutex>
 #include <memory>
+#include <cmath>
 #include <sstream>
 #include <set>
 #include <string>
@@ -105,6 +106,10 @@ StaticUpdateFn g_originalModSystemTime = nullptr;
 InstanceUpdateFn g_originalModSystemEntities = nullptr;
 InstanceUpdateFn g_originalModSystemProjectiles = nullptr;
 StaticUpdateFn g_originalModSystemDust = nullptr;
+StaticUpdateFn g_originalModSystemBrightness = nullptr;
+FieldInfo* g_modSystemBrightnessField = nullptr;
+std::atomic<bool> g_modSystemBrightnessHookAttempted{false};
+std::atomic<bool> g_modSystemBrightnessHookReady{false};
 StaticUpdateFn g_originalModSystemInvasions = nullptr;
 InstanceUpdateFn g_originalModSystemInput = nullptr;
 using LocalizationLoadFn = void (*)(Il2CppObject*, Il2CppObject*, const MethodInfo*);
@@ -1382,6 +1387,51 @@ void hkCSharpModSystemDust(const MethodInfo* method) {
     dispatchAutoSourceSystems(18);
 }
 
+void hkCSharpModSystemBrightness(const MethodInfo* method) {
+    if (g_originalModSystemBrightness)
+        g_originalModSystemBrightness(method);
+    if (!g_worldSessionReady.load(std::memory_order_acquire) ||
+        (activeManagedSourceSystemHooks() & (1ULL << 49)) == 0 ||
+        !g_modSystemBrightnessField) return;
+    float brightness = 1.f;
+    il2cpp::api().field_static_get_value(g_modSystemBrightnessField, &brightness);
+    if (!std::isfinite(brightness) || brightness < 0.f) return;
+    const auto snapshot = std::atomic_load_explicit(
+        &g_systemDispatchSnapshot, std::memory_order_acquire);
+    if (!snapshot) return;
+    bool changed = false;
+    for (const auto& target : *snapshot) {
+        if ((target.hookMask & (1ULL << 49)) == 0) continue;
+        float result = brightness;
+        if (modifyManagedSourceSystemBrightness(target.modId, &result)) {
+            brightness = result;
+            changed = true;
+        }
+    }
+    if (changed)
+        il2cpp::api().field_static_set_value(g_modSystemBrightnessField, &brightness);
+}
+
+bool installModSystemBrightnessHookOnGameThread() {
+    if ((activeManagedSourceSystemHooks() & (1ULL << 49)) == 0) return true;
+    if (!g_modSystemBrightnessHookAttempted.exchange(true, std::memory_order_acq_rel)) {
+        Il2CppClass* lighting = il2cpp::findClass({"Terraria", "Lighting", {}});
+        g_modSystemBrightnessField = lighting
+            ? il2cpp::findField(lighting, "GlobalBrightness")
+            : nullptr;
+        const MethodInfo* method = lighting
+            ? il2cpp::api().class_get_method_from_name(lighting, "UpdateGlobalBrightness", 0)
+            : nullptr;
+        if (method && g_modSystemBrightnessField &&
+            bl::hook::install(method, hkCSharpModSystemBrightness,
+                              &g_originalModSystemBrightness))
+            g_modSystemBrightnessHookReady.store(true, std::memory_order_release);
+        else
+            BL_WARN("[CSharp][ModSystem] Lighting.UpdateGlobalBrightness indisponivel");
+    }
+    return g_modSystemBrightnessHookReady.load(std::memory_order_acquire);
+}
+
 void hkCSharpModSystemInvasions(const MethodInfo* method) {
     dispatchAutoSourceSystems(19);
     if (g_originalModSystemInvasions) g_originalModSystemInvasions(method);
@@ -1649,6 +1699,7 @@ void noteAutoGameUpdate() {
     installNativeModSystemStageHooks(activeManagedSourceSystemHooks());
     installModSystemLanguageHookOnGameThread();
     installModSystemSceneMetricsHookOnGameThread();
+    installModSystemBrightnessHookOnGameThread();
     pumpModSystemContentLifecycleOnGameThread();
     if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
         static unsigned systemRetryFrame = 0;
@@ -1761,7 +1812,8 @@ bool preWorldCSharpContentReady() {
     if (!installModSystemUpdateHooksOnGameThread() ||
         !installNativeModSystemStageHooks(activeManagedSourceSystemHooks()) ||
         !installModSystemLanguageHookOnGameThread() ||
-        !installModSystemSceneMetricsHookOnGameThread()) return false;
+        !installModSystemSceneMetricsHookOnGameThread() ||
+        !installModSystemBrightnessHookOnGameThread()) return false;
     bool needsNpcDispatcher = false;
     for (const auto& status : autoSourceStatuses())
         if (status.applied && !status.systemsLoaded && status.phase != "failed")
