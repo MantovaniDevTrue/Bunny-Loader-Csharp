@@ -85,6 +85,17 @@ using SaveAndQuitFn = void (*)(const MethodInfo*);
 SaveAndQuitFn g_originalSaveAndQuit = nullptr;
 using GenerateWorldFn = bool (*)(Il2CppObject*, const MethodInfo*);
 GenerateWorldFn g_originalGenerateWorld = nullptr;
+using StaticUpdateFn = void (*)(const MethodInfo*);
+using InstanceUpdateFn = void (*)(Il2CppObject*, const MethodInfo*);
+std::atomic<uint32_t> g_modSystemUpdateHookAttempts{0};
+std::atomic<uint32_t> g_modSystemUpdateHookReady{0};
+StaticUpdateFn g_originalModSystemWorld = nullptr;
+StaticUpdateFn g_originalModSystemTime = nullptr;
+InstanceUpdateFn g_originalModSystemEntities = nullptr;
+InstanceUpdateFn g_originalModSystemProjectiles = nullptr;
+StaticUpdateFn g_originalModSystemDust = nullptr;
+StaticUpdateFn g_originalModSystemInvasions = nullptr;
+InstanceUpdateFn g_originalModSystemInput = nullptr;
 std::atomic<bool> g_worldTilesLoaded{false};
 std::atomic<bool> g_worldSessionReady{false};
 std::atomic<int> g_worldReadyFrames{0};
@@ -1220,6 +1231,18 @@ void dispatchAutoSourceSystems(int phase) {
     else if (phase == 7) hookBit = 22;
     else if (phase == 8) hookBit = 17;
     else if (phase == 9) hookBit = 19;
+    else if (phase == 10) hookBit = 24;
+    else if (phase == 11) hookBit = 25;
+    else if (phase == 12) hookBit = 26;
+    else if (phase == 13) hookBit = 27;
+    else if (phase == 14) hookBit = 32;
+    else if (phase == 15) hookBit = 28;
+    else if (phase == 16) hookBit = 39;
+    else if (phase == 17) hookBit = 43;
+    else if (phase == 18) hookBit = 44;
+    else if (phase == 19) hookBit = 45;
+    else if (phase == 20) hookBit = 46;
+    else if (phase == 21) hookBit = 31;
     if (hookBit >= 0 &&
         (activeManagedSourceSystemHooks() & (1ULL << hookBit)) == 0)
         return;
@@ -1241,6 +1264,158 @@ void dispatchAutoSourceSystems(int phase) {
             BL_WARN("[CSharp][ModSystem] mod=%s phase=%d erros=%d",
                     modId.c_str(), phase, failures);
     }
+}
+
+void hkCSharpModSystemWorld(const MethodInfo* method) {
+    dispatchAutoSourceSystems(10);
+    if (g_originalModSystemWorld) g_originalModSystemWorld(method);
+    dispatchAutoSourceSystems(11);
+}
+
+void hkCSharpModSystemTime(const MethodInfo* method) {
+    dispatchAutoSourceSystems(12);
+    if (g_originalModSystemTime) g_originalModSystemTime(method);
+    dispatchAutoSourceSystems(13);
+}
+
+void hkCSharpModSystemEntities(Il2CppObject* self, const MethodInfo* method) {
+    dispatchAutoSourceSystems(14);
+    if (g_originalModSystemEntities) g_originalModSystemEntities(self, method);
+    dispatchAutoSourceSystems(15);
+}
+
+void hkCSharpModSystemProjectiles(Il2CppObject* self, const MethodInfo* method) {
+    dispatchAutoSourceSystems(16);
+    if (g_originalModSystemProjectiles) g_originalModSystemProjectiles(self, method);
+}
+
+void hkCSharpModSystemDust(const MethodInfo* method) {
+    dispatchAutoSourceSystems(17);
+    if (g_originalModSystemDust) g_originalModSystemDust(method);
+    dispatchAutoSourceSystems(18);
+}
+
+void hkCSharpModSystemInvasions(const MethodInfo* method) {
+    dispatchAutoSourceSystems(19);
+    if (g_originalModSystemInvasions) g_originalModSystemInvasions(method);
+    dispatchAutoSourceSystems(20);
+}
+
+void hkCSharpModSystemInput(Il2CppObject* self, const MethodInfo* method) {
+    if (g_originalModSystemInput) g_originalModSystemInput(self, method);
+    dispatchAutoSourceSystems(21);
+}
+
+bool installModSystemUpdateHooksOnGameThread() {
+    const uint64_t enabled = activeManagedSourceSystemHooks();
+    if (!enabled) return true;
+    bool ready = true;
+    if (enabled & ((1ULL << 24) | (1ULL << 25))) {
+        constexpr uint32_t flag = 1u << 0;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "WorldGen", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "UpdateWorld", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemWorld, &g_originalModSystemWorld))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook WorldGen.UpdateWorld indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 26) | (1ULL << 27))) {
+        constexpr uint32_t flag = 1u << 1;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Main", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "UpdateTime", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemTime, &g_originalModSystemTime))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Main.UpdateTime indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 32) | (1ULL << 28))) {
+        constexpr uint32_t flag = 1u << 2;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Main", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "DoUpdateInWorld", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemEntities, &g_originalModSystemEntities))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Main.DoUpdateInWorld indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 39))) {
+        constexpr uint32_t flag = 1u << 3;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Main", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "PreUpdateAllProjectiles", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemProjectiles, &g_originalModSystemProjectiles))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Main.PreUpdateAllProjectiles indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 43) | (1ULL << 44))) {
+        constexpr uint32_t flag = 1u << 4;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Dust", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "UpdateDust", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemDust, &g_originalModSystemDust))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Dust.UpdateDust indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 45) | (1ULL << 46))) {
+        constexpr uint32_t flag = 1u << 5;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Main", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "UpdateInvasion", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemInvasions, &g_originalModSystemInvasions))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Main.UpdateInvasion indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    if (enabled & ((1ULL << 31))) {
+        constexpr uint32_t flag = 1u << 6;
+        if (!(g_modSystemUpdateHookAttempts.fetch_or(flag, std::memory_order_acq_rel) & flag)) {
+            Il2CppClass* cls = il2cpp::findClass({"Terraria", "Main", {}});
+            const MethodInfo* method = cls
+                ? il2cpp::api().class_get_method_from_name(cls, "DoUpdate_HandleInput", 0)
+                : nullptr;
+            if (method && bl::hook::install(method,
+                    hkCSharpModSystemInput, &g_originalModSystemInput))
+                g_modSystemUpdateHookReady.fetch_or(flag, std::memory_order_release);
+            else BL_WARN("[CSharp][ModSystem] hook Main.DoUpdate_HandleInput indisponivel");
+        }
+        if (!(g_modSystemUpdateHookReady.load(std::memory_order_acquire) & flag))
+            ready = false;
+    }
+    return ready;
 }
 
 bool hkCSharpGenerateWorld(Il2CppObject* self, const MethodInfo* method) {
@@ -1321,6 +1496,7 @@ void noteAutoGameUpdate() {
     pumpInteractiveConsoleOnGameThread();
     pumpBasicRecipesOnGameThread();
     pumpNativeVisualRendererOnGameThread();
+    installModSystemUpdateHooksOnGameThread();
     if (g_initialCSharpRegistrationFinished.load(std::memory_order_acquire)) {
         static unsigned systemRetryFrame = 0;
         if (++systemRetryFrame % 12u == 0) loadPendingAutoSourceSystems();
@@ -1427,6 +1603,7 @@ bool preWorldCSharpContentReady() {
         !g_preWorldBindingsArmed.load(std::memory_order_acquire))
         return false;
     const auto content = basicItemLoadStatus();
+    if (!installModSystemUpdateHooksOnGameThread()) return false;
     bool needsNpcDispatcher = false;
     for (const auto& status : autoSourceStatuses())
         if (status.applied && !status.systemsLoaded && status.phase != "failed")
