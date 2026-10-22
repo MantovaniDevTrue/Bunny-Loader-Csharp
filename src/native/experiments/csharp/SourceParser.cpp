@@ -192,6 +192,14 @@ bool parseClass(const std::vector<Token>& tokens, size_t begin, size_t end,
                 const std::string& namespaceName,
                 std::vector<ParsedSourceType>* definitions, std::string* error,
                 const std::map<std::string, std::string>& declaredProperties = {}) {
+    if (base == "ModSystem") {
+        if (!declaredProperties.empty()) {
+            *error = name + ": ModSystem nao recebe propriedades de conteudo nativo";
+            return false;
+        }
+        definitions->push_back({name, base, namespaceName, {}});
+        return true;
+    }
     if (base != "BunnyItem" && base != "BunnyProjectile" && base != "BunnyWeapon" &&
         base != "BunnyBuff" && base != "BunnyBuffPotion" &&
         base != "BunnyPlayer" && base != "BunnyAccessory" &&
@@ -407,7 +415,7 @@ bool parseCSharpSource(const std::string& source,
         if (!contentDeclaration(tokens, declarationStart, i, &declaredBase,
                                 &declaredProperties, error)) return false;
         if (!declaredBase.empty()) {
-            const std::string roots = "|BunnyItem|BunnyTile|BunnyWeapon|BunnyProjectile|BunnyBuff|BunnyBuffPotion|BunnyAccessory|BunnyPlayer|BunnyNPC|BunnyPrefix|";
+            const std::string roots = "|BunnyItem|BunnyTile|BunnyWeapon|BunnyProjectile|BunnyBuff|BunnyBuffPotion|BunnyAccessory|BunnyPlayer|BunnyNPC|BunnyPrefix|ModSystem|";
             if (roots.find("|" + base + "|") != std::string::npos && base != declaredBase) {
                 *error = name + ": categoria BunnyContent difere da classe base";
                 return false;
@@ -418,7 +426,7 @@ bool parseCSharpSource(const std::string& source,
             base == "BunnyBuff" || base == "BunnyBuffPotion" ||
             base == "BunnyPlayer" || base == "BunnyAccessory" ||
             base == "BunnyNPC" || base == "BunnyPrefix" ||
-            base == "BunnyTile" || base == "BunnyScreenEffect")) {
+            base == "BunnyTile" || base == "BunnyScreenEffect" || base == "ModSystem")) {
             std::string qualifiedNamespace = fileNamespace;
             for (const auto& scope : namespaces) {
                 if (!qualifiedNamespace.empty()) qualifiedNamespace += ".";

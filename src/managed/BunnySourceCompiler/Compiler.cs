@@ -80,6 +80,8 @@ public static class Compiler
             return -3;
         }
 
+        bool interactiveConsole = files.Length == 1 &&
+            string.Equals(Path.GetFileName(files[0]), "ConsoleEntry.cs", StringComparison.Ordinal);
         Stage(diagnosticsFile, "sources-found-" + files.Length);
         var sources = new List<(string Path, byte[] Bytes)>(files.Length);
         Stage(diagnosticsFile, "initializing-portable-sha256");
@@ -173,6 +175,16 @@ public static class Compiler
             sources[i] = default;
         }
         sources.Clear();
+        if (!interactiveConsole)
+        {
+            const string systemEntry =
+                "namespace BunnyLoader.Source { internal static class BunnySystemEntry { " +
+                "public static int Invoke(int phase) => " +
+                "ModSystemLoader.Dispatch(typeof(BunnySystemEntry).Assembly, phase); } }";
+            trees.Add(CSharpSyntaxTree.ParseText(systemEntry,
+                CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp12),
+                "__BunnySystemEntry.generated.cs"));
+        }
         Stage(diagnosticsFile, "source-trees-created");
 
         long parsingMs = Environment.TickCount64 - parsingStarted;

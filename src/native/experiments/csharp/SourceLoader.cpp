@@ -403,6 +403,13 @@ bool load(const bl::mods::LoadedMod& mod, SourceModStatus* status) {
         }
         status->playerClasses.push_back(def.name);
     }
+    for (const auto& def : defs) {
+        if (def.base != "ModSystem") continue;
+        if (!def.properties.empty() || ++status->systems > 256) {
+            status->error = def.name + ": ModSystem invalido ou limite de 256 excedido";
+            return false;
+        }
+    }
     for (const auto& def : defs)
         if (!sourceRequiresNativeRegistration(def.base))
             typed.erase(sourceIdentityForBase(def.base, def.name));
@@ -474,7 +481,7 @@ bool load(const bl::mods::LoadedMod& mod, SourceModStatus* status) {
     }
     status->screenEffects = static_cast<int>(screenEffects.size());
     if (status->items+status->tiles+status->projectiles+status->buffs+
-        status->npcs+status->prefixes+status->players+status->screenEffects==0) {
+        status->npcs+status->prefixes+status->players+status->screenEffects+status->systems==0) {
         status->error = "mod C# sem conteudo registrado";
         return false;
     }
