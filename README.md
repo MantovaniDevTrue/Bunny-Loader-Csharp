@@ -49,4 +49,4 @@ Licenças e autoria dos arquivos preservados permanecem de seus titulares. O rep
 
 ## ModSystem C# (lote em desenvolvimento)
 
-Há um lote de porting de ModSystem em andamento na [PR #1](https://github.com/MantovaniDevTrue/Bunny-Loader-Csharp/pull/1). O SDK C# já declara 39 dos 58 callbacks originais e conta com CI de contratos C#, parser, geração do exemplo, teste ARM64 de sintaxe e assembler. **Ainda faltam 19 callbacks, testes de execução Android, compatibilidade com hooks JS e validação de FPS; a PR permanece Draft, sem APK e sem merge.** Referência detalhada: [cobertura por hook](docs/reference/repository/csharp-modsystem-coverage.md).
+Há um lote de porting de ModSystem em andamento na [PR #1](https://github.com/MantovaniDevTrue/Bunny-Loader-Csharp/pull/1). O SDK C# já declara 41 dos 58 callbacks originais e conta com CI de contratos C#, parser, geração do exemplo, teste ARM64 de sintaxe e assembler. **Ainda faltam 17 callbacks, testes de execução Android, compatibilidade com hooks JS e validação de FPS; a PR permanece Draft, sem APK e sem merge.** Referência detalhada: [cobertura por hook](docs/reference/repository/csharp-modsystem-coverage.md).

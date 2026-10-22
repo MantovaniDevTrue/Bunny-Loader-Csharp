@@ -51,5 +51,12 @@ assert 'modifyManagedSourceSystemBrightness(target.modId' in runtime, "Brightnes
 probe = (root/"src/managed/BunnySourceCompiler/CompiledAssemblyProbe.cs").read_text()
 assert '"BunnyLoader.Source.BunnySystemRecipes"' in probe and 'GetMethod("Generate"' in probe, "No recipe probe bridge"
 assert 'PrepareRecipes' in (root/"src/managed/BunnySourceCompiler/BasicItemWriter.cs").read_text(), "Recipe item serialization may be duplicated"
+assert 'ModifySunLightColor' in sdk and 'ModifyScreenPosition' in sdk, "Color/camera API missing"
+assert 'modifyManagedSourceSystemPackedValue' in native, "64-bit Mono native bridge missing"
+assert 'ApplyColorOfTheSkiesToTiles' in runtime, "Sunlight native hook missing"
+assert 'DoDraw_UpdateCameraPosition' in runtime, "Camera native hook missing"
+assert 'field_static_set_value(g_modSystemCameraPosition' in runtime, "Camera result not applied"
+assert 'field_static_set_value(g_modSystemTileColor' in runtime, "Sunlight result not applied"
+assert 'field_static_set_value(g_modSystemSkyColor' in runtime, "Sky result not applied"
 assert len(expected)==7
 print("MODSYSTEM_NATIVE_STAGES=PASS edges=7 hooks=9 version=301720")
