@@ -1,13 +1,13 @@
 # ModSystem em C# — integração de ciclo de vida
 
-> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 41 estão declarados, 17 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
+> **Auditoria de escopo:** ciclo de vida parcial, NÃO o ModSystem completo. Dos 58 métodos originais, 42 estão declarados, 16 faltam; `Unload` é adicional. Ver [matriz de cobertura](csharp-modsystem-coverage.md). Nunca anunciar o loader como concluído nem gerar APK pela aprovação do CI isolado.
 
 
 Este módulo usa o nome e as assinaturas de eventos `ModSystem` do tModLoader, mas a execução é implementada diretamente no SDK C# do Bunny Loader, sem executar JavaScript.
 
 ## API
 
-A classe `BunnyLoader.Source.ModSystem` já declara **41 dos 58 callbacks** do ModSystem original; `Unload` permanece um método adicional de limpeza. As categorias implementadas em fonte são: ciclo de vida, limpeza e geração básica do mundo, conclusão de registro de conteúdo, eventos de atualização e estágios ARM64 de jogadores/NPCs/gore/itens. Veja a [matriz auditável](csharp-modsystem-coverage.md) para os 17 ausentes, sem confundir declaração com validação Android.
+A classe `BunnyLoader.Source.ModSystem` já declara **42 dos 58 callbacks** do ModSystem original; `Unload` permanece um método adicional de limpeza. As categorias implementadas em fonte são: ciclo de vida, limpeza e geração básica do mundo, conclusão de registro de conteúdo, eventos de atualização e estágios ARM64 de jogadores/NPCs/gore/itens. Veja a [matriz auditável](csharp-modsystem-coverage.md) para os 16 ausentes, sem confundir declaração com validação Android.
 
 O `ModSystemLoader` cria uma instância por classe concreta e por assembly, ordenadas pelo nome completo; callbacks de atualização só são chamados nas classes que efetivamente sobrescrevem o método. Falhas de uma classe não bloqueiam outras; máximo de 256 sistemas por mod.
 
@@ -80,7 +80,7 @@ A implementação JS original do Bunny invoca `original(self)` em `Main.QuitGame
 - A implementação mantém o C# independente do JavaScript em runtime, mas os pontos de modificação do código nativo ARM64 ainda precisam ser testados quando um mod JS usa o mesmo endereço.
 - O código atual de entrada no mundo é focalizado em modo individual (`netMode == 0`); o evento de mundo no cliente multiplayer do Bunny original não pode ser considerado validado.
 - CI verde significa compilação gerenciada, testes contratuais, sintaxe C++/assembly ARM64 e auditoria de fontes. Não cobre ligação do app, execução no aparelho, integridade do save, FPS ou teste real do trampolim.
-- Nunca gerar APK ou liberar PR enquanto faltarem os 17 métodos, a compatibilidade de hooks e a validação nativa no Terraria 301720.
+- Nunca gerar APK ou liberar PR enquanto faltarem os 16 métodos, a compatibilidade de hooks e a validação nativa no Terraria 301720.
 
 ## Localização e contagem de biomas
 
@@ -111,3 +111,7 @@ A etapa final de registro de conteudo, depois de `pendingRecipes == 0` e da conc
 O `ModifySunLightColor(ref BunnySystemColor tiles, ref BunnySystemColor sky)` usa os dois campos de quatro bytes `Main.tileColor` e `Main.ColorOfTheSkies` após `Main.ApplyColorOfTheSkiesToTiles()`. A API C# trabalha com RGBA (`Packed`, `R`, `G`, `B`, `A`), preserva alfa e aplica o resultado de volta aos campos nativos pelo IL2CPP. Os dados dos dois `Color` viajam em um `ulong` entre host/Mono para evitar objetos e alocações por quadro. Métodos que não sobrescrevem o hook são ignorados.
 
 O `ModifyScreenPosition()` preserva a assinatura original sem parâmetros. Dentro dele, `BunnySystemCamera.ScreenPosition` lê/altera `BunnySystemVector2` do contexto atual (`X`, `Y`); fora do callback, o acesso é recusado. Depois de `Main.DoDraw_UpdateCameraPosition()`, a ponte lê os dois floats de `Main.screenPosition` e aplica somente valores finitos. O contexto é local à thread, reentradas são recusadas e alterações anteriores são preservadas quando um sistema lança exceção. O hook de câmera só é chamado com sessão de mundo ativa e fora do menu. O pipeline por quadros ainda depende de validar a coexistência com hooks JS, ABI do `Color` e FPS no Android 301720.
+
+## TileCountsAvailable — contagem do jogador local
+
+Após `SceneMetrics.AggregateTileCounts()`, o host confirma que o `self` é exatamente `Main.PlayerSceneMetrics`. Confere que `_tileCounts` é um `System.Int32[]` unidimensional, com tamanho entre 1 e 8192 elementos e offset de campo aceitável. Encaminha o buffer apenas aos mods com o bit 53 de override; a ponte `mono_array_new` / `mono_array_addr_with_size` copia os elementos para um `int[]` de cada assembly, sem revarrer tiles e sem expor ponteiros do Terraria ao C#. O `ModSystem.TileCountsAvailable(int[] tileCounts)` executa uma vez por varredura local, depois dos hooks de reset, e não no menu nem em varreduras dos pilares. O exemplo registra a quantidade do índice 754 (tile de mod de exemplo); o teste C# valida o valor e o isolamento por sessão. Se Mono não possuir as funções de array ou o layout IL2CPP não coincidir, o gate recusa o hook. Precisa de QA no Terraria 301720 e medições reais de FPS.

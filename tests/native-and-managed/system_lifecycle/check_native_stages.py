@@ -61,5 +61,11 @@ assert 'field_static_set_value(g_modSystemSkyColor' in runtime, "Sky result not 
 assert 'isModSystemNativeStructField(g_modSystemTileColor, 4)' in runtime, "Tile Color must be 4 bytes"
 assert 'isModSystemNativeStructField(g_modSystemSkyColor, 4)' in runtime, "Sky Color must be 4 bytes"
 assert 'isModSystemNativeStructField(g_modSystemCameraPosition, 8)' in runtime, "Camera Vector2 must be 8 bytes"
+assert 'TileCountsAvailable' in sdk and 'tileCounts.Length > 8192' in sdk, "C# tile counts contract missing"
+assert 'AggregateTileCounts' in runtime and 'isModSystemLocalPlayerMetrics' in runtime, "Local metrics native hook missing"
+assert 'g_modSystemTileCountsOffset' in runtime and 'std::strcmp(name, "Int32")' in runtime, "Tile count ABI validation absent"
+assert 'dispatchManagedSourceSystemTileCounts' in native, "Mono tile counts dispatch missing"
+assert 'mono_array_new' in native and 'mono_array_addr_with_size' in native, "Mono int[] allocation/copy unavailable"
+assert 'if (!g_modSystemTileCountsOffset)' not in runtime, "Invalid guard"
 assert len(expected)==7
 print("MODSYSTEM_NATIVE_STAGES=PASS edges=7 hooks=9 version=301720")

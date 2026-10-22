@@ -42,7 +42,8 @@
     "PreUpdateWorld",
     "PreWorldGen",
     "ResetNearbyTileEffects",
-    "ResizeArrays"
+    "ResizeArrays",
+    "TileCountsAvailable"
   ],
   "missingOriginalHooks": [
     "AddRecipeGroups",
@@ -57,7 +58,6 @@
     "ModifyInterfaceLayers",
     "ModifyTimeRate",
     "ModifyTransformMatrix",
-    "TileCountsAvailable",
     "NetSend",
     "NetReceive",
     "HijackGetData",
