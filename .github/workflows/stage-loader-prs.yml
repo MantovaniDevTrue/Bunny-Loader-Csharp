@@ -85,4 +85,6 @@ jobs:
             exit 0
           fi
           git commit -m "chore(csharp): stage pinned PR98+ source-only loader overlays"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase FETCH_HEAD
           git push origin "HEAD:${GITHUB_REF_NAME}"
