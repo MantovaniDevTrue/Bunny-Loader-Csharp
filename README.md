@@ -1,48 +1,75 @@
-# BunnyLoader C# — Runtime, SDK e complementos
+# Bunny Loader C#
 
-Repositório dedicado **somente ao subsistema C# do BunnyLoader para Terraria Mobile**. Código-fonte preservado da versão **0.1.10.16.90.29.87.1** (Android `versionCode 249`), base `dc6243850c1d7ac83eb528bc2d56cf585066fc85`.
+Subsistema C# do [Bunny Loader](https://github.com/JonataOliveiraa/Bunny-Loader) para Terraria Mobile. Reúne o runtime gerenciado, a compilação de mods, a API C#, os hooks nativos e os componentes necessários à integração com Android/IL2CPP.
 
-Este repositório reúne todos os componentes C# relevantes e os adaptadores nativos indispensáveis, **sem clonar o aplicativo Android completo, o launcher, as interfaces gerais ou o mecanismo de mods JavaScript**.
+Este repositório contém **código-fonte do suporte C#**, não o aplicativo Android inteiro. A execução dos mods C# usa o próprio runtime e as pontes nativas do Bunny; o projeto original pode continuar oferecendo suporte a JavaScript separadamente.
 
-## Organização
+## Como funciona
 
-| Pasta | Conteúdo |
+O suporte C# é dividido em quatro partes:
+
+1. **Roslyn:** analisa e compila os arquivos \`.cs\` dos mods, usando as referências do SDK e o cache de compilação.
+2. **MonoVM:** carrega e executa o código gerenciado e recebe eventos do jogo por meio do worker Android.
+3. **C++ / IL2CPP:** faz a ligação com o Terraria, registra conteúdo e conecta os callbacks, hooks e comportamentos nativos.
+4. **SDK C#:** oferece os tipos utilizados pelos mods para declarar itens, projéteis, NPCs, jogadores, buffs, equipamentos, tiles e outros recursos.
+
+Em termos de fluxo: o host descobre o mod, o compilador prepara as classes, o runtime carrega a montagem C# e as pontes nativas conectam o conteúdo e os eventos ao Terraria. Operações que dependem dos objetos Unity/IL2CPP precisam respeitar a thread, o ciclo de vida e os contratos do jogo.
+
+## Estrutura
+
+| Caminho | Responsabilidade |
 | --- | --- |
-| `src/managed/BunnyCsSdk/` | API de mods C#, itens, projéteis, NPCs, player, equipamentos, hooks, acesso nativo, visuais |
-| `src/managed/BunnySourceSdk/` | Projeto de montagem do SDK C# |
-| `src/managed/BunnySourceCompiler/` | Roslyn, análise, cache, referência, compilação de fontes |
-| `src/managed/` | Packager, probes e outros projetos gerenciados |
-| `src/native/experiments/csharp/` | MonoVM, worker, filas, RPC, callbacks, políticas de conteúdo, IA, combates, hooks universais, AOT |
-| `src/native/graphics/` | ScreenFX, shader registry, grafo multipass, composição e renderização |
-| `src/native/host-interfaces/` | Adaptadores C++ necessários à integração com o host (IL2CPP, hooks e infraestrutura básica) |
-| `src/native/script/api/` | Ponte de entrada C# do host, mantida para integração |
-| `src/android-interop/` | Serviços Kotlin estritamente ligados ao compilador e worker C# |
-| `samples/` | ExampleMod C#, armaduras, acessórios, NPCs, shaders e outras demonstrações C# |
-| `tests/` | Testes focados no C#, runtime, hooks, gráficos, compilador e políticas |
-| `tools/support/` | Scripts exclusivos para C#, Mono, AOT, API e empacotamento |
-| `docs/` | Contratos de funcionamento e referências do SDK |
-| `SOURCE_MANIFEST.json` | Lista de arquivos importados e checksums SHA-256 |
+| [\`src/managed/BunnyCsSdk/\`](src/managed/BunnyCsSdk/) | API C# de itens, entidades, equipamentos, eventos, hooks, visuais e acesso nativo |
+| [\`src/managed/BunnySourceSdk/\`](src/managed/BunnySourceSdk/) | Assembly de referência usado para compilar mods-fonte |
+| [\`src/managed/BunnySourceCompiler/\`](src/managed/BunnySourceCompiler/) | Compilador Roslyn, referências, validação e cache |
+| [\`src/managed/BunnyManagedProbe/\`](src/managed/BunnyManagedProbe/) | Ponto de entrada gerenciado do worker |
+| [\`src/native/experiments/csharp/\`](src/native/experiments/csharp/) | Runtime MonoVM, loaders, filas, registro, hooks e integração IL2CPP |
+| [\`src/native/host-interfaces/\`](src/native/host-interfaces/) | Interfaces nativas necessárias para conectar o subsistema ao host |
+| [\`src/native/graphics/\`](src/native/graphics/) | Renderização, ScreenFX e recursos gráficos usados pelo C# |
+| [\`src/android-interop/\`](src/android-interop/) | Componentes Kotlin/Android ligados ao worker e ao compilador |
+| [\`samples/\`](samples/) | Exemplos de mods e recursos C# |
+| [\`tests/\`](tests/) | Testes de contratos, compilação e integração |
+| [\`tools/support/\`](tools/support/) | Scripts de preparação, empacotamento e suporte ao runtime |
 
-O projeto preserva arquivos nativos `.cpp/.h`, Kotlin de integração, Python de build e assets dos exemplos porque **sem eles as funcionalidades C# não ficariam completas**. Eles não representam o aplicativo inteiro.
+Arquivos C++, Kotlin e recursos gráficos fazem parte desta fonte porque são dependências reais do suporte C#, mesmo que não sejam escritos em C#.
 
-## Funcionalidades
+## Recursos presentes
 
-- Mods C# com arquivos fonte `.cs`, registro de conteúdo e compilações Roslyn/MonoVM.
-- Equipamentos, acessórios, bônus de armadura, buffs, receitas, prefixos e tiles.
-- Hooks de combate e eventos gerenciados, callbacks universais, proteção contra travamentos e filas.
-- Player, projéteis, NPCs, comportamento/IA, vida/morte, dano e movimento.
-- Acesso nativo tipado, JNI/IL2CPP e integração com o runtime do BunnyLoader.
-- Visuais, desenho, ScreenFX, shaders GLSL, passes e efeitos de tela.
-- Exemplos editáveis, ferramentas de empacotamento e testes relevantes.
+A fonte contém infraestrutura para:
 
-Essas são **implementações existentes na fonte**; não significa que todos os contratos da API tenham cobertura integral nem que esta extração tenha sido testada como um APK separado.
+- Compilação e carregamento de mods escritos em C#.
+- Itens, armas, acessórios, armaduras, buffs, receitas, prefixos e tiles.
+- Jogadores, NPCs, projéteis, IA, eventos de dano e combate.
+- Hooks universais, chamadas nativas e comunicação entre C# e o Terraria.
+- Texturas, efeitos visuais, ScreenFX e recursos de renderização.
+- Controle de eventos, filas, cache e gerenciamento de estado.
 
-## Integração e limites
+**Importante:** a existência de uma API, classe ou exemplo não garante que todos os callbacks de cada loader estejam implementados ou validados no Terraria Android. O núcleo MonoVM/Roslyn e a cobertura dos loaders são etapas diferentes.
 
-Este é um **módulo de fontes para integração no BunnyLoader**, não um APK e nem um jogo executável independente. Exige um host compatível para thread do jogo, JNI, callbacks IL2CPP, sistema de mods, draw hooks, Android e assets de Terraria. Consultar `docs/INTEGRACAO.md` e `docs/DEPENDENCIAS.md`.
+## Compilação e integração
 
-O snapshot está fixado na .87.1. Funcionalidades criadas somente em branches posteriores ou divergentes não foram misturadas com esta versão. O foco permanece na API C# própria do BunnyLoader, sem adaptadores JS para execução dos mods C#.
+Os projetos gerenciados estão em \`src/managed/\`. O SDK de autoria usa \`.NET 10\` em \`BunnyCsSdk.csproj\`; \`BunnySourceSdk\`, \`BunnySourceCompiler\` e \`BunnyManagedProbe\` usam \`.NET 8\`. O compilador utiliza \`Microsoft.CodeAnalysis.CSharp\` (Roslyn).
 
-Referência do BunnyLoader original: https://github.com/JonataOliveiraa/Bunny-Loader
+Para verificar a parte gerenciada num ambiente com os SDKs necessários:
 
-Licenças e autoria dos arquivos preservados permanecem de seus titulares. O repositório não distribui binários, dados do jogo nem segredos de assinatura.
+\`\`\`bash
+dotnet build src/managed/BunnyCsSdk/BunnyCsSdk.csproj -c Release
+dotnet build src/managed/BunnySourceSdk/BunnySourceSdk.csproj -c Release
+dotnet build src/managed/BunnySourceCompiler/BunnySourceCompiler.csproj -c Release
+\`\`\`
+
+Esses comandos compilam projetos C# individualmente; **não geram um APK** e não substituem a integração com o Bunny Loader Android.
+
+A execução no jogo exige o host do Bunny, seu CMake/NDK, as bibliotecas Mono/.NET ARM64, JNI, registradores de conteúdo e interfaces IL2CPP. Os binários e assets proprietários do Terraria não estão incluídos aqui.
+
+Leia [Integração com o Bunny Loader](docs/INTEGRACAO.md) para os pontos de ligação e [Dependências](docs/DEPENDENCIAS.md) para os requisitos do ambiente.
+
+## Versão desta fonte
+
+A árvore principal é uma extração rastreável da versão **\`0.1.10.16.90.29.87.1\`**, originada do commit \`dc6243850c1d7ac83eb528bc2d56cf585066fc85\`. O arquivo [\`SOURCE_MANIFEST.json\`](SOURCE_MANIFEST.json) registra os caminhos e checksums dos arquivos importados.
+
+É um **snapshot do subsistema C#**, não uma declaração de que todas as alterações posteriores do desenvolvimento já estejam incorporadas. Os arquivos aqui foram separados do projeto Android para facilitar leitura, manutenção e reutilização da arquitetura.
+
+## Créditos
+
+Bunny Loader original por **Jonata Oliveira**. Desenvolvimento da extensão C# por **Mantovani**. A autoria e os termos dos componentes de terceiros são preservados; este repositório não distribui o jogo, APKs ou credenciais de assinatura.
